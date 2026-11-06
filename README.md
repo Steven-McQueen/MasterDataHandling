@@ -16,8 +16,8 @@ The kokebok says what each step measures and why; this plan says how the step wa
 | 3 | Prices and market-adjusted daily returns | `3) Prices/` | `1) FetchPrices/`, `2) ComputeReturns/`, `3) ReviewPrices/` | `returns_table_presample.csv`, `betas_presample.csv` |
 | 4 | Build the company database | `4) CompanyDB/` | `BuildCompanyDB.py`, `BuildEntities.py` | `company.db` |
 | 5 | Label posts | `5) MapTweetCompany/` | `1) LabelTweets/`, `2) MapToTickers/`, `3) LabelAccuracy/` | `Twitter_tickers_2025_2026.xlsx` |
-| 6 | Define the calendar shifts | `6) CalendarShifts/` | planned | |
-| 7 | Part 1: talk | `7) Part1Talk/` | planned | |
+| 6 | Define the calendar shifts | `6) CalendarShifts/` | `CalendarShifts.py` | `worlds.csv` |
+| 7 | Part 1: talk | `7) Part1Talk/` | `RunPart1.py` (`1) BuildPanel/`, `2) Estimate/`, `3) Inference/`) | `results.csv`, `inference.csv` |
 | 8 | Part 2: timing | `8) Part2Timing/` | planned | |
 | 9 | Part 3: returns | `9) Part3Returns/` | planned | |
 | 10 | Checks | `10) Checks/` | planned | |
@@ -895,10 +895,28 @@ Step 5.1 produces the labels and Step 5.2 maps them; this step measures how good
 **Cost (measured):** about USD 0.22 per 300 posts on gpt-5-mini Global Standard; the full sample cost USD 16.6 (42.7 million input and 2.9 million output tokens, of which 2.2 million reasoning); under USD 1 for the self-agreement rerun. The Azure for Students credit covers this many times over.
 
 ## Step 6: Calendar shifts
-Planned; see kokebok step 6. Folder `6) CalendarShifts/`, created when the work starts.
+`6) CalendarShifts/CalendarShifts.py` (added 2026-11-06). A shifted world moves every purchase date forward by the same number of calendar days, circularly inside the shift calendar: shifted = 2025-01-20 + (offset + shift) mod L, with L = 557 (kokebok). Posts, prices and tickers stay as they are. World 0 is the real world; worlds 1 to 556 use every other shift once, so the set is exhaustive rather than random, and a p-value is the share of all 557 worlds whose statistic is at least as large as the real one. The output `worlds.csv` (world, shift_days, shift_start, L) is the only place the shift settings live; later steps read it and apply the formula. `ShiftsReport.txt` lists the inputs and checks.
+
+- **Purchases on day L.** The 44 purchases of 2026-07-31 lie on day 557 of the calendar and wrap to its start in every world. With L = 558 the calendar would hold every purchase day; the choice is left to the kokebok (setting `L`).
+- Shifted dates are calendar days and can fall on weekends; each analysis step decides how to treat them.
 
 ## Step 7: Part 1, talk
-Planned; see kokebok step 7. Folder `7) Part1Talk/`, created when the work starts.
+`7) Part1Talk/` (added 2026-11-06). Does Trump mention a company more often after he has bought it? Decisions, fixed before any result, are in `0) Decisions.md`; every setting is in `Part1Settings.py`; `RunPart1.py` runs the three steps in order and writes `RunLog.txt`.
+
+### 7.0) Why purchases and not ownership
+The first plan (Max) was "the probability of a post rises once he owns the company". It barely varies over time: of the 127 tickers with a direct mention, 98 were first bought by 2025-02-02, so only 47 mention-days lie before a first purchase (902 after), and holdings before 2025 are not observed. Purchases repeat (median 28 purchase days per mentioned company), so the main treatment is a **recent purchase**: bought on any of the k calendar days before the post day, k = 1, 3, 5, 10, 20, 30, main window 10. Exposure (log of the cumulative USD bought, midpoints) is a robustness check; ownership is reported as a description only.
+
+### 7.1) The panel · `1) BuildPanel/`
+One row per ticker in the trade universe (1,620) and calendar day 2025-01-20 to 2026-08-31 (589): 954,180 rows, balanced. Mentions come from `Twitter_tickers_2025_2026.xlsx`, counted per post (a post naming a company twice counts once), with the post day in US Eastern time; four definitions: direct (main), direct + brand, direct + brand + executive, and direct mentions by @realDonaldTrump only. All 18,818 purchase lots count, priced or not; sales are ignored. `BuildPanelChecks.txt` matches every count to the source and traces ten ticker-days back to the posts.
+
+### 7.2) Estimates · `2) Estimate/`
+Linear probability model with ticker and day effects, standard errors clustered by ticker and day (pyfixest); Poisson with the same effects; the windows with the purchase day included; the sample of mentioned tickers only; lead/lag bins from 30 days before to 30 days after a purchase in one regression. `results.csv` holds all 50 specifications with the baseline probability and the effect in percentage points.
+
+### 7.3) Inference · `3) Inference/`
+The same two-way slope in all 557 worlds (closed form for the balanced panel; equal to pyfixest in the real world). `inference.csv` gives the real slope, the mean of the shifted worlds, one-sided p-values in both directions, the real and expected number of mention-days inside a window, and `p_search`, which compares the best window's p-value with the best window's p-value in every world.
+
+### 7.4) Result (run of 2026-11-06)
+No sign that he talks more about a company after buying it. Direct mentions within ten days after a purchase: 284 mention-days against 311 expected from the shifted worlds (ratio 0.91); slope −0.023 percentage points on a baseline of 0.08 percent; share of worlds with a slope at least as large 0.93 (`p_search` over all windows 0.91). The lead/lag bins show no clear pattern before or after purchases (no bin below p = 0.07). For @realDonaldTrump's own posts the slope is negative and below most shifted worlds (p_lower 0.016 at ten days). The most mentioned companies are media companies (FOXA, NWSA, CMCSA, WBD, DIS, SKYD).
 
 ## Step 8: Part 2, timing
 Planned; see kokebok step 8. Folder `8) Part2Timing/`, created when the work starts.
