@@ -1,0 +1,12 @@
+company,old_ticker,new_ticker,action,rows,reason,prices
+NORTHERN TR,NCL,NTRS,corrected,4,"Wrong mapping: Northern Trust is NTRS, not Northann (NCL)",prices exist
+HESS CORP,HSAI,HES,corrected,4,"Wrong mapping: Hess Corp is HES, not Hesai (HSAI). Acquired by Chevron in July 2025",prices fetched from FMP
+INARI MED,MMED,NARI,corrected,5,"Wrong mapping: Inari Medical is NARI, not MiniMed (MMED). Acquired by Stryker in February 2025",prices fetched from FMP
+CONFLUENT,CNDT,CFLT,corrected,1,"Wrong mapping: Confluent is CFLT, not Conduent (CNDT)",prices fetched from FMP
+PREMIER INC,PINC,,taken out,6,"Reused ticker: FMP's prices are an ETF (PGIM), not Premier Inc. Taken out until correct prices exist",missing
+BROOKLINE,BRKL,,taken out,4,"Reused ticker: FMP's prices are an ETF (Corgi BRKB 2x), not Brookline Bancorp. Taken out until correct prices exist",missing
+CAST CORP,CAST,,to check,1,"Unclear: 'CAST CORP' in the filing, mapped to FreeCast. Check the original filing (may be a truncated name)",kept for now
+EXP WORLD,AGNT,,to check,5,"Probably a name change: eXp World Holdings -> AGNT, Inc. Check",kept for now
+ENVIRI,NVRI,,taken out,6,"FMP's prices cover only New Enviri after the separation, not the purchase dates",missing
+WOLFSPEED,WOLF,,taken out,4,Old shares cancelled 29.09.2025. FMP's prices start after the purchases,missing
+AVIDITY,RNAM,,taken out,1,"Avidity traded as RNA, which now belongs to another company. FMP has no prices for the purchase date",missing

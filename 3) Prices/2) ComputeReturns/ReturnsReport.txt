@@ -1,0 +1,7 @@
+Tickers in purchase table: 1594
+Tickers with no prices (0): none
+Tickers with fewer than 60 estimation days (13): AZPN, BERY, CBRS, DFS, HCP, HONA, MBGL, MFP, NARI, PDCO, ROIC, SPCX, SWI
+Trading days: 2025-01-21 to 2026-08-31 (405)
+Intercept in prediction: False
+Days removed after review (2): MFP 2026-06-29, AVB 2026-08-17
+Marked wrong but not found in the returns (0): none

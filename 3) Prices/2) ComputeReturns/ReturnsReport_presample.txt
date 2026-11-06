@@ -1,0 +1,18 @@
+Tickers in purchase table: 1594
+Tickers with no prices (0): none
+Tickers with fewer than 60 in-sample estimation days (sample 2025-01-21 to 2026-08-31 outside days 1-10 after purchases) (13): AZPN, BERY, CBRS, DFS, HCP, HONA, MBGL, MFP, NARI, PDCO, ROIC, SPCX, SWI
+Trading days: 2025-01-21 to 2026-08-31 (405)
+Intercept in prediction: False
+Days removed after review (5): MFP 2026-06-29, AVB 2026-08-17, ELME 2026-01-26, ELME 2026-06-25, SITC 2025-08-15
+Marked wrong but not found in the returns (5): GDEN 2026-05-15, HBI 2025-12-02, LBRDK 2026-08-21, MCW 2026-06-08, VTLE 2025-12-19
+Beta estimation: presample (250 trading days ending 2025-01-17), fallback to in-sample below 60 days
+Method presample (1570): ...
+Method insample_fallback (19): AMRZ, CNR, CRWV, ECG, FIG, KRMN, MRP, NBIS, PRSU, Q, QXO, RAL, SAIL, SNDK, SOLS, SUPN, TTAN, VGNT, VSNT
+Method none (5): CBRS, HONA, MBGL, MFP, SPCX
+  of which presample with 60-249 pre-sample days (19): ALAB 208, AMTM 79, BTSG 245, CON 121, CURB 77, GEV 203, INVX 107, KBDC 164, LIF 154, LOAR 183, PENG 85, RBRK 183, RDDT 207, SARO 73, SITC 249, SOLV 204, TEM 148, VIK 179, WAY 153
+  forced to insample_fallback: SUPN (FMP serves Indivior's history under SUPN for the pre-sample window (Supernus acquired Indivior on 2026-11-03, after the original fetch); the in-sample prices are Supernus' own)
+  forced to insample_fallback: QXO (before mid-2024 QXO was SilverSun Technologies, an illiquid shell; its 2024 prices are not a valid basis for a beta)
+  forced to insample_fallback: CNR (the 2024 series is CONSOL Energy alone; CNR was formed by the CONSOL-Arch merger on 2025-01-14)
+  forced to insample_fallback: NBIS (only 60 pre-sample days, right after the Yandex-to-Nebius restructuring (trading resumed 2024-10-21))
+Pre-sample days removed after review (1): SITC 2024-09-23
+Pre-sample marked wrong but not found (0): none
