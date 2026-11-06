@@ -1,0 +1,14 @@
+Step 6, calendar shifts | run 2026-11-06 15:53
+
+Input: 2) Trades/Trump_trades_2025_2026.xlsx / Trades: 27,628 rows, modified 2026-11-06 15:42
+Purchases: 18,818 lots on 1,599 tickers, 196 purchase days, 2025-01-23 to 2026-07-31
+
+Shift calendar: 2025-01-20 to 2026-07-30 (L = 557 calendar days)
+Worlds: 557 (world 0 = real, worlds 1-556 = every non-zero shift once)
+Purchases before the calendar start: 0
+Purchases on day L or later (wrap around in every world): 44 (dates: 2026-07-31)
+Purchases dated on a weekend: 4
+Check, same number of purchases and purchase days in shifted worlds: OK
+
+Shifted dates are calendar days and can fall on weekends or holidays; each analysis step
+decides how to treat them (Part 1 works on calendar days).
