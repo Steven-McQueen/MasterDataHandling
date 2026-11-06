@@ -66,10 +66,11 @@ master/                                          # one folder per stage, read in
 │   │   └── blocked_texts.csv                    # the posts Azure's content filter refused (ID, date, account, text)
 │   │   └── blocked_trial_texts.csv              # same for the two 300-post development samples, with filter category
 │   ├── 2) MapToTickers/                         # Step 5.2 — map LLM companies to trade tickers
+│   │   └── ReviewGuide.md                       # for the authors: what Part 1 needs from this step, the post -> ticker chain, the review rules, and how to read the output
 │   │   └── TwitterTickerCleaning.ipynb          # same structure and tone as TradesCleaning.ipynb
-│   │   └── TickerTwitterReview.xlsx             # review of flagged rows (agents + author spot-check); Entities sheet from Step 4.2
-│   │   └── Twitter_tickers_2025_2026.xlsx       # OUTPUT: one row per post × company, with ticker
-│   │   └── TwitterDescriptiveAnalysis.xlsx      # descriptive tables for the data chapter
+│   │   └── TickerTwitterReview.xlsx             # review (complete 2026-11-08), sheets in order: ReadMe · 1_CompanyReview (one row per company: suggestion + v / override = its ticker on any exchange, or NONE) · 2_MentionExceptions · 3_NotListedOnPostDate · Entities (Step 4.2)
+│   │   └── Twitter_tickers_2025_2026.xlsx       # OUTPUT: one row per post × company (6,468): post · LLM label · decision (public_ticker, ticker = universe join key, listed / in_universe / purchased, status); ReadMe sheet defines the columns
+│   │   └── TwitterDescriptiveAnalysis.xlsx      # descriptive tables for the data chapter; 7_Part1Share = purchased share of the listed companies posted about
 │   └── 3) LabelAccuracy/                        # Step 5.3 — hand-coded check of the LLM labels; planned: precision sample, recall sample, results
 ├── 6) CalendarShifts/ … 11) Exhibits/          # Steps 6–11 = kokebok steps 6–11; each folder is created when its work starts
 ├── tasks/
