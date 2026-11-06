@@ -67,7 +67,7 @@ master/                                          # one folder per stage, read in
 │   │   └── blocked_trial_texts.csv              # same for the two 300-post development samples, with filter category
 │   ├── 2) MapToTickers/                         # Step 5.2 — map LLM companies to trade tickers
 │   │   └── TwitterTickerCleaning.ipynb          # same structure and tone as TradesCleaning.ipynb
-│   │   └── TickerTwitterReview.xlsx             # review of flagged rows (agents + author spot-check); Entities sheet from Step 4.2
+│   │   └── TickerTwitterReview.xlsx             # review: ReadMe, AllPairs/ToReview (generated), PairDecisions + RowOverrides (hand), Entities (Step 4.2)
 │   │   └── Twitter_tickers_2025_2026.xlsx       # OUTPUT: one row per post × company, with ticker
 │   │   └── TwitterDescriptiveAnalysis.xlsx      # descriptive tables for the data chapter
 │   └── 3) LabelAccuracy/                        # Step 5.3 — hand-coded check of the LLM labels; planned: precision sample, recall sample, results
