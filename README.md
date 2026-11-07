@@ -18,7 +18,7 @@ The kokebok says what each step measures and why; this plan says how the step wa
 | 5 | Label posts | `5) MapTweetCompany/` | `1) LabelTweets/`, `2) MapToTickers/`, `3) LabelAccuracy/` | `Twitter_tickers_2025_2026.xlsx` |
 | 6 | Define the calendar shifts | `6) CalendarShifts/` | `CalendarShifts.py` | `worlds.csv` |
 | 7 | Part 1: talk | `7) Part1Talk/` | `RunPart1.py` (`1) BuildPanel/`, `2) Estimate/`, `3) Inference/`) | `results.csv`, `inference.csv` |
-| 8 | Part 2: timing | `8) Part2Timing/` | planned | |
+| 8 | Part 2: timing | `8) Part2Timing/` | `RunPart2.py` (`1) Hits/`, `2) Inference/`) | `purchase_hits.csv`, `inference.csv` |
 | 9 | Part 3: returns | `9) Part3Returns/` | planned | |
 | 10 | Checks | `10) Checks/` | planned | |
 | 11 | Exhibits | `11) Exhibits/` | planned | |
@@ -919,7 +919,20 @@ The same two-way slope in all 557 worlds (closed form for the balanced panel; eq
 No sign that he talks more about a company after buying it. Direct mentions within ten days after a purchase: 284 mention-days against 311 expected from the shifted worlds (ratio 0.91); slope −0.023 percentage points on a baseline of 0.08 percent; share of worlds with a slope at least as large 0.93 (`p_search` over all windows 0.91). The lead/lag bins show no clear pattern before or after purchases (no bin below p = 0.07). For @realDonaldTrump's own posts the slope is negative and below most shifted worlds (p_lower 0.016 at ten days). The most mentioned companies are media companies (FOXA, NWSA, CMCSA, WBD, DIS, SKYD).
 
 ## Step 8: Part 2, timing
-Planned; see kokebok step 8. Folder `8) Part2Timing/`, created when the work starts.
+`8) Part2Timing/` (added 2026-11-07). Does a purchase precede a post about the same company, and above all a positive one, more often than chance? Decisions, fixed before any result, are in `0) Decisions.md`; every setting is in `Part2Settings.py`; `RunPart2.py` runs both steps in order and writes `RunLog.txt`.
+
+### 8.1) Hits · `1) Hits/`
+- **Unit:** one purchase = one company and day: `PurchasesMerged` (17,724) plus the 21 left-out lots merged the same way, 17,745 company-days on 1,599 tickers. The unpriceable purchases stay in, as open decision 2 recommends.
+- **Window:** day 0 is the trade date or the next trading day (4 purchases moved); the window is trading days 1 to 10 after it on the Step 3 calendar (`factors_daily_presample.csv`), 14 to 18 calendar days, weekends included. Posts on day 0 do not count (order within the day unknown; setting `INCLUDE_DAY0`). Post days in US Eastern time.
+- **Hit:** a purchase with at least one qualifying post about the same ticker inside its window. Second count on the post side: qualifying post-company pairs inside the window of at least one purchase.
+- **Outcomes:** direct mentions (main), direct + brand, all types; any tone, Praised (sentiment ≥ 0.5; 0.3 and 0.7 as sensitivity), Roasted (≤ −0.5; −0.3, −0.7); all accounts (main) and @realDonaldTrump only. The scores cluster at the ends of the scale, so ±0.3 and ±0.5 select almost the same posts (412 against 409 Praised pairs).
+- `purchase_hits.csv` (one row per purchase with the number of posts in its window per outcome), `hit_posts.csv` (every post inside a real window for the main outcomes, with its text, for review), `HitsChecks.txt` (inputs, counts, five hits recounted by hand).
+
+### 8.2) Inference · `2) Inference/`
+The same counts in all 557 worlds of Step 6; shifted dates move to the next trading day as in the real world. `inference.csv`: real count, mean and standard deviation of the shifted worlds, ratio, p_upper (share of worlds with at least as many hits) and p_lower. An independent brute-force recount of worlds 0, 100 and 400 matches the counts exactly.
+
+### 8.3) Result (run of 2026-11-07)
+Purchases are not followed by Praised posts more often than chance; they are followed by them less often. Main test: 176 purchases followed by a Praised direct mention within ten trading days, against 207 expected (ratio 0.85; p_upper 0.955, p_lower 0.056). Any mention: 371 against 397 (0.94). Roasted: 123 against 107 (1.15; p_upper 0.081). Tone given talk: 47 percent of talk hits are Praised, against 52 percent in the shifted worlds. For @realDonaldTrump's own posts, Praised hits are 63 against 93 expected (p_lower 0.018).
 
 ## Step 9: Part 3, returns
 Planned; see kokebok step 9. Folder `9) Part3Returns/`, created when the work starts.
