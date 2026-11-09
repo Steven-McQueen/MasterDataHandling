@@ -50,7 +50,7 @@ WINDOW = (1, 10)                         # trading days 1..10 after day 0 (main)
 SAMPLE_START = "2025-01-21"              # first trading day of the returns table
 SAMPLE_END = "2026-08-28"                # 20th trading day after the last purchase (longest horizon, check 1)
 
-AMOUNTS = ["amount_low", "amount_mid", "amount_high"]
+AMOUNTS = ["amount_mid"]                 # midpoint of the disclosed range only (decided 2026-11-09)
 MAIN_AMOUNT = "amount_mid"
 
 MENTION_OUTCOME = "direct_any"           # which posts can label a purchase (Part 2 main mention type, all accounts)
@@ -63,7 +63,7 @@ N_CONTRIBUTORS = 10
 
 N_WORLDS = None                          # None = every world in worlds.csv
 
-MERGED_COLUMNS = ["ticker", "trade_date", "lots"] + AMOUNTS
+MERGED_COLUMNS = ["ticker", "trade_date", "lots", "amount_low", "amount_mid", "amount_high"]
 
 
 # --------------------------------------------------------------------------
