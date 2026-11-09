@@ -114,7 +114,12 @@ master/                                          # one folder per stage, read in
 │   └── 0) Decisions.md                          # every choice for the checks, fixed before results
 │   └── Checks.py                                # horizons, days before, short shifts, return models, without the five largest
 │   └── robustness.csv · world_checks.csv · horizons.png · ChecksReport.txt
-├── 11) Exhibits/                                # Step 11 = kokebok step 11; created when its work starts
+├── 11) Exhibits/                                # Step 11 = kokebok step 12 (Exhibits): every table and figure for the thesis
+│   └── 0) Decisions.md                          # the list of exhibits and their format
+│   └── Exhibits.py                              # reads the outputs of Steps 2-10; estimates nothing again
+│   └── tables/                                  # tab_*.tex (booktabs, caption, label, note) and tab_*.csv
+│   └── figures/                                 # fig_*.pdf (vector) and fig_*.tex (caption, label, note)
+│   └── ExhibitsReport.txt
 ├── tasks/
 │   └── todo.md                                  # associate's plan and gates
 │   └── MANAGER_BRIEF.md                         # manager → associate instructions

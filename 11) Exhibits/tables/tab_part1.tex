@@ -1,0 +1,21 @@
+\begin{table}[htbp]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Part 1: mentions of a company after a recent purchase}
+\label{tab:part1}
+\begin{tabular}{rrrrrrr}
+\toprule
+k (days) & Slope & Shifted mean & p\textsubscript{upper} & p\textsubscript{lower} & Mention-days & Expected \\
+\midrule
+1 & $-$0.0030 & +0.0012 & 0.535 & 0.467 & 41 & 43.9 \\
+3 & $-$0.0076 & +0.0014 & 0.653 & 0.349 & 118 & 122.0 \\
+5 & $-$0.0427 & +0.0015 & 0.980 & 0.022 & 160 & 188.8 \\
+10 & $-$0.0227 & +0.0007 & 0.926 & 0.076 & 284 & 310.9 \\
+20 & $-$0.0212 & +0.0006 & 0.966 & 0.036 & 445 & 472.3 \\
+30 & $-$0.0071 & $-$0.0002 & 0.735 & 0.267 & 571 & 574.8 \\
+\bottomrule
+\end{tabular}
+\par\medskip
+\begin{minipage}{\linewidth}\footnotesize\textit{Note:} Linear probability model of a direct mention of the company on a day, with company and day effects, on a recent purchase in the k calendar days before. Slope in percentage points; the baseline probability of a mention is 0.082 percent. p\textsubscript{upper} is the share of all 499 worlds with a slope at least as large as the real one, p\textsubscript{lower} at least as small. Over all windows, the best window's p-value is matched or beaten in 91 percent of the worlds.\end{minipage}
+\end{table}
