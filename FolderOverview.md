@@ -72,8 +72,8 @@ master/                                          # one folder per stage, read in
 │   │   └── TwitterDescriptiveAnalysis.xlsx      # descriptive tables for the data chapter
 │   └── 3) LabelAccuracy/                        # Step 5.3 — hand-coded check of the LLM labels; planned: precision sample, recall sample, results
 ├── 6) CalendarShifts/                          # Step 6 = kokebok step 6: the shifted worlds
-│   └── CalendarShifts.py                        # settings (start 2025-01-20, L = 557), shift formula, checks
-│   └── worlds.csv                               # OUTPUT: world, shift_days, shift_start, L (557 worlds, world 0 = real)
+│   └── CalendarShifts.py                        # settings (start 2025-01-20, L = 557, MIN_SHIFT = 30), shift formula, checks
+│   └── worlds.csv                               # OUTPUT: world, shift_days, shift_start, L (499 worlds, world 0 = real)
 │   └── ShiftsReport.txt                         # inputs read, purchases outside the calendar, checks
 ├── 7) Part1Talk/                                # Step 7 = kokebok step 7, Part 1: does he mention what he has bought?
 │   └── 0) Decisions.md                          # every Part 1 choice, fixed before results
@@ -88,7 +88,7 @@ master/                                          # one folder per stage, read in
 │   │   └── EstimatePart1.py                     # LPM and Poisson with ticker + day effects, lead/lag bins, descriptives
 │   │   └── results.csv · leadlag.csv · leadlag.png · descriptives.txt · EstimateReport.txt
 │   └── 3) Inference/
-│       └── ShiftedWorlds.py                     # the same slope in all 557 worlds; p-values, hits, window search
+│       └── ShiftedWorlds.py                     # the same slope in all 499 worlds; p-values, hits, window search
 │       └── inference.csv · world_estimates.csv · worlds_main.png · InferenceReport.txt
 ├── 8) Part2Timing/                              # Step 8 = kokebok step 8, Part 2: do purchases precede (positive) posts?
 │   └── 0) Decisions.md                          # every Part 2 choice, fixed before results
@@ -98,7 +98,7 @@ master/                                          # one folder per stage, read in
 │   │   └── Hits.py                              # posts inside each purchase's 10-trading-day window
 │   │   └── purchase_hits.csv · hit_posts.csv · hits_summary.csv · HitsChecks.txt
 │   └── 2) Inference/
-│       └── ShiftedWorlds.py                     # the same counts in all 557 worlds; p-values, ratios
+│       └── ShiftedWorlds.py                     # the same counts in all 499 worlds; p-values, ratios
 │       └── inference.csv · world_counts.csv · worlds_main.png · InferenceReport.txt
 ├── 9) Part3Returns/ … 11) Exhibits/            # Steps 9–11 = kokebok steps 9–11; each folder is created when its work starts
 ├── tasks/

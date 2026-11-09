@@ -34,8 +34,9 @@ The first plan was "probability of a post rises once he owns the company" (Max).
 - Robustness: window including the purchase day (days t-k .. t).
 
 ## Inference
-- Shifted worlds from `6) CalendarShifts/worlds.csv`: the real world and 556 shifts of all purchase dates. In each world the same estimate is computed; p-value = share of all 557 worlds with an estimate at least as large as the real one (one-sided: more talk after buying).
+- Shifted worlds from `6) CalendarShifts/worlds.csv`: the real world and 498 shifts of all purchase dates (every shift from 30 to 527 days). In each world the same estimate is computed; p-value = share of all 499 worlds with an estimate at least as large as the real one (one-sided: more talk after buying).
 - Window search: the minimum p-value over the six windows is compared with the minimum p-value of every shifted world, so picking the best window is accounted for.
+- Amended 2026-11-09: the first run used every shift from 1 day (557 worlds). Shifts under 30 days are now left out, as the kokebok sets, because a purchase moved by a few days stays inside its own window (Step 6).
 - Effect size from the worlds: real mention-days inside windows versus the average of the shifted worlds.
 
 ## Limitations to state
