@@ -71,7 +71,26 @@ master/                                          # one folder per stage, read in
 │   │   └── Twitter_tickers_2025_2026.xlsx       # OUTPUT: one row per post × company, with ticker
 │   │   └── TwitterDescriptiveAnalysis.xlsx      # descriptive tables for the data chapter
 │   └── 3) LabelAccuracy/                        # Step 5.3 — hand-coded check of the LLM labels; planned: precision sample, recall sample, results
-├── 6) CalendarShifts/ … 11) Exhibits/          # Steps 6–11 = kokebok steps 6–11; each folder is created when its work starts
+├── 6) CalendarShifts/                          # Step 6 = kokebok step 6: the shifted worlds
+│   └── CalendarShifts.py                        # settings (start 2025-01-20, L = 557), shift formula, checks
+│   └── worlds.csv                               # OUTPUT: world, shift_days, shift_start, L (557 worlds, world 0 = real)
+│   └── ShiftsReport.txt                         # inputs read, purchases outside the calendar, checks
+├── 7) Part1Talk/                                # Step 7 = kokebok step 7, Part 1: does he mention what he has bought?
+│   └── 0) Decisions.md                          # every Part 1 choice, fixed before results
+│   └── Part1Settings.py                         # all paths, dates, windows, mention definitions; shared functions
+│   └── RunPart1.py                              # runs 1) to 3) in order; writes RunLog.txt
+│   ├── 1) BuildPanel/
+│   │   └── BuildPanel.py                        # ticker x calendar-day panel from Step 5.2 and Step 2
+│   │   └── panel.csv.gz                         # OUTPUT: 954,180 rows; mentions per definition, purchases, treatments
+│   │   └── tickers.csv                          # per ticker: first purchase, purchase days, mention days
+│   │   └── BuildPanelChecks.txt                 # counts against the sources, spot checks
+│   ├── 2) Estimate/
+│   │   └── EstimatePart1.py                     # LPM and Poisson with ticker + day effects, lead/lag bins, descriptives
+│   │   └── results.csv · leadlag.csv · leadlag.png · descriptives.txt · EstimateReport.txt
+│   └── 3) Inference/
+│       └── ShiftedWorlds.py                     # the same slope in all 557 worlds; p-values, hits, window search
+│       └── inference.csv · world_estimates.csv · worlds_main.png · InferenceReport.txt
+├── 8) Part2Timing/ … 11) Exhibits/             # Steps 8–11 = kokebok steps 8–11; each folder is created when its work starts
 ├── tasks/
 │   └── todo.md                                  # associate's plan and gates
 │   └── MANAGER_BRIEF.md                         # manager → associate instructions
