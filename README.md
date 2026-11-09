@@ -20,7 +20,7 @@ The kokebok says what each step measures and why; this plan says how the step wa
 | 7 | Part 1: talk | `7) Part1Talk/` | `RunPart1.py` (`1) BuildPanel/`, `2) Estimate/`, `3) Inference/`) | `results.csv`, `inference.csv` |
 | 8 | Part 2: timing | `8) Part2Timing/` | `RunPart2.py` (`1) Hits/`, `2) Inference/`) | `purchase_hits.csv`, `inference.csv` |
 | 9 | Part 3: returns | `9) Part3Returns/` | `RunPart3.py` (`1) Returns/`, `2) Inference/`) | `purchase_returns.csv`, `inference.csv` |
-| 10 | Checks | `10) Checks/` | planned | |
+| 10 | Checks | `10) Checks/` | `Checks.py` | `robustness.csv`, `ChecksReport.txt` |
 | 11 | Exhibits | `11) Exhibits/` | planned | |
 | 12 | Read the result, state the limits | writing | | |
 | 13 | Write-up | writing | | |
@@ -952,7 +952,13 @@ The same statistics in all 499 worlds of Step 6: every purchase gets its MAR fro
 The purchases followed by a post did not earn more than the same purchases on shifted dates. Posted, midpoint amounts: 370 purchases, USD 52.2 million, 0.58 percent per dollar over ten trading days against 0.58 percent in the shifted worlds (Δr +0.01 percentage points, dollar excess USD 4,158, p = 0.98). The companies he posts about earn more than his other purchases in every world, so the comparison with the group's own shifted worlds matters. All purchases: 0.13 percent against −0.11 percent (p = 0.44). Praised: 1.53 against 0.70 percent (p = 0.57); Roasted: 0.30 against −0.51 percent (p = 0.49). Low and high amounts give the same picture. With Part 2, this is the kokebok's clearest no: no timing beyond chance and no return beyond chance.
 
 ## Step 10: Checks
-Planned; see kokebok step 10. Folder `10) Checks/`, created when the work starts.
+`10) Checks/` (added 2026-11-09). The five kokebok checks, each a rerun of the Part 3 test with one thing changed; decisions in `0) Decisions.md`, settings and functions from `9) Part3Returns/Part3Settings.py`. `Checks.py` writes `world_checks.csv` (every world, every specification), `robustness.csv` (real and shifted return per dollar, Δr and p-values per check and group), `horizons.png` and `ChecksReport.txt`. Midpoint amounts throughout.
+
+- **Check 1, horizons:** trading days 1–2, 1–5, 1–10 and 1–20. **Check 2, before the purchase:** days −5 to −1; the 4 real purchases in the first trading days of 2025 use the days available. **Check 3, short shifts:** only the 122 worlds shifted 30–90 days either way, read from the Part 2 and Part 3 world tables. **Check 4, return models:** raw, market-adjusted, CAPM, FF3+MOM, FF5+MOM; all 17,235 sample purchases have every column. **Check 5:** without the five largest purchases (AAPL, MSFT and NVDA on 2025-08-18, USD 15 million each at midpoint; GOOG 2025-08-18; AAPL 2025-09-23), all of them No post.
+- Horizon 1–10 reproduces the Part 3 result exactly.
+
+### 10.1) Result (run of 2026-11-09)
+No check turns the Part 3 null into an excess. Posted, return per dollar against its shifted worlds (two-sided p): main 0.58 % vs 0.58 % (0.98); 1–2 days 0.19 vs 0.17 (0.94); 1–5 days 0.46 vs 0.29 (0.87); 1–20 days 2.92 vs 1.06 (0.22); days −5 to −1 0.77 vs 0.20 (0.47); short shifts 0.58 vs 1.21 (0.57); CAPM 0.33 vs 0.29 (0.97); FF3+MOM 0.20 vs 0.30 (0.93); FF5+MOM 0.15 vs 0.45 (0.78); without the five largest 0.58 vs 0.51 (0.94). The gap widens with the horizon but stays inside the shifted worlds, and the stocks were not rising beyond chance before the purchases. Under short shifts Part 2's main count is lower than chance as before (176 Praised hits against 211 expected, p_lower 0.016).
 
 ## Step 11: Exhibits
 Planned; see kokebok step 11. Folder `11) Exhibits/`, created when the work starts.

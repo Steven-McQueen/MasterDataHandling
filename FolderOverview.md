@@ -110,7 +110,11 @@ master/                                          # one folder per stage, read in
 │   └── 2) Inference/
 │       └── ShiftedWorlds.py                     # the same groups in all 499 worlds; return per dollar, excess, p-values
 │       └── inference.csv · world_stats.csv · contributors.csv · worlds_main.png · InferenceReport.txt
-├── 10) Checks/ … 11) Exhibits/                 # Steps 10–11 = kokebok steps 10–11; each folder is created when its work starts
+├── 10) Checks/                                  # Step 10 = kokebok step 10: the five checks on the Part 3 result
+│   └── 0) Decisions.md                          # every choice for the checks, fixed before results
+│   └── Checks.py                                # horizons, days before, short shifts, return models, without the five largest
+│   └── robustness.csv · world_checks.csv · horizons.png · ChecksReport.txt
+├── 11) Exhibits/                                # Step 11 = kokebok step 11; created when its work starts
 ├── .env                                         # API keys (FMP, Twitter, Azure OpenAI); never shared
 ├── .gitignore                                   # keeps .env out of version control
 ├── DataPlan.md                                  # the master file: every step as actually run, its logic and files, decisions and limitations, open analysis decisions; updated at every gate
