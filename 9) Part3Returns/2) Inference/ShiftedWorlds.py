@@ -31,6 +31,8 @@ OUTPUTS (in this folder)
     world_stats.csv      one row per world: n, amount, T and r per group and amount
     inference.csv        one row per group and amount: real and shifted r and T, delta_r,
                          dollar excess, p-values
+    gaps.csv             direct tests: r(Praised) - r(Roasted), r(Posted) - r(No post), and the
+                         Posted group's dollar total T, each against the same statistic in every world
     contributors.csv     the Posted purchases with the largest contribution to the dollar excess
     worlds_main.png      distribution of the Posted group's r across worlds, real one marked
     InferenceReport.txt  inputs read, checks and the result table
@@ -106,6 +108,19 @@ def main():
     inf = pd.DataFrame(rows_out)
     inf.to_csv(OUT / "inference.csv", index=False, float_format="%.8g")
 
+    # direct tests of the group gaps and of the Posted dollar total (main amount)
+    gap_rows = []
+    tests = {f"r {a} - r {b}": ws[f"{a}|{S.MAIN_AMOUNT}|r"] - ws[f"{b}|{S.MAIN_AMOUNT}|r"] for a, b in S.GAPS}
+    tests[f"T {S.MAIN_GROUP} (USD)"] = ws[f"{S.MAIN_GROUP}|{S.MAIN_AMOUNT}|T"]
+    for name, x in tests.items():
+        rv = x[ws["world"] == 0].iloc[0]
+        pu, pl = (x >= rv).mean(), (x <= rv).mean()
+        gap_rows.append({"test": name, "real": rv, "mean_shifted": x[ws["world"] != 0].mean(),
+                         "excess": rv - x[ws["world"] != 0].mean(), "p_upper": pu, "p_lower": pl,
+                         "p_two": min(1.0, 2 * min(pu, pl)), "n_worlds": len(ws)})
+    gaps = pd.DataFrame(gap_rows)
+    gaps.to_csv(OUT / "gaps.csv", index=False, float_format="%.8g")
+
     # contributors: Posted purchases in the real world, main amount
     rbar = shifted[f"{S.MAIN_GROUP}|{S.MAIN_AMOUNT}|r"].mean()
     m = real_lab[S.MAIN_GROUP]
@@ -168,6 +183,11 @@ def main():
         lines.append(f"{r['group']:8s} {r['amount']:11s} {r['n_real']:6d} {r['n_mean_shifted']:7.1f} {r['amount_real']:14,.0f} "
                      f"{r['r_real']:9.4%} {r['r_mean_shifted']:9.4%} {r['delta_r']:+9.4%} {r['dollar_excess']:+13,.0f} "
                      f"{r['p_upper']:8.3f} {r['p_lower']:8.3f} {r['p_two']:6.3f}{'   <- main' if r['main'] else ''}")
+    lines += ["", "Direct tests (main amount):",
+              f"  {'test':24s} {'real':>14s} {'shifted mean':>14s} {'p_upper':>8s} {'p_lower':>8s} {'p_two':>6s}"]
+    for _, g in gaps.iterrows():
+        fmt = (lambda v: f"{v:14,.0f}") if g["test"].startswith("T ") else (lambda v: f"{v:+14.4%}")
+        lines.append(f"  {g['test']:24s} {fmt(g['real'])} {fmt(g['mean_shifted'])} {g['p_upper']:8.3f} {g['p_lower']:8.3f} {g['p_two']:6.3f}")
     lines += ["", f"Largest contributions to the Posted dollar excess ({S.MAIN_AMOUNT}; luck r of Posted {rbar:.4%}):"]
     for _, r in con.head(S.N_CONTRIBUTORS).iterrows():
         lines.append(f"  {r['ticker']:6s} {r['trade_date']:%Y-%m-%d} {r['label']:8s} amount {r[S.MAIN_AMOUNT]:12,.0f}  "
