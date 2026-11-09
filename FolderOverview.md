@@ -100,7 +100,17 @@ master/                                          # one folder per stage, read in
 │   └── 2) Inference/
 │       └── ShiftedWorlds.py                     # the same counts in all 499 worlds; p-values, ratios
 │       └── inference.csv · world_counts.csv · worlds_main.png · InferenceReport.txt
-├── 9) Part3Returns/ … 11) Exhibits/            # Steps 9–11 = kokebok steps 9–11; each folder is created when its work starts
+├── 9) Part3Returns/                             # Step 9 = kokebok step 9, Part 3: did those purchases earn more than on shifted dates?
+│   └── 0) Decisions.md                          # every Part 3 choice, fixed before results
+│   └── Part3Settings.py                         # paths, sample, window, labels, groups; shared functions (imports Part2Settings.py)
+│   └── RunPart3.py                              # runs 1) and 2) in order; writes RunLog.txt
+│   ├── 1) Returns/
+│   │   └── Returns.py                           # sample, MAR over trading days 1-10, labels from the first post
+│   │   └── purchase_returns.csv · ReturnsChecks.txt
+│   └── 2) Inference/
+│       └── ShiftedWorlds.py                     # the same groups in all 499 worlds; return per dollar, excess, p-values
+│       └── inference.csv · world_stats.csv · contributors.csv · worlds_main.png · InferenceReport.txt
+├── 10) Checks/ … 11) Exhibits/                 # Steps 10–11 = kokebok steps 10–11; each folder is created when its work starts
 ├── tasks/
 │   └── todo.md                                  # associate's plan and gates
 │   └── MANAGER_BRIEF.md                         # manager → associate instructions
