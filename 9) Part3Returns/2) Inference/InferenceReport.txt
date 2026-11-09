@@ -1,0 +1,46 @@
+Part 3, ShiftedWorlds | run 2026-11-09 12:51
+
+Inputs
+  2) Trades/Trump_trades_2025_2026.xlsx: 17,235 rows, modified 2026-11-09 12:21 (PurchasesMerged, purchases in the Part 3 sample)
+  3) Prices/2) ComputeReturns/returns_table_presample.csv: modified 2026-11-09 12:22 (column ar_mkt; 10 reviewed days set to zero)
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,468 rows, modified 2026-11-09 12:21
+  6) CalendarShifts/worlds.csv: 499 rows, modified 2026-11-09 12:48
+
+Worlds: 499 (world 0 = real). Window: trading days 1-10. Main: posted, amount_mid, return per dollar, two-sided p.
+Neutral (Posted, first post neither Praised nor Roasted): real 148, shifted mean 159.3
+
+Checks
+  All purchases: same number and amount in every world: OK
+  Contributions add up to the Posted dollar excess: 4,158.50 vs 4,158.50 -> OK
+  Brute-force recount, world 0 (shift 0): T all 1,429,553, T Posted 305,045, amount Posted 52,199,717 -> OK
+  Brute-force recount, world 100 (shift 129): T all 318,904, T Posted -1,632,659, amount Posted 88,547,204 -> OK
+  Brute-force recount, world 400 (shift 429): T all -4,632,605, T Posted -352,501, amount Posted 104,384,241 -> OK
+
+group    amount           n  n luck     amount USD    r real    r luck   delta r    excess USD  p_upper  p_lower  p_two
+all      amount_low   17235 17235.0    547,681,301   0.2083%  -0.1133%  +0.3216%    +1,761,223    0.112    0.890  0.224
+all      amount_mid   17235 17235.0  1,111,275,650   0.1286%  -0.1057%  +0.2344%    +2,604,560    0.220    0.782  0.441
+all      amount_high  17235 17235.0  1,674,870,000   0.1026%  -0.1033%  +0.2059%    +3,447,896    0.269    0.733  0.537
+posted   amount_low     370   395.3     26,239,434   0.6099%   0.5951%  +0.0148%        +3,879    0.477    0.525  0.954
+posted   amount_mid     370   395.3     52,199,717   0.5844%   0.5764%  +0.0080%        +4,158    0.489    0.513  0.978   <- main
+posted   amount_high    370   395.3     78,160,000   0.5758%   0.5704%  +0.0054%        +4,237    0.489    0.513  0.978
+no_post  amount_low   16865 16839.7    521,441,867   0.1881%  -0.1605%  +0.3485%    +1,817,445    0.092    0.910  0.184
+no_post  amount_mid   16865 16839.7  1,059,075,934   0.1062%  -0.1534%  +0.2596%    +2,749,340    0.182    0.820  0.365
+no_post  amount_high  16865 16839.7  1,596,710,000   0.0794%  -0.1511%  +0.2305%    +3,680,782    0.234    0.768  0.469
+praised  amount_low     131   155.8      9,070,150   1.0259%   0.6912%  +0.3347%       +30,358    0.399    0.603  0.798
+praised  amount_mid     131   155.8     17,922,575   1.5267%   0.7001%  +0.8266%      +148,156    0.283    0.719  0.565
+praised  amount_high    131   155.8     26,775,000   1.6964%   0.7033%  +0.9931%      +265,901    0.240    0.762  0.481
+roasted  amount_low      91    80.2      7,718,118   0.1370%  -0.4742%  +0.6112%       +47,176    0.283    0.719  0.565
+roasted  amount_mid      91    80.2     15,744,059   0.2982%  -0.5063%  +0.8044%      +126,649    0.246    0.756  0.493
+roasted  amount_high     91    80.2     23,770,000   0.3505%  -0.5150%  +0.8655%      +205,731    0.255    0.747  0.509
+
+Largest contributions to the Posted dollar excess (amount_mid; luck r of Posted 0.5764%):
+  NVDA   2025-07-01 praised  amount    3,000,000  MAR +10.0666%  contribution     +284,706
+  AMZN   2025-09-08 neutral  amount    3,000,000  MAR -6.6623%  contribution     -217,161
+  GOOG   2025-08-27 neutral  amount      925,001  MAR +13.0159%  contribution     +115,065
+  NFLX   2026-02-12 roasted  amount      383,001  MAR +24.3633%  contribution      +91,104
+  AAPL   2025-08-27 praised  amount    3,000,000  MAR -2.0914%  contribution      -80,033
+  MSFT   2026-01-06 praised  amount      750,000  MAR -6.7008%  contribution      -54,579
+  MSFT   2025-09-23 roasted  amount    3,350,002  MAR +2.1362%  contribution      +52,254
+  GOOG   2025-08-29 neutral  amount      375,000  MAR +14.3456%  contribution      +51,635
+  AAPL   2025-05-15 roasted  amount      782,501  MAR -4.9552%  contribution      -43,285
+  GOOG   2025-09-23 roasted  amount    1,100,002  MAR -2.7788%  contribution      -36,907
