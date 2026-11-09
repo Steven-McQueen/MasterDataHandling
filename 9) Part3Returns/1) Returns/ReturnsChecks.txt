@@ -1,4 +1,4 @@
-Part 3, Returns | run 2026-11-09 12:51
+Part 3, Returns | run 2026-11-09 13:09
 
 Inputs
   2) Trades/Trump_trades_2025_2026.xlsx: 17,724 rows, modified 2026-11-09 12:21 (PurchasesMerged)
@@ -13,9 +13,7 @@ Days marked wrong in the price review and set to zero (10): MFP 2026-06-29, AVB 
 Part 3 sample: tickers with a return on every trading day 2025-01-21 to 2026-08-28
   tickers kept 1,501 of 1,594; left out 93
   purchases kept 17,235; left out 489 (2.8%)
-  amount left out, amount_low: USD 6,451,496 of 554,132,797 (1.16%)
   amount left out, amount_mid: USD 13,608,248 of 1,124,883,898 (1.21%)
-  amount left out, amount_high: USD 20,765,000 of 1,695,635,000 (1.22%)
   left-out purchases with at least one return day in the window: 489 (full 10 days: 477); their return per dollar (amount_mid, available days): 0.1144%
   left-out purchases with no return day in the window: 0
 
