@@ -72,9 +72,41 @@ master/                                          # one folder per stage, read in
 │   │   └── Twitter_tickers_2025_2026.xlsx       # OUTPUT: one row per post × company (6,468): post · LLM label · decision (public_ticker, ticker = universe join key, listed / in_universe / purchased, status); ReadMe sheet defines the columns
 │   │   └── TwitterDescriptiveAnalysis.xlsx      # descriptive tables for the data chapter; 7_Part1Share = purchased share of the listed companies posted about
 │   └── 3) LabelAccuracy/                        # Step 5.3 — hand-coded check of the LLM labels; planned: precision sample, recall sample, results
-├── 6) CalendarShifts/ … 11) Exhibits/          # Steps 6–11 = kokebok steps 6–11; each folder is created when its work starts
+├── 6) CalendarShifts/                          # Step 6 = kokebok step 6: the shifted worlds
+│   └── CalendarShifts.py                        # settings (start 2025-01-20, L = 557, MIN_SHIFT = 30), shift formula, checks
+│   └── worlds.csv                               # OUTPUT: world, shift_days, shift_start, L (499 worlds, world 0 = real)
+│   └── ShiftsReport.txt                         # inputs read, purchases outside the calendar, checks
+├── 7) Part1Talk/                                # Step 7 = kokebok step 7, Part 1: does he mention what he has bought?
+│   └── 0) Decisions.md                          # every Part 1 choice, fixed before results
+│   └── Part1Settings.py                         # all paths, dates, windows, mention definitions; shared functions
+│   └── RunPart1.py                              # runs 1) to 3) in order; writes RunLog.txt
+│   ├── 1) BuildPanel/
+│   │   └── BuildPanel.py                        # ticker x calendar-day panel from Step 5.2 and Step 2
+│   │   └── panel.csv.gz                         # OUTPUT: 954,180 rows; mentions per definition, purchases, treatments
+│   │   └── tickers.csv                          # per ticker: first purchase, purchase days, mention days
+│   │   └── BuildPanelChecks.txt                 # counts against the sources, spot checks
+│   ├── 2) Estimate/
+│   │   └── EstimatePart1.py                     # LPM and Poisson with ticker + day effects, lead/lag bins, descriptives
+│   │   └── results.csv · leadlag.csv · leadlag.png · descriptives.txt · EstimateReport.txt
+│   └── 3) Inference/
+│       └── ShiftedWorlds.py                     # the same slope in all 499 worlds; p-values, hits, window search
+│       └── inference.csv · world_estimates.csv · worlds_main.png · InferenceReport.txt
+├── 8) Part2Timing/                              # Step 8 = kokebok step 8, Part 2: do purchases precede (positive) posts?
+│   └── 0) Decisions.md                          # every Part 2 choice, fixed before results
+│   └── Part2Settings.py                         # paths, window, thresholds, outcomes; shared functions
+│   └── RunPart2.py                              # runs 1) and 2) in order; writes RunLog.txt
+│   ├── 1) Hits/
+│   │   └── Hits.py                              # posts inside each purchase's 10-trading-day window
+│   │   └── purchase_hits.csv · hit_posts.csv · hits_summary.csv · HitsChecks.txt
+│   └── 2) Inference/
+│       └── ShiftedWorlds.py                     # the same counts in all 499 worlds; p-values, ratios
+│       └── inference.csv · world_counts.csv · worlds_main.png · InferenceReport.txt
+├── 9) Part3Returns/                             # Step 9 = kokebok step 9, Part 3: did the purchases, above all the Posted ones, earn more than on shifted dates?
+│   └── 0) Decisions.md                          # every Part 3 choice, fixed 2026-11-09 before any result; scripts (Part3Settings.py, RunPart3.py) not yet written
+├── 10) Checks/ … 11) Exhibits/                  # Steps 10–11 = kokebok steps 10–11; each folder is created when its work starts
 ├── .env                                         # API keys (FMP, Twitter, Azure OpenAI); never shared
-├── .gitignore                                   # keeps .env out of version control
-├── DataPlan.md                                  # the master file: every step as actually run, its logic and files, decisions and limitations, open analysis decisions; updated at every gate
+├── .gitattributes                               # Git LFS: the large raw and output files (SocialMedia.db, company.db, returns tables, WhiteHouse_Twitter.json)
+├── .gitignore                                   # keeps .env and Python caches out of version control
+├── README.md                                    # the master file (data plan): every step as actually run, its logic and files, decisions and limitations
 └── FolderOverview.md
 ```
