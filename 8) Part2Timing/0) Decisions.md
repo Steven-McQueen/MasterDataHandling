@@ -28,8 +28,9 @@ Does a disclosed purchase of a company precede a post about that company more of
 - Tone given talk: the share of hits (any mention) that are Praised hits, real versus shifted.
 
 ## Inference
-- The same counts in every world of `6) CalendarShifts/worlds.csv` (world 0 real, 556 shifts). Shifted purchase dates are calendar days; day 0 moves to the next trading day as in the real world.
-- p_upper = share of all 557 worlds with a count at least as large as the real one; p_lower the other direction. Effect size: real hits divided by the mean of the shifted worlds.
+- The same counts in every world of `6) CalendarShifts/worlds.csv` (world 0 real, 498 shifts from 30 to 527 days). Shifted purchase dates are calendar days; day 0 moves to the next trading day as in the real world.
+- p_upper = share of all 499 worlds with a count at least as large as the real one; p_lower the other direction. Effect size: real hits divided by the mean of the shifted worlds.
+- Amended 2026-11-09: the first run used every shift from 1 day (557 worlds). Shifts under 30 days are now left out, as the kokebok sets, because a purchase moved by a few days stays inside its own window (Step 6).
 - Main test: Praised hits (direct, all accounts, sentiment ≥ 0.5). The other outcomes are reported in the same table and labelled as secondary.
 
 ## Limitations to state

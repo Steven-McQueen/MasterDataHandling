@@ -13,9 +13,15 @@ Posts, prices and tickers stay as they are; only the purchase dates move. A worl
 which companies were bought, how many purchases fell on the same day and the gaps between
 purchase days; it breaks only the link between purchase dates and everything else.
 
-World 0 is the real world (shift 0). Worlds 1 .. L-1 use every other shift once, so the
-set of worlds is exhaustive, not drawn at random: a p-value is the share of all L worlds
-(the real one included) whose statistic is at least as large as the real one.
+World 0 is the real world (shift 0). Worlds 1 .. L-2*MIN_SHIFT+1 use every shift from
+MIN_SHIFT to L-MIN_SHIFT once (30 to 527 days: 498 worlds), so the set of worlds is
+exhaustive, not drawn at random: a p-value is the share of all worlds (the real one
+included) whose statistic is at least as large as the real one.
+
+Shifts below MIN_SHIFT days in either direction are left out (kokebok): a purchase moved
+by a few days stays inside its own ten-trading-day window (14 to 18 calendar days) and
+next to the same news, so such a world partly repeats the real one instead of showing
+what chance gives. 30 days keeps every moved purchase away from its real date and window.
 
 Every later step reads worlds.csv and applies the formula above (shift_dates() below shows
 it); no later step stores its own shift settings.
@@ -49,6 +55,7 @@ SHIFT_START = "2025-01-20"   # inauguration; first day of the shift calendar (ko
 L = 557                      # length of the shift calendar in calendar days (kokebok).
                              # Days 0 .. L-1 = 2025-01-20 .. 2026-07-30. A purchase on day L
                              # or later wraps around; ShiftsReport.txt counts them.
+MIN_SHIFT = 30               # smallest shift in either direction, in calendar days (kokebok)
 
 REQUIRED = {"Ticker": "object", "Transaction": "object", "Traded": "object"}
 
@@ -77,7 +84,8 @@ def main():
     start = pd.Timestamp(SHIFT_START)
     offset = (purchases["Traded"] - start).dt.days
 
-    worlds = pd.DataFrame({"world": range(L), "shift_days": range(L)})
+    shifts = [0] + list(range(MIN_SHIFT, L - MIN_SHIFT + 1))
+    worlds = pd.DataFrame({"world": range(len(shifts)), "shift_days": shifts})
     worlds["shift_start"] = SHIFT_START
     worlds["L"] = L
     worlds.to_csv(OUT_DIR / "worlds.csv", index=False)
@@ -85,7 +93,7 @@ def main():
     # Check: every world keeps the number of purchases and of distinct purchase days.
     n_days_real = purchases["Traded"].nunique()
     bad = []
-    for k in (1, L // 2, L - 1):
+    for k in (MIN_SHIFT, L // 2, L - MIN_SHIFT):
         s = shift_dates(purchases["Traded"], k)
         if len(s) != len(purchases) or s.nunique() != n_days_real:
             bad.append(k)
@@ -100,7 +108,8 @@ def main():
         f"{n_days_real} purchase days, {purchases['Traded'].min():%Y-%m-%d} to {purchases['Traded'].max():%Y-%m-%d}",
         "",
         f"Shift calendar: {SHIFT_START} to {end:%Y-%m-%d} (L = {L} calendar days)",
-        f"Worlds: {L} (world 0 = real, worlds 1-{L - 1} = every non-zero shift once)",
+        f"Worlds: {len(shifts)} (world 0 = real, worlds 1-{len(shifts) - 1} = every shift from "
+        f"{MIN_SHIFT} to {L - MIN_SHIFT} days once; shifts under {MIN_SHIFT} days either way left out)",
         f"Purchases before the calendar start: {(offset < 0).sum()}",
         f"Purchases on day L or later (wrap around in every world): {(offset >= L).sum()} "
         f"(dates: {', '.join(sorted(purchases.loc[offset >= L, 'Traded'].dt.strftime('%Y-%m-%d').unique()))})",
