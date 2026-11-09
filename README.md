@@ -21,7 +21,7 @@ The kokebok says what each step measures and why; this plan says how the step wa
 | 8 | Part 2: timing | `8) Part2Timing/` | `RunPart2.py` (`1) Hits/`, `2) Inference/`) | `purchase_hits.csv`, `inference.csv` |
 | 9 | Part 3: returns | `9) Part3Returns/` | `RunPart3.py` (`1) Returns/`, `2) Inference/`) | `purchase_returns.csv`, `inference.csv` |
 | 10 | Checks | `10) Checks/` | `Checks.py` | `robustness.csv`, `ChecksReport.txt` |
-| 11 | Exhibits | `11) Exhibits/` | planned | |
+| 11 | Exhibits | `11) Exhibits/` | `Exhibits.py` | `tables/`, `figures/` |
 | 12 | Read the result, state the limits | writing | | |
 | 13 | Write-up | writing | | |
 
@@ -968,7 +968,10 @@ The purchases followed by a post did not earn more than the same purchases on sh
 No check turns the Part 3 null into an excess. Posted, return per dollar against its shifted worlds (two-sided p): main 0.58 % vs 0.58 % (0.98); 1–2 days 0.19 vs 0.17 (0.94); 1–5 days 0.46 vs 0.29 (0.87); 1–20 days 2.92 vs 1.06 (0.22); days −5 to −1 0.77 vs 0.20 (0.47); short shifts 0.58 vs 1.21 (0.57); CAPM 0.33 vs 0.29 (0.97); FF3+MOM 0.20 vs 0.30 (0.93); FF5+MOM 0.15 vs 0.45 (0.78); without the five largest 0.58 vs 0.51 (0.94). The gap widens with the horizon but stays inside the shifted worlds, and the stocks were not rising beyond chance before the purchases. Under short shifts Part 2's main count is lower than chance as before (176 Praised hits against 211 expected, p_lower 0.016).
 
 ## Step 11: Exhibits
-Planned; see kokebok step 11. Folder `11) Exhibits/`, created when the work starts.
+`11) Exhibits/` (added 2026-11-09). Every table and figure for the thesis, drawn from the outputs of Steps 2 to 10; decisions and the list of exhibits in `0) Decisions.md`. `Exhibits.py` writes `tables/tab_*.tex` (one LaTeX `table` with booktabs, caption, label and note) with the same numbers as `tab_*.csv`, `figures/fig_*.pdf` (vector) with a `fig_*.tex` snippet holding the caption, label and note, and `ExhibitsReport.txt`. In Overleaf, copy the folders and `\input{}` the files; the tables need `booktabs` and the figures `graphicx`.
+
+- **Tables:** `tab_sample` (Chapter 4), `tab_part1`, `tab_part2`, `tab_part3`, `tab_contributors` (Chapter 6), `tab_robustness`, `tab_models` (Chapter 7). **Figures:** `fig_part2_worlds`, `fig_part3_groups` (Chapter 6), `fig_horizons` (Chapter 7).
+- Nothing is estimated again, except the Part 2 gap between Praised and Roasted hits that the kokebok asks for (step 8, item 5), computed from Part 2's world table: 53 against 101.7 expected, p_lower 0.016. Purchases are followed by praise less often than by criticism, compared with chance.
 
 ## Step 12: Read the result and state the limits
 Writing, no folder; see kokebok step 12.
