@@ -9,13 +9,14 @@ Shared functions:
     read_mentions()       post x ticker rows from Step 5.2, with the post day in US Eastern time
     read_purchases()      purchase lots from Step 2 (all of them, priced or not)
     read_worlds()         the shifted worlds from Step 6
-    shift_dates()         the shift formula of Step 6
+    shift_dates()         the shift formula, imported from 6) CalendarShifts/CalendarShifts.py
     purchase_matrix()     tickers x days matrices of purchase lots and amounts for one world
     treatments()          recent_k, exposure, owned and lead/lag bins from those matrices
     demean2()             two-way demeaning of a balanced tickers x days matrix
     input_line()          "file: rows, modified" line for the checks files
 """
 
+import sys
 from datetime import datetime
 from pathlib import Path
 import numpy as np
@@ -104,13 +105,8 @@ def read_worlds():
     return worlds if N_WORLDS is None else worlds.head(N_WORLDS)
 
 
-def shift_dates(dates, shift_days, shift_start, length):
-    """The Step 6 formula: shifted = start + (offset + shift) mod L."""
-    if shift_days == 0:
-        return dates
-    start = pd.Timestamp(shift_start)
-    offset = (dates - start).dt.days
-    return start + pd.to_timedelta((offset + shift_days) % length, unit="D")
+sys.path.insert(0, str(REPO / "6) CalendarShifts"))
+from CalendarShifts import shift_dates    # noqa: E402  the Step 6 formula, one definition for every step
 
 
 # --------------------------------------------------------------------------
