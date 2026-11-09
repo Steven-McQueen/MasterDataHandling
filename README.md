@@ -64,7 +64,7 @@ Decisions the analysis still needs, with the recommendation in brackets. Once de
 3. **AROC and SPCX** stay on their old symbols (sheet `TickerRenames`, `ReviewNote`). [Accept; both series are complete.]
 4. **Saronic Technologies → HWM** in Step 5.2. [Decide; one reference.]
 5. **The 331 filtered posts** (Step 5.1): state as a limitation in the data chapter.
-6. **Kokebok wording:** ticker identity "most recent ticker as of 1 September 2026" → the latest symbol the price provider serves; sentiment 0 to 10 → −1 to 1; lot merging done.
+6. **Kokebok wording:** ticker identity "most recent ticker as of 1 September 2026" → the latest symbol the price provider serves. (Sentiment −1 to 1, the trading-day windows, 499 worlds, midpoint amounts, step numbers and statuses were brought into the kokebok on 2026-11-09.)
 7. **AGNT** (eXp World, kept under AGNT) from the co-author's first-fetch notes (`2) Trades/RawData/FirstPriceFetch/`). [Confirm.]
 
 ---
