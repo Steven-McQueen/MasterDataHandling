@@ -1,4 +1,4 @@
-Part 3, ShiftedWorlds | run 2026-11-09 13:09
+Part 3, ShiftedWorlds | run 2026-11-09 13:13
 
 Inputs
   2) Trades/Trump_trades_2025_2026.xlsx: 17,235 rows, modified 2026-11-09 12:21 (PurchasesMerged, purchases in the Part 3 sample)
@@ -22,6 +22,12 @@ posted   amount_mid     370   395.3     52,199,717   0.5844%   0.5764%  +0.0080%
 no_post  amount_mid   16865 16839.7  1,059,075,934   0.1062%  -0.1534%  +0.2596%    +2,749,340    0.182    0.820  0.365
 praised  amount_mid     131   155.8     17,922,575   1.5267%   0.7001%  +0.8266%      +148,156    0.283    0.719  0.565
 roasted  amount_mid      91    80.2     15,744,059   0.2982%  -0.5063%  +0.8044%      +126,649    0.246    0.756  0.493
+
+Direct tests (main amount):
+  test                               real   shifted mean  p_upper  p_lower  p_two
+  r praised - r roasted          +1.2286%       +1.2064%    0.505    0.497  0.994
+  r posted - r no_post           +0.4782%       +0.7298%    0.583    0.419  0.838
+  T posted (USD)                  305,045        414,304    0.531    0.471  0.942
 
 Largest contributions to the Posted dollar excess (amount_mid; luck r of Posted 0.5764%):
   NVDA   2025-07-01 praised  amount    3,000,000  MAR +10.0666%  contribution     +284,706

@@ -39,10 +39,12 @@ Did the purchases earn more, after adjusting for the market, than the same purch
 - **Dollar excess:** Δr × the real amount of the group.
 - **Contributors:** a Posted purchase's contribution is its amount × (its MAR minus the mean r of the shifted Posted groups). The contributions add up to the Posted group's dollar excess. The ten largest are reported by name.
 
-## Still open
-- Neutral posts: a purchase whose first post in the window is neither Praised nor Roasted is Posted but in neither sub-group.
-- Whether to report the Posted group's dollar total T next to r, and direct tests of the gaps r(Praised) − r(Roasted) and r(Posted) − r(No post) against the same gaps in every world.
-- The smallest shift (Step 6): every shift from 1 day, or a 30-day minimum as in the kokebok.
+## Added after the first results (2026-11-09)
+These were open when the decisions above were fixed and were settled after the first Part 3 run; the main statistic and comparison above are unchanged.
+- **Direct tests of the group gaps:** r(Praised) − r(Roasted) and r(Posted) − r(No post), each against the same gap in every world (`GAPS`), with the same two-sided p-value.
+- **The Posted group's dollar total T** is tested beside its return per dollar, because more dollars ahead of posts would not show in r.
+- **Neutral posts** stay inside Posted: a purchase whose first post in the window is neither Praised nor Roasted is Posted and in neither sub-group.
+- **Smallest shift:** 30 days (Step 6).
 
 ## Limitations to state
 Holding period assumed at ten trading days (which sale closes which purchase is unknown); amounts known only as ranges; the 21 unpriceable purchases and the tickers without a full series are left out; daily data cannot separate a post from the news that prompted it; the accounts are discretionary, so the tests compare the account's trading calendar with the posts.
