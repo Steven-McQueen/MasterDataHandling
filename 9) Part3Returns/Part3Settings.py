@@ -59,6 +59,7 @@ ROASTED_AT = -0.5                        # first post's sentiment <= -0.5 -> Roa
 
 GROUPS = ["all", "posted", "no_post", "praised", "roasted"]
 MAIN_GROUP = "posted"
+GAPS = [("praised", "roasted"), ("posted", "no_post")]   # direct tests of the group gaps (decided 2026-11-09)
 N_CONTRIBUTORS = 10
 
 N_WORLDS = None                          # None = every world in worlds.csv

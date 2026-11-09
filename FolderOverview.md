@@ -109,7 +109,7 @@ master/                                          # one folder per stage, read in
 │   │   └── purchase_returns.csv · ReturnsChecks.txt
 │   └── 2) Inference/
 │       └── ShiftedWorlds.py                     # the same groups in all 499 worlds; return per dollar, excess, p-values
-│       └── inference.csv · world_stats.csv · contributors.csv · worlds_main.png · InferenceReport.txt
+│       └── inference.csv · gaps.csv · world_stats.csv · contributors.csv · worlds_main.png · InferenceReport.txt
 ├── 10) Checks/                                  # Step 10 = kokebok step 10: the five checks on the Part 3 result
 │   └── 0) Decisions.md                          # every choice for the checks, fixed before results
 │   └── Checks.py                                # horizons, days before, short shifts, return models, without the five largest
