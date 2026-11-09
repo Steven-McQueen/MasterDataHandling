@@ -1,0 +1,24 @@
+\begin{table}[htbp]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Checks: the Posted group's return per dollar under each check}
+\label{tab:robustness}
+\begin{tabular}{lrrrrrr}
+\toprule
+Check & Real & Shifted mean & $\Delta r$ & Excess (USD) & p & Worlds \\
+\midrule
+Main: trading days 1 to 10 & 0.58 & 0.58 & +0.01 & 4,158 & 0.978 & 499 \\
+\midrule
+1. Horizon 1 to 2 & 0.19 & 0.17 & +0.02 & 10,555 & 0.942 & 499 \\
+1. Horizon 1 to 5 & 0.46 & 0.29 & +0.17 & 87,615 & 0.870 & 499 \\
+1. Horizon 1 to 20 & 2.92 & 1.05 & +1.86 & 971,966 & 0.224 & 499 \\
+2. Days $-$5 to $-$1 & 0.77 & 0.20 & +0.57 & 298,235 & 0.473 & 499 \\
+3. Shifts of 30 to 90 days only & 0.58 & 1.21 & $-$0.63 & $-$328,360 & 0.569 & 123 \\
+4. FF5 + momentum & 0.15 & 0.45 & $-$0.30 & $-$156,438 & 0.778 & 499 \\
+5. Without the five largest purchases & 0.58 & 0.51 & +0.07 & 38,138 & 0.942 & 499 \\
+\bottomrule
+\end{tabular}
+\par\medskip
+\begin{minipage}{\linewidth}\footnotesize\textit{Note:} Each row reruns the Part 3 test for the Posted group with one thing changed; the main result is the first row. Return per dollar in percent; $\Delta r$ in percentage points; p is two-sided. Check 3 uses only the worlds shifted 30 to 90 days forward or backward. Check 4 shows the strictest return model; all five are in the return-model table. Check 5 removes the five largest purchases by amount, all of them without a post.\end{minipage}
+\end{table}
