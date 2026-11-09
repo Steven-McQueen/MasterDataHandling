@@ -19,7 +19,7 @@ The kokebok says what each step measures and why; this plan says how the step wa
 | 6 | Define the calendar shifts | `6) CalendarShifts/` | `CalendarShifts.py` | `worlds.csv` |
 | 7 | Part 1: talk | `7) Part1Talk/` | `RunPart1.py` (`1) BuildPanel/`, `2) Estimate/`, `3) Inference/`) | `results.csv`, `inference.csv` |
 | 8 | Part 2: timing | `8) Part2Timing/` | `RunPart2.py` (`1) Hits/`, `2) Inference/`) | `purchase_hits.csv`, `inference.csv` |
-| 9 | Part 3: returns | `9) Part3Returns/` | planned | |
+| 9 | Part 3: returns | `9) Part3Returns/` | `RunPart3.py` (`1) Returns/`, `2) Inference/`) | `purchase_returns.csv`, `inference.csv` |
 | 10 | Checks | `10) Checks/` | planned | |
 | 11 | Exhibits | `11) Exhibits/` | planned | |
 | 12 | Read the result, state the limits | writing | | |
@@ -46,19 +46,19 @@ Choices made while building the data, and what each one means for the analysis. 
 - **twitterapi.io gap:** 2026-04-10 → 2026-04-12 returns no tweets for any of the three accounts; treated as a known hole. [Step 1.2.d]
 - **Betas from a pre-sample year.** CAPM and factor betas are estimated on the 250 trading days ending 2025-01-17 and held in one table used unchanged in the real world and every shifted world; stocks without 60 valid pre-sample days use their in-sample estimate. The intercept is estimated but left out of the prediction. [Step 3.2.3, 3.2.4]
 - **642 days between 20 and 50 percent outside any purchase window are not reviewed.** They enter no pre-sample beta and no real-world purchase window; they affect only the in-sample betas of the fallback tickers (17 days) and can fall inside a shifted world's windows. [Step 3.3.1]
+- **Part 3 keeps the same purchases in every world** (2026-11-09). Only tickers with a market-adjusted return on every trading day from 2025-01-21 to 2026-08-28 take part in the return test: 1,501 of 1,594 tickers, 17,235 of 17,724 purchases; the 489 left out are 1.2 percent of the amount. This also settles the purchase windows cut by a takeover: their tickers have shorter series and are left out of Part 3. The days marked wrong in the price review (10) count as a zero market-adjusted return. [Step 9.1]
+- **The 21 unpriceable purchases** stay in the hit count (Part 2) and are left out of the return test (Part 3), 0.1 percent of purchases. [Step 8.1, 9.1]
 
 ## Open analysis decisions
 Decisions the analysis still needs, with the recommendation in brackets. Once decided, an item moves to *Decisions and limitations* (method choices also to the kokebok).
 
-1. **Purchase windows cut by a takeover** (13 real purchases on 9 tickers, sheet `EndsEarly`, and any shifted purchase near a series end; 122 of 1,639 series are shorter than 411 days): count the available days or drop the purchase. [Count the available days; the last price is the deal price, so the outcome is complete. Drop only a window with zero days, in that world. Report the number of short windows.]
-2. **The 21 unpriceable purchases** (sheets `Unpriceable`, `PurchasesLeftOut`): keep in the hit count (Part 2), drop from the return test (Part 3), or price from another source. [Keep in Part 2, drop from Part 3 and say so; 0.1 percent of purchases.]
-3. **Sentiment cut-offs** for Praised and Roasted on the −1 to 1 scale. [Open; decide before the second analysis of Part 2.]
-4. **Sample start and L.** The kokebok shifts from 20 January 2025 with L = 557; the first purchase is 23 January. [Keep 20 January as the sample start; it is the inauguration and the posts start there.]
-5. **AROC and SPCX** stay on their old symbols (sheet `TickerRenames`, `ReviewNote`). [Accept; both series are complete.]
-6. **Saronic Technologies → HWM** in Step 5.2. [Decide; one reference.]
-7. **The 331 filtered posts** (Step 5.1): state as a limitation in the data chapter.
-8. **Kokebok wording:** ticker identity "most recent ticker as of 1 September 2026" → the latest symbol the price provider serves; sentiment 0 to 10 → −1 to 1; lot merging done.
-9. **AGNT** (eXp World, kept under AGNT) from the co-author's first-fetch notes (`2) Trades/RawData/FirstPriceFetch/`). [Confirm.]
+1. **Sentiment cut-offs** for Praised and Roasted on the −1 to 1 scale. [Open; decide before the second analysis of Part 2.]
+2. **Sample start and L.** The kokebok shifts from 20 January 2025 with L = 557; the first purchase is 23 January. [Keep 20 January as the sample start; it is the inauguration and the posts start there.]
+3. **AROC and SPCX** stay on their old symbols (sheet `TickerRenames`, `ReviewNote`). [Accept; both series are complete.]
+4. **Saronic Technologies → HWM** in Step 5.2. [Decide; one reference.]
+5. **The 331 filtered posts** (Step 5.1): state as a limitation in the data chapter.
+6. **Kokebok wording:** ticker identity "most recent ticker as of 1 September 2026" → the latest symbol the price provider serves; sentiment 0 to 10 → −1 to 1; lot merging done.
+7. **AGNT** (eXp World, kept under AGNT) from the co-author's first-fetch notes (`2) Trades/RawData/FirstPriceFetch/`). [Confirm.]
 
 ---
 
@@ -936,7 +936,20 @@ The same counts in all 499 worlds of Step 6; shifted dates move to the next trad
 Purchases are not followed by Praised posts more often than chance; they are followed by them less often. Main test: 176 purchases followed by a Praised direct mention within ten trading days, against 208 expected (ratio 0.85; p_upper 0.960, p_lower 0.052). Any mention: 371 against 396 (0.94). Roasted: 123 against 106 (1.16; p_upper 0.076). Tone given talk: 47 percent of talk hits are Praised, against 52 percent in the shifted worlds. For @realDonaldTrump's own posts, Praised hits are 63 against 94 expected, fewer than in any shifted world (p_lower 0.002).
 
 ## Step 9: Part 3, returns
-Planned; see kokebok step 9. Folder `9) Part3Returns/`, created when the work starts.
+`9) Part3Returns/` (added 2026-11-09). Did the purchases earn more, after adjusting for the market, than the same purchases with the same amounts on shifted dates, and above all the purchases followed by a post about the same company? Decisions, fixed before any result, are in `0) Decisions.md`; every setting is in `Part3Settings.py`, which imports the calendar, windows, mentions and worlds from `Part2Settings.py`; `RunPart3.py` runs both steps in order and writes `RunLog.txt`.
+
+### 9.1) Returns · `1) Returns/`
+- **Unit:** one purchase = one company and day from `PurchasesMerged`, with the low, mid (main) and high end of the disclosed range.
+- **Sample:** tickers with a market-adjusted return (`ar_mkt`) on every trading day from 2025-01-21 to 2026-08-28, the 20th trading day after the last purchase, so a purchase has a complete window wherever a shift puts it. The 10 days marked wrong in `PricesReview.xlsx` (5 removed by Step 3, 5 blank already) count as zero first. Kept: 1,501 tickers, 17,235 purchases; left out: 93 tickers, 489 purchases, USD 13.6 million at midpoints (1.2 percent). The left-out purchases earned 0.11 percent per dollar in the real world over the days available.
+- **Return of one purchase (MAR):** the sum of `ar_mkt` over trading days 1 to 10 after day 0, the same window as the Part 2 hit window. Day 0 is the trade date or the next trading day.
+- **Labels:** the first direct post about the company inside the window decides. Posted = any post (the Part 2 `direct_any` hit, 371 purchases, matched one to one); Praised = first post ≥ 0.5 (132); Roasted = first post ≤ −0.5 (91); Neutral = neither (148); No post. 17 purchases are followed by both a Praised and a Roasted post.
+- `purchase_returns.csv` (one row per purchase with sample flag, MAR, label and first post), `ReturnsChecks.txt` (inputs, sample counts, labels against Part 2, five returns recounted from the returns table).
+
+### 9.2) Inference · `2) Inference/`
+The same statistics in all 499 worlds of Step 6: every purchase gets its MAR from its shifted date with the same amount, and the labels are set again from that world's windows. Per group (All, Posted, No post, Praised, Roasted) and amount: n, amount, market-adjusted total return T, return per dollar r. `inference.csv`: real and mean shifted r and T, Δr (real minus mean shifted r), dollar excess (Δr × the real amount), p_upper, p_lower and the two-sided p (twice the smaller, capped at 1). `contributors.csv`: every Posted purchase's contribution, amount × (MAR − mean shifted r of Posted); the contributions add up to the dollar excess. Checks in `InferenceReport.txt`: the same purchases and amount in every world, and a brute-force recount of worlds 0, 100 and 400.
+
+### 9.3) Result (run of 2026-11-09, 499 worlds)
+The purchases followed by a post did not earn more than the same purchases on shifted dates. Posted, midpoint amounts: 370 purchases, USD 52.2 million, 0.58 percent per dollar over ten trading days against 0.58 percent in the shifted worlds (Δr +0.01 percentage points, dollar excess USD 4,158, p = 0.98). The companies he posts about earn more than his other purchases in every world, so the comparison with the group's own shifted worlds matters. All purchases: 0.13 percent against −0.11 percent (p = 0.44). Praised: 1.53 against 0.70 percent (p = 0.57); Roasted: 0.30 against −0.51 percent (p = 0.49). Low and high amounts give the same picture. With Part 2, this is the kokebok's clearest no: no timing beyond chance and no return beyond chance.
 
 ## Step 10: Checks
 Planned; see kokebok step 10. Folder `10) Checks/`, created when the work starts.
