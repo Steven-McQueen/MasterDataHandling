@@ -71,7 +71,7 @@ Decisions the analysis still needs, with the recommendation in brackets. Once de
 
 1. **The 331 filtered posts** (Step 5.1): state as a limitation in the data chapter.
 2. **Kokebok wording still to update** (paste-ready text is in the sync document): Step 1 states the HuggingFace source for @realDonaldTrump on Truth Social and that times are stored in UTC and converted to Eastern when a post is assigned to a day; Step 2 gets one line on the 21 unpriceable purchases; Step 3 point 5 describes the pre-sample betas (one beta table for every world); Step 4 points 2–3 and its output drop the keyword list and the SEC former names, and point 4 says "the latest symbol the price provider serves" instead of "as of 1 September 2026"; Step 5 point 1 and its output describe the blind LLM labels, the ticker review and the mention types; the process-overview table marks Step 12 (Exhibits) as done. From 2026-11-10: L = 558 and 500 worlds (Terms, Step 6, appendix); the Hit definition says direct mentions only, with brand and executive as robustness; Step 7 states the two roles of the Part 1 numbers; Step 10 lists every horizon 1–1 to 1–10 with the search p-value, and check 6 (relevance ≥ 0.3). Already brought into the kokebok: on 2026-11-09 the sentiment scale and cut-offs, trading-day windows, 499 worlds and the smallest shift, midpoint amounts, the Part 3 sample rule, the gap tests and two-sided p, step numbers and statuses; on 2026-11-10 Praised as the main hit (research question, Terms, Step 8).
-3. **Step 5.3 validation:** design not decided; marked *proposed, not started* in Step 5.3.
+3. **Step 5.3 validation:** hand coding goes ahead (2026-11-10). The precision sample (200 rows) is drawn and ready for coding; the recall sample (5.3.2) and the self-agreement rerun (5.3.3) are not decided.
 
 ---
 
@@ -897,7 +897,7 @@ The time join between posts and purchases (offset in days, the hit definition, t
 $\longrightarrow$ We now have one row per post and company, every company classified by the authors' review: 6,468 rows; 1,949 references to 178 listed companies, of which 1,691 on 142 trade-universe tickers (1,689 on the 141 purchased), 258 on 36 listed companies he never traded, 841 on companies with no listing, 29 on a listed company before its listing or after its delisting, 3,649 indirect. Part 1: he purchased 141 of the 178 listed companies he posted about (79.2 %). `ticker` is the join key for Parts 2 and 3.
 
 ### 5.3) Validation of the LLM labels · `3) LabelAccuracy/`
-**Status (2026-11-09): proposed, not started.** The design below is a proposal; the authors have not decided it. Step 5.1 produces the labels and Step 5.2 maps them; this step measures how good they are. Both authors label blind to the LLM's output and to each other. Samples exclude the two 300-post development samples.
+**Status (2026-11-10): precision sample drawn, coding not started.** Hand coding goes ahead (decided 2026-11-10). `DrawPrecisionSample.py` draws the 200 rows of 5.3.1 (seed 20261110) from the 1,623 in-universe direct, brand and executive rows outside the two development samples, and writes one coding file per author (`PrecisionSample_Filip.xlsx`, `PrecisionSample_Andreas.xlsx`, without the LLM's sentiment, relevance or confidence) and `precision_key.csv` with the LLM's values, to be opened only when both have finished (`DrawReport.txt`). The recall sample (5.3.2) and the self-agreement rerun (5.3.3) are not decided; the rest of this section is the proposal. Step 5.1 produces the labels and Step 5.2 maps them; this step measures how good they are. Both authors label blind to the LLM's output and to each other. Samples exclude the two 300-post development samples.
 
 #### 5.3.1) Precision sample
 - 200 random rows from `Twitter_tickers_2025_2026.xlsx` with `in_universe = 1` and a non-indirect `reference_type`.
@@ -1166,7 +1166,7 @@ flowchart TD
     %% ---------------- STEPS 5.3 AND 6-12 ----------------
     subgraph GA ["Steps 5.3 and 6–12 · 5) MapTweetCompany/3) LabelAccuracy · 6) – 12)"]
         direction TB
-        val[/"5.3 · validation of labels (proposed)<br/>precision, recall, kappa, self-agreement"/]:::manual
+        val[/"5.3 · validation of labels<br/>precision sample drawn; recall and self-agreement not decided"/]:::manual
         shifts["6) CalendarShifts.py<br/>499 shifts of 30–528 days"]:::script
         worlds[("worlds.csv<br/>500 worlds, world 0 real")]:::data
         p1["7) RunPart1.py<br/>ticker × day panel · LPM, Poisson · 500 worlds"]:::script
