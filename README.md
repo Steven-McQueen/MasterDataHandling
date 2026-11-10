@@ -15,7 +15,7 @@ The kokebok says what each step measures and why; this plan says how the step wa
 | 2 | Collect purchases | `2) Trades/` | `TradesCleaning.ipynb` | `Trump_trades_2025_2026.xlsx` (sheets `Trades`, `Purchases`, `PurchasesMerged`) |
 | 3 | Prices and market-adjusted daily returns | `3) Prices/` | `1) FetchPrices/`, `2) ComputeReturns/`, `3) ReviewPrices/` | `returns_table_presample.csv`, `betas_presample.csv` |
 | 4 | Build the company database | `4) CompanyDB/` | `BuildCompanyDB.py`, `BuildEntities.py` | `company.db` |
-| 5 | Label posts | `5) MapTweetCompany/` | `1) LabelTweets/`, `2) MapToTickers/` | `Twitter_tickers_2025_2026.xlsx` |
+| 5 | Label posts | `5) MapTweetCompany/` | `1) LabelTweets/`, `2) MapToTickers/`, `3) LabelAccuracy/` | `Twitter_tickers_2025_2026.xlsx` |
 | 6 | Define the calendar shifts | `6) CalendarShifts/` | `CalendarShifts.py` | `worlds.csv` |
 | 7 | Part 1: talk | `7) Part1Talk/` | `RunPart1.py` (`1) BuildPanel/`, `2) Estimate/`, `3) Inference/`) | `results.csv`, `inference.csv` |
 | 8 | Part 2: timing | `8) Part2Timing/` | `RunPart2.py` (`1) Hits/`, `2) Inference/`) | `purchase_hits.csv`, `inference.csv` |
@@ -64,14 +64,14 @@ Choices made while building the data, and what each one means for the analysis. 
 - **Reference types in the main hit: direct mentions only** (2026-11-10), as run; direct + brand and direct + brand + executive are robustness rows in the same tables (Parts 1 and 2). [Steps 7, 8]
 - **No relevance floor in the main test** (2026-11-10): a reference counts whatever its relevance. Relevance ≥ 0.3 is check 6 in Step 10. [Step 10]
 - **Part 1 has two numbers** (2026-11-10): the share of the listed companies he posted about that he purchased (141 of 178, 79.2 %, Step 5.2) opens the Part 1 section as a description; the Step 7 test is the result. [Steps 5.2, 7]
-- **No hand-coded validation of the LLM labels** (2026-11-10), following the supervisor ("just use the LLM"): the Step 5.3 precision and recall samples are not drawn, so the accuracy of the labels is not measured. [Step 5.3]
 - **Check 1 shows every horizon** (2026-11-10, added after the main results): trading days 1–1 to 1–10 and 1–20, with a search p-value over 1–1 to 1–10 so that picking the best horizon is accounted for. Day 0 stays out, because its return includes moves before the trade. [Step 10]
 
 ## Open analysis decisions
-Decisions the analysis still needs, with the recommendation in brackets. Once decided, an item moves to *Decisions and limitations* (method choices also to the kokebok). The earlier items on cut purchase windows, the unpriceable purchases, the sentiment cut-offs, Saronic, the main hit, which post decides a label and the Part 2 gap test are decided and now under *Decisions and limitations*; so are, since 2026-11-10, L, AROC and SPCX, AGNT, the reference types, the relevance floor and the two Part 1 numbers, and Step 5.3 (no hand coding). The comparison of this plan with the kokebok is in the sync document (`DataPlan–kokebok sync open questions for Andreas.md`, updated 2026-11-10); its open item is 2 below.
+Decisions the analysis still needs, with the recommendation in brackets. Once decided, an item moves to *Decisions and limitations* (method choices also to the kokebok). The earlier items on cut purchase windows, the unpriceable purchases, the sentiment cut-offs, Saronic, the main hit, which post decides a label and the Part 2 gap test are decided and now under *Decisions and limitations*; so are, since 2026-11-10, L, AROC and SPCX, AGNT, the reference types, the relevance floor and the two Part 1 numbers. The comparison of this plan with the kokebok is in the sync document (`DataPlan–kokebok sync open questions for Andreas.md`, updated 2026-11-10); its open item is 2 below.
 
 1. **The 331 filtered posts** (Step 5.1): state as a limitation in the data chapter.
 2. **Kokebok wording still to update** (paste-ready text is in the sync document): Step 1 states the HuggingFace source for @realDonaldTrump on Truth Social and that times are stored in UTC and converted to Eastern when a post is assigned to a day; Step 2 gets one line on the 21 unpriceable purchases; Step 3 point 5 describes the pre-sample betas (one beta table for every world); Step 4 points 2–3 and its output drop the keyword list and the SEC former names, and point 4 says "the latest symbol the price provider serves" instead of "as of 1 September 2026"; Step 5 point 1 and its output describe the blind LLM labels, the ticker review and the mention types; the process-overview table marks Step 12 (Exhibits) as done. From 2026-11-10: L = 558 and 500 worlds (Terms, Step 6, appendix); the Hit definition says direct mentions only, with brand and executive as robustness; Step 7 states the two roles of the Part 1 numbers; Step 10 lists every horizon 1–1 to 1–10 with the search p-value, and check 6 (relevance ≥ 0.3). Already brought into the kokebok: on 2026-11-09 the sentiment scale and cut-offs, trading-day windows, 499 worlds and the smallest shift, midpoint amounts, the Part 3 sample rule, the gap tests and two-sided p, step numbers and statuses; on 2026-11-10 Praised as the main hit (research question, Terms, Step 8).
+3. **Step 5.3 validation:** design not decided; marked *proposed, not started* in Step 5.3.
 
 ---
 
@@ -897,7 +897,7 @@ The time join between posts and purchases (offset in days, the hit definition, t
 $\longrightarrow$ We now have one row per post and company, every company classified by the authors' review: 6,468 rows; 1,949 references to 178 listed companies, of which 1,691 on 142 trade-universe tickers (1,689 on the 141 purchased), 258 on 36 listed companies he never traded, 841 on companies with no listing, 29 on a listed company before its listing or after its delisting, 3,649 indirect. Part 1: he purchased 141 of the 178 listed companies he posted about (79.2 %). `ticker` is the join key for Parts 2 and 3.
 
 ### 5.3) Validation of the LLM labels · `3) LabelAccuracy/`
-**Status (2026-11-10): not done.** No hand coding, following the supervisor ("just use the LLM"); see *Decisions and limitations*. The proposal below is kept for the record. Step 5.1 produces the labels and Step 5.2 maps them; this step measures how good they are. Both authors label blind to the LLM's output and to each other. Samples exclude the two 300-post development samples.
+**Status (2026-11-09): proposed, not started.** The design below is a proposal; the authors have not decided it. Step 5.1 produces the labels and Step 5.2 maps them; this step measures how good they are. Both authors label blind to the LLM's output and to each other. Samples exclude the two 300-post development samples.
 
 #### 5.3.1) Precision sample
 - 200 random rows from `Twitter_tickers_2025_2026.xlsx` with `in_universe = 1` and a non-indirect `reference_type`.
@@ -1166,7 +1166,7 @@ flowchart TD
     %% ---------------- STEPS 5.3 AND 6-12 ----------------
     subgraph GA ["Steps 5.3 and 6–12 · 5) MapTweetCompany/3) LabelAccuracy · 6) – 12)"]
         direction TB
-        val[/"5.3 · validation of labels (not done)<br/>no hand coding, 2026-11-10"/]:::manual
+        val[/"5.3 · validation of labels (proposed)<br/>precision, recall, kappa, self-agreement"/]:::manual
         shifts["6) CalendarShifts.py<br/>499 shifts of 30–528 days"]:::script
         worlds[("worlds.csv<br/>500 worlds, world 0 real")]:::data
         p1["7) RunPart1.py<br/>ticker × day panel · LPM, Poisson · 500 worlds"]:::script
