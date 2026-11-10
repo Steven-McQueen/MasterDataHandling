@@ -73,7 +73,7 @@ master/                                          # one folder per stage, read in
 │   │   └── TwitterDescriptiveAnalysis.xlsx      # descriptive tables for the data chapter; 7_Part1Share = purchased share of the listed companies posted about
 │   └── 3) LabelAccuracy/                        # Step 5.3 — hand-coded check of the LLM labels (precision sample drawn 2026-11-10)
 │       └── DrawPrecisionSample.py               # draws the 200 precision rows (seed 20261110) and writes the files below
-│       └── PrecisionSample_Filip.xlsx · PrecisionSample_Andreas.xlsx   # one coding file per author: agree / disagree with the LLM's company, ticker and sentiment
+│       └── PrecisionSample_Filip.xlsx · PrecisionSample_Andreas.xlsx   # one coding file per author: one agree / disagree field per row on the LLM's labels
 │       └── precision_key.csv                    # the LLM's sentiment, relevance and confidence for the 200 rows
 │       └── DrawReport.txt                       # inputs, population, sample, checks
 ├── 6) CalendarShifts/                          # Step 6 = kokebok step 6: the shifted worlds
