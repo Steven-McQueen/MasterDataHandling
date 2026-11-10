@@ -1,4 +1,4 @@
-Step 5.3.1, DrawPrecisionSample | run 2026-11-10 14:44
+Step 5.3.1, DrawPrecisionSample | run 2026-11-10 14:49
 
 Inputs
   5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,468 rows
@@ -8,13 +8,13 @@ Population: in the universe and direct, brand, executive: 1,691 rows; without th
 
 Sample: 200 rows, seed 20261110, on 53 tickers and 193 posts
   by type: direct 161, brand 24, executive 15
-  by LLM category (for the record; not in the coding files): neutral 96, positive 74, negative 30
+  by LLM category: neutral 96, positive 74, negative 30
   population by type: direct 1253, brand 240, executive 130
 
 Checks
   rows 200, unique rows 200
   from development samples: 0 (must be 0)
   outside the universe or indirect: 0 (must be 0)
-  LLM sentiment in the coding files: none (only in precision_key.csv)
+  LLM labels shown in the coding files: company, ticker, sentiment score and category
 
 Written: PrecisionSample_Filip.xlsx, PrecisionSample_Andreas.xlsx, precision_key.csv
