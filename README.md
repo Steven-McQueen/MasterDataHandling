@@ -2,9 +2,9 @@
 The entire blueprint and datahandling for the master thesis
 
 ## Research Question
-Investigation into whether Donald Trump uses his social media accounts to generate excess returns for his portfolio:
-
 ***Does President Trump's disclosed stock trading precede his positive posts about the same companies more often than chance would predict, and if so, are those trades better timed than luck?***
+
+Three parts, as in the kokebok: Part 1 (Step 7) asks whether he posts more about a company after buying it; Part 2 (Step 8) whether purchases are followed by posts, and positive posts, more often than the shifted worlds give; Part 3 (Step 9) whether those purchases earned more than the same purchases on shifted dates. The thesis does not test whether posts move prices and makes no claim about intent.
 
 ## How this plan, the kokebok and the folders fit together
 The kokebok says what each step measures and why; this plan says how the step was run; the folder of the same number holds its files. Step N is kokebok step N and folder N. Inside a step, N.k is section k of the step's notebook, or its k-th sub-folder or script.
@@ -21,8 +21,8 @@ The kokebok says what each step measures and why; this plan says how the step wa
 | 8 | Part 2: timing | `8) Part2Timing/` | `RunPart2.py` (`1) Hits/`, `2) Inference/`) | `purchase_hits.csv`, `inference.csv` |
 | 9 | Part 3: returns | `9) Part3Returns/` | `0) Decisions.md` (scripts planned) | |
 | 10 | Checks | `10) Checks/` | planned | |
-| 11 | Exhibits | `11) Exhibits/` | planned | |
-| 12 | Read the result, state the limits | writing | | |
+| 11 | Read the result, state the limits | writing | | |
+| 12 | Exhibits | `12) Exhibits/` | planned | |
 | 13 | Write-up | writing | | |
 
 Step 2.5 corrects tickers found wrong by a first run of Step 3; on a rerun the order is Step 2, then Step 3.
@@ -36,7 +36,10 @@ Choices made while building the data, and what each one means for the analysis. 
 - **Labels are produced blind to the trades.** Step 5.1 reads only the post text; the trade tables are first joined in the analysis. [Step 5.1]
 - **No keyword or alias dictionary.** The LLM names the listed parent and guesses the ticker; Step 5.2 confirms it against the FMP names of the traded tickers. SEC former names and LLM keywords were dropped on 2026-11-03. [Step 4.1.2, 5.2]
 - **Content filter at Microsoft's default level** (a relaxed custom guardrail was tried and blocked more, see Step 5.1). Posts Azure blocks are kept with `llm_status = content_filter`, counted and listed; the text is never edited to pass the filter. [Step 5.1, 5.3.4]
-- **Sentiment is a score** from −1 to 1; positive means ≥ 0.5 and negative ≤ −0.5, with ±0.3 and ±0.7 as a sensitivity check. [Step 5.1]
+- **Sentiment is a score** from −1 to 1; Praised means ≥ 0.5 and Roasted ≤ −0.5, with ±0.3 and ±0.7 as a sensitivity check. The cut-offs were fixed on 2026-11-07 in `8) Part2Timing/0) Decisions.md`, before any hit was counted. [Step 5.1, 8.1]
+- **Timestamps are stored in UTC** (`created_at`, `YYYY-MM-DDTHH:MM:SSZ`, in every post file and in `Twitter_tickers_2025_2026.xlsx`); the HuggingFace dataset is UTC too (confirmed 2026-11-09). The post day is assigned in US Eastern time (`America/New_York`, setting `POST_TZ`) wherever posts meet trade dates (Steps 7 and 8), so nothing is converted in the stored data and daylight saving is handled by the time zone, not by a fixed offset. [Step 1.3, 7.1, 8.1]
+- **The 21 unpriceable purchases** (BRKL, PINC, NVRI, RNAM, WOLF) stay in Parts 1 and 2, which need no prices, and are left out of Part 3. [Step 2.6, 8.1, 9]
+- **Part 3 keeps the same purchases in every world:** only tickers with a market-adjusted return on every trading day from 2025-01-21 to 2026-08-28 take part, so a shifted purchase never lands on a missing return; the excluded purchases and their share of the amount are reported. Days blanked in the price review count as a return of zero. [Step 9, `9) Part3Returns/0) Decisions.md`]
 - **Links are removed from the text** and kept in the `links` field, so a post that was only a link counts as empty. [Step 1.3.b]
 - **One post is one event.** Cross-posts (identical text within 24 h, 2,096 rows) and retweets of one of the three sampled accounts whose original post is in the dataset (3,442 rows) are collapsed to the earliest copy. @POTUS therefore keeps only 106 own posts: the account is almost entirely retweets of @WhiteHouse. [Step 1.4]
 - **Reposts of accounts outside the sample count as posts of the reposting account**, with the full original text (the API truncates retweets at 140 characters; the embedded original is used instead). Quotes carry the quoted text as `QT @user: …`; X Articles are reduced to their title; quotes of media-only posts carry only the comment. [Step 1.3.c]
@@ -48,17 +51,20 @@ Choices made while building the data, and what each one means for the analysis. 
 - **642 days between 20 and 50 percent outside any purchase window are not reviewed.** They enter no pre-sample beta and no real-world purchase window; they affect only the in-sample betas of the fallback tickers (17 days) and can fall inside a shifted world's windows. [Step 3.3.1]
 
 ## Open analysis decisions
-Decisions the analysis still needs, with the recommendation in brackets. Once decided, an item moves to *Decisions and limitations* (method choices also to the kokebok).
+Decisions the analysis still needs, with the recommendation in brackets. Once decided, an item moves to *Decisions and limitations* (method choices also to the kokebok). The earlier items on cut purchase windows, the unpriceable purchases, the sentiment cut-offs and Saronic were decided in `8) Part2Timing/0) Decisions.md`, `9) Part3Returns/0) Decisions.md` and the Step 5.2 review and are now under *Decisions and limitations*. The comparison of this plan with the kokebok of 2026-11-09 is in the sync document (`DataPlan–kokebok sync open questions for Andreas.md`); its open items are 7 to 12 below.
 
-1. **Purchase windows cut by a takeover** (13 real purchases on 9 tickers, sheet `EndsEarly`, and any shifted purchase near a series end; 122 of 1,639 series are shorter than 411 days): count the available days or drop the purchase. [Count the available days; the last price is the deal price, so the outcome is complete. Drop only a window with zero days, in that world. Report the number of short windows.]
-2. **The 21 unpriceable purchases** (sheets `Unpriceable`, `PurchasesLeftOut`): keep in the hit count (Part 2), drop from the return test (Part 3), or price from another source. [Keep in Part 2, drop from Part 3 and say so; 0.1 percent of purchases.]
-3. **Sentiment cut-offs** for Praised and Roasted on the −1 to 1 scale. [Open; decide before the second analysis of Part 2.]
-4. **Sample start and L.** The kokebok shifts from 20 January 2025 with L = 557; the first purchase is 23 January. [Keep 20 January as the sample start; it is the inauguration and the posts start there.]
-5. **AROC and SPCX** stay on their old symbols (sheet `TickerRenames`, `ReviewNote`). [Accept; both series are complete.]
-6. **Saronic Technologies → HWM** in Step 5.2. Decided 2026-11-06: not in the universe (private defence company); `1_CompanyReview`.
-7. **The 331 filtered posts** (Step 5.1): state as a limitation in the data chapter.
-8. **Kokebok wording:** ticker identity "most recent ticker as of 1 September 2026" → the latest symbol the price provider serves; sentiment 0 to 10 → −1 to 1; lot merging done.
-9. **AGNT** (eXp World, kept under AGNT) from the co-author's first-fetch notes (`2) Trades/RawData/FirstPriceFetch/`). [Confirm.]
+1. **Sample start and L.** The kokebok shifts from 20 January 2025 with L = 557; the first purchase is 23 January, and the 44 purchases of 2026-07-31 lie on day 557 and wrap to the start in every world. [Keep 20 January; set L = 558 (both end dates inclusive, 499 shifts) or keep 557 and say so in the kokebok Terms, Step 6 and appendix.]
+2. **AROC and SPCX** stay on their old symbols (sheet `TickerRenames`, `ReviewNote`). [Accept; both series are complete.]
+3. **The 331 filtered posts** (Step 5.1): state as a limitation in the data chapter.
+4. **AGNT** (eXp World, kept under AGNT) from the co-author's first-fetch notes (`2) Trades/RawData/FirstPriceFetch/`). [Confirm.]
+5. **Kokebok wording to update** (the kokebok is Andreas's to edit; paste-ready text is in the sync document): Step 1 states the HuggingFace source for @realDonaldTrump on Truth Social and that times are stored in UTC and converted to Eastern when a post is assigned to a day; Step 3 point 5 describes the pre-sample betas (one beta table for every world); Step 4 points 2–3 and its output drop the keyword list and the SEC former names; Step 4 point 4 says "the latest symbol the price provider serves" instead of "as of 1 September 2026"; Step 5 point 1 and its output describe the blind LLM labels, the ticker review and the mention types; Step 2 gets one line on the 21 unpriceable purchases; the process-overview table marks Steps 9 and 10 as not run and takes the keyword list out of Steps 4 and 5.
+6. **Step 5.3 validation:** design not decided; marked *proposed, not started* in Step 5.3.
+7. **The main hit.** The kokebok's main test counts any post (Terms, Step 8.1), the research question says positive posts, and `8) Part2Timing/0) Decisions.md` fixed Praised direct mentions as the main test (any mention and Roasted are reported as secondary). [Follow the research question: Praised is the main hit; change the kokebok Terms and Step 8 to match, or reword the question.]
+8. **Which post decides the label.** The kokebok and `9) Part3Returns/0) Decisions.md` let the first post in the window decide Praised or Roasted; Part 2 counts a purchase as Praised when at least one Praised post falls in the window, whatever came first. [One rule for both parts; "at least one Praised post" is what Part 2 ran and is simpler to state. Report how many purchases have both a Praised and a Roasted post in the window.]
+9. **Reference types in the main hit.** Parts 1 and 2 use direct mentions only as the main outcome, with direct + brand and direct + brand + executive as robustness; the Q&A of 9 November said direct, brand and executive. The kokebok does not say. [Keep direct as main, as run; write the clause into the kokebok Hit definition.]
+10. **Relevance and confidence floor.** No floor is applied: a reference with relevance 0.1 counts. [None in the main test; relevance ≥ 0.3 as a robustness check in Step 10.]
+11. **The gap test** (positive excess minus negative excess against the same gap in every world, kokebok Step 8.5) is not yet computed by Part 2. [Add it to `8) Part2Timing/2) Inference/ShiftedWorlds.py` before Step 10.]
+12. **Part 1 has two numbers.** Step 5.2 reports the share of the listed companies he posted about that he purchased (141 of 178, 79.2 %); Step 7 tests whether he mentions a company more often after buying it. [The share opens the Part 1 section as description; the Step 7 test is the result. State both roles in the kokebok Step 7.]
 
 ---
 
@@ -159,8 +165,8 @@ Decisions the analysis still needs, with the recommendation in brackets. Once de
   - [Step 8: Part 2, timing](#step-8-part-2-timing)
   - [Step 9: Part 3, returns](#step-9-part-3-returns)
   - [Step 10: Checks](#step-10-checks)
-  - [Step 11: Exhibits](#step-11-exhibits)
-  - [Step 12: Read the result and state the limits](#step-12-read-the-result-and-state-the-limits)
+  - [Step 11: Read the result and state the limits](#step-11-read-the-result-and-state-the-limits)
+  - [Step 12: Exhibits](#step-12-exhibits)
   - [Step 13: Write-up](#step-13-write-up)
   - [Data Pipeline Visualized](#data-pipeline-visualized)
   - [Entire overview](#entire-overview)
@@ -170,12 +176,10 @@ Decisions the analysis still needs, with the recommendation in brackets. Once de
 - **2025 trades:** https://www.tigzig.com/tremor
 - **2026 trades:** QuiverQuant.com
 - **TruthSocial posts:**
-    - @realDonaldTrump: https://huggingface.co/datasets/Cameronk199/donald-trump-truth-social-posts
-        - Direct available dataset. Vibecoded extraction. Files in Cursor. Not clean for submission.
-    - WhiteHouse:  `Fetch_TruthSocial.py` (TruthSocial's API)
-    - POTUS: NA
-- **X posts:** https://twitterapi.io/
-  - Used free API. Vibecoded. Files in Cursor. Not clean for submission.
+    - @realDonaldTrump: the API blocks scripted access to this account's timeline, so its posts come from the public HuggingFace dataset https://huggingface.co/datasets/Cameronk199/donald-trump-truth-social-posts (`RawData/Original/Trump_TruthSocial.json`), cleaned with the same rules as the fetched accounts (Step 1.3). Timestamps are at minute precision and ReTruths are not included (Step 1.1.b).
+    - @WhiteHouse: `Fetch_TruthSocial.py` (TruthSocial's API)
+    - @POTUS: no TruthSocial account
+- **X posts:** twitterapi.io, `Fetch_Twitter.py` (Step 1.2)
 - **Stock prices:** Financial Modeling Prep (FMP), dividend-adjusted daily close (`stable/historical-price-eod/dividend-adjusted`, fallback `api/v3/historical-price-full`); also FMP company profiles, executives, name search and symbol-change history for Steps 2, 4.1 and 4.2.
 - **Market return and factors:** Kenneth French's data library, the three daily files `F-F_Research_Data_Factors_daily.csv`, `F-F_Research_Data_5_Factors_2x3_daily.csv`, `F-F_Momentum_Factor_daily.csv` (downloaded by hand, built on the 202609 CRSP database).
 - **Company identity:** SEC EDGAR submissions (CIK, former names, deregistration filings) for Step 4.2.
@@ -825,7 +829,7 @@ A ticker is a label a company carries for a while, not the company. Inside the s
 
 `SocialMediaKeywords` (one row per post and company reference): `ID`, `mention_text`, `entity_type`, `canonical_company`, `ticker_guess`, `reference_type`, `sentiment`, `relevance`, `confidence`. A post with no reference has no row.
 
-**Sentiment thresholds (pre-registered):** the kokebok's positive / neutral / negative labels are read from the score as positive = sentiment ≥ 0.5, negative = sentiment ≤ −0.5, neutral otherwise. ±0.3 and ±0.7 are reported as a sensitivity check in the robustness table.
+**Sentiment thresholds (fixed before Part 2 ran, 2026-11-07):** the kokebok's Praised / neutral / Roasted labels are read from the score as Praised = sentiment ≥ 0.5, Roasted = sentiment ≤ −0.5, neutral otherwise. ±0.3 and ±0.7 are reported as a sensitivity check in the robustness table.
 
 $\longrightarrow$ We now have every post labelled with the companies it refers to, how, and in what tone, produced without reference to the trades.
 
@@ -879,19 +883,19 @@ Review state (2026-11-08, complete): all 559 companies decided by the authors: 1
 The suggestion, rule and score of 5.2.2 are not repeated here; they stay in `TickerTwitterReview.xlsx`. `ticker_at_post` and `entity_id` were dropped on 2026-11-08: the analysis joins on `ticker`, and a historical symbol must never be used as a lookup key (see `PARA` in 5.2.1). Checks before export: every `ID` in `SocialMediaKeywords` appears; every `ticker` equals its `public_ticker` and is in `companies`; `status` agrees with the tickers (`universe` ⇔ `ticker` set, `listed_not_traded` ⇔ `public_ticker` set and `ticker` empty, the other four statuses carry no ticker); every ticker has a price on its post date where a series exists (HOG, sold only, has none); the flags agree with the tickers. `7) Part1Talk/Part1Settings.py` reads `ID`, `created_at`, `User`, `reference_type`, `ticker`, `in_universe` from the first sheet and is unaffected.
 
 #### 5.2.5) Descriptive analysis
-`TwitterDescriptiveAnalysis.xlsx`, one numbered sheet per table in reading order, after a `ReadMe` that defines each table and states whether the review is complete (tables 3–8 depend on it and are provisional while companies are pending): `1_PostsPerMonth`, `2_BlockedPosts` (content filter, with the share of the month's posts), `3_PostsWithReferences` (per account: any reference, a company, a listed company, a universe company, a purchased company), `4_ReferenceTypes`, `5_Status`, `6_SuggestionVsReview` (companies: how the suggestion was found against the decision), `7_Part1Share` (the Part 1 number: of the listed companies he posted about, the share purchased and the share in the trade universe, over distinct companies, references and posts; a company is its `public_ticker`, so two spellings of Paramount or three Nexstar stations are one company), `8_TopCompanies` (the 50 most mentioned, with listed / in universe / purchased), `9_SentimentScores` and `10_SentimentClasses` (positive / neutral / negative at the pre-registered ±0.5, with ±0.3 and ±0.7 as sensitivity). Counts are numbers, shares are percentages, and tables have total rows. The review decisions themselves stay in `TickerTwitterReview.xlsx`.
+`TwitterDescriptiveAnalysis.xlsx`, one numbered sheet per table in reading order, after a `ReadMe` that defines each table and states whether the review is complete (tables 3–8 depend on it and are provisional while companies are pending): `1_PostsPerMonth`, `2_BlockedPosts` (content filter, with the share of the month's posts), `3_PostsWithReferences` (per account: any reference, a company, a listed company, a universe company, a purchased company), `4_ReferenceTypes`, `5_Status`, `6_SuggestionVsReview` (companies: how the suggestion was found against the decision), `7_Part1Share` (the Part 1 number: of the listed companies he posted about, the share purchased and the share in the trade universe, over distinct companies, references and posts; a company is its `public_ticker`, so two spellings of Paramount or three Nexstar stations are one company), `8_TopCompanies` (the 50 most mentioned, with listed / in universe / purchased), `9_SentimentScores` and `10_SentimentClasses` (positive / neutral / negative at ±0.5, with ±0.3 and ±0.7 as sensitivity). Counts are numbers, shares are percentages, and tables have total rows. The review decisions themselves stay in `TickerTwitterReview.xlsx`.
 
 The time join between posts and purchases (offset in days, the hit definition, the shifted worlds) is not part of this step; it belongs to the analysis (kokebok Steps 6 and 8) and reads `Twitter_tickers_2025_2026.xlsx` and `Trump_trades_2025_2026.xlsx` as they are.
 
 $\longrightarrow$ We now have one row per post and company, every company classified by the authors' review: 6,468 rows; 1,949 references to 178 listed companies, of which 1,691 on 142 trade-universe tickers (1,689 on the 141 purchased), 258 on 36 listed companies he never traded, 841 on companies with no listing, 29 on a listed company before its listing or after its delisting, 3,649 indirect. Part 1: he purchased 141 of the 178 listed companies he posted about (79.2 %). `ticker` is the join key for Parts 2 and 3.
 
 ### 5.3) Validation of the LLM labels · `3) LabelAccuracy/`
-Step 5.1 produces the labels and Step 5.2 maps them; this step measures how good they are. It starts only when Step 5.2 is finished. Both authors label blind to the LLM's output and to each other. Samples exclude the two 300-post development samples.
+**Status (2026-11-09): proposed, not started.** The design below is a proposal; the authors have not decided it. Step 5.1 produces the labels and Step 5.2 maps them; this step measures how good they are. Both authors label blind to the LLM's output and to each other. Samples exclude the two 300-post development samples.
 
 #### 5.3.1) Precision sample
 - 200 random rows from `Twitter_tickers_2025_2026.xlsx` with `in_universe = 1` and a non-indirect `reference_type`.
 - Each author records: is the company correct (yes/no); is the ticker correct (yes/no); sentiment (positive/neutral/negative).
-- Reports: share of LLM company links that are correct; share of tickers that are correct; share of sentiment labels that match the hand label at the pre-registered thresholds; Cohen's kappa between the two authors on each.
+- Reports: share of LLM company links that are correct; share of tickers that are correct; share of sentiment labels that match the hand label at the ±0.5 thresholds; Cohen's kappa between the two authors on each.
 #### 5.3.2) Recall sample
 - 200–300 random posts for which the LLM returned no reference, or only references outside the universe.
 - Each author records whether the post references a company in the trade universe, and which.
@@ -902,7 +906,7 @@ Step 5.1 produces the labels and Step 5.2 maps them; this step measures how good
 #### 5.3.3) Self-agreement
 - Rerun Step 5.1 on 500 random posts with the frozen prompt, the same deployment and settings. Report the share of posts with identical references, and the mean absolute difference in sentiment on the references that match.
 #### 5.3.4) Reporting
-- One table in the thesis: precision (company and ticker), recall estimate, sentiment accuracy, inter-coder kappa, self-agreement, the counts per `review_outcome` from Step 5.2, and the number and share of posts blocked by the content filter, with those posts listed in an appendix file.
+- One table in the thesis: precision (company and ticker), recall estimate, sentiment accuracy, inter-coder kappa, self-agreement, the counts per `status` from Step 5.2, and the number and share of posts blocked by the content filter, with those posts listed in an appendix file.
 - Direction of the errors: a missed reference removes a potential hit in the real world and in every shifted world alike, so it lowers power rather than biasing the test. A wrong link adds noise. Neither favours rejecting the null as long as the errors are unrelated to trade dates, which the blind design in Step 5.1 ensures. Blocked posts are the one exception, because they are not random with respect to tone; their share is reported and, if above a few percent, they are labelled by a second model as a check.
 
 **Cost (measured):** about USD 0.22 per 300 posts on gpt-5-mini Global Standard; the full sample cost USD 16.6 (42.7 million input and 2.9 million output tokens, of which 2.2 million reasoning); under USD 1 for the self-agreement rerun. The Azure for Students credit covers this many times over.
@@ -954,11 +958,11 @@ Purchases are not followed by Praised posts more often than chance; they are fol
 ## Step 10: Checks
 Planned; see kokebok step 10. Folder `10) Checks/`, created when the work starts.
 
-## Step 11: Exhibits
-Planned; see kokebok step 11. Folder `11) Exhibits/`, created when the work starts.
+## Step 11: Read the result and state the limits
+Writing, no folder; see kokebok step 11.
 
-## Step 12: Read the result and state the limits
-Writing, no folder; see kokebok step 12.
+## Step 12: Exhibits
+Planned; see kokebok step 12. Folder `12) Exhibits/`, created when the work starts.
 
 ## Step 13: Write-up
 Writing, no folder; see kokebok step 13.
@@ -1130,23 +1134,38 @@ flowchart TD
         revP -- "wrong days" --> compR
     end
 
-    %% ---------------- STEPS G AND ANALYSIS ----------------
-    subgraph GA ["Steps 5.3 and 6–11 · 5) MapTweetCompany/3) LabelAccuracy · 6) – 11)"]
+    %% ---------------- STEPS 5.3 AND 6-12 ----------------
+    subgraph GA ["Steps 5.3 and 6–12 · 5) MapTweetCompany/3) LabelAccuracy · 6) – 12)"]
         direction TB
-        val[/"5.3 · validation of labels<br/>precision, recall, kappa, self-agreement"/]:::manual
-        join["Build_SOCIALxINVESTMENT.py<br/>post tickers × purchases<br/>hits, shifted worlds, returns"]:::script
-        analysis[("Analysis.xlsx")]:::result
+        val[/"5.3 · validation of labels (proposed)<br/>precision, recall, kappa, self-agreement"/]:::manual
+        shifts["6) CalendarShifts.py<br/>498 shifts of 30–527 days"]:::script
+        worlds[("worlds.csv<br/>499 worlds, world 0 real")]:::data
+        p1["7) RunPart1.py<br/>ticker × day panel · LPM, Poisson · 499 worlds"]:::script
+        p2["8) RunPart2.py<br/>hits in trading days 1–10 · 499 worlds"]:::script
+        p3["9) Part 3 (decisions fixed, scripts planned)<br/>return per dollar by group · 499 worlds"]:::script
+        chk["10) Checks · 12) Exhibits (planned)"]:::script
         rq{{"Research question:<br/>buys before posts vs chance;<br/>returns vs shifted dates"}}:::result
-        join --> analysis --> rq
+        shifts --> worlds
+        worlds --> p1
+        worlds --> p2
+        worlds --> p3
+        p2 -- "labels" --> p3
+        p1 --> rq
+        p2 --> rq
+        p3 --> chk --> rq
     end
 
     %% ---------------- CROSS-STAGE ----------------
     trades -- "unique tickers" --> build
     trades -- "sheet Purchases" --> fetchP
-    trades -- "PurchasesMerged" --> join
-    retT --> join
+    trades -- "purchase dates" --> shifts
+    trades -- "sheet Trades" --> p1
+    trades -- "PurchasesMerged" --> p2
+    trades -- "PurchasesMerged" --> p3
+    retT --> p3
     posts --> tkw
     kb --> tie
-    ptk --> join
+    ptk --> p1
+    ptk --> p2
     ptk --> val
 ```

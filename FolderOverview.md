@@ -103,7 +103,7 @@ master/                                          # one folder per stage, read in
 │       └── inference.csv · world_counts.csv · worlds_main.png · InferenceReport.txt
 ├── 9) Part3Returns/                             # Step 9 = kokebok step 9, Part 3: did the purchases, above all the Posted ones, earn more than on shifted dates?
 │   └── 0) Decisions.md                          # every Part 3 choice, fixed 2026-11-09 before any result; scripts (Part3Settings.py, RunPart3.py) not yet written
-├── 10) Checks/ … 11) Exhibits/                  # Steps 10–11 = kokebok steps 10–11; each folder is created when its work starts
+├── 10) Checks/ · 12) Exhibits/                  # kokebok steps 10 and 12; each folder is created when its work starts (steps 11 and 13 are writing, no folder)
 ├── tasks/
 │   └── todo.md                                  # associate's plan and gates
 │   └── MANAGER_BRIEF.md                         # manager → associate instructions
