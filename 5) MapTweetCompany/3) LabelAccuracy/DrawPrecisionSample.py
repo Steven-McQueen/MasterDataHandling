@@ -3,9 +3,8 @@ Step 5.3.1. Precision sample for hand coding
 --------------------------------------------
 Draws 200 random post-company rows that the analysis uses (in the trade universe, a direct,
 brand or executive reference) and writes one coding workbook per author. Each author checks
-the LLM's labels alone: agree or disagree with the company, the ticker and the sentiment
-category, and gives the right category on a sentiment disagree (design of 2026-11-10; the
-first version coded sentiment blind).
+the LLM's labels alone with one field per row: agree (company, ticker and sentiment category
+all right) or disagree; disagreements are resolved together afterwards (design of 2026-11-10).
 
 precision_key.csv holds the LLM's sentiment, relevance and confidence for the same rows.
 
@@ -70,20 +69,18 @@ def write_workbook(path, sample, coder):
     ws.title = "Coding"
     cols = [("row_id", 7), ("post_id", 21), ("date (US Eastern)", 16), ("account", 15), ("platform", 11),
             ("post text", 70), ("words referring to the company", 24), ("type", 10),
-            ("LLM: company", 24), ("company: agree / disagree", 13),
-            ("LLM: ticker", 8), ("ticker: agree / disagree", 13),
-            ("LLM: sentiment score", 10), ("LLM: sentiment", 11), ("sentiment: agree / disagree", 13),
-            ("if disagree: right sentiment", 14), ("comment", 30)]
+            ("LLM: company", 24), ("LLM: ticker", 8), ("LLM: sentiment score", 10), ("LLM: sentiment", 11),
+            ("agree / disagree", 13), ("note (optional)", 30)]
     ws.append([c for c, _ in cols])
     for r in sample.itertuples(index=False):
         ws.append([r.row_id, str(r.ID), r.date_et, r.User, r.platform, clean(r.text), clean(r.mention_text),
-                   r.reference_type, clean(r.company), None, r.ticker, None, float(r.sentiment),
-                   category(r.sentiment), None, None, None])
+                   r.reference_type, clean(r.company), r.ticker, float(r.sentiment),
+                   category(r.sentiment), None, None])
     head = PatternFill("solid", fgColor="DDDDDD")
     llm = PatternFill("solid", fgColor="DDEBF7")
     code = PatternFill("solid", fgColor="FFF2CC")
-    coder_cols = {10, 12, 15, 16, 17}
-    llm_cols = {9, 11, 13, 14}
+    coder_cols = {13, 14}
+    llm_cols = {9, 10, 11, 12}
     for j, (_, w) in enumerate(cols, start=1):
         ws.column_dimensions[ws.cell(1, j).column_letter].width = w
         ws.cell(1, j).font = Font(bold=True)
@@ -94,14 +91,10 @@ def write_workbook(path, sample, coder):
             c.alignment = Alignment(wrap_text=True, vertical="top")
     n = len(sample) + 1
     agree = DataValidation(type="list", formula1='"agree,disagree"', allow_blank=True)
-    tone = DataValidation(type="list", formula1='"positive,neutral,negative"', allow_blank=True)
     ws.add_data_validation(agree)
-    ws.add_data_validation(tone)
-    for col in ("J", "L", "O"):
-        agree.add(f"{col}2:{col}{n}")
-    tone.add(f"P2:P{n}")
+    agree.add(f"M2:M{n}")
     ws.freeze_panes = "C2"
-    ws.auto_filter.ref = f"A1:Q{n}"
+    ws.auto_filter.ref = f"A1:N{n}"
 
     rd = wb.create_sheet("ReadMe", 0)
     lines = [
@@ -110,19 +103,18 @@ def write_workbook(path, sample, coder):
         "Code alone; do not look at the other author's file until you are both done.",
         "",
         "Each row is one company the LLM linked to one post, as the analysis uses it. The blue columns are the LLM's "
-        "labels; fill in the yellow columns on the sheet Coding:",
-        "1. company: agree if the post refers to this company (by name, ticker, account, a brand or product it owns, or "
-        "one of its executives); disagree if it does not.",
-        "2. ticker: agree if the ticker is the listed company (or listed parent) for that reference on the post date; "
-        "disagree otherwise. If you disagree on the company, disagree here too.",
-        "3. sentiment: agree if the LLM's category is the stance of the post toward THIS company (not the mood of the post); "
-        "if you disagree, give the right category in the next column.",
+        "labels. On the sheet Coding, mark each row agree or disagree in the yellow column:",
+        "agree = all three are right: the post refers to this company (by name, ticker, account, a brand or product it owns, "
+        "or one of its executives); the ticker is that company (or its listed parent) on the post date; and the sentiment "
+        "category is the stance of the post toward THIS company (not the mood of the post).",
+        "disagree = at least one of them is wrong. A short note on what looks off helps when you go through the "
+        "disagreements together; the note column is optional.",
         f"   The LLM's score runs from -1 to 1; its category is positive at {POS} or more, negative at {NEG} or less, "
         "neutral in between (the Praised and Roasted cut-offs of Part 2).",
         "   positive = praise, endorsement, good news the author celebrates, or the company doing something the author approves of;",
         "   neutral = factual mention, a list of names, a neutral citation;",
         "   negative = criticism, a demand, an attack, blame, a threat, \"fake news\".",
-        "Use the comment column for anything unclear. Leave no yellow cell blank, except the right sentiment when you agree.",
+        "Leave no row blank in the agree / disagree column.",
     ]
     for i, l in enumerate(lines, start=1):
         rd.cell(i, 1, l).alignment = Alignment(wrap_text=True, vertical="top")
