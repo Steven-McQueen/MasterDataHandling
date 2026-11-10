@@ -1,6 +1,6 @@
 # Step 5.1 prompt
 
-Version: 5
+Version: 6
 
 One call per social-media text. The call contains this system prompt, the schema below, and the text as `Post:\n<text>`. Nothing else: no date, account, platform, links or company list. The model has no memory between calls.
 
@@ -25,9 +25,12 @@ A reference is one of:
              A person mentioned in another capacity (a CEO quoted on politics unrelated to
              the firm) is NOT a reference, with ONE exception: Elon Musk. "Elon", "Musk" or
              "@elonmusk" is ALWAYS an executive reference to Tesla, Inc. (TSLA), whatever
-             the topic (DOGE, politics, X, SpaceX). relevance high when the post concerns
-             Tesla (government contracts etc), low (about 0.3) when it concerns Musk
-             personally as a representative for DOGE.
+             the topic (DOGE, politics, X, SpaceX). sentiment is the stance toward Tesla
+             the company, not toward Musk: when the post concerns Musk in another role
+             (DOGE, politics, X, SpaceX) and says nothing about Tesla, sentiment is 0.0 and
+             relevance at most 0.3. Only when the post concerns Tesla itself (its cars,
+             results, factories, government contracts) does sentiment follow the stance
+             and relevance go high.
 - indirect:  a statement about a specific INDUSTRY, COMMODITY or GROUP OF COMPANIES without
              naming one ("tariffs on steel", "Big Pharma", "the chip industry", "defense
              contractors", "oil prices", "the auto industry", "banks"), or a FOREIGN country
@@ -131,3 +134,4 @@ gpt-5-mini, snapshot 2025-08-07. `reasoning_effort = low`, `max_completion_token
 - v3 (2026-11-03): sentiment becomes a number from -1.0 to 1.0 and confidence a number from 0.0 to 1.0, both one decimal; new field relevance (0.0 to 1.0, how central the company is to the post) so that multi-company posts can be filtered; Elon Musk (often called elon) always counts as an executive reference to Tesla (TSLA), whatever the topic; SpaceX removed from the unlisted examples because it is now listed; executive example changed to Tim Cook. The script clamps the three numbers to their range and rounds to one decimal.
 - v4 (2026-11-03): narrow fixes after the hold-out sample (`trial_sample = 2`, 300 unseen posts run once under v3). GE split into GE Aerospace (GE), GE Vernova (GEV) and GE HealthCare (GEHC); Kellogg split into WK Kellogg Co (KLG, U.S. cereals, @KelloggsUS) and Kellanova (K); journalists, anchors, TV hosts and presenters are not executives, a named network is a direct reference to its parent; slogans with an industry word ("Energy Dominance") and public places named after Trump (airports, the Trump-Kennedy Center) are not references and are not The Trump Organization; Truth Social always carries the ticker DJT. From v4 on, calls go through the resource `master-TrumpTweetTrades-resource` (deployment `gpt-5-mini`, version 2025-08-07) with the `thesis-highest-threshold` guardrail; the trials up to v3 ran on a different resource with Azure's default filter.
 - v5 (2026-11-03): one line in rule 2. v4's "ALWAYS with the ticker DJT" made the model label "Trump Accounts" (a government savings programme) as Trump Media / DJT in both samples; v5 says DJT only for Truth Social, Truth+, Trump Media or $DJT and never for Trump Accounts, Trump Gold Card or any government programme. Nothing else changed. Run on both samples with the deployment on Microsoft's DefaultV2 content filter (the custom guardrail tried for v4 blocked at severity "low" under every setting and was detached).
+- v6 (2026-11-10): one change in the executive rule for Elon Musk, after the Step 5.3.1 precision check. Elon is still always an executive reference to Tesla, but the sentiment is the stance toward Tesla the company: when the post concerns Musk in another role (DOGE, politics, X, SpaceX) and says nothing about Tesla, sentiment is 0.0 and relevance at most 0.3. In the precision sample all 7 neutral Elon-Tesla rows were judged right and all 4 positive or negative ones wrong (rows 8, 77, 155, 188), because the stance toward Musk had been given to Tesla. Nothing else changed. Tested on the branch prompt-v6 before main.
