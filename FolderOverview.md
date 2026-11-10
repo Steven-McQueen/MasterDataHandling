@@ -72,9 +72,9 @@ master/                                          # one folder per stage, read in
 │   │   └── Twitter_tickers_2025_2026.xlsx       # OUTPUT: one row per post × company (6,468): post · LLM label · decision (public_ticker, ticker = universe join key, listed / in_universe / purchased, status); ReadMe sheet defines the columns
 │   │   └── TwitterDescriptiveAnalysis.xlsx      # descriptive tables for the data chapter; 7_Part1Share = purchased share of the listed companies posted about
 │   └── 3) LabelAccuracy/                        # Step 5.3 — hand-coded check of the LLM labels (precision sample drawn 2026-11-10)
-│       └── DrawPrecisionSample.py               # draws the 200 precision rows (seed 20261110) and writes the files below
-│       └── PrecisionSample_Filip.xlsx · PrecisionSample_Andreas.xlsx   # one coding file per author: one agree / disagree field per row on the LLM's labels
-│       └── precision_key.csv                    # the LLM's sentiment, relevance and confidence for the 200 rows
+│       └── DrawPrecisionSample.py               # draws the 200 precision posts (seed 20261110) and writes the files below
+│       └── PrecisionSample_Filip.xlsx · PrecisionSample_Andreas.xlsx   # one coding file per author: one row per post with all its companies, one agree / disagree field
+│       └── precision_key.csv                    # the LLM's labels for every company reference in the 200 posts
 │       └── DrawReport.txt                       # inputs, population, sample, checks
 ├── 6) CalendarShifts/                          # Step 6 = kokebok step 6: the shifted worlds
 │   └── CalendarShifts.py                        # settings (start 2025-01-20, L = 558, MIN_SHIFT = 30), shift formula, checks
