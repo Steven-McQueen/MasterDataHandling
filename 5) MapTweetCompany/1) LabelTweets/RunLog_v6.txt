@@ -113,5 +113,5 @@ check: statuses outside (ok, content_filter): [('error: Connection error.', 1), 
 333 texts without an ok answer written to /Users/fjorundland/Desktop/NHH/Master/Data /PromptV6Run/5) MapTweetCompany/1) LabelTweets/blocked_texts.csv
 
 Innlegg med v6-svar: 21940
-FERDIG. Si fra til Claude.
+FERDIG.
 Trykk Enter for å lukke.
