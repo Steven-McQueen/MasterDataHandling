@@ -1,0 +1,201 @@
+row_id,ID,ticker,company,reference_type,sentiment,relevance,confidence,llm_category
+1,1899557926525677856,TSLA,"Tesla, Inc.",direct,0.5,1.0,1.0,positive
+2,2022041364440264822,JNJ,Johnson & Johnson,direct,0.0,1.0,1.0,neutral
+3,2043741633657659613,DASH,"DoorDash, Inc.",direct,0.0,0.8,1.0,neutral
+4,115256938634035559,DIS,The Walt Disney Company,direct,-1.0,1.0,0.9,negative
+5,114745136248099636,NOC,Northrop Grumman Corporation,brand,0.5,0.3,0.9,positive
+6,1953211303859720465,AAPL,Apple Inc.,direct,0.5,1.0,1.0,positive
+7,2043833703625851376,DASH,"DoorDash, Inc.",direct,0.8,1.0,1.0,positive
+8,114117008305421663,TSLA,"Tesla, Inc.",executive,0.5,0.3,1.0,positive
+9,1954722147554730153,KHC,The Kraft Heinz Company,brand,0.5,0.6,0.8,positive
+10,1962895049802289338,CMCSA,Comcast Corporation,direct,0.0,0.6,0.9,neutral
+11,2003553722908180815,SKYD,Skydance Corporation,direct,0.0,1.0,0.9,neutral
+12,116902945158204426,VSNT,"Versant Media Group, Inc. Class A",direct,-1.0,0.6,0.9,negative
+13,2052123667778138326,TKO,"TKO Group Holdings, Inc.",brand,0.0,0.7,0.7,neutral
+14,114524271419135361,GE,GE Aerospace,direct,0.5,0.6,0.9,positive
+15,115294545346210269,PFE,Pfizer Inc.,direct,0.5,1.0,1.0,positive
+16,2066237985801097519,TKO,"TKO Group Holdings, Inc.",brand,0.5,1.0,1.0,positive
+17,1993296972594528358,NWSA,News Corporation,direct,0.0,0.3,0.9,neutral
+18,2065777951472300536,TKO,"TKO Group Holdings, Inc.",direct,0.0,0.6,0.9,neutral
+19,2074478833151963403,LMT,Lockheed Martin Corporation,brand,0.0,1.0,0.9,neutral
+20,1955297504104198236,CENX,Century Aluminum Company,direct,0.5,1.0,1.0,positive
+21,116769129718272146,AMZN,"Amazon.com, Inc.",direct,0.0,0.2,0.9,neutral
+22,1969086886393118758,FOXA,Fox Corporation,direct,0.0,0.8,0.9,neutral
+23,2088053159126323622,AAPL,Apple Inc.,direct,1.0,1.0,1.0,positive
+24,2081870257124151736,FOXA,Fox Corporation,direct,0.0,0.6,1.0,neutral
+25,2021355994476052891,DIS,The Walt Disney Company,direct,0.0,0.2,0.9,neutral
+26,1945218299697975508,FOXA,Fox Corporation,direct,0.0,0.3,0.9,neutral
+27,1889011989545906654,FOXA,Fox Corporation,direct,0.0,0.6,1.0,neutral
+28,1903249283035332902,NVDA,NVIDIA Corporation,direct,0.5,0.5,1.0,positive
+29,2026300388803047443,NWSA,News Corporation,direct,0.0,0.2,0.9,neutral
+30,1968770865404809532,NVDA,NVIDIA Corporation,direct,0.0,1.0,1.0,neutral
+31,2046977586987757718,FOXA,Fox Corporation,direct,0.0,0.6,0.9,neutral
+32,2084814900405121454,FOXA,Fox Corporation,direct,0.5,0.3,0.6,positive
+33,114145974393951612,F,Ford Motor Company,direct,0.0,0.3,1.0,neutral
+34,1903249283035332902,BA,The Boeing Company,direct,0.5,0.5,1.0,positive
+35,2087995471973294123,AAPL,Apple Inc.,direct,1.0,1.0,1.0,positive
+36,115862684255980250,FOXA,Fox Corporation,direct,0.0,1.0,0.9,neutral
+37,115939860152214301,CMCSA,Comcast Corporation,direct,-1.0,0.8,0.9,negative
+38,116416736627974477,WBD,"Warner Bros. Discovery, Inc.",direct,0.5,0.5,0.9,positive
+39,115772871198579287,DIS,The Walt Disney Company,direct,-1.0,1.0,0.9,negative
+40,114198218638202475,TSLA,"Tesla, Inc.",direct,0.5,1.0,1.0,positive
+41,115428798659352209,GM,General Motors Company,direct,1.0,1.0,1.0,positive
+42,1903449047538487532,NWSA,News Corporation,direct,0.0,0.3,0.9,neutral
+43,114345470440861946,CMCSA,Comcast Corporation,direct,-1.0,1.0,1.0,negative
+44,2066300952286531819,TKO,"TKO Group Holdings, Inc.",brand,1.0,0.8,0.8,positive
+45,1917692459418583493,ABT,Abbott Laboratories,direct,0.0,0.5,1.0,neutral
+46,115890139588555674,SKYD,Skydance Corporation,direct,0.0,0.7,0.9,neutral
+47,1963655156236435619,GOOG,Alphabet Inc.,direct,0.0,0.9,0.9,neutral
+48,115238637490866159,FOXA,Fox Corporation,direct,0.8,0.6,1.0,positive
+49,1990522723567845378,MCD,McDonald's Corporation,direct,0.0,0.6,0.9,neutral
+50,1932587454835425706,FOXA,Fox Corporation,direct,0.0,0.2,0.9,neutral
+51,115548785919046772,JPM,JPMorgan Chase & Co.,direct,-1.0,0.2,0.9,negative
+52,2070184044571091073,FOXA,Fox Corporation,direct,0.0,0.3,0.9,neutral
+53,1899585111013896367,CMCSA,Comcast Corporation,direct,0.5,0.3,0.7,positive
+54,2084653482171154819,OGE,OGE Energy Corp.,direct,0.5,0.7,0.9,positive
+55,116850596821921968,MU,"Micron Technology, Inc.",direct,1.0,1.0,1.0,positive
+56,2060832735631941924,FOXA,Fox Corporation,direct,0.5,1.0,0.9,positive
+57,1892023798540664865,TSLA,"Tesla, Inc.",executive,0.0,0.6,0.9,neutral
+58,1970320969509281835,CMCSA,Comcast Corporation,direct,-1.0,0.9,0.7,negative
+59,114474584669905764,FOXA,Fox Corporation,direct,0.0,0.2,0.9,neutral
+60,116144057341130700,AAPL,Apple Inc.,brand,-0.5,1.0,0.9,negative
+61,1975562959339594007,FOXA,Fox Corporation,direct,0.0,0.4,0.9,neutral
+62,114025028025455053,FOXA,Fox Corporation,direct,0.5,0.5,0.9,positive
+63,1905330640225972411,AMZN,"Amazon.com, Inc.",direct,0.0,0.6,1.0,neutral
+64,2090775521277657565,FTAI,FTAI Aviation Ltd.,direct,0.8,1.0,0.9,positive
+65,115898867378270216,FOXA,Fox Corporation,direct,0.5,0.8,0.9,positive
+66,1953270580075216949,FOXA,Fox Corporation,direct,0.0,0.2,0.9,neutral
+67,1991624268522877084,GM,General Motors Company,direct,0.5,0.9,1.0,positive
+68,2077419302957744528,SPCX,Space Exploration Technologies Corp.,direct,0.5,0.5,0.8,positive
+69,116421668823698549,AAPL,Apple Inc.,direct,0.5,1.0,1.0,positive
+70,2045213712668082507,PEP,"PepsiCo, Inc.",brand,0.8,1.0,0.9,positive
+71,2090478420870238648,FOXA,Fox Corporation,direct,0.8,1.0,1.0,positive
+72,2065919902934765881,TKO,"TKO Group Holdings, Inc.",brand,0.0,0.8,0.9,neutral
+73,115766194471748593,FOXA,Fox Corporation,brand,0.5,0.8,0.9,positive
+74,114189926046475867,FOXA,Fox Corporation,direct,0.0,0.3,0.9,neutral
+75,115924043199702065,FOXA,Fox Corporation,brand,1.0,0.8,0.8,positive
+76,1936605837751181732,WBD,"Warner Bros. Discovery, Inc.",brand,0.0,0.6,0.8,neutral
+77,114070560562637397,TSLA,"Tesla, Inc.",executive,0.5,0.3,0.8,positive
+78,1913346871575085273,NVDA,NVIDIA Corporation,direct,0.5,0.3,1.0,positive
+79,2079631132866286068,FOXA,Fox Corporation,direct,0.0,0.7,0.9,neutral
+80,1886469388166910043,NUE,Nucor Corporation,direct,1.0,1.0,1.0,positive
+81,1900667853210038446,BA,The Boeing Company,direct,0.5,1.0,1.0,positive
+82,2047457373090939184,REGN,"Regeneron Pharmaceuticals, Inc.",direct,0.5,1.0,1.0,positive
+83,2065561328782107012,TKO,"TKO Group Holdings, Inc.",direct,0.5,1.0,0.8,positive
+84,1968468758533451910,DIS,The Walt Disney Company,direct,0.5,1.0,1.0,positive
+85,116962896633563415,FOXA,Fox Corporation,direct,0.5,0.5,0.9,positive
+86,116048298400907278,FOXA,Fox Corporation,direct,0.5,1.0,0.9,positive
+87,1894872153742262376,FOXA,Fox Corporation,direct,0.0,0.3,0.8,neutral
+88,1956092785573937636,WBD,"Warner Bros. Discovery, Inc.",direct,0.0,0.6,0.9,neutral
+89,114619736929573972,NWSA,News Corporation,brand,0.0,0.3,0.8,neutral
+90,2065632101748089111,STLA,Stellantis N.V.,brand,0.0,0.5,0.9,neutral
+91,1896336669089095872,DIS,The Walt Disney Company,direct,0.0,0.3,0.8,neutral
+92,2073085883109003515,FOXA,Fox Corporation,direct,0.0,0.8,1.0,neutral
+93,2044386370718744917,KR,The Kroger Co.,direct,0.0,0.2,0.9,neutral
+94,114007874648160437,FOXA,Fox Corporation,direct,0.0,0.5,0.9,neutral
+95,1889423198128607304,TSLA,"Tesla, Inc.",executive,0.0,0.2,1.0,neutral
+96,115087160158530143,CMCSA,Comcast Corporation,direct,-1.0,1.0,1.0,negative
+97,1911445383005241795,TKO,"TKO Group Holdings, Inc.",direct,0.0,0.5,0.7,neutral
+98,1907071700715381160,TSLA,"Tesla, Inc.",direct,0.5,1.0,1.0,positive
+99,1894795870052241788,TSLA,"Tesla, Inc.",executive,0.0,0.3,1.0,neutral
+100,113891882790475884,FOXA,Fox Corporation,direct,0.5,1.0,0.9,positive
+101,1895933091958702111,WBD,"Warner Bros. Discovery, Inc.",direct,0.0,0.5,0.9,neutral
+102,2075606113504927960,MU,"Micron Technology, Inc.",direct,1.0,0.9,1.0,positive
+103,2064099950733008958,BA,The Boeing Company,direct,1.0,1.0,1.0,positive
+104,2066278866365083984,SKYD,Skydance Corporation,direct,0.0,0.8,0.9,neutral
+105,116376634773749603,FOXA,Fox Corporation,direct,-1.0,0.7,1.0,negative
+106,116887463214588151,SPCX,Space Exploration Technologies Corp.,direct,1.0,1.0,0.9,positive
+107,114070315739588346,AAPL,Apple Inc.,direct,-1.0,1.0,1.0,negative
+108,1973733401493676352,FOXA,Fox Corporation,direct,0.0,0.5,0.9,neutral
+109,1902387387390369800,FOXA,Fox Corporation,direct,0.0,0.2,1.0,neutral
+110,115999448091565515,SKYD,Skydance Corporation,direct,-1.0,1.0,0.9,negative
+111,1917629974523138074,DIS,The Walt Disney Company,direct,0.0,0.8,0.9,neutral
+112,2066007341397356847,SKYD,Skydance Corporation,brand,0.5,0.6,1.0,positive
+113,116257826369374629,JPM,JPMorgan Chase & Co.,direct,-1.0,1.0,1.0,negative
+114,2046930201678872770,SKYD,Skydance Corporation,direct,0.0,0.5,1.0,neutral
+115,2046352901631569951,VSNT,"Versant Media Group, Inc. Class A",direct,0.0,0.8,0.8,neutral
+116,114478780390671313,BA,The Boeing Company,direct,1.0,0.6,1.0,positive
+117,114757001664238246,FOXA,Fox Corporation,direct,0.0,0.5,1.0,neutral
+118,1919876184088649743,WBD,"Warner Bros. Discovery, Inc.",direct,0.0,0.5,0.9,neutral
+119,114741415042752014,WBD,"Warner Bros. Discovery, Inc.",direct,-1.0,1.0,0.9,negative
+120,1910493914177417644,NWSA,News Corporation,direct,0.0,0.5,0.8,neutral
+121,1956687536132079924,NWSA,News Corporation,direct,0.0,0.5,0.8,neutral
+122,1954722147554730153,HSY,The Hershey Company,brand,0.5,0.6,0.9,positive
+123,2091227596411302118,FOXA,Fox Corporation,direct,0.5,0.3,0.9,positive
+124,2051087092269125678,SO,The Southern Company,direct,0.5,1.0,1.0,positive
+125,114214658359777536,SKYD,Skydance Corporation,direct,-1.0,1.0,0.9,negative
+126,114058814859681967,AAPL,Apple Inc.,direct,1.0,1.0,1.0,positive
+127,114259522932730072,TSLA,"Tesla, Inc.",executive,0.0,0.3,1.0,neutral
+128,1953537207505236413,IBM,International Business Machines Corporation,direct,1.0,1.0,1.0,positive
+129,114287474604619244,FOXA,Fox Corporation,direct,0.5,1.0,0.9,positive
+130,1924539067129004189,FOXA,Fox Corporation,direct,0.0,0.4,1.0,neutral
+131,115424560133045127,NVDA,NVIDIA Corporation,executive,0.5,0.3,0.9,positive
+132,115961944680232406,SKYD,Skydance Corporation,direct,-1.0,0.8,0.9,negative
+133,115322333732211990,FOXA,Fox Corporation,direct,-1.0,1.0,0.9,negative
+134,114190845050387383,TSLA,"Tesla, Inc.",direct,-0.8,1.0,0.9,negative
+135,1918017575100829769,FOXA,Fox Corporation,direct,0.0,0.5,0.9,neutral
+136,1914330908338819330,FOXA,Fox Corporation,direct,0.0,0.3,0.8,neutral
+137,116024925554392442,VSNT,"Versant Media Group, Inc. Class A",direct,-1.0,0.6,0.8,negative
+138,115567708214544518,MCD,McDonald's Corporation,direct,0.0,1.0,1.0,neutral
+139,117153575933659467,FOXA,Fox Corporation,direct,0.0,0.7,1.0,neutral
+140,1986814408346001562,LLY,Eli Lilly and Company,direct,0.5,1.0,1.0,positive
+141,114898229237459086,DIS,The Walt Disney Company,direct,-1.0,0.6,0.9,negative
+142,2074213712131428698,ICE,"Intercontinental Exchange, Inc.",direct,0.0,0.3,0.9,neutral
+143,1955974807595434321,FOXA,Fox Corporation,direct,0.0,0.2,0.8,neutral
+144,2081839537693528087,FOXA,Fox Corporation,direct,0.0,0.2,0.9,neutral
+145,114916167133707858,INTC,Intel Corp.,direct,0.0,0.5,0.9,neutral
+146,2077419302957744528,ADBE,Adobe Inc.,direct,0.5,0.5,0.9,positive
+147,114734021412822365,CMCSA,Comcast Corporation,direct,-1.0,1.0,0.7,negative
+148,114842941355477197,FOXA,Fox Corporation,direct,0.0,0.8,0.9,neutral
+149,2023226040089239764,BA,The Boeing Company,brand,0.0,0.8,0.9,neutral
+150,1984319055960866869,UAL,"United Airlines Holdings, Inc.",direct,0.5,1.0,1.0,positive
+151,1936081184003440645,GIS,"General Mills, Inc.",direct,0.5,1.0,1.0,positive
+152,2031815784201171103,TMO,Thermo Fisher Scientific Inc.,direct,0.0,0.8,1.0,neutral
+153,1893437552750645389,TSLA,"Tesla, Inc.",executive,0.0,0.3,0.9,neutral
+154,114478160839858570,CMCSA,Comcast Corporation,direct,-1.0,1.0,0.9,negative
+155,1907006214954770561,TSLA,"Tesla, Inc.",executive,-0.8,0.6,1.0,negative
+156,114710162640808420,FOXA,Fox Corporation,direct,-1.0,1.0,1.0,negative
+157,114492082555622686,BA,The Boeing Company,brand,0.0,0.2,0.9,neutral
+158,114151257383811463,GS,"The Goldman Sachs Group, Inc.",direct,0.0,0.8,0.9,neutral
+159,2010863428475175422,TSLA,"Tesla, Inc.",executive,0.0,0.6,0.9,neutral
+160,115061104213677946,AAPL,Apple Inc.,executive,-1.0,0.9,0.9,negative
+161,2059991947222147447,AAPL,Apple Inc.,brand,0.0,0.2,0.9,neutral
+162,113891977496753674,AMZN,"Amazon.com, Inc.",brand,0.0,1.0,1.0,neutral
+163,2075971638537994460,HOOD,"Robinhood Markets, Inc.",direct,0.5,0.7,0.9,positive
+164,114050070794885064,FOXA,Fox Corporation,direct,1.0,0.9,0.9,positive
+165,1928239123527016469,NVDA,NVIDIA Corporation,direct,0.0,1.0,1.0,neutral
+166,113959378194447457,SIRI,Sirius XM Holdings Inc.,direct,0.0,0.2,1.0,neutral
+167,114345470440861946,WBD,"Warner Bros. Discovery, Inc.",direct,-1.0,0.7,1.0,negative
+168,2079652561955565573,FOXA,Fox Corporation,direct,0.0,0.2,0.9,neutral
+169,1894456895005487386,AAPL,Apple Inc.,direct,0.0,1.0,1.0,neutral
+170,1903178417421345198,BA,The Boeing Company,direct,0.5,1.0,1.0,positive
+171,2066350963909153217,SKYD,Skydance Corporation,brand,0.5,0.6,1.0,positive
+172,1990840579991732324,GEV,GE Vernova Inc.,direct,0.8,0.8,1.0,positive
+173,115568168980675244,MCD,McDonald's Corporation,direct,0.0,0.3,1.0,neutral
+174,1911113450169778187,SKYD,Skydance Corporation,direct,0.0,0.9,1.0,neutral
+175,1909962744922542372,FOXA,Fox Corporation,direct,0.0,0.6,0.9,neutral
+176,114339966797907461,CMCSA,Comcast Corporation,direct,0.0,0.5,0.9,neutral
+177,1903073373522944491,GM,General Motors Company,direct,0.0,0.9,0.9,neutral
+178,2066278866365083984,STLA,Stellantis N.V.,direct,0.0,0.6,0.8,neutral
+179,116048520747031031,CVS,CVS Health Corp.,direct,0.5,1.0,1.0,positive
+180,1984024880845836598,MCD,McDonald's Corporation,direct,0.0,0.5,1.0,neutral
+181,115222372625104790,CMCSA,Comcast Corporation,direct,-1.0,0.9,1.0,negative
+182,1889427311545459141,TSLA,"Tesla, Inc.",executive,0.0,0.3,1.0,neutral
+183,114087937627204152,FOXA,Fox Corporation,executive,0.0,0.5,0.7,neutral
+184,2058252422963749051,TKO,"TKO Group Holdings, Inc.",direct,0.0,1.0,0.9,neutral
+185,114132050804394743,FOXA,Fox Corporation,direct,0.0,0.8,0.9,neutral
+186,1991624268522877084,F,Ford Motor Company,direct,0.5,0.9,1.0,positive
+187,114190686109079519,FOXA,Fox Corporation,direct,-0.5,1.0,1.0,negative
+188,114149845661093099,TSLA,"Tesla, Inc.",executive,0.8,0.6,0.9,positive
+189,113887487731381945,CMCSA,Comcast Corporation,direct,-1.0,1.0,0.9,negative
+190,115550876323311183,GOOG,Alphabet Inc.,direct,1.0,1.0,1.0,positive
+191,1917394915383992562,BA,The Boeing Company,brand,0.5,1.0,0.9,positive
+192,114729086320228278,NOC,Northrop Grumman Corporation,brand,0.5,0.3,0.8,positive
+193,1953537207505236413,AAPL,Apple Inc.,direct,1.0,1.0,1.0,positive
+194,116739496269575262,TKO,"TKO Group Holdings, Inc.",brand,0.0,0.8,0.8,neutral
+195,2024562387580309834,CMCSA,Comcast Corporation,direct,0.0,1.0,1.0,neutral
+196,115566073827004302,MCD,McDonald's Corporation,direct,0.0,0.5,1.0,neutral
+197,1910133660759609442,SCHW,The Charles Schwab Corporation,executive,1.0,1.0,0.8,positive
+198,2030027997869170787,LHX,"L3Harris Technologies, Inc.",direct,0.0,0.6,0.9,neutral
+199,115209308362990527,AMZN,"Amazon.com, Inc.",direct,0.0,0.6,1.0,neutral
+200,114987288040725570,INTC,Intel Corp.,direct,-1.0,1.0,1.0,negative
