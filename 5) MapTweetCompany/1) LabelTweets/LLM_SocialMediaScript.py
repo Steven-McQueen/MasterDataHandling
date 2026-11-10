@@ -143,7 +143,8 @@ def call(client, deployment, system, schema, id_, text):
             u = r.usage
             return id_, status, answer, r.model, u.prompt_tokens, u.completion_tokens, getattr(u.completion_tokens_details, "reasoning_tokens", None)
         except APIStatusError as exc:
-            if exc.status_code == 400 and "content_filter" in str(exc):
+            # Azure words the block either way: code content_filter, or "content management policy" (seen 2026-11-10)
+            if exc.status_code == 400 and ("content_filter" in str(exc) or "content management policy" in str(exc)):
                 return id_, "content_filter", None, None, None, None, None
             if exc.status_code not in (429, 500, 502, 503, 504) or attempt == retries:
                 return id_, f"error: {exc}"[:300], None, None, None, None, None

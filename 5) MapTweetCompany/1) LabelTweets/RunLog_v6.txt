@@ -1,0 +1,117 @@
+== Prompt v6 2026-11-10 22:20
+Python: /opt/anaconda3/bin/python
+== Prompt v6 2026-11-10 22:40
+Python: /opt/anaconda3/bin/python
+
+TEST: 20 innlegg (koster noen øre)
+resource: https://master-trumptweettrades-resource.services.ai.azure.com/openai/v1/ | deployment: gpt-5-mini
+prompt version 6 | 20 of 22273 texts to label | 24 workers | projected cost USD 0.02 (Standard)
+model: gpt-5-mini-2025-08-07 
+[20/20] ok 20 | content_filter 0 | error 0 | 0.2 min | 130 texts/min
+
+prompt version 6, all texts: 20/22273 labelled
+model: [('gpt-5-mini-2025-08-07', 5, 21922), ('gpt-5-mini-2025-08-07', 6, 20)]
+status: [('content_filter', 331), ('ok', 21942)]
+texts with at least one reference: 4375/20
+reference_type: [('indirect', 3648), ('direct', 2246), ('brand', 412), ('executive', 161)]
+entity_type: [('sector_or_policy', 3053), ('company', 2256), ('country', 595), ('product_or_brand', 404), ('person', 159)]
+sentiment: [(-1.0, 610), (-0.9, 1), (-0.8, 116), (-0.7, 2), (-0.6, 10), (-0.5, 326), (-0.3, 8), (-0.2, 8), (0.0, 2967), (0.2, 12), (0.3, 18), (0.4, 1), (0.5, 1851), (0.6, 1), (0.7, 1), (0.8, 189), (0.9, 3), (1.0, 343)]
+relevance: [(0.1, 1), (0.2, 259), (0.3, 495), (0.4, 261), (0.5, 1853), (0.6, 791), (0.7, 261), (0.8, 638), (0.9, 399), (1.0, 1509)]
+confidence: [(0.5, 13), (0.6, 193), (0.7, 343), (0.8, 1620), (0.9, 3341), (1.0, 957)]
+avg tokens per call: in 1946 | out 134 (of which reasoning 101) | totals in 42,688,960 out 2,944,212
+cost of the labelled rows (Standard): USD 16.56 | projected all 22273 texts: USD 16.81
+check: statuses outside (ok, content_filter): none | model strings: ['gpt-5-mini-2025-08-07'] | orphan keyword rows: 0
+331 texts without an ok answer written to /Users/fjorundland/Desktop/NHH/Master/Data /PromptV6Run/5) MapTweetCompany/1) LabelTweets/blocked_texts.csv
+Innlegg med v6-svar: 20
+
+Testen gikk. Skriv JA og trykk Enter for å kjøre resten (ca. 17 dollar): resource: https://master-trumptweettrades-resource.services.ai.azure.com/openai/v1/ | deployment: gpt-5-mini
+prompt version 6 | 22253 of 22273 texts to label | 24 workers | projected cost USD 16.80 (Standard)
+model: gpt-5-mini-2025-08-07 
+[500/22253] ok 493 | content_filter 0 | error 7 | 1.4 min | 358 texts/min
+[1000/22253] ok 991 | content_filter 0 | error 9 | 3.8 min | 260 texts/min
+[1500/22253] ok 1480 | content_filter 0 | error 20 | 5.9 min | 256 texts/min
+[2000/22253] ok 1967 | content_filter 0 | error 33 | 17.5 min | 115 texts/min
+[2500/22253] ok 2460 | content_filter 0 | error 40 | 18.7 min | 133 texts/min
+[3000/22253] ok 2953 | content_filter 0 | error 47 | 21.1 min | 142 texts/min
+== Prompt v6 2026-11-10 23:03
+Python: /opt/anaconda3/bin/python
+
+TEST: 20 innlegg (koster noen øre)
+resource: https://master-trumptweettrades-resource.services.ai.azure.com/openai/v1/ | deployment: gpt-5-mini
+prompt version 6 | 20 of 22273 texts to label | 24 workers | projected cost USD 0.02 (Standard)
+[20/20] ok 0 | content_filter 0 | error 20 | 0.1 min | 173 texts/min
+
+prompt version 6, all texts: 2973/22273 labelled
+model: [('gpt-5-mini-2025-08-07', 5, 18968), ('gpt-5-mini-2025-08-07', 6, 2973)]
+status: [('content_filter', 285), ("error: Error code: 400 - The response was filtered due to the prompt triggering Azure OpenAI's content management policy. Please modify your prompt and retry. To learn more about our content filtering policies please read our documentation: https://go.microsoft.com/fwlink/?linkid=2198766", 47), ('ok', 21941)]
+texts with at least one reference: 4334/2973
+reference_type: [('indirect', 3567), ('direct', 2270), ('brand', 405), ('executive', 156)]
+entity_type: [('sector_or_policy', 2985), ('company', 2275), ('country', 582), ('product_or_brand', 399), ('person', 157)]
+sentiment: [(-1.0, 579), (-0.9, 1), (-0.8, 130), (-0.6, 9), (-0.5, 313), (-0.3, 6), (-0.2, 6), (0.0, 3021), (0.2, 15), (0.3, 17), (0.4, 1), (0.5, 1767), (0.6, 2), (0.7, 1), (0.8, 186), (0.9, 2), (1.0, 342)]
+relevance: [(0.1, 1), (0.2, 254), (0.3, 494), (0.4, 284), (0.5, 1766), (0.6, 792), (0.7, 275), (0.8, 632), (0.9, 399), (1.0, 1501)]
+confidence: [(0.5, 15), (0.6, 188), (0.7, 351), (0.8, 1678), (0.9, 3218), (1.0, 948)]
+avg tokens per call: in 1968 | out 133 (of which reasoning 100) | totals in 43,177,235 out 2,926,110
+cost of the labelled rows (Standard): USD 16.65 | projected all 22273 texts: USD 16.90
+check: statuses outside (ok, content_filter): [("error: Error code: 400 - The response was filtered due to the prompt triggering Azure OpenAI's content management policy. Please modify your prompt and retry. To learn more about our content filtering policies please read our documentation: https://go.microsoft.com/fwlink/?linkid=2198766", 47)] | model strings: ['gpt-5-mini-2025-08-07'] | orphan keyword rows: 0
+332 texts without an ok answer written to /Users/fjorundland/Desktop/NHH/Master/Data /PromptV6Run/5) MapTweetCompany/1) LabelTweets/blocked_texts.csv
+Innlegg med v6-svar: 2973
+
+Testen gikk. Skriv JA og trykk Enter for å kjøre resten (ca. 17 dollar): resource: https://master-trumptweettrades-resource.services.ai.azure.com/openai/v1/ | deployment: gpt-5-mini
+prompt version 6 | 19300 of 22273 texts to label | 24 workers | projected cost USD 14.64 (Standard)
+[500/19300] ok 449 | content_filter 0 | error 51 | 2.4 min | 207 texts/min
+[1000/19300] ok 936 | content_filter 0 | error 64 | 4.0 min | 248 texts/min
+[1500/19300] ok 1427 | content_filter 0 | error 73 | 6.4 min | 235 texts/min
+[2000/19300] ok 1923 | content_filter 0 | error 77 | 8.9 min | 224 texts/min
+[2500/19300] ok 2414 | content_filter 0 | error 86 | 10.7 min | 233 texts/min
+[3000/19300] ok 2914 | content_filter 0 | error 86 | 13.4 min | 225 texts/min
+[3500/19300] ok 3408 | content_filter 0 | error 92 | 15.0 min | 233 texts/min
+[4000/19300] ok 3899 | content_filter 0 | error 101 | 17.4 min | 230 texts/min
+[4500/19300] ok 4388 | content_filter 0 | error 112 | 19.1 min | 236 texts/min
+[5000/19300] ok 4879 | content_filter 0 | error 121 | 21.8 min | 229 texts/min
+[5500/19300] ok 5373 | content_filter 0 | error 127 | 23.5 min | 234 texts/min
+[6000/19300] ok 5866 | content_filter 0 | error 134 | 25.9 min | 231 texts/min
+[6500/19300] ok 6363 | content_filter 0 | error 137 | 27.6 min | 236 texts/min
+[7000/19300] ok 6852 | content_filter 0 | error 148 | 29.5 min | 237 texts/min
+[7500/19300] ok 7345 | content_filter 0 | error 155 | 32.2 min | 233 texts/min
+[8000/19300] ok 7837 | content_filter 0 | error 163 | 34.1 min | 235 texts/min
+[8500/19300] ok 8333 | content_filter 0 | error 167 | 36.7 min | 232 texts/min
+[9000/19300] ok 8820 | content_filter 0 | error 180 | 38.3 min | 235 texts/min
+[9500/19300] ok 9313 | content_filter 0 | error 187 | 40.9 min | 232 texts/min
+[10000/19300] ok 9808 | content_filter 0 | error 192 | 42.5 min | 235 texts/min
+[10500/19300] ok 10307 | content_filter 0 | error 193 | 45.0 min | 233 texts/min
+[11000/19300] ok 10801 | content_filter 0 | error 199 | 46.7 min | 235 texts/min
+[11500/19300] ok 11292 | content_filter 0 | error 208 | 49.3 min | 234 texts/min
+[12000/19300] ok 11788 | content_filter 0 | error 212 | 50.8 min | 236 texts/min
+[12500/19300] ok 12284 | content_filter 0 | error 216 | 53.6 min | 233 texts/min
+[13000/19300] ok 12775 | content_filter 0 | error 225 | 55.2 min | 236 texts/min
+[13500/19300] ok 13264 | content_filter 0 | error 236 | 57.8 min | 234 texts/min
+[14000/19300] ok 13758 | content_filter 0 | error 242 | 59.3 min | 236 texts/min
+[14500/19300] ok 14244 | content_filter 0 | error 256 | 61.8 min | 235 texts/min
+[15000/19300] ok 14737 | content_filter 0 | error 263 | 63.6 min | 236 texts/min
+[15500/19300] ok 15228 | content_filter 0 | error 272 | 65.6 min | 236 texts/min
+[16000/19300] ok 15720 | content_filter 0 | error 280 | 68.2 min | 235 texts/min
+[16500/19300] ok 16211 | content_filter 0 | error 289 | 69.8 min | 236 texts/min
+[17000/19300] ok 16705 | content_filter 0 | error 295 | 72.2 min | 235 texts/min
+[17500/19300] ok 17203 | content_filter 0 | error 297 | 73.9 min | 237 texts/min
+[18000/19300] ok 17695 | content_filter 0 | error 305 | 76.8 min | 235 texts/min
+[18500/19300] ok 18186 | content_filter 0 | error 314 | 78.0 min | 237 texts/min
+[19000/19300] ok 18672 | content_filter 0 | error 328 | 81.1 min | 234 texts/min
+[19300/19300] ok 18967 | content_filter 0 | error 333 | 81.6 min | 236 texts/min
+
+prompt version 6, all texts: 21940/22273 labelled
+model: [('gpt-5-mini-2025-08-07', 6, 21940)]
+status: [('error: Connection error.', 1), ("error: Error code: 400 - The response was filtered due to the prompt triggering Azure OpenAI's content management policy. Please modify your prompt and retry. To learn more about our content filtering policies please read our documentation: https://go.microsoft.com/fwlink/?linkid=2198766", 332), ('ok', 21940)]
+texts with at least one reference: 4111/21940
+reference_type: [('indirect', 3245), ('direct', 2278), ('brand', 411), ('executive', 159)]
+entity_type: [('sector_or_policy', 2629), ('company', 2272), ('country', 614), ('product_or_brand', 411), ('person', 167)]
+sentiment: [(-1.0, 535), (-0.9, 3), (-0.8, 123), (-0.7, 4), (-0.6, 15), (-0.5, 237), (-0.3, 2), (-0.2, 3), (0.0, 3243), (0.2, 13), (0.3, 7), (0.5, 1490), (0.6, 1), (0.7, 3), (0.8, 183), (0.9, 5), (1.0, 226)]
+relevance: [(0.1, 1), (0.2, 260), (0.3, 499), (0.4, 316), (0.5, 1550), (0.6, 767), (0.7, 313), (0.8, 597), (0.9, 471), (1.0, 1319)]
+confidence: [(0.3, 1), (0.4, 5), (0.5, 10), (0.6, 180), (0.7, 404), (0.8, 1712), (0.9, 2776), (1.0, 1005)]
+avg tokens per call: in 2111 | out 130 (of which reasoning 98) | totals in 46,323,773 out 2,854,625
+cost of the labelled rows (Standard): USD 17.29 | projected all 22273 texts: USD 17.55
+check: statuses outside (ok, content_filter): [('error: Connection error.', 1), ("error: Error code: 400 - The response was filtered due to the prompt triggering Azure OpenAI's content management policy. Please modify your prompt and retry. To learn more about our content filtering policies please read our documentation: https://go.microsoft.com/fwlink/?linkid=2198766", 332)] | model strings: ['gpt-5-mini-2025-08-07'] | orphan keyword rows: 0
+333 texts without an ok answer written to /Users/fjorundland/Desktop/NHH/Master/Data /PromptV6Run/5) MapTweetCompany/1) LabelTweets/blocked_texts.csv
+
+Innlegg med v6-svar: 21940
+FERDIG.
+Trykk Enter for å lukke.
