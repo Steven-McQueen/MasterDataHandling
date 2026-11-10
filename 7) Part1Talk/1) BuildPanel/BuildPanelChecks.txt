@@ -1,17 +1,17 @@
-Part 1, BuildPanel | run 2026-11-06 16:03
+Part 1, BuildPanel | run 2026-11-10 12:50
 
 Inputs
-  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,468 rows, modified 2026-11-06 15:42
-  2) Trades/Trump_trades_2025_2026.xlsx: 27,628 rows, modified 2026-11-06 15:42
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,468 rows, modified 2026-11-10 12:48
+  2) Trades/Trump_trades_2025_2026.xlsx: 27,628 rows, modified 2026-11-09 11:14
 
 Panel: 1,620 tickers x 589 days (2025-01-20 to 2026-08-31) = 954,180 rows
 Mentioned tickers outside the trade universe: 0 []
 
 Mentions (posts per ticker and day; source = distinct post x ticker pairs)
-  direct        types=direct accounts=all: 1,306 post-ticker pairs on 949 ticker-days, 127 tickers; outside the panel 0; vs source 1,306 OK
-  direct_brand  types=direct+brand accounts=all: 1,559 post-ticker pairs on 1,122 ticker-days, 138 tickers; outside the panel 0; vs source 1,559 OK
-  all_types     types=direct+brand+executive accounts=all: 1,698 post-ticker pairs on 1,192 ticker-days, 145 tickers; outside the panel 0; vs source 1,698 OK
-  direct_trump  types=direct accounts=realDonaldTrump: 449 post-ticker pairs on 408 ticker-days, 60 tickers; outside the panel 0; vs source 449 OK
+  direct        types=direct accounts=all: 1,303 post-ticker pairs on 944 ticker-days, 126 tickers; outside the panel 0; vs source 1,303 OK
+  direct_brand  types=direct+brand accounts=all: 1,547 post-ticker pairs on 1,108 ticker-days, 137 tickers; outside the panel 0; vs source 1,547 OK
+  all_types     types=direct+brand+executive accounts=all: 1,682 post-ticker pairs on 1,174 ticker-days, 142 tickers; outside the panel 0; vs source 1,682 OK
+  direct_trump  types=direct accounts=realDonaldTrump: 450 post-ticker pairs on 407 ticker-days, 59 tickers; outside the panel 0; vs source 450 OK
 
 Purchases
   lots in panel 18,818 vs source 18,818 OK (1,599 tickers)
@@ -22,18 +22,18 @@ Duplicate ticker-days: 0
 Days per ticker: [589]
 
 Companies (direct mentions)
-  bought and mentioned 126, mentioned never bought 1, bought never mentioned 1473, sale-only 21
+  bought and mentioned 125, mentioned never bought 1, bought never mentioned 1474, sale-only 21
 
 Spot checks (direct): ticker, date, panel count, source posts
-  FOXA   2025-04-25  1  1  OK
-  FOXA   2026-06-30  1  1  OK
-  SKYD   2025-12-08  1  1  OK
+  FOXA   2025-05-02  2  2  OK
+  FOXA   2026-07-09  1  1  OK
+  SKYD   2026-02-02  2  2  OK
   ABT    2025-04-18  1  1  OK
-  WBD    2025-10-02  2  2  OK
-  GE     2025-10-14  1  1  OK
-  CMCSA  2025-09-22  1  1  OK
-  NWSA   2026-04-14  1  1  OK
-  WBD    2025-09-24  1  1  OK
-  DIS    2026-06-16  2  2  OK
+  WBD    2025-10-01  1  1  OK
+  GILD   2025-05-08  3  3  OK
+  CMCSA  2025-09-17  1  1  OK
+  NWSA   2026-05-18  1  1  OK
+  WBD    2025-08-31  1  1  OK
+  DIS    2026-07-13  1  1  OK
 
 Written: 7) Part1Talk/1) BuildPanel/panel.csv.gz (954,180 rows), tickers.csv (1,620 rows)
