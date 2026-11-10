@@ -101,9 +101,26 @@ master/                                          # one folder per stage, read in
 │   └── 2) Inference/
 │       └── ShiftedWorlds.py                     # the same counts in all 499 worlds; p-values, ratios
 │       └── inference.csv · world_counts.csv · worlds_main.png · InferenceReport.txt
-├── 9) Part3Returns/                             # Step 9 = kokebok step 9, Part 3: did the purchases, above all the Posted ones, earn more than on shifted dates?
-│   └── 0) Decisions.md                          # every Part 3 choice, fixed 2026-11-09 before any result; scripts (Part3Settings.py, RunPart3.py) not yet written
-├── 10) Checks/ · 12) Exhibits/                  # kokebok steps 10 and 12; each folder is created when its work starts (steps 11 and 13 are writing, no folder)
+├── 9) Part3Returns/                             # Step 9 = kokebok step 9, Part 3: did those purchases earn more than on shifted dates?
+│   └── 0) Decisions.md                          # every Part 3 choice, fixed before results
+│   └── Part3Settings.py                         # paths, sample, window, labels, groups; shared functions (imports Part2Settings.py)
+│   └── RunPart3.py                              # runs 1) and 2) in order; writes RunLog.txt
+│   ├── 1) Returns/
+│   │   └── Returns.py                           # sample, MAR over trading days 1-10, labels from the first post
+│   │   └── purchase_returns.csv · ReturnsChecks.txt
+│   └── 2) Inference/
+│       └── ShiftedWorlds.py                     # the same groups in all 499 worlds; return per dollar, excess, p-values
+│       └── inference.csv · gaps.csv · world_stats.csv · contributors.csv · worlds_main.png · InferenceReport.txt
+├── 10) Checks/                                  # Step 10 = kokebok step 10: the five checks on the Part 3 result
+│   └── 0) Decisions.md                          # every choice for the checks, fixed before results
+│   └── Checks.py                                # horizons, days before, short shifts, return models, without the five largest
+│   └── robustness.csv · world_checks.csv · horizons.png · ChecksReport.txt
+├── 11) Exhibits/                                # Step 11 = kokebok step 12 (Exhibits): every table and figure for the thesis
+│   └── 0) Decisions.md                          # the list of exhibits and their format
+│   └── Exhibits.py                              # reads the outputs of Steps 2-10; estimates nothing again
+│   └── tables/                                  # tab_*.tex (booktabs, caption, label, note) and tab_*.csv
+│   └── figures/                                 # fig_*.pdf (vector) and fig_*.tex (caption, label, note)
+│   └── ExhibitsReport.txt
 ├── tasks/
 │   └── todo.md                                  # associate's plan and gates
 │   └── MANAGER_BRIEF.md                         # manager → associate instructions

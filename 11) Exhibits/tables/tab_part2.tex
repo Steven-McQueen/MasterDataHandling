@@ -1,0 +1,22 @@
+\begin{table}[htbp]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Part 2: purchases followed by a post about the same company}
+\label{tab:part2}
+\begin{tabular}{lrrrrrr}
+\toprule
+Outcome & Real & Shifted mean & Excess & Ratio & p\textsubscript{upper} & p\textsubscript{lower} \\
+\midrule
+Any post & 371 & 396.3 & $-$25.3 & 0.94 & 0.902 & 0.102 \\
+Praised & 176 & 207.9 & $-$31.9 & 0.85 & 0.960 & 0.052 \\
+Roasted & 123 & 106.2 & +16.8 & 1.16 & 0.076 & 0.934 \\
+\midrule
+Praised minus Roasted & 53 & 101.7 & $-$48.7 &  & 0.992 & 0.016 \\
+\midrule
+Praised, @realDonaldTrump only & 63 & 93.5 & $-$30.5 & 0.67 & 1.000 & 0.002 \\
+\bottomrule
+\end{tabular}
+\par\medskip
+\begin{minipage}{\linewidth}\footnotesize\textit{Note:} A hit is a purchase followed by a direct mention of the company within trading days 1 to 10 after the trade date, all three accounts. Praised: sentiment of 0.5 or more; Roasted: $-$0.5 or less. The shifted mean is the average over the 498 shifted worlds; excess is real minus shifted mean. p\textsubscript{upper} and p\textsubscript{lower} are the shares of all 499 worlds at least as large and at least as small as the real count. The last row is a description, not a test of the research question.\end{minipage}
+\end{table}
