@@ -71,7 +71,7 @@ master/                                          # one folder per stage, read in
 │   │   └── TickerTwitterReview.xlsx             # review (complete 2026-11-08), sheets in order: ReadMe · 1_CompanyReview (one row per company: suggestion + v / override = its ticker on any exchange, or NONE) · 2_MentionExceptions · 3_NotListedOnPostDate · Entities (Step 4.2)
 │   │   └── Twitter_tickers_2025_2026.xlsx       # OUTPUT: one row per post × company (6,468): post · LLM label · decision (public_ticker, ticker = universe join key, listed / in_universe / purchased, status); ReadMe sheet defines the columns
 │   │   └── TwitterDescriptiveAnalysis.xlsx      # descriptive tables for the data chapter; 7_Part1Share = purchased share of the listed companies posted about
-│   └── 3) LabelAccuracy/                        # Step 5.3 — hand-coded check of the LLM labels; planned: precision sample, recall sample, results
+│   └── 3) LabelAccuracy/                        # Step 5.3 — not created: no hand-coded validation (decided 2026-11-10)
 ├── 6) CalendarShifts/                          # Step 6 = kokebok step 6: the shifted worlds
 │   └── CalendarShifts.py                        # settings (start 2025-01-20, L = 558, MIN_SHIFT = 30), shift formula, checks
 │   └── worlds.csv                               # OUTPUT: world, shift_days, shift_start, L (500 worlds, world 0 = real)
