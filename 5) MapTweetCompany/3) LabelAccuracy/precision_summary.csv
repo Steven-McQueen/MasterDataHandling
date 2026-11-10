@@ -1,0 +1,5 @@
+type,rows,agree,disagree,uncertain,share_right,wilson_low,wilson_high
+all,200,191,8,1,0.959799,0.92269,0.979491
+direct,161,157,4,0,0.975155,0.937867,0.990297
+brand,24,23,0,1,1,0.856879,1
+executive,15,11,4,0,0.733333,0.480491,0.891027

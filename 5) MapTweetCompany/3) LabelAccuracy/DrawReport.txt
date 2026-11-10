@@ -1,20 +1,20 @@
-Step 5.3.1, DrawPrecisionSample | run 2026-11-10 15:18
+Step 5.3.1, DrawPrecisionSample | run 2026-11-10 14:52
 
 Inputs
   5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,468 rows
   5) MapTweetCompany/1) LabelTweets/SocialMedia.db: 600 posts in the two development samples
 
-Population: posts with at least one direct, brand, executive reference to a universe company: 1,438; without the development samples: 1,390
+Population: in the universe and direct, brand, executive: 1,691 rows; without the development samples: 1,623 rows on 138 tickers
 
-Sample: 200 posts, seed 20261110; 250 company references, 232 of them in the analysis
-  companies per post: 1: 168, 2: 23, 3: 5, 4: 2, 6: 1, 7: 1
-  references by status: universe 232, listed_not_traded 9, not_listed 8, not_listed_on_post_date 1
-  by LLM category: neutral 118, positive 84, negative 48
+Sample: 200 rows, seed 20261110, on 53 tickers and 193 posts
+  by type: direct 161, brand 24, executive 15
+  by LLM category: neutral 96, positive 74, negative 30
+  population by type: direct 1253, brand 240, executive 130
 
 Checks
-  posts 200, unique 200
+  rows 200, unique rows 200
   from development samples: 0 (must be 0)
-  posts without a universe company: 0 (must be 0)
-  company rows listed in the files: 250 = rows in precision_key.csv: 250
+  outside the universe or indirect: 0 (must be 0)
+  LLM labels shown in the coding files: company, ticker, sentiment score and category
 
 Written: PrecisionSample_Filip.xlsx, PrecisionSample_Andreas.xlsx, precision_key.csv
