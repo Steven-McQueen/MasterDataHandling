@@ -73,8 +73,8 @@ master/                                          # one folder per stage, read in
 │   │   └── TwitterDescriptiveAnalysis.xlsx      # descriptive tables for the data chapter; 7_Part1Share = purchased share of the listed companies posted about
 │   └── 3) LabelAccuracy/                        # Step 5.3 — hand-coded check of the LLM labels; planned: precision sample, recall sample, results
 ├── 6) CalendarShifts/                          # Step 6 = kokebok step 6: the shifted worlds
-│   └── CalendarShifts.py                        # settings (start 2025-01-20, L = 557, MIN_SHIFT = 30), shift formula, checks
-│   └── worlds.csv                               # OUTPUT: world, shift_days, shift_start, L (499 worlds, world 0 = real)
+│   └── CalendarShifts.py                        # settings (start 2025-01-20, L = 558, MIN_SHIFT = 30), shift formula, checks
+│   └── worlds.csv                               # OUTPUT: world, shift_days, shift_start, L (500 worlds, world 0 = real)
 │   └── ShiftsReport.txt                         # inputs read, purchases outside the calendar, checks
 ├── 7) Part1Talk/                                # Step 7 = kokebok step 7, Part 1: does he mention what he has bought?
 │   └── 0) Decisions.md                          # every Part 1 choice, fixed before results
@@ -89,7 +89,7 @@ master/                                          # one folder per stage, read in
 │   │   └── EstimatePart1.py                     # LPM and Poisson with ticker + day effects, lead/lag bins, descriptives
 │   │   └── results.csv · leadlag.csv · leadlag.png · descriptives.txt · EstimateReport.txt
 │   └── 3) Inference/
-│       └── ShiftedWorlds.py                     # the same slope in all 499 worlds; p-values, hits, window search
+│       └── ShiftedWorlds.py                     # the same slope in all 500 worlds; p-values, hits, window search
 │       └── inference.csv · world_estimates.csv · worlds_main.png · InferenceReport.txt
 ├── 8) Part2Timing/                              # Step 8 = kokebok step 8, Part 2: do purchases precede (positive) posts?
 │   └── 0) Decisions.md                          # every Part 2 choice, fixed before results
@@ -99,7 +99,7 @@ master/                                          # one folder per stage, read in
 │   │   └── Hits.py                              # posts inside each purchase's 10-trading-day window
 │   │   └── purchase_hits.csv · hit_posts.csv · hits_summary.csv · HitsChecks.txt
 │   └── 2) Inference/
-│       └── ShiftedWorlds.py                     # the same counts in all 499 worlds; p-values, ratios
+│       └── ShiftedWorlds.py                     # the same counts in all 500 worlds; p-values, ratios
 │       └── inference.csv · world_counts.csv · worlds_main.png · InferenceReport.txt
 ├── 9) Part3Returns/                             # Step 9 = kokebok step 9, Part 3: did those purchases earn more than on shifted dates?
 │   └── 0) Decisions.md                          # every Part 3 choice, fixed before results
@@ -109,12 +109,12 @@ master/                                          # one folder per stage, read in
 │   │   └── Returns.py                           # sample, MAR over trading days 1-10, labels from the first post
 │   │   └── purchase_returns.csv · ReturnsChecks.txt
 │   └── 2) Inference/
-│       └── ShiftedWorlds.py                     # the same groups in all 499 worlds; return per dollar, excess, p-values
+│       └── ShiftedWorlds.py                     # the same groups in all 500 worlds; return per dollar, excess, p-values
 │       └── inference.csv · gaps.csv · world_stats.csv · contributors.csv · worlds_main.png · InferenceReport.txt
 ├── 10) Checks/                                  # Step 10 = kokebok step 10: the five checks on the Part 3 result
 │   └── 0) Decisions.md                          # every choice for the checks, fixed before results
 │   └── Checks.py                                # horizons, days before, short shifts, return models, without the five largest
-│   └── robustness.csv · world_checks.csv · horizons.png · ChecksReport.txt
+│   └── robustness.csv · world_checks.csv · horizon_search.csv · horizons.png · ChecksReport.txt
 ├── 11) Exhibits/                                # Step 11 = kokebok step 12 (Exhibits): every table and figure for the thesis
 │   └── 0) Decisions.md                          # the list of exhibits and their format
 │   └── Exhibits.py                              # reads the outputs of Steps 2-10; estimates nothing again

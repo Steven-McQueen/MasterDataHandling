@@ -37,7 +37,8 @@ The first plan was "probability of a post rises once he owns the company" (Max).
 - Shifted worlds from `6) CalendarShifts/worlds.csv`: the real world and 498 shifts of all purchase dates (every shift from 30 to 527 days). In each world the same estimate is computed; p-value = share of all 499 worlds with an estimate at least as large as the real one (one-sided: more talk after buying).
 - Window search: the minimum p-value over the six windows is compared with the minimum p-value of every shifted world, so picking the best window is accounted for.
 - Amended 2026-11-09: the first run used every shift from 1 day (557 worlds). Shifts under 30 days are now left out, as the kokebok sets, because a purchase moved by a few days stays inside its own window (Step 6).
+- Amended 2026-11-10: the shift calendar is L = 558 (2025-01-20 to 2026-07-31, both end dates included), so every purchase day lies inside it: 499 shifts from 30 to 528 days, 500 worlds with the real one (Step 6).
 - Effect size from the worlds: real mention-days inside windows versus the average of the shifted worlds.
 
 ## Limitations to state
-Holdings before 2025 unobserved; sales ignored; text-only labels; 331 filtered posts; the White House accounts are not Trump himself (robustness above); the shift calendar has L = 557, so the 44 purchases of 2026-07-31 wrap to the calendar start in every world (see `6) CalendarShifts/ShiftsReport.txt`).
+Holdings before 2025 unobserved; sales ignored; text-only labels; 331 filtered posts; the White House accounts are not Trump himself (robustness above); the shift calendar has L = 558 (amended 2026-11-10; with L = 557 the 44 purchases of 2026-07-31 wrapped to the calendar start in every world).
