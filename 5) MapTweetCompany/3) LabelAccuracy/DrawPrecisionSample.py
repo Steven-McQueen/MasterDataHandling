@@ -2,12 +2,12 @@
 Step 5.3.1. Precision sample for hand coding
 --------------------------------------------
 Draws 200 random post-company rows that the analysis uses (in the trade universe, a direct,
-brand or executive reference) and writes one coding workbook per author. Each author codes
-alone and without the LLM's sentiment: is the company right, is the ticker right, and is the
-post positive, neutral or negative toward that company.
+brand or executive reference) and writes one coding workbook per author. Each author checks
+the LLM's labels alone: agree or disagree with the company, the ticker and the sentiment
+category, and gives the right category on a sentiment disagree (design of 2026-11-10; the
+first version coded sentiment blind).
 
-The LLM's sentiment, relevance and confidence for the same rows go to precision_key.csv,
-which is opened only after both authors have finished.
+precision_key.csv holds the LLM's sentiment, relevance and confidence for the same rows.
 
 HOW TO RUN
     pip install pandas numpy openpyxl
@@ -19,7 +19,8 @@ INPUTS
                                                         development samples, left out
 
 OUTPUTS (in this folder)
-    PrecisionSample_Filip.xlsx, PrecisionSample_Andreas.xlsx   the same 200 rows, one file each
+    PrecisionSample_Filip.xlsx, PrecisionSample_Andreas.xlsx   the same 200 rows with the LLM's
+                               labels, one file each
     precision_key.csv          row_id, post and ticker, the LLM's sentiment and its category
     DrawReport.txt             inputs, population, sample, checks
 """
@@ -68,52 +69,60 @@ def write_workbook(path, sample, coder):
     ws = wb.active
     ws.title = "Coding"
     cols = [("row_id", 7), ("post_id", 21), ("date (US Eastern)", 16), ("account", 15), ("platform", 11),
-            ("post text", 70), ("words referring to the company", 26), ("company", 26), ("ticker", 8),
-            ("type", 10), ("company correct? (yes/no)", 14), ("ticker correct? (yes/no)", 14),
-            ("sentiment (positive/neutral/negative)", 18), ("comment", 30)]
+            ("post text", 70), ("words referring to the company", 24), ("type", 10),
+            ("LLM: company", 24), ("company: agree / disagree", 13),
+            ("LLM: ticker", 8), ("ticker: agree / disagree", 13),
+            ("LLM: sentiment score", 10), ("LLM: sentiment", 11), ("sentiment: agree / disagree", 13),
+            ("if disagree: right sentiment", 14), ("comment", 30)]
     ws.append([c for c, _ in cols])
     for r in sample.itertuples(index=False):
         ws.append([r.row_id, str(r.ID), r.date_et, r.User, r.platform, clean(r.text), clean(r.mention_text),
-                   clean(r.company), r.ticker, r.reference_type, None, None, None, None])
+                   r.reference_type, clean(r.company), None, r.ticker, None, float(r.sentiment),
+                   category(r.sentiment), None, None, None])
     head = PatternFill("solid", fgColor="DDDDDD")
+    llm = PatternFill("solid", fgColor="DDEBF7")
     code = PatternFill("solid", fgColor="FFF2CC")
+    coder_cols = {10, 12, 15, 16, 17}
+    llm_cols = {9, 11, 13, 14}
     for j, (_, w) in enumerate(cols, start=1):
         ws.column_dimensions[ws.cell(1, j).column_letter].width = w
         ws.cell(1, j).font = Font(bold=True)
-        ws.cell(1, j).fill = code if j >= 11 else head
+        ws.cell(1, j).fill = code if j in coder_cols else (llm if j in llm_cols else head)
         ws.cell(1, j).alignment = Alignment(wrap_text=True, vertical="top")
     for row in ws.iter_rows(min_row=2):
         for c in row:
             c.alignment = Alignment(wrap_text=True, vertical="top")
     n = len(sample) + 1
-    yes_no = DataValidation(type="list", formula1='"yes,no"', allow_blank=True)
+    agree = DataValidation(type="list", formula1='"agree,disagree"', allow_blank=True)
     tone = DataValidation(type="list", formula1='"positive,neutral,negative"', allow_blank=True)
-    ws.add_data_validation(yes_no)
+    ws.add_data_validation(agree)
     ws.add_data_validation(tone)
-    yes_no.add(f"K2:L{n}")
-    tone.add(f"M2:M{n}")
+    for col in ("J", "L", "O"):
+        agree.add(f"{col}2:{col}{n}")
+    tone.add(f"P2:P{n}")
     ws.freeze_panes = "C2"
-    ws.auto_filter.ref = f"A1:N{n}"
+    ws.auto_filter.ref = f"A1:Q{n}"
 
     rd = wb.create_sheet("ReadMe", 0)
     lines = [
-        f"Precision sample, Step 5.3.1. Coder: {coder}. Drawn {datetime.now():%Y-%m-%d} (seed {SEED}).",
+        f"Precision check, Step 5.3.1. Coder: {coder}. Drawn {datetime.now():%Y-%m-%d} (seed {SEED}).",
         "",
-        "Code alone. Do not look at the other author's file, the LLM's sentiment or precision_key.csv until you are both done.",
+        "Code alone; do not look at the other author's file until you are both done.",
         "",
-        "Each row is one company the analysis linked to one post. Fill in the three yellow columns on the sheet Coding:",
-        "1. company correct? yes if the post refers to this company (by name, ticker, account, a brand or product it owns, or "
-        "one of its executives); no if it does not.",
-        "2. ticker correct? yes if the ticker is the listed company (or listed parent) for that reference on the post date; "
-        "no otherwise. If the company is wrong, write no here too.",
-        "3. sentiment: the stance of the post toward THIS company, not the mood of the post.",
+        "Each row is one company the LLM linked to one post, as the analysis uses it. The blue columns are the LLM's "
+        "labels; fill in the yellow columns on the sheet Coding:",
+        "1. company: agree if the post refers to this company (by name, ticker, account, a brand or product it owns, or "
+        "one of its executives); disagree if it does not.",
+        "2. ticker: agree if the ticker is the listed company (or listed parent) for that reference on the post date; "
+        "disagree otherwise. If you disagree on the company, disagree here too.",
+        "3. sentiment: agree if the LLM's category is the stance of the post toward THIS company (not the mood of the post); "
+        "if you disagree, give the right category in the next column.",
+        f"   The LLM's score runs from -1 to 1; its category is positive at {POS} or more, negative at {NEG} or less, "
+        "neutral in between (the Praised and Roasted cut-offs of Part 2).",
         "   positive = praise, endorsement, good news the author celebrates, or the company doing something the author approves of;",
         "   neutral = factual mention, a list of names, a neutral citation;",
         "   negative = criticism, a demand, an attack, blame, a threat, \"fake news\".",
-        "Use the comment column for anything unclear. Leave nothing blank.",
-        "",
-        "Columns: the post (id, date in US Eastern time, account, platform, text), the words in the post that refer to the "
-        "company, the company and ticker the analysis uses, and the type of reference (direct, brand, executive).",
+        "Use the comment column for anything unclear. Leave no yellow cell blank, except the right sentiment when you agree.",
     ]
     for i, l in enumerate(lines, start=1):
         rd.cell(i, 1, l).alignment = Alignment(wrap_text=True, vertical="top")
@@ -154,7 +163,7 @@ def main():
         f"rows {len(sample)}, unique rows {len(sample.drop_duplicates(['ID', 'ticker', 'mention_text']))}",
         f"from development samples: {int(sample['ID'].isin(dev_ids).sum())} (must be 0)",
         f"outside the universe or indirect: {int(((sample['in_universe'] != 1) | ~sample['reference_type'].isin(TYPES)).sum())} (must be 0)",
-        "LLM sentiment in the coding files: none (only in precision_key.csv)",
+        "LLM labels shown in the coding files: company, ticker, sentiment score and category",
     ]
     lines = [f"Step 5.3.1, DrawPrecisionSample | run {datetime.now():%Y-%m-%d %H:%M}", "", "Inputs",
              f"  {POSTS_XLSX.relative_to(REPO)}: {len(posts):,} rows",
@@ -163,7 +172,7 @@ def main():
              f"without the development samples: {len(pop):,} rows on {pop['ticker'].nunique()} tickers", "",
              f"Sample: {N_SAMPLE} rows, seed {SEED}, on {sample['ticker'].nunique()} tickers and {sample['ID'].nunique()} posts",
              "  by type: " + ", ".join(f"{k} {v}" for k, v in sample["reference_type"].value_counts().items()),
-             "  by LLM category (for the record; not in the coding files): "
+             "  by LLM category: "
              + ", ".join(f"{k} {v}" for k, v in key["llm_category"].value_counts().items()),
              "  population by type: " + ", ".join(f"{k} {v}" for k, v in pop["reference_type"].value_counts().items()),
              "", "Checks"] + ["  " + c for c in checks] + [
