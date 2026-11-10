@@ -41,7 +41,8 @@ def rows(root):
     p3 = pd.read_csv(root / P3)
     for g in ["posted", "no_post", "praised", "roasted"]:
         r = p3[(p3.group == g) & (p3.amount == "amount_mid")].iloc[0]
-        out.append(("Part 3", f"{g}: n {int(r.n_real)}, r real (%)", 100 * r.r_real, 100 * r.r_mean_shifted, r.p_upper, r.p_lower, r.p_two))
+        out.append(("Part 3", f"{g}: purchases (n)", r.n_real, r.n_mean_shifted, None, None, None))
+        out.append(("Part 3", f"{g}: r real (%)", 100 * r.r_real, 100 * r.r_mean_shifted, r.p_upper, r.p_lower, r.p_two))
     gp = pd.read_csv(root / GAPS)
     for r in gp.itertuples(index=False):
         scale = 1 if "USD" in r.test else 100
