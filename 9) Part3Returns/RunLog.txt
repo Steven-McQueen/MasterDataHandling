@@ -1,0 +1,89 @@
+
+=== RunPart3 2026-11-10 12:51 | /usr/local/bin/python3
+--- Returns.py
+Part 3, Returns | run 2026-11-10 12:51
+
+Inputs
+  2) Trades/Trump_trades_2025_2026.xlsx: 17,724 rows, modified 2026-11-09 11:14 (PurchasesMerged)
+  3) Prices/2) ComputeReturns/returns_table_presample.csv: 630,470 rows, modified 2026-11-10 12:48 (column ar_mkt)
+  3) Prices/3) ReviewPrices/PricesReview.xlsx: 10 rows, modified 2026-11-09 11:14 (ExtremeMoves, days marked wrong)
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,468 rows, modified 2026-11-10 12:48
+
+Purchases: 17,724 company-days on 1,594 tickers, 2025-01-23 to 2026-07-31
+  window: trading days 1-10 after day 0; day 0 moved forward for 4 purchases
+Days marked wrong in the price review and set to zero (10): MFP 2026-06-29, AVB 2026-08-17, ELME 2026-01-26, ELME 2026-06-25, GDEN 2026-05-15, HBI 2025-12-02, LBRDK 2026-08-21, MCW 2026-06-08, VTLE 2025-12-19, SITC 2025-08-15
+
+Part 3 sample: tickers with a return on every trading day 2025-01-21 to 2026-08-28
+  tickers kept 1,501 of 1,594; left out 93
+  purchases kept 17,235; left out 489 (2.8%)
+  amount left out, amount_mid: USD 13,608,248 of 1,124,883,898 (1.21%)
+  left-out purchases with at least one return day in the window: 489 (full 10 days: 477); their return per dollar (amount_mid, available days): 0.1144%
+  left-out purchases with no return day in the window: 0
+
+Labels (real world, all purchases / in the sample):
+  posted      373 /    369
+  praised     133 /    131
+  roasted      93 /     91
+  neutral     147 /    147
+  no_post  17,351 / 16,866
+Check against Part 2 (8) Part2Timing/1) Hits/purchase_hits.csv, priced purchases, 17,724 matched):
+  Posted here 373 vs Part 2 direct_any hits 373 -> OK
+  Praised (first post) 133; Part 2 direct_pos50 hits (any post) 177
+  Roasted (first post) 93; Part 2 direct_neg50 hits (any post) 125
+  followed by both a Praised and a Roasted post (first one decides): 17
+
+Hand recount of five returns (four random purchases in the sample, one Posted):
+  CABO   bought 2025-04-28, day 0 2025-04-28, days 2025-04-29 to 2025-05-12: by hand -0.377404, script -0.377404 -> OK [no_post]
+  TSLA   bought 2025-11-05, day 0 2025-11-05, days 2025-11-06 to 2025-11-19: by hand -0.104969, script -0.104969 -> OK [no_post]
+  DUK    bought 2025-12-04, day 0 2025-12-04, days 2025-12-05 to 2025-12-18: by hand +0.008312, script +0.008312 -> OK [no_post]
+  CVI    bought 2025-07-23, day 0 2025-07-23, days 2025-07-24 to 2025-08-06: by hand -0.045518, script -0.045518 -> OK [no_post]
+  CMCSA  bought 2025-07-07, day 0 2025-07-07, days 2025-07-08 to 2025-07-21: by hand -0.023936, script -0.023936 -> OK [roasted]
+--- ShiftedWorlds.py
+world 0 of 498
+world 100 of 498
+world 200 of 498
+world 300 of 498
+world 400 of 498
+Part 3, ShiftedWorlds | run 2026-11-10 12:52
+
+Inputs
+  2) Trades/Trump_trades_2025_2026.xlsx: 17,235 rows, modified 2026-11-09 11:14 (PurchasesMerged, purchases in the Part 3 sample)
+  3) Prices/2) ComputeReturns/returns_table_presample.csv: modified 2026-11-10 12:48 (column ar_mkt; 10 reviewed days set to zero)
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,468 rows, modified 2026-11-10 12:48
+  6) CalendarShifts/worlds.csv: 499 rows, modified 2026-11-10 11:51
+
+Worlds: 499 (world 0 = real). Window: trading days 1-10. Main: posted, amount_mid, return per dollar, two-sided p.
+Neutral (Posted, first post neither Praised nor Roasted): real 147, shifted mean 155.0
+
+Checks
+  All purchases: same number and amount in every world: OK
+  Contributions add up to the Posted dollar excess: -14,599.52 vs -14,599.52 -> OK
+  Brute-force recount, world 0 (shift 0): T all 1,429,553, T Posted 305,193, amount Posted 52,191,716 -> OK
+  Brute-force recount, world 100 (shift 129): T all 318,904, T Posted -1,626,687, amount Posted 88,508,702 -> OK
+  Brute-force recount, world 400 (shift 429): T all -4,632,605, T Posted -353,644, amount Posted 104,045,736 -> OK
+
+group    amount           n  n luck     amount USD    r real    r luck   delta r    excess USD  p_upper  p_lower  p_two
+all      amount_mid   17235 17235.0  1,111,275,650   0.1286%  -0.1057%  +0.2344%    +2,604,560    0.220    0.782  0.441
+posted   amount_mid     369   389.1     52,191,716   0.5848%   0.6127%  -0.0280%       -14,600    0.513    0.489  0.978   <- main
+no_post  amount_mid   16866 16845.9  1,059,083,934   0.1062%  -0.1553%  +0.2614%    +2,768,702    0.176    0.826  0.353
+praised  amount_mid     131   156.7     17,922,575   1.5267%   0.6988%  +0.8279%      +148,386    0.283    0.719  0.565
+roasted  amount_mid      91    77.4     15,744,059   0.2982%  -0.3829%  +0.6811%      +107,226    0.273    0.729  0.545
+
+Direct tests (main amount):
+  test                               real   shifted mean  p_upper  p_lower  p_two
+  r praised - r roasted          +1.2286%       +1.0817%    0.497    0.505  0.994
+  r posted - r no_post           +0.4786%       +0.7680%    0.595    0.407  0.814
+  T posted (USD)                  305,193        434,790    0.551    0.451  0.902
+
+Largest contributions to the Posted dollar excess (amount_mid; luck r of Posted 0.6127%):
+  NVDA   2025-07-01 praised  amount    3,000,000  MAR +10.0666%  contribution     +283,616
+  AMZN   2025-09-08 neutral  amount    3,000,000  MAR -6.6623%  contribution     -218,250
+  GOOG   2025-08-27 neutral  amount      925,001  MAR +13.0159%  contribution     +114,730
+  NFLX   2026-02-12 roasted  amount      383,001  MAR +24.3633%  contribution      +90,965
+  AAPL   2025-08-27 praised  amount    3,000,000  MAR -2.0914%  contribution      -81,123
+  MSFT   2026-01-06 praised  amount      750,000  MAR -6.7008%  contribution      -54,851
+  GOOG   2025-08-29 neutral  amount      375,000  MAR +14.3456%  contribution      +51,498
+  MSFT   2025-09-23 roasted  amount    3,350,002  MAR +2.1362%  contribution      +51,038
+  AAPL   2025-05-15 roasted  amount      782,501  MAR -4.9552%  contribution      -43,569
+  GOOG   2025-09-23 roasted  amount    1,100,002  MAR -2.7788%  contribution      -37,307
+finished

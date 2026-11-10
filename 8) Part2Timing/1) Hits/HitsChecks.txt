@@ -1,9 +1,9 @@
-Part 2, Hits | run 2026-11-07 12:41
+Part 2, Hits | run 2026-11-10 12:50
 
 Inputs
-  2) Trades/Trump_trades_2025_2026.xlsx: 17,724 rows, modified 2026-11-06 15:42 (PurchasesMerged); 21 company-days from PurchasesLeftOut
-  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,468 rows, modified 2026-11-06 15:42
-  3) Prices/2) ComputeReturns/factors_daily_presample.csv: 405 rows, modified 2026-11-06 15:42 (trading calendar)
+  2) Trades/Trump_trades_2025_2026.xlsx: 17,724 rows, modified 2026-11-09 11:14 (PurchasesMerged); 21 company-days from PurchasesLeftOut
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,468 rows, modified 2026-11-10 12:48
+  3) Prices/2) ComputeReturns/factors_daily_presample.csv: 405 rows, modified 2026-11-09 11:14 (trading calendar)
 
 Purchases: 17,745 company-days on 1,599 tickers (18,818 lots), 2025-01-23 to 2026-07-31
   trade date not a trading day (day 0 moved forward): 4
@@ -11,22 +11,22 @@ Purchases: 17,745 company-days on 1,599 tickers (18,818 lots), 2025-01-23 to 202
   calendar days per window: min 14, median 14, max 18
 
 Outcomes: qualifying post-ticker pairs | purchases with a hit | pairs inside a window
-  direct_any       1,306 |    371 |    528
-  direct_pos50       409 |    176 |    177
-  direct_neg50       266 |    123 |    123
-  direct_pos30       412 |    176 |    178
-  direct_pos70       138 |     65 |     59
-  direct_neg30       266 |    123 |    123
-  direct_neg70       243 |    105 |    107
-  brand_any        1,559 |    463 |    623
-  brand_pos50        485 |    192 |    194
-  brand_neg50        289 |    133 |    132
-  alltypes_any     1,698 |    498 |    729
-  alltypes_pos50     550 |    214 |    242
-  alltypes_neg50     296 |    142 |    136
-  trump_any          449 |    196 |    185
+  direct_any       1,303 |    373 |    530
+  direct_pos50       411 |    177 |    178
+  direct_neg50       269 |    125 |    125
+  direct_pos30       414 |    177 |    179
+  direct_pos70       140 |     65 |     59
+  direct_neg30       269 |    125 |    125
+  direct_neg70       246 |    107 |    109
+  brand_any        1,547 |    457 |    622
+  brand_pos50        486 |    193 |    195
+  brand_neg50        292 |    131 |    133
+  alltypes_any     1,682 |    491 |    727
+  alltypes_pos50     551 |    215 |    243
+  alltypes_neg50     299 |    140 |    137
+  trump_any          450 |    197 |    186
   trump_pos50        148 |     63 |     61
-  trump_neg50        211 |    105 |     92
+  trump_neg50        214 |    107 |     94
 
 Traced examples (direct_pos50): ticker, trade date, window, panel count, recount from post rows
   NUE    2025-01-29  01-29..02-12  1  1  OK
@@ -35,4 +35,4 @@ Traced examples (direct_pos50): ticker, trade date, window, panel count, recount
   DIS    2025-02-24  02-24..03-10  1  1  OK
   FOXA   2025-02-24  02-24..03-10  2  2  OK
 
-Written: purchase_hits.csv (17,745 rows), hit_posts.csv (1,303 rows), hits_summary.csv
+Written: purchase_hits.csv (17,745 rows), hit_posts.csv (1,308 rows), hits_summary.csv
