@@ -1,0 +1,78 @@
+row_id,part,v5_row_id,ID,ticker,company,reference_type,sentiment,relevance,llm_category
+1,A,8,114117008305421663,TSLA,"Tesla, Inc.",executive,0.0,0.3,neutral
+2,A,20,1955297504104198236,CENX,Century Aluminum Company,direct,0.0,0.8,neutral
+3,A,23,2088053159126323622,AAPL,Apple Inc.,direct,0.0,1.0,neutral
+4,A,28,1903249283035332902,NVDA,NVIDIA Corporation,direct,0.0,0.5,neutral
+5,A,34,1903249283035332902,BA,The Boeing Company,direct,0.0,0.5,neutral
+6,A,56,2060832735631941924,FOXA,Fox Corporation,direct,0.0,1.0,neutral
+7,A,59,114474584669905764,FOXA,Fox Corporation,direct,0.5,0.3,positive
+8,A,65,115898867378270216,FOXA,Fox Corporation,direct,0.0,0.6,neutral
+9,A,77,114070560562637397,TSLA,"Tesla, Inc.",executive,0.0,0.3,neutral
+10,A,81,1900667853210038446,BA,The Boeing Company,direct,0.3,1.0,neutral
+11,A,86,116048298400907278,FOXA,Fox Corporation,direct,0.0,0.9,neutral
+12,A,123,2091227596411302118,FOXA,Fox Corporation,direct,0.0,0.2,neutral
+13,A,128,1953537207505236413,IBM,International Business Machines Corporation,direct,0.0,1.0,neutral
+14,A,138,115567708214544518,MCD,McDonald's Corporation,direct,0.5,0.9,positive
+15,A,139,117153575933659467,FOXA,Fox Corporation,direct,0.5,0.8,positive
+16,A,145,114916167133707858,INTC,Intel Corp.,direct,-0.5,0.5,negative
+17,A,155,1907006214954770561,TSLA,"Tesla, Inc.",executive,0.0,0.3,neutral
+18,A,166,113959378194447457,SIRI,Sirius XM Holdings Inc.,direct,0.5,0.3,positive
+19,A,169,1894456895005487386,AAPL,Apple Inc.,direct,0.5,0.9,positive
+20,A,171,2066350963909153217,SKYD,Skydance Corporation,direct,0.0,0.7,neutral
+21,A,185,114132050804394743,FOXA,Fox Corporation,direct,0.5,1.0,positive
+22,A,188,114149845661093099,TSLA,"Tesla, Inc.",executive,0.0,0.3,neutral
+23,A,191,1917394915383992562,BA,The Boeing Company,brand,0.0,1.0,neutral
+24,A,192,114729086320228278,NOC,Northrop Grumman Corporation,brand,0.0,0.2,neutral
+25,A,193,1953537207505236413,AAPL,Apple Inc.,direct,0.0,1.0,neutral
+26,A,194,116739496269575262,TKO,"TKO Group Holdings, Inc.",brand,0.5,0.8,positive
+27,A,198,2030027997869170787,LHX,"L3Harris Technologies, Inc.",direct,0.5,1.0,positive
+28,B,,113936920653240968,NWSA,News Corporation,direct,-1.0,0.8,negative
+29,B,,1888724216008036705,FOXA,Fox Corporation,direct,0.0,0.9,neutral
+30,B,,1889005141870723405,WBD,"Warner Bros. Discovery, Inc.",direct,0.0,0.6,neutral
+31,B,,1890899397036114240,FOXA,Fox Corporation,direct,0.0,0.3,neutral
+32,B,,1891489415442166028,FOXA,Fox Corporation,direct,0.0,0.6,neutral
+33,B,,114155442275720067,FOXA,Fox Corporation,direct,0.0,0.4,neutral
+34,B,,1901277378979959250,CMCSA,Comcast Corporation,direct,0.0,0.6,neutral
+35,B,,1907228763013714001,FOXA,Fox Corporation,direct,0.0,0.3,neutral
+36,B,,114333660655935996,SKYD,Skydance Corporation,direct,-1.0,1.0,negative
+37,B,,1912159756497678336,FOXA,Fox Corporation,direct,0.0,0.9,neutral
+38,B,,114388111141848447,NWSA,News Corporation,direct,0.0,0.2,neutral
+39,B,,114393275364471638,FOXA,Fox Corporation,direct,-1.0,1.0,negative
+40,B,,114451972448301240,CMCSA,Comcast Corporation,direct,-1.0,0.6,negative
+41,B,,114733436206806630,FOXA,Fox Corporation,direct,0.0,0.6,neutral
+42,B,,1937606900087955747,WBD,"Warner Bros. Discovery, Inc.",direct,-1.0,1.0,negative
+43,B,,1940471060069339152,FOXA,Fox Corporation,direct,0.0,0.3,neutral
+44,B,,114863410012919913,FOXA,Fox Corporation,direct,0.0,0.4,neutral
+45,B,,1946977400434168175,WBD,"Warner Bros. Discovery, Inc.",direct,0.0,0.3,neutral
+46,B,,114970970276629752,CMCSA,Comcast Corporation,direct,0.0,0.3,neutral
+47,B,,115015483801151739,CMCSA,Comcast Corporation,direct,-1.0,1.0,negative
+48,B,,115095254091273904,DIS,The Walt Disney Company,brand,0.0,0.3,neutral
+49,B,,1962265467193553006,SKYD,Skydance Corporation,direct,-1.0,1.0,negative
+50,B,,115183827069786801,FOXA,Fox Corporation,direct,0.5,1.0,positive
+51,B,,1966533945215897865,FOXA,Fox Corporation,direct,0.0,0.6,neutral
+52,B,,1988732347995549926,FOXA,Fox Corporation,direct,0.0,0.6,neutral
+53,B,,115601252711182007,DIS,The Walt Disney Company,direct,-1.0,1.0,negative
+54,B,,115604689359180322,FOXA,Fox Corporation,direct,0.5,0.6,positive
+55,B,,1996029420021448756,FOXA,Fox Corporation,direct,0.0,0.9,neutral
+56,B,,2005825804769304613,FOXA,Fox Corporation,direct,0.0,0.6,neutral
+57,B,,115915952093312324,FOXA,Fox Corporation,direct,0.0,0.6,neutral
+58,B,,116015192164527501,NWSA,News Corporation,direct,0.0,0.2,neutral
+59,B,,2023896066219741682,FOXA,Fox Corporation,direct,0.0,0.7,neutral
+60,B,,2025557047366815895,CMCSA,Comcast Corporation,direct,0.0,1.0,neutral
+61,B,,2032483850660499856,WBD,"Warner Bros. Discovery, Inc.",direct,-1.0,1.0,negative
+62,B,,2037895237956166135,FOXA,Fox Corporation,direct,0.0,0.6,neutral
+63,B,,116308992209421747,FOXA,Fox Corporation,direct,0.0,0.6,neutral
+64,B,,2042027034881241210,NWSA,News Corporation,direct,0.0,0.5,neutral
+65,B,,2045167804916080682,FOXA,Fox Corporation,direct,0.0,0.5,neutral
+66,B,,116442964943642737,SKYD,Skydance Corporation,brand,-1.0,0.3,negative
+67,B,,2048538392837665000,SKYD,Skydance Corporation,brand,0.0,0.9,neutral
+68,B,,2053086587831947460,FOXA,Fox Corporation,direct,0.0,0.4,neutral
+69,B,,116577775352087911,FOXA,Fox Corporation,direct,0.5,0.2,positive
+70,B,,116640319334016190,FOXA,Fox Corporation,direct,0.8,1.0,positive
+71,B,,2071355734835495023,NWSA,News Corporation,direct,0.0,0.7,neutral
+72,B,,2071658134372827453,SKYD,Skydance Corporation,direct,0.0,0.7,neutral
+73,B,,2073818820901302482,DIS,The Walt Disney Company,direct,0.0,0.2,neutral
+74,B,,2079293866667131201,DIS,The Walt Disney Company,direct,0.0,0.9,neutral
+75,B,,2081031483435683913,FOXA,Fox Corporation,direct,0.0,0.3,neutral
+76,B,,2090468222294266326,NWSA,News Corporation,direct,0.0,0.8,neutral
+77,B,,117184581053116309,CMCSA,Comcast Corporation,direct,-0.8,0.8,negative

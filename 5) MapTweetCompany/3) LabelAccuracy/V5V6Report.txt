@@ -1,0 +1,56 @@
+Step 5.3.3, CompareV5V6 | run 2026-11-11 00:36
+
+Inputs
+  v5: SocialMedia_v5.db (prompt versions [5]), Twitter_tickers_2025_2026.xlsx
+  v6: SocialMedia_v6_norm.db (prompt versions [6]), Twitter_tickers_2025_2026.xlsx
+  note: v5 = SocialMedia.db and Twitter_tickers_2025_2026.xlsx on main (2131a01); v6 = SocialMedia.db of the v6 run (branch prompt-v6, to go up through LFS) and Twitter_tickers from a preliminary Step 5.2 run with the existing review decisions (96 new company spellings, 115 references, pending and counted outside the universe)
+
+Posts
+  22,273 posts in both runs; answered in v5 21,942, in v6 21,940, in both 21,940
+  references (all types, LLM): v5 6,468, v6 6,093; in-universe post-ticker pairs after Step 5.2: v5 1,682, v6 1,680
+  posts naming Elon or Musk: 115; posts with a media reference in either run: 841; overlap 7
+  posts outside both rules, answered in both runs: 20,991
+
+Self-agreement (5.3.3): posts outside both rules, in-universe tickers after Step 5.2
+  plain posts: 717 post-ticker pairs in either run; in both 683, only v5 19, only v6 15
+    posts with the same in-universe tickers in both runs: 572 of 606 (94.4%)
+    pairs in both: same sentiment category 86.4%; mean |sentiment v6 - v5| 0.112; same reference type 95.0%; mean |relevance v6 - v5| 0.092
+    category v5 (rows) by v6 (columns):
+      cat_v6    negative  neutral  positive
+      cat_v5                               
+      negative        34        2         0
+      neutral          3      257        40
+      positive         1       47       299
+
+Effect of the Elon rule: posts naming Elon or Musk
+  Elon posts: 140 post-ticker pairs in either run; in both 139, only v5 0, only v6 1
+    posts with the same in-universe tickers in both runs: 113 of 114 (99.1%)
+    pairs in both: same sentiment category 62.6%; mean |sentiment v6 - v5| 0.331; same reference type 100.0%; mean |relevance v6 - v5| 0.123
+    category v5 (rows) by v6 (columns):
+      cat_v6    negative  neutral  positive
+      cat_v5                               
+      negative         4        3         0
+      neutral          0       60         2
+      positive         0       47        23
+    TSLA in v5: 113 pairs, {'positive': 51, 'neutral': 57, 'negative': 5}, mean relevance 0.48
+    TSLA in v6: 114 pairs, {'positive': 7, 'neutral': 105, 'negative': 2}, mean relevance 0.36
+
+Effect of the media rule: posts with a media reference
+  media posts: 852 post-ticker pairs in either run; in both 831, only v5 10, only v6 11
+    posts with the same in-universe tickers in both runs: 720 of 740 (97.3%)
+    pairs in both: same sentiment category 91.6%; mean |sentiment v6 - v5| 0.068; same reference type 95.3%; mean |relevance v6 - v5| 0.125
+    category v5 (rows) by v6 (columns):
+      cat_v6    negative  neutral  positive
+      cat_v5                               
+      negative       244        7         1
+      neutral          3      423        29
+      positive         0       30        94
+    media tickers in v5: 799 pairs, {'positive': 116, 'neutral': 431, 'negative': 252}
+    media tickers in v6: 799 pairs, {'positive': 116, 'neutral': 437, 'negative': 246}
+
+Precision sample (200 rows coded on v5)
+  same category 167, category changed 27, pair gone in v6 6
+  by joint answer on v5: agree: same category 162, category changed 23, pair gone in v6 6; disagree: category changed 4, same category 4; uncertain: same category 1
+  rows to code again (pair gone or category changed): 33
+
+Written: V5V6Report.txt, v5v6_references.csv, v5v6_precision.csv

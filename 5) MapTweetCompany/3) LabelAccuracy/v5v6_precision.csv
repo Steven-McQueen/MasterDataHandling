@@ -1,0 +1,201 @@
+row_id,ID,ticker,company,reference_type,sentiment,relevance,confidence,llm_category,joint,type_v6,sentiment_v6,relevance_v6,cat_v6,v6_status,post_answered_v6
+1,1899557926525677856,TSLA,"Tesla, Inc.",direct,0.5,1.0,1.0,positive,agree,direct,0.5,1.0,positive,same category,True
+2,2022041364440264822,JNJ,Johnson & Johnson,direct,0.0,1.0,1.0,neutral,agree,direct,0.0,0.8,neutral,same category,True
+3,2043741633657659613,DASH,"DoorDash, Inc.",direct,0.0,0.8,1.0,neutral,agree,direct,0.0,0.6,neutral,same category,True
+4,115256938634035559,DIS,The Walt Disney Company,direct,-1.0,1.0,0.9,negative,agree,direct,-1.0,1.0,negative,same category,True
+5,114745136248099636,NOC,Northrop Grumman Corporation,brand,0.5,0.3,0.9,positive,agree,brand,0.5,0.3,positive,same category,True
+6,1953211303859720465,AAPL,Apple Inc.,direct,0.5,1.0,1.0,positive,agree,direct,0.5,1.0,positive,same category,True
+7,2043833703625851376,DASH,"DoorDash, Inc.",direct,0.8,1.0,1.0,positive,agree,direct,0.8,1.0,positive,same category,True
+8,114117008305421663,TSLA,"Tesla, Inc.",executive,0.5,0.3,1.0,positive,disagree,executive,0.0,0.3,neutral,category changed,True
+9,1954722147554730153,KHC,The Kraft Heinz Company,brand,0.5,0.6,0.8,positive,agree,brand,0.5,0.5,positive,same category,True
+10,1962895049802289338,CMCSA,Comcast Corporation,direct,0.0,0.6,0.9,neutral,agree,direct,0.0,0.6,neutral,same category,True
+11,2003553722908180815,SKYD,Skydance Corporation,direct,0.0,1.0,0.9,neutral,agree,direct,0.0,1.0,neutral,same category,True
+12,116902945158204426,VSNT,"Versant Media Group, Inc. Class A",direct,-1.0,0.6,0.9,negative,agree,direct,-1.0,0.7,negative,same category,True
+13,2052123667778138326,TKO,"TKO Group Holdings, Inc.",brand,0.0,0.7,0.7,neutral,agree,brand,0.0,1.0,neutral,same category,True
+14,114524271419135361,GE,GE Aerospace,direct,0.5,0.6,0.9,positive,agree,direct,0.8,0.8,positive,same category,True
+15,115294545346210269,PFE,Pfizer Inc.,direct,0.5,1.0,1.0,positive,agree,direct,0.5,1.0,positive,same category,True
+16,2066237985801097519,TKO,"TKO Group Holdings, Inc.",brand,0.5,1.0,1.0,positive,agree,direct,0.5,0.9,positive,same category,True
+17,1993296972594528358,NWSA,News Corporation,direct,0.0,0.3,0.9,neutral,agree,direct,0.0,0.2,neutral,same category,True
+18,2065777951472300536,TKO,"TKO Group Holdings, Inc.",direct,0.0,0.6,0.9,neutral,agree,direct,0.0,0.8,neutral,same category,True
+19,2074478833151963403,LMT,Lockheed Martin Corporation,brand,0.0,1.0,0.9,neutral,agree,brand,0.0,0.9,neutral,same category,True
+20,1955297504104198236,CENX,Century Aluminum Company,direct,0.5,1.0,1.0,positive,agree,direct,0.0,0.8,neutral,category changed,True
+21,116769129718272146,AMZN,"Amazon.com, Inc.",direct,0.0,0.2,0.9,neutral,agree,direct,0.0,0.2,neutral,same category,True
+22,1969086886393118758,FOXA,Fox Corporation,direct,0.0,0.8,0.9,neutral,agree,direct,0.0,1.0,neutral,same category,True
+23,2088053159126323622,AAPL,Apple Inc.,direct,1.0,1.0,1.0,positive,agree,direct,0.0,1.0,neutral,category changed,True
+24,2081870257124151736,FOXA,Fox Corporation,direct,0.0,0.6,1.0,neutral,agree,direct,0.0,0.8,neutral,same category,True
+25,2021355994476052891,DIS,The Walt Disney Company,direct,0.0,0.2,0.9,neutral,agree,direct,0.0,0.2,neutral,same category,True
+26,1945218299697975508,FOXA,Fox Corporation,direct,0.0,0.3,0.9,neutral,agree,direct,0.0,0.3,neutral,same category,True
+27,1889011989545906654,FOXA,Fox Corporation,direct,0.0,0.6,1.0,neutral,agree,direct,0.0,0.4,neutral,same category,True
+28,1903249283035332902,NVDA,NVIDIA Corporation,direct,0.5,0.5,1.0,positive,agree,direct,0.0,0.5,neutral,category changed,True
+29,2026300388803047443,NWSA,News Corporation,direct,0.0,0.2,0.9,neutral,agree,direct,0.0,0.2,neutral,same category,True
+30,1968770865404809532,NVDA,NVIDIA Corporation,direct,0.0,1.0,1.0,neutral,agree,direct,0.0,1.0,neutral,same category,True
+31,2046977586987757718,FOXA,Fox Corporation,direct,0.0,0.6,0.9,neutral,agree,direct,0.0,0.5,neutral,same category,True
+32,2084814900405121454,FOXA,Fox Corporation,direct,0.5,0.3,0.6,positive,agree,direct,0.5,0.2,positive,same category,True
+33,114145974393951612,F,Ford Motor Company,direct,0.0,0.3,1.0,neutral,agree,direct,0.0,0.2,neutral,same category,True
+34,1903249283035332902,BA,The Boeing Company,direct,0.5,0.5,1.0,positive,agree,direct,0.0,0.5,neutral,category changed,True
+35,2087995471973294123,AAPL,Apple Inc.,direct,1.0,1.0,1.0,positive,agree,direct,1.0,1.0,positive,same category,True
+36,115862684255980250,FOXA,Fox Corporation,direct,0.0,1.0,0.9,neutral,agree,direct,0.0,1.0,neutral,same category,True
+37,115939860152214301,CMCSA,Comcast Corporation,direct,-1.0,0.8,0.9,negative,agree,direct,-1.0,1.0,negative,same category,True
+38,116416736627974477,WBD,"Warner Bros. Discovery, Inc.",direct,0.5,0.5,0.9,positive,disagree,direct,0.5,0.6,positive,same category,True
+39,115772871198579287,DIS,The Walt Disney Company,direct,-1.0,1.0,0.9,negative,agree,direct,-1.0,1.0,negative,same category,True
+40,114198218638202475,TSLA,"Tesla, Inc.",direct,0.5,1.0,1.0,positive,agree,direct,0.8,1.0,positive,same category,True
+41,115428798659352209,GM,General Motors Company,direct,1.0,1.0,1.0,positive,agree,direct,0.5,1.0,positive,same category,True
+42,1903449047538487532,NWSA,News Corporation,direct,0.0,0.3,0.9,neutral,agree,direct,0.0,0.4,neutral,same category,True
+43,114345470440861946,CMCSA,Comcast Corporation,direct,-1.0,1.0,1.0,negative,agree,direct,-1.0,1.0,negative,same category,True
+44,2066300952286531819,TKO,"TKO Group Holdings, Inc.",brand,1.0,0.8,0.8,positive,agree,direct,1.0,1.0,positive,same category,True
+45,1917692459418583493,ABT,Abbott Laboratories,direct,0.0,0.5,1.0,neutral,agree,direct,0.0,0.2,neutral,same category,True
+46,115890139588555674,SKYD,Skydance Corporation,direct,0.0,0.7,0.9,neutral,agree,direct,0.0,0.6,neutral,same category,True
+47,1963655156236435619,GOOG,Alphabet Inc.,direct,0.0,0.9,0.9,neutral,agree,direct,0.0,0.9,neutral,same category,True
+48,115238637490866159,FOXA,Fox Corporation,direct,0.8,0.6,1.0,positive,agree,direct,0.8,0.6,positive,same category,True
+49,1990522723567845378,MCD,McDonald's Corporation,direct,0.0,0.6,0.9,neutral,agree,direct,0.0,0.6,neutral,same category,True
+50,1932587454835425706,FOXA,Fox Corporation,direct,0.0,0.2,0.9,neutral,agree,direct,0.0,0.2,neutral,same category,True
+51,115548785919046772,JPM,JPMorgan Chase & Co.,direct,-1.0,0.2,0.9,negative,agree,direct,-1.0,0.3,negative,same category,True
+52,2070184044571091073,FOXA,Fox Corporation,direct,0.0,0.3,0.9,neutral,agree,direct,0.0,0.9,neutral,same category,True
+53,1899585111013896367,CMCSA,Comcast Corporation,direct,0.5,0.3,0.7,positive,agree,,,,,pair gone in v6,True
+54,2084653482171154819,OGE,OGE Energy Corp.,direct,0.5,0.7,0.9,positive,agree,direct,0.5,0.9,positive,same category,True
+55,116850596821921968,MU,"Micron Technology, Inc.",direct,1.0,1.0,1.0,positive,agree,direct,1.0,1.0,positive,same category,True
+56,2060832735631941924,FOXA,Fox Corporation,direct,0.5,1.0,0.9,positive,agree,direct,0.0,1.0,neutral,category changed,True
+57,1892023798540664865,TSLA,"Tesla, Inc.",executive,0.0,0.6,0.9,neutral,agree,executive,0.0,0.3,neutral,same category,True
+58,1970320969509281835,CMCSA,Comcast Corporation,direct,-1.0,0.9,0.7,negative,agree,direct,-1.0,0.6,negative,same category,True
+59,114474584669905764,FOXA,Fox Corporation,direct,0.0,0.2,0.9,neutral,agree,direct,0.5,0.3,positive,category changed,True
+60,116144057341130700,AAPL,Apple Inc.,brand,-0.5,1.0,0.9,negative,uncertain,brand,-0.5,1.0,negative,same category,True
+61,1975562959339594007,FOXA,Fox Corporation,direct,0.0,0.4,0.9,neutral,agree,direct,0.0,0.6,neutral,same category,True
+62,114025028025455053,FOXA,Fox Corporation,direct,0.5,0.5,0.9,positive,agree,direct,0.5,0.5,positive,same category,True
+63,1905330640225972411,AMZN,"Amazon.com, Inc.",direct,0.0,0.6,1.0,neutral,agree,direct,0.0,0.6,neutral,same category,True
+64,2090775521277657565,FTAI,FTAI Aviation Ltd.,direct,0.8,1.0,0.9,positive,agree,direct,0.8,1.0,positive,same category,True
+65,115898867378270216,FOXA,Fox Corporation,direct,0.5,0.8,0.9,positive,agree,direct,0.0,0.6,neutral,category changed,True
+66,1953270580075216949,FOXA,Fox Corporation,direct,0.0,0.2,0.9,neutral,agree,direct,0.0,0.3,neutral,same category,True
+67,1991624268522877084,GM,General Motors Company,direct,0.5,0.9,1.0,positive,agree,direct,0.5,0.8,positive,same category,True
+68,2077419302957744528,SPCX,Space Exploration Technologies Corp.,direct,0.5,0.5,0.8,positive,agree,direct,0.5,0.4,positive,same category,True
+69,116421668823698549,AAPL,Apple Inc.,direct,0.5,1.0,1.0,positive,agree,direct,0.5,1.0,positive,same category,True
+70,2045213712668082507,PEP,"PepsiCo, Inc.",brand,0.8,1.0,0.9,positive,agree,brand,0.8,1.0,positive,same category,True
+71,2090478420870238648,FOXA,Fox Corporation,direct,0.8,1.0,1.0,positive,agree,direct,0.5,1.0,positive,same category,True
+72,2065919902934765881,TKO,"TKO Group Holdings, Inc.",brand,0.0,0.8,0.9,neutral,agree,brand,0.0,0.5,neutral,same category,True
+73,115766194471748593,FOXA,Fox Corporation,brand,0.5,0.8,0.9,positive,agree,brand,0.5,0.8,positive,same category,True
+74,114189926046475867,FOXA,Fox Corporation,direct,0.0,0.3,0.9,neutral,agree,direct,0.0,0.5,neutral,same category,True
+75,115924043199702065,FOXA,Fox Corporation,brand,1.0,0.8,0.8,positive,agree,brand,1.0,0.6,positive,same category,True
+76,1936605837751181732,WBD,"Warner Bros. Discovery, Inc.",brand,0.0,0.6,0.8,neutral,agree,brand,0.0,0.4,neutral,same category,True
+77,114070560562637397,TSLA,"Tesla, Inc.",executive,0.5,0.3,0.8,positive,disagree,executive,0.0,0.3,neutral,category changed,True
+78,1913346871575085273,NVDA,NVIDIA Corporation,direct,0.5,0.3,1.0,positive,agree,direct,0.5,0.8,positive,same category,True
+79,2079631132866286068,FOXA,Fox Corporation,direct,0.0,0.7,0.9,neutral,agree,direct,0.0,0.6,neutral,same category,True
+80,1886469388166910043,NUE,Nucor Corporation,direct,1.0,1.0,1.0,positive,agree,direct,0.5,1.0,positive,same category,True
+81,1900667853210038446,BA,The Boeing Company,direct,0.5,1.0,1.0,positive,agree,direct,0.3,1.0,neutral,category changed,True
+82,2047457373090939184,REGN,"Regeneron Pharmaceuticals, Inc.",direct,0.5,1.0,1.0,positive,agree,direct,0.5,1.0,positive,same category,True
+83,2065561328782107012,TKO,"TKO Group Holdings, Inc.",direct,0.5,1.0,0.8,positive,agree,direct,0.5,1.0,positive,same category,True
+84,1968468758533451910,DIS,The Walt Disney Company,direct,0.5,1.0,1.0,positive,agree,direct,0.5,1.0,positive,same category,True
+85,116962896633563415,FOXA,Fox Corporation,direct,0.5,0.5,0.9,positive,agree,direct,0.5,0.5,positive,same category,True
+86,116048298400907278,FOXA,Fox Corporation,direct,0.5,1.0,0.9,positive,agree,direct,0.0,0.9,neutral,category changed,True
+87,1894872153742262376,FOXA,Fox Corporation,direct,0.0,0.3,0.8,neutral,agree,,,,,pair gone in v6,True
+88,1956092785573937636,WBD,"Warner Bros. Discovery, Inc.",direct,0.0,0.6,0.9,neutral,agree,direct,0.0,0.9,neutral,same category,True
+89,114619736929573972,NWSA,News Corporation,brand,0.0,0.3,0.8,neutral,agree,direct,0.0,0.3,neutral,same category,True
+90,2065632101748089111,STLA,Stellantis N.V.,brand,0.0,0.5,0.9,neutral,agree,brand,0.0,0.5,neutral,same category,True
+91,1896336669089095872,DIS,The Walt Disney Company,direct,0.0,0.3,0.8,neutral,agree,direct,0.0,0.3,neutral,same category,True
+92,2073085883109003515,FOXA,Fox Corporation,direct,0.0,0.8,1.0,neutral,agree,direct,0.0,0.8,neutral,same category,True
+93,2044386370718744917,KR,The Kroger Co.,direct,0.0,0.2,0.9,neutral,agree,direct,0.0,0.2,neutral,same category,True
+94,114007874648160437,FOXA,Fox Corporation,direct,0.0,0.5,0.9,neutral,agree,direct,0.0,0.4,neutral,same category,True
+95,1889423198128607304,TSLA,"Tesla, Inc.",executive,0.0,0.2,1.0,neutral,agree,executive,0.0,0.2,neutral,same category,True
+96,115087160158530143,CMCSA,Comcast Corporation,direct,-1.0,1.0,1.0,negative,agree,direct,-1.0,1.0,negative,same category,True
+97,1911445383005241795,TKO,"TKO Group Holdings, Inc.",direct,0.0,0.5,0.7,neutral,agree,direct,0.0,0.5,neutral,same category,True
+98,1907071700715381160,TSLA,"Tesla, Inc.",direct,0.5,1.0,1.0,positive,agree,direct,0.8,1.0,positive,same category,True
+99,1894795870052241788,TSLA,"Tesla, Inc.",executive,0.0,0.3,1.0,neutral,agree,executive,0.0,0.3,neutral,same category,True
+100,113891882790475884,FOXA,Fox Corporation,direct,0.5,1.0,0.9,positive,agree,direct,0.5,1.0,positive,same category,True
+101,1895933091958702111,WBD,"Warner Bros. Discovery, Inc.",direct,0.0,0.5,0.9,neutral,agree,direct,0.0,0.5,neutral,same category,True
+102,2075606113504927960,MU,"Micron Technology, Inc.",direct,1.0,0.9,1.0,positive,agree,direct,0.5,0.8,positive,same category,True
+103,2064099950733008958,BA,The Boeing Company,direct,1.0,1.0,1.0,positive,agree,direct,0.5,1.0,positive,same category,True
+104,2066278866365083984,SKYD,Skydance Corporation,direct,0.0,0.8,0.9,neutral,agree,direct,0.0,0.9,neutral,same category,True
+105,116376634773749603,FOXA,Fox Corporation,direct,-1.0,0.7,1.0,negative,disagree,direct,-1.0,0.8,negative,same category,True
+106,116887463214588151,SPCX,Space Exploration Technologies Corp.,direct,1.0,1.0,0.9,positive,agree,direct,1.0,1.0,positive,same category,True
+107,114070315739588346,AAPL,Apple Inc.,direct,-1.0,1.0,1.0,negative,agree,direct,-0.8,1.0,negative,same category,True
+108,1973733401493676352,FOXA,Fox Corporation,direct,0.0,0.5,0.9,neutral,agree,direct,0.0,0.6,neutral,same category,True
+109,1902387387390369800,FOXA,Fox Corporation,direct,0.0,0.2,1.0,neutral,agree,direct,0.0,0.3,neutral,same category,True
+110,115999448091565515,SKYD,Skydance Corporation,direct,-1.0,1.0,0.9,negative,agree,direct,-1.0,1.0,negative,same category,True
+111,1917629974523138074,DIS,The Walt Disney Company,direct,0.0,0.8,0.9,neutral,agree,direct,0.0,0.3,neutral,same category,True
+112,2066007341397356847,SKYD,Skydance Corporation,brand,0.5,0.6,1.0,positive,agree,direct,0.5,0.6,positive,same category,True
+113,116257826369374629,JPM,JPMorgan Chase & Co.,direct,-1.0,1.0,1.0,negative,agree,direct,-1.0,1.0,negative,same category,True
+114,2046930201678872770,SKYD,Skydance Corporation,direct,0.0,0.5,1.0,neutral,agree,direct,0.0,0.3,neutral,same category,True
+115,2046352901631569951,VSNT,"Versant Media Group, Inc. Class A",direct,0.0,0.8,0.8,neutral,agree,direct,0.0,0.9,neutral,same category,True
+116,114478780390671313,BA,The Boeing Company,direct,1.0,0.6,1.0,positive,agree,direct,0.5,0.8,positive,same category,True
+117,114757001664238246,FOXA,Fox Corporation,direct,0.0,0.5,1.0,neutral,agree,direct,0.0,0.9,neutral,same category,True
+118,1919876184088649743,WBD,"Warner Bros. Discovery, Inc.",direct,0.0,0.5,0.9,neutral,agree,direct,0.0,0.3,neutral,same category,True
+119,114741415042752014,WBD,"Warner Bros. Discovery, Inc.",direct,-1.0,1.0,0.9,negative,agree,direct,-1.0,1.0,negative,same category,True
+120,1910493914177417644,NWSA,News Corporation,direct,0.0,0.5,0.8,neutral,agree,direct,0.0,0.7,neutral,same category,True
+121,1956687536132079924,NWSA,News Corporation,direct,0.0,0.5,0.8,neutral,agree,direct,0.0,0.6,neutral,same category,True
+122,1954722147554730153,HSY,The Hershey Company,brand,0.5,0.6,0.9,positive,agree,brand,0.5,0.5,positive,same category,True
+123,2091227596411302118,FOXA,Fox Corporation,direct,0.5,0.3,0.9,positive,agree,direct,0.0,0.2,neutral,category changed,True
+124,2051087092269125678,SO,The Southern Company,direct,0.5,1.0,1.0,positive,agree,direct,0.5,1.0,positive,same category,True
+125,114214658359777536,SKYD,Skydance Corporation,direct,-1.0,1.0,0.9,negative,disagree,direct,-1.0,1.0,negative,same category,True
+126,114058814859681967,AAPL,Apple Inc.,direct,1.0,1.0,1.0,positive,agree,direct,1.0,1.0,positive,same category,True
+127,114259522932730072,TSLA,"Tesla, Inc.",executive,0.0,0.3,1.0,neutral,agree,executive,0.0,0.3,neutral,same category,True
+128,1953537207505236413,IBM,International Business Machines Corporation,direct,1.0,1.0,1.0,positive,agree,direct,0.0,1.0,neutral,category changed,True
+129,114287474604619244,FOXA,Fox Corporation,direct,0.5,1.0,0.9,positive,agree,direct,1.0,1.0,positive,same category,True
+130,1924539067129004189,FOXA,Fox Corporation,direct,0.0,0.4,1.0,neutral,agree,direct,0.0,0.7,neutral,same category,True
+131,115424560133045127,NVDA,NVIDIA Corporation,executive,0.5,0.3,0.9,positive,agree,executive,0.5,0.2,positive,same category,True
+132,115961944680232406,SKYD,Skydance Corporation,direct,-1.0,0.8,0.9,negative,agree,direct,-1.0,0.9,negative,same category,True
+133,115322333732211990,FOXA,Fox Corporation,direct,-1.0,1.0,0.9,negative,agree,direct,-1.0,1.0,negative,same category,True
+134,114190845050387383,TSLA,"Tesla, Inc.",direct,-0.8,1.0,0.9,negative,disagree,direct,-1.0,1.0,negative,same category,True
+135,1918017575100829769,FOXA,Fox Corporation,direct,0.0,0.5,0.9,neutral,agree,direct,0.0,0.4,neutral,same category,True
+136,1914330908338819330,FOXA,Fox Corporation,direct,0.0,0.3,0.8,neutral,agree,direct,0.0,0.3,neutral,same category,True
+137,116024925554392442,VSNT,"Versant Media Group, Inc. Class A",direct,-1.0,0.6,0.8,negative,agree,direct,-0.8,0.7,negative,same category,True
+138,115567708214544518,MCD,McDonald's Corporation,direct,0.0,1.0,1.0,neutral,agree,direct,0.5,0.9,positive,category changed,True
+139,117153575933659467,FOXA,Fox Corporation,direct,0.0,0.7,1.0,neutral,agree,direct,0.5,0.8,positive,category changed,True
+140,1986814408346001562,LLY,Eli Lilly and Company,direct,0.5,1.0,1.0,positive,agree,direct,0.5,1.0,positive,same category,True
+141,114898229237459086,DIS,The Walt Disney Company,direct,-1.0,0.6,0.9,negative,agree,direct,-1.0,0.6,negative,same category,True
+142,2074213712131428698,ICE,"Intercontinental Exchange, Inc.",direct,0.0,0.3,0.9,neutral,agree,direct,0.0,0.6,neutral,same category,True
+143,1955974807595434321,FOXA,Fox Corporation,direct,0.0,0.2,0.8,neutral,agree,direct,0.0,0.3,neutral,same category,True
+144,2081839537693528087,FOXA,Fox Corporation,direct,0.0,0.2,0.9,neutral,agree,direct,0.0,0.2,neutral,same category,True
+145,114916167133707858,INTC,Intel Corp.,direct,0.0,0.5,0.9,neutral,agree,direct,-0.5,0.5,negative,category changed,True
+146,2077419302957744528,ADBE,Adobe Inc.,direct,0.5,0.5,0.9,positive,agree,direct,0.5,0.4,positive,same category,True
+147,114734021412822365,CMCSA,Comcast Corporation,direct,-1.0,1.0,0.7,negative,agree,direct,-1.0,1.0,negative,same category,True
+148,114842941355477197,FOXA,Fox Corporation,direct,0.0,0.8,0.9,neutral,agree,direct,0.0,0.8,neutral,same category,True
+149,2023226040089239764,BA,The Boeing Company,brand,0.0,0.8,0.9,neutral,agree,brand,0.0,0.3,neutral,same category,True
+150,1984319055960866869,UAL,"United Airlines Holdings, Inc.",direct,0.5,1.0,1.0,positive,agree,direct,0.5,1.0,positive,same category,True
+151,1936081184003440645,GIS,"General Mills, Inc.",direct,0.5,1.0,1.0,positive,agree,direct,0.5,1.0,positive,same category,True
+152,2031815784201171103,TMO,Thermo Fisher Scientific Inc.,direct,0.0,0.8,1.0,neutral,agree,direct,0.0,1.0,neutral,same category,True
+153,1893437552750645389,TSLA,"Tesla, Inc.",executive,0.0,0.3,0.9,neutral,agree,executive,0.0,0.3,neutral,same category,True
+154,114478160839858570,CMCSA,Comcast Corporation,direct,-1.0,1.0,0.9,negative,agree,direct,-1.0,1.0,negative,same category,True
+155,1907006214954770561,TSLA,"Tesla, Inc.",executive,-0.8,0.6,1.0,negative,disagree,executive,0.0,0.3,neutral,category changed,True
+156,114710162640808420,FOXA,Fox Corporation,direct,-1.0,1.0,1.0,negative,agree,direct,-1.0,1.0,negative,same category,True
+157,114492082555622686,BA,The Boeing Company,brand,0.0,0.2,0.9,neutral,agree,brand,0.0,0.3,neutral,same category,True
+158,114151257383811463,GS,"The Goldman Sachs Group, Inc.",direct,0.0,0.8,0.9,neutral,agree,direct,0.0,0.6,neutral,same category,True
+159,2010863428475175422,TSLA,"Tesla, Inc.",executive,0.0,0.6,0.9,neutral,agree,executive,0.0,0.3,neutral,same category,True
+160,115061104213677946,AAPL,Apple Inc.,executive,-1.0,0.9,0.9,negative,agree,executive,-1.0,1.0,negative,same category,True
+161,2059991947222147447,AAPL,Apple Inc.,brand,0.0,0.2,0.9,neutral,agree,,,,,pair gone in v6,True
+162,113891977496753674,AMZN,"Amazon.com, Inc.",brand,0.0,1.0,1.0,neutral,agree,brand,0.0,0.9,neutral,same category,True
+163,2075971638537994460,HOOD,"Robinhood Markets, Inc.",direct,0.5,0.7,0.9,positive,agree,direct,0.5,0.6,positive,same category,True
+164,114050070794885064,FOXA,Fox Corporation,direct,1.0,0.9,0.9,positive,agree,direct,1.0,0.6,positive,same category,True
+165,1928239123527016469,NVDA,NVIDIA Corporation,direct,0.0,1.0,1.0,neutral,agree,direct,0.0,1.0,neutral,same category,True
+166,113959378194447457,SIRI,Sirius XM Holdings Inc.,direct,0.0,0.2,1.0,neutral,agree,direct,0.5,0.3,positive,category changed,True
+167,114345470440861946,WBD,"Warner Bros. Discovery, Inc.",direct,-1.0,0.7,1.0,negative,agree,direct,-1.0,0.6,negative,same category,True
+168,2079652561955565573,FOXA,Fox Corporation,direct,0.0,0.2,0.9,neutral,agree,direct,0.0,0.2,neutral,same category,True
+169,1894456895005487386,AAPL,Apple Inc.,direct,0.0,1.0,1.0,neutral,agree,direct,0.5,0.9,positive,category changed,True
+170,1903178417421345198,BA,The Boeing Company,direct,0.5,1.0,1.0,positive,agree,direct,0.5,1.0,positive,same category,True
+171,2066350963909153217,SKYD,Skydance Corporation,brand,0.5,0.6,1.0,positive,agree,direct,0.0,0.7,neutral,category changed,True
+172,1990840579991732324,GEV,GE Vernova Inc.,direct,0.8,0.8,1.0,positive,agree,direct,0.5,0.8,positive,same category,True
+173,115568168980675244,MCD,McDonald's Corporation,direct,0.0,0.3,1.0,neutral,agree,direct,0.0,0.4,neutral,same category,True
+174,1911113450169778187,SKYD,Skydance Corporation,direct,0.0,0.9,1.0,neutral,agree,direct,0.0,1.0,neutral,same category,True
+175,1909962744922542372,FOXA,Fox Corporation,direct,0.0,0.6,0.9,neutral,agree,direct,0.0,0.5,neutral,same category,True
+176,114339966797907461,CMCSA,Comcast Corporation,direct,0.0,0.5,0.9,neutral,agree,direct,0.0,0.6,neutral,same category,True
+177,1903073373522944491,GM,General Motors Company,direct,0.0,0.9,0.9,neutral,agree,direct,0.0,1.0,neutral,same category,True
+178,2066278866365083984,STLA,Stellantis N.V.,direct,0.0,0.6,0.8,neutral,agree,direct,0.0,0.6,neutral,same category,True
+179,116048520747031031,CVS,CVS Health Corp.,direct,0.5,1.0,1.0,positive,agree,direct,0.5,1.0,positive,same category,True
+180,1984024880845836598,MCD,McDonald's Corporation,direct,0.0,0.5,1.0,neutral,agree,direct,0.0,0.5,neutral,same category,True
+181,115222372625104790,CMCSA,Comcast Corporation,direct,-1.0,0.9,1.0,negative,agree,direct,-1.0,0.8,negative,same category,True
+182,1889427311545459141,TSLA,"Tesla, Inc.",executive,0.0,0.3,1.0,neutral,agree,executive,0.0,0.3,neutral,same category,True
+183,114087937627204152,FOXA,Fox Corporation,executive,0.0,0.5,0.7,neutral,agree,,,,,pair gone in v6,True
+184,2058252422963749051,TKO,"TKO Group Holdings, Inc.",direct,0.0,1.0,0.9,neutral,agree,direct,0.0,1.0,neutral,same category,True
+185,114132050804394743,FOXA,Fox Corporation,direct,0.0,0.8,0.9,neutral,agree,direct,0.5,1.0,positive,category changed,True
+186,1991624268522877084,F,Ford Motor Company,direct,0.5,0.9,1.0,positive,agree,direct,0.5,0.8,positive,same category,True
+187,114190686109079519,FOXA,Fox Corporation,direct,-0.5,1.0,1.0,negative,agree,direct,-0.8,1.0,negative,same category,True
+188,114149845661093099,TSLA,"Tesla, Inc.",executive,0.8,0.6,0.9,positive,disagree,executive,0.0,0.3,neutral,category changed,True
+189,113887487731381945,CMCSA,Comcast Corporation,direct,-1.0,1.0,0.9,negative,agree,,,,,pair gone in v6,True
+190,115550876323311183,GOOG,Alphabet Inc.,direct,1.0,1.0,1.0,positive,agree,direct,1.0,1.0,positive,same category,True
+191,1917394915383992562,BA,The Boeing Company,brand,0.5,1.0,0.9,positive,agree,brand,0.0,1.0,neutral,category changed,True
+192,114729086320228278,NOC,Northrop Grumman Corporation,brand,0.5,0.3,0.8,positive,agree,brand,0.0,0.2,neutral,category changed,True
+193,1953537207505236413,AAPL,Apple Inc.,direct,1.0,1.0,1.0,positive,agree,direct,0.0,1.0,neutral,category changed,True
+194,116739496269575262,TKO,"TKO Group Holdings, Inc.",brand,0.0,0.8,0.8,neutral,agree,brand,0.5,0.8,positive,category changed,True
+195,2024562387580309834,CMCSA,Comcast Corporation,direct,0.0,1.0,1.0,neutral,agree,direct,0.0,1.0,neutral,same category,True
+196,115566073827004302,MCD,McDonald's Corporation,direct,0.0,0.5,1.0,neutral,agree,direct,0.0,0.5,neutral,same category,True
+197,1910133660759609442,SCHW,The Charles Schwab Corporation,executive,1.0,1.0,0.8,positive,agree,,,,,pair gone in v6,True
+198,2030027997869170787,LHX,"L3Harris Technologies, Inc.",direct,0.0,0.6,0.9,neutral,agree,direct,0.5,1.0,positive,category changed,True
+199,115209308362990527,AMZN,"Amazon.com, Inc.",direct,0.0,0.6,1.0,neutral,agree,direct,0.2,0.5,neutral,same category,True
+200,114987288040725570,INTC,Intel Corp.,direct,-1.0,1.0,1.0,negative,agree,direct,-1.0,1.0,negative,same category,True
