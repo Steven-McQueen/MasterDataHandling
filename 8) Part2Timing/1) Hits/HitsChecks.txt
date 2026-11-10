@@ -1,4 +1,4 @@
-Part 2, Hits | run 2026-11-10 12:50
+Part 2, Hits | run 2026-11-10 14:30
 
 Inputs
   2) Trades/Trump_trades_2025_2026.xlsx: 17,724 rows, modified 2026-11-09 11:14 (PurchasesMerged); 21 company-days from PurchasesLeftOut

@@ -126,3 +126,131 @@ Outcome direct_trump (window search: best window 3 days, p_search = 0.920)
 
 Exposure slopes are in pp per unit of log(1 + USD bought).
 finished
+
+=== RunPart1 2026-11-10 14:29 | /usr/local/bin/python3
+--- BuildPanel.py
+Part 1, BuildPanel | run 2026-11-10 14:30
+
+Inputs
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,468 rows, modified 2026-11-10 12:48
+  2) Trades/Trump_trades_2025_2026.xlsx: 27,628 rows, modified 2026-11-09 11:14
+
+Panel: 1,620 tickers x 589 days (2025-01-20 to 2026-08-31) = 954,180 rows
+Mentioned tickers outside the trade universe: 0 []
+
+Mentions (posts per ticker and day; source = distinct post x ticker pairs)
+  direct        types=direct accounts=all: 1,303 post-ticker pairs on 944 ticker-days, 126 tickers; outside the panel 0; vs source 1,303 OK
+  direct_brand  types=direct+brand accounts=all: 1,547 post-ticker pairs on 1,108 ticker-days, 137 tickers; outside the panel 0; vs source 1,547 OK
+  all_types     types=direct+brand+executive accounts=all: 1,682 post-ticker pairs on 1,174 ticker-days, 142 tickers; outside the panel 0; vs source 1,682 OK
+  direct_trump  types=direct accounts=realDonaldTrump: 450 post-ticker pairs on 407 ticker-days, 59 tickers; outside the panel 0; vs source 450 OK
+
+Purchases
+  lots in panel 18,818 vs source 18,818 OK (1,599 tickers)
+  amount (midpoints) in panel 1,125,247,909 vs source 1,125,247,909 OK
+  purchase days dated on a weekend: 4 (used as dated)
+
+Duplicate ticker-days: 0
+Days per ticker: [589]
+
+Companies (direct mentions)
+  bought and mentioned 125, mentioned never bought 1, bought never mentioned 1474, sale-only 21
+
+Spot checks (direct): ticker, date, panel count, source posts
+  FOXA   2025-05-02  2  2  OK
+  FOXA   2026-07-09  1  1  OK
+  SKYD   2026-02-02  2  2  OK
+  ABT    2025-04-18  1  1  OK
+  WBD    2025-10-01  1  1  OK
+  GILD   2025-05-08  3  3  OK
+  CMCSA  2025-09-17  1  1  OK
+  NWSA   2026-05-18  1  1  OK
+  WBD    2025-08-31  1  1  OK
+  DIS    2026-07-13  1  1  OK
+
+Written: 7) Part1Talk/1) BuildPanel/panel.csv.gz (954,180 rows), tickers.csv (1,620 rows)
+--- EstimatePart1.py
+Part 1, EstimatePart1 | run 2026-11-10 14:31
+
+Input: 7) Part1Talk/1) BuildPanel/panel.csv.gz: 954,180 rows, modified 2026-11-10 14:30
+
+Main outcome: direct; main window: 10 days; LPM, ticker + day effects, SE clustered by ticker and day
+
+treatment     effect (pp)   se (pp)       p  baseline (%)   ratio
+recent_1           0.0019    0.0412   0.962        0.0964    1.02
+recent_3          -0.0031    0.0306   0.918        0.0914    0.97
+recent_5          -0.0361    0.0213   0.090        0.0895    0.60
+recent_10         -0.0162    0.0195   0.404        0.0809    0.80
+recent_20         -0.0152    0.0140   0.277        0.0692    0.78
+recent_30         -0.0039    0.0130   0.767        0.0578    0.93
+
+Lead/lag bins (days since purchase; negative = purchase after the post day):
+   -30 ..  -21:   0.0120 pp (p = 0.450)
+   -20 ..  -11:  -0.0009 pp (p = 0.960)
+   -10 ..   -1:   0.0257 pp (p = 0.114)
+     0 ..    0:  -0.0434 pp (p = 0.209)
+     1 ..   10:  -0.0182 pp (p = 0.350)
+    11 ..   20:  -0.0118 pp (p = 0.439)
+    21 ..   30:   0.0284 pp (p = 0.080)
+
+All 50 specifications: results.csv. Descriptives: descriptives.txt.
+--- ShiftedWorlds.py
+world 0 of 499
+world 100 of 499
+world 200 of 499
+world 300 of 499
+world 400 of 499
+Part 1, ShiftedWorlds | run 2026-11-10 14:35
+
+Inputs
+  7) Part1Talk/1) BuildPanel/panel.csv.gz: 954,180 rows, modified 2026-11-10 14:30
+  2) Trades/Trump_trades_2025_2026.xlsx: 18,818 rows, modified 2026-11-09 11:14 (purchases)
+  6) CalendarShifts/worlds.csv: 500 rows, modified 2026-11-10 14:29
+
+Worlds: 500 (world 0 = real). p_upper = share with slope >= real (more talk after buying).
+
+Outcome direct (window search: best window 1 days, p_search = 0.880)
+  treatment   slope (pp)  mean shifted  p_upper  p_lower   hits  expected  ratio
+  recent_1        0.0019        0.0009    0.482    0.520     41      43.3   0.95
+  recent_3       -0.0031        0.0011    0.536    0.466    118     120.0   0.98
+  recent_5       -0.0361        0.0013    0.956    0.046    161     186.0   0.87
+  recent_10      -0.0162        0.0005    0.826    0.176    285     306.4   0.93
+  recent_20      -0.0152        0.0006    0.912    0.090    445     466.3   0.95
+  recent_30      -0.0039       -0.0001    0.608    0.394    567     568.3   1.00
+  exposure       -0.0000        0.0025    0.998    0.004 
+  owned           0.0083        0.0269    0.962    0.040 
+
+Outcome direct_brand (window search: best window 1 days, p_search = 0.916)
+  treatment   slope (pp)  mean shifted  p_upper  p_lower   hits  expected  ratio
+  recent_1       -0.0024        0.0015    0.516    0.486     50      52.6   0.95
+  recent_3       -0.0082        0.0021    0.634    0.368    140     145.2   0.96
+  recent_5       -0.0406        0.0025    0.964    0.038    195     224.6   0.87
+  recent_10      -0.0142        0.0016    0.822    0.180    344     368.6   0.93
+  recent_20      -0.0177        0.0014    0.938    0.064    527     558.1   0.94
+  recent_30      -0.0041        0.0005    0.660    0.342    670     678.3   0.99
+  exposure        0.0004        0.0023    0.954    0.048 
+  owned           0.0110        0.0243    0.826    0.176 
+
+Outcome all_types (window search: best window 1 days, p_search = 0.816)
+  treatment   slope (pp)  mean shifted  p_upper  p_lower   hits  expected  ratio
+  recent_1        0.0120        0.0017    0.398    0.604     58      57.9   1.00
+  recent_3        0.0084        0.0019    0.424    0.578    162     159.4   1.02
+  recent_5       -0.0242        0.0023    0.816    0.186    228     245.6   0.93
+  recent_10      -0.0069        0.0013    0.636    0.366    386     400.3   0.96
+  recent_20      -0.0173        0.0012    0.922    0.080    578     601.4   0.96
+  recent_30      -0.0062        0.0004    0.728    0.274    726     728.3   1.00
+  exposure        0.0004        0.0031    0.966    0.036 
+  owned           0.0223        0.0401    0.846    0.156 
+
+Outcome direct_trump (window search: best window 3 days, p_search = 0.922)
+  treatment   slope (pp)  mean shifted  p_upper  p_lower   hits  expected  ratio
+  recent_1       -0.0088        0.0017    0.600    0.402     18      20.5   0.88
+  recent_3       -0.0018        0.0016    0.540    0.462     56      56.6   0.99
+  recent_5       -0.0196        0.0014    0.942    0.060     73      87.2   0.84
+  recent_10      -0.0170        0.0004    0.964    0.038    123     141.6   0.87
+  recent_20      -0.0233       -0.0009    1.000    0.002    180     210.1   0.86
+  recent_30      -0.0117       -0.0014    0.926    0.076    238     252.3   0.94
+  exposure       -0.0011        0.0008    1.000    0.002 
+  owned          -0.0084        0.0089    1.000    0.002 
+
+Exposure slopes are in pp per unit of log(1 + USD bought).
+finished

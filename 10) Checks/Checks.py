@@ -6,11 +6,14 @@ reports the Posted group's return per dollar against its shifted worlds, beside 
 result. Decisions in 0) Decisions.md; Part 3 settings and functions in
 9) Part3Returns/Part3Settings.py.
 
-    1  horizons        trading days 1-2, 1-5, 1-10, 1-20 after day 0
+    1  horizons        trading days 1-1, 1-2, ..., 1-10 and 1-20 after day 0, with a search
+                       p-value over 1-1 .. 1-10 (added 2026-11-10)
     2  before          trading days -5 to -1 before day 0
     3  short shifts    only the worlds shifted 30-90 days forward or backward
     4  return models   raw, market-adjusted, CAPM, FF3+MOM, FF5+MOM
     5  big purchases   without the five largest purchases by midpoint amount
+    6  relevance       labels from references with relevance >= 0.3 only (added 2026-11-10);
+                       the Part 2 counts under the same floor are reported beside it
 
 HOW TO RUN
     pip install pandas numpy openpyxl matplotlib
@@ -22,6 +25,7 @@ INPUTS
 
 OUTPUTS (in this folder)
     world_checks.csv    one row per world: n, amount, T and r per group for every specification
+    horizon_search.csv  the Posted group per horizon 1-1 .. 1-10 and the search p-value
     robustness.csv      one row per specification and group: real r, mean shifted r, delta r, p-values
     horizons.png        the Posted group's real and mean shifted return per dollar by horizon
     ChecksReport.txt    inputs read, checks of the checks, and the robustness table
@@ -42,7 +46,9 @@ P2 = S.P2
 AMOUNT = S.MAIN_AMOUNT
 GROUPS = ["posted", "all", "praised", "roasted"]
 MODELS = ["ar_raw", "ar_mkt", "ar_capm", "ar_ff3m", "ar_ff5m"]
-HORIZONS = [(1, 2), (1, 5), (1, 10), (1, 20)]
+HORIZONS = [(1, k) for k in range(1, 11)] + [(1, 20)]   # every horizon 1-1 .. 1-10, plus 1-20
+SEARCH_HORIZONS = [f"h1_{k}" for k in range(1, 11)]   # family for the search p-value (check 1)
+RELEVANCE_FLOOR = 0.3                    # check 6: references with relevance >= 0.3 only
 BEFORE = (-5, -1)
 SHORT_SHIFTS = (30, 90)                  # forward 30..90, backward L-90..L-30
 N_LARGEST = 5
@@ -97,12 +103,16 @@ def main():
     keep_all_models = set.intersection(*[S.sample_tickers(mats[c], tickers, tdays) for c in MODELS])
     p = p[p["ticker"].isin(keep_main)].reset_index(drop=True)
     posts, post_rows = P2.read_mentions()
+    if "relevance" not in posts.columns:
+        raise SystemExit(f"{P2.POSTS_XLSX.name}: no relevance column for check 6")
+    posts_rel = posts[posts["relevance"] >= RELEVANCE_FLOOR]
     worlds = P2.read_worlds()
 
     trow = pd.Index(tickers).get_indexer(p["ticker"])
     cums = {c: S.cumulative(m) for c, m in mats.items()}
     lab_tickers = sorted(set(p["ticker"]))
     pidx = S.post_index(posts, lab_tickers)
+    pidx_rel = S.post_index(posts_rel, lab_tickers)
     tid = pd.Index(lab_tickers).get_indexer(p["ticker"])
     amount = p[AMOUNT].to_numpy(float)
 
@@ -111,20 +121,23 @@ def main():
     largest = p.sort_values([AMOUNT, "trade_date", "ticker"], ascending=[False, True, True]).head(N_LARGEST)
     no_largest = ~p.index.isin(largest.index)
 
-    specs = {f"h{a}_{b}": (S.RETURN_COLUMN, (a, b), everyone) for a, b in HORIZONS}
-    specs["before_5_1"] = (S.RETURN_COLUMN, BEFORE, everyone)
+    specs = {f"h{a}_{b}": (S.RETURN_COLUMN, (a, b), everyone, "main") for a, b in HORIZONS}
+    specs["before_5_1"] = (S.RETURN_COLUMN, BEFORE, everyone, "main")
     for c in MODELS:
-        specs[f"model_{c}"] = (c, S.WINDOW, models_subset)
-    specs["no_largest_5"] = (S.RETURN_COLUMN, S.WINDOW, no_largest)
+        specs[f"model_{c}"] = (c, S.WINDOW, models_subset, "main")
+    specs["no_largest_5"] = (S.RETURN_COLUMN, S.WINDOW, no_largest, "main")
+    specs["relevance_30"] = (S.RETURN_COLUMN, S.WINDOW, everyone, "rel")
 
     recs, clipped_real = [], 0
     for _, w in worlds.iterrows():
         dates = P2.shift_dates(p["trade_date"], int(w["shift_days"]), w["shift_start"], int(w["L"]))
         i0 = S.day0_index(dates, tdays)
         day0, end = P2.windows(dates, tdays)
-        lab = S.labels(pidx, S.first_post(pidx, tid, day0, end))
+        labs = {"main": S.labels(pidx, S.first_post(pidx, tid, day0, end)),
+                "rel": S.labels(pidx_rel, S.first_post(pidx_rel, tid, day0, end))}
         rec = {"world": int(w["world"]), "shift_days": int(w["shift_days"])}
-        for spec, (col, win, subset) in specs.items():
+        for spec, (col, win, subset, labkey) in specs.items():
+            lab = labs[labkey]
             mar = window_sum_clipped(cums[col], trow, i0, win)
             if np.isnan(mar[subset]).any():
                 raise SystemExit(f"world {int(w['world'])}, {spec}: missing returns inside the sample")
@@ -155,6 +168,16 @@ def main():
     rob = pd.DataFrame(rows)
     rob.to_csv(HERE / "robustness.csv", index=False, float_format="%.8g")
 
+    # check 1: search p-value over horizons 1-1 .. 1-10 (Posted, two-sided), as Part 1's window search:
+    # the smallest p_two over the horizons, compared with the same smallest p_two in every world
+    search, p_search, best = horizon_search(ws)
+    search.to_csv(HERE / "horizon_search.csv", index=False, float_format="%.8g")
+    search_line = (f"Horizon search over 1-1 .. 1-10 (Posted, two-sided): best horizon {best} "
+                   f"(p_two {search.loc[search['spec'] == best, 'p_two'].iloc[0]:.3f}), p_search {p_search:.3f} ({len(ws)} worlds)")
+
+    # check 6: Part 2 counts with the relevance floor, on Part 2's own purchases and calendar
+    rel_lines, rel_ok = part2_counts_relevance(posts, posts_rel, worlds)
+
     # Part 2 main count under short shifts
     p2 = pd.read_csv(PART2_COUNTS)
     short2 = (p2["shift_days"] == 0) | p2["shift_days"].between(lo, hi) | p2["shift_days"].between(L - hi, L - lo)
@@ -170,7 +193,9 @@ def main():
     main_r = main_inf.query("group == 'posted' and amount == @AMOUNT")["r_real"].iloc[0]
     h10 = rob.query("spec == 'h1_10' and group == 'posted'").iloc[0]
     mk = rob.query("spec == 'model_ar_mkt' and group == 'posted'").iloc[0]
-    chk = [f"Horizon 1-10 reproduces Part 3 (Posted r real {h10['r_real']:.6%} vs {main_r:.6%}): "
+    chk = [rel_ok,
+           f"Check 6: {len(posts_rel):,} of {len(posts):,} mention rows have relevance >= {RELEVANCE_FLOOR}",
+           f"Horizon 1-10 reproduces Part 3 (Posted r real {h10['r_real']:.6%} vs {main_r:.6%}): "
            f"{'OK' if np.isclose(h10['r_real'], main_r) else 'MISMATCH'}",
            f"Short-shift worlds: {int(short3.sum()) - 1} shifted + real (shifts {lo}-{hi} and {L - hi}-{L - lo})",
            f"Check 4 sample: {int(models_subset.sum()):,} of {len(p):,} purchases with all five return columns; "
@@ -180,12 +205,13 @@ def main():
                                                     for r in largest.itertuples())]
     plot_horizons(rob)
 
-    names = {"h1_2": "1  horizon 1-2", "h1_5": "1  horizon 1-5", "h1_10": "   main (1-10)", "h1_20": "1  horizon 1-20",
+    names = {f"h1_{k}": f"1  horizon 1-{k}" for k in range(1, 10)}
+    names |= {"h1_10": "   main (1-10)", "h1_20": "1  horizon 1-20", "relevance_30": "6  relevance >= 0.3",
              "before_5_1": "2  days -5 to -1", "short_shifts": "3  short shifts", "model_ar_raw": "4  raw",
              "model_ar_mkt": "4  market-adj.*", "model_ar_capm": "4  CAPM", "model_ar_ff3m": "4  FF3+MOM",
              "model_ar_ff5m": "4  FF5+MOM", "no_largest_5": "5  without top 5"}
-    order = ["h1_10", "h1_2", "h1_5", "h1_20", "before_5_1", "short_shifts", "model_ar_raw", "model_ar_mkt",
-             "model_ar_capm", "model_ar_ff3m", "model_ar_ff5m", "no_largest_5"]
+    order = (["h1_10"] + [f"h1_{k}" for k in range(1, 10)] + ["h1_20", "before_5_1", "short_shifts", "model_ar_raw",
+             "model_ar_mkt", "model_ar_capm", "model_ar_ff3m", "model_ar_ff5m", "no_largest_5", "relevance_30"])
     lines = [f"Step 10, Checks | run {datetime.now():%Y-%m-%d %H:%M}", "", "Inputs",
              "  " + S.input_line(S.TRADES_XLSX, len(p)) + f" ({S.MERGED_SHEET}, Part 3 sample)",
              f"  {S.RETURNS_CSV.relative_to(REPO)}: columns {', '.join(MODELS)}; {len(zeroed)} reviewed days set to zero",
@@ -200,7 +226,7 @@ def main():
         r = rob.query("spec == @spec and group == 'posted'").iloc[0]
         lines.append(f"  {names[spec]:18s} {r['n_real']:5d} {r['r_real']:9.4%} {r['r_mean_shifted']:9.4%} {r['delta_r']:+9.4%} "
                      f"{r['dollar_excess']:+12,.0f} {r['p_two']:6.3f} {r['n_worlds']:6d}")
-    lines += ["  * on the check 4 sample", "", p2_line, "", "Other groups (p_two):",
+    lines += ["  * on the check 4 sample", "", search_line, "", p2_line, ""] + rel_lines + ["", "Other groups (p_two):",
               f"  {'check':18s} " + " ".join(f"{g:>20s}" for g in GROUPS[1:])]
     for spec in order:
         cells = []
@@ -210,6 +236,64 @@ def main():
         lines.append(f"  {names[spec]:18s} " + " ".join(cells))
     (HERE / "ChecksReport.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines))
+
+
+def p_two_all(x):
+    """Two-sided p-value of every world's value against all worlds (the real one included)."""
+    s = np.sort(x)
+    up = (len(s) - np.searchsorted(s, x, side="left")) / len(s)
+    lo = np.searchsorted(s, x, side="right") / len(s)
+    return np.minimum(1.0, 2 * np.minimum(up, lo))
+
+
+def horizon_search(ws):
+    real = ws["world"].to_numpy() == 0
+    ps, out = [], []
+    for spec in SEARCH_HORIZONS:
+        r = ws[f"{spec}|posted|r"].to_numpy(float)
+        p = p_two_all(r)
+        ps.append(p)
+        out.append({"spec": spec, "r_real": r[real][0], "r_mean_shifted": r[~real].mean(), "p_two": p[real][0]})
+    minp = np.vstack(ps).min(axis=0)
+    p_search = float((minp <= minp[real][0]).mean())
+    search = pd.DataFrame(out)
+    search["p_search"] = p_search
+    best = search.loc[search["p_two"].idxmin(), "spec"]
+    return search, p_search, best
+
+
+def part2_counts_relevance(posts, posts_rel, worlds):
+    """Part 2 purchase-hit counts with and without the relevance floor, in every world."""
+    purchases, _, _ = P2.read_purchases()
+    tdays, cdays = P2.trading_days(), P2.calendar_days()
+    tickers = sorted(set(purchases["ticker"]) | set(posts["ticker"]))
+    rows = pd.Index(tickers).get_indexer(purchases["ticker"])
+    names = [P2.MAIN_OUTCOME, P2.TALK_OUTCOME, "direct_neg50"]
+    cums = {}
+    for tag, src in (("all", posts), ("rel", posts_rel)):
+        for name in names:
+            m, _ = P2.count_matrix(P2.outcome_rows(src, name), tickers, cdays)
+            cums[f"{tag}|{name}"] = np.concatenate([np.zeros((len(tickers), 1)), np.cumsum(m, axis=1)], axis=1)
+    recs = []
+    for _, w in worlds.iterrows():
+        dates = P2.shift_dates(purchases["trade_date"], int(w["shift_days"]), w["shift_start"], int(w["L"]))
+        day0, end = P2.windows(dates, tdays)
+        rec = {"world": int(w["world"])}
+        for key, cum in cums.items():
+            rec[key] = int((P2.window_counts(cum, rows, day0, end, cdays) > 0).sum())
+        recs.append(rec)
+    c = pd.DataFrame(recs)
+    real, shifted = c[c["world"] == 0].iloc[0], c[c["world"] != 0]
+    p2 = pd.read_csv(PART2_COUNTS)
+    p2_real = p2.loc[p2["world"] == 0, f"{P2.MAIN_OUTCOME}|purchase_hits"].iloc[0]
+    ok = (f"Check 6 count without the floor reproduces Part 2 ({P2.MAIN_OUTCOME}: {real[f'all|{P2.MAIN_OUTCOME}']} vs "
+          f"{p2_real}): {'OK' if real[f'all|{P2.MAIN_OUTCOME}'] == p2_real else 'MISMATCH'}")
+    lines = [f"Part 2 counts with relevance >= {RELEVANCE_FLOOR} (purchase hits, {len(c)} worlds):"]
+    for name in names:
+        k = f"rel|{name}"
+        lines.append(f"  {name:14s} real {real[k]:4d}, expected {shifted[k].mean():6.1f}, "
+                     f"p_upper {(c[k] >= real[k]).mean():.3f}, p_lower {(c[k] <= real[k]).mean():.3f}")
+    return lines, ok
 
 
 def plot_horizons(rob):

@@ -31,7 +31,8 @@ Does a disclosed purchase of a company precede a post about that company more of
 - The same counts in every world of `6) CalendarShifts/worlds.csv` (world 0 real, 498 shifts from 30 to 527 days). Shifted purchase dates are calendar days; day 0 moves to the next trading day as in the real world.
 - p_upper = share of all 499 worlds with a count at least as large as the real one; p_lower the other direction. Effect size: real hits divided by the mean of the shifted worlds.
 - Amended 2026-11-09: the first run used every shift from 1 day (557 worlds). Shifts under 30 days are now left out, as the kokebok sets, because a purchase moved by a few days stays inside its own window (Step 6).
+- Amended 2026-11-10: the shift calendar is L = 558 (2025-01-20 to 2026-07-31, both end dates included), so every purchase day lies inside it: 499 shifts from 30 to 528 days, 500 worlds with the real one (Step 6).
 - Main test: Praised hits (direct, all accounts, sentiment ≥ 0.5). The other outcomes are reported in the same table and labelled as secondary.
 
 ## Limitations to state
-Text-only labels and the 331 filtered posts (more likely hostile, so they lower the Roasted count); the White House accounts are run by staff; the shift calendar has L = 557 (Step 6).
+Text-only labels and the 331 filtered posts (more likely hostile, so they lower the Roasted count); the White House accounts are run by staff; the shift calendar has L = 558 (Step 6; amended 2026-11-10, was 557).

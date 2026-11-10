@@ -14,7 +14,7 @@ which companies were bought, how many purchases fell on the same day and the gap
 purchase days; it breaks only the link between purchase dates and everything else.
 
 World 0 is the real world (shift 0). Worlds 1 .. L-2*MIN_SHIFT+1 use every shift from
-MIN_SHIFT to L-MIN_SHIFT once (30 to 527 days: 498 worlds), so the set of worlds is
+MIN_SHIFT to L-MIN_SHIFT once (30 to 528 days: 499 worlds), so the set of worlds is
 exhaustive, not drawn at random: a p-value is the share of all worlds (the real one
 included) whose statistic is at least as large as the real one.
 
@@ -52,9 +52,10 @@ TRADES_SHEET = "Trades"
 OUT_DIR = HERE
 
 SHIFT_START = "2025-01-20"   # inauguration; first day of the shift calendar (kokebok)
-L = 557                      # length of the shift calendar in calendar days (kokebok).
-                             # Days 0 .. L-1 = 2025-01-20 .. 2026-07-30. A purchase on day L
-                             # or later wraps around; ShiftsReport.txt counts them.
+L = 558                      # length of the shift calendar in calendar days: 2025-01-20 to
+                             # 2026-07-31, both end dates included (decided 2026-11-10; was 557,
+                             # which left the 44 purchases of 2026-07-31 on day L). Days 0 .. L-1.
+                             # A purchase on day L or later wraps around; ShiftsReport.txt counts them.
 MIN_SHIFT = 30               # smallest shift in either direction, in calendar days (kokebok)
 
 REQUIRED = {"Ticker": "object", "Transaction": "object", "Traded": "object"}

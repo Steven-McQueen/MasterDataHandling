@@ -1,6 +1,6 @@
-Part 1, EstimatePart1 | run 2026-11-10 12:52
+Part 1, EstimatePart1 | run 2026-11-10 14:31
 
-Input: 7) Part1Talk/1) BuildPanel/panel.csv.gz: 954,180 rows, modified 2026-11-10 12:50
+Input: 7) Part1Talk/1) BuildPanel/panel.csv.gz: 954,180 rows, modified 2026-11-10 14:30
 
 Main outcome: direct; main window: 10 days; LPM, ticker + day effects, SE clustered by ticker and day
 

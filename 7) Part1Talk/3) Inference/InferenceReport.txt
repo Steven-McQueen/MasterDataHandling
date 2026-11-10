@@ -1,53 +1,53 @@
-Part 1, ShiftedWorlds | run 2026-11-10 12:56
+Part 1, ShiftedWorlds | run 2026-11-10 14:35
 
 Inputs
-  7) Part1Talk/1) BuildPanel/panel.csv.gz: 954,180 rows, modified 2026-11-10 12:50
+  7) Part1Talk/1) BuildPanel/panel.csv.gz: 954,180 rows, modified 2026-11-10 14:30
   2) Trades/Trump_trades_2025_2026.xlsx: 18,818 rows, modified 2026-11-09 11:14 (purchases)
-  6) CalendarShifts/worlds.csv: 499 rows, modified 2026-11-10 11:51
+  6) CalendarShifts/worlds.csv: 500 rows, modified 2026-11-10 14:29
 
-Worlds: 499 (world 0 = real). p_upper = share with slope >= real (more talk after buying).
+Worlds: 500 (world 0 = real). p_upper = share with slope >= real (more talk after buying).
 
-Outcome direct (window search: best window 1 days, p_search = 0.878)
+Outcome direct (window search: best window 1 days, p_search = 0.880)
   treatment   slope (pp)  mean shifted  p_upper  p_lower   hits  expected  ratio
-  recent_1        0.0019        0.0012    0.485    0.517     41      43.3   0.95
-  recent_3       -0.0031        0.0014    0.561    0.441    118     120.2   0.98
-  recent_5       -0.0361        0.0015    0.952    0.050    161     186.1   0.86
-  recent_10      -0.0162        0.0007    0.830    0.172    285     306.6   0.93
-  recent_20      -0.0152        0.0007    0.914    0.088    445     466.1   0.95
-  recent_30      -0.0039       -0.0002    0.615    0.387    567     567.7   1.00
+  recent_1        0.0019        0.0009    0.482    0.520     41      43.3   0.95
+  recent_3       -0.0031        0.0011    0.536    0.466    118     120.0   0.98
+  recent_5       -0.0361        0.0013    0.956    0.046    161     186.0   0.87
+  recent_10      -0.0162        0.0005    0.826    0.176    285     306.4   0.93
+  recent_20      -0.0152        0.0006    0.912    0.090    445     466.3   0.95
+  recent_30      -0.0039       -0.0001    0.608    0.394    567     568.3   1.00
   exposure       -0.0000        0.0025    0.998    0.004 
-  owned           0.0083        0.0269    0.964    0.038 
+  owned           0.0083        0.0269    0.962    0.040 
 
-Outcome direct_brand (window search: best window 1 days, p_search = 0.918)
+Outcome direct_brand (window search: best window 1 days, p_search = 0.916)
   treatment   slope (pp)  mean shifted  p_upper  p_lower   hits  expected  ratio
-  recent_1       -0.0024        0.0019    0.533    0.469     50      52.7   0.95
-  recent_3       -0.0082        0.0023    0.643    0.359    140     145.4   0.96
-  recent_5       -0.0406        0.0026    0.966    0.036    195     224.7   0.87
-  recent_10      -0.0142        0.0018    0.806    0.196    344     368.8   0.93
-  recent_20      -0.0177        0.0016    0.936    0.066    527     557.9   0.94
-  recent_30      -0.0041        0.0004    0.657    0.345    670     677.4   0.99
+  recent_1       -0.0024        0.0015    0.516    0.486     50      52.6   0.95
+  recent_3       -0.0082        0.0021    0.634    0.368    140     145.2   0.96
+  recent_5       -0.0406        0.0025    0.964    0.038    195     224.6   0.87
+  recent_10      -0.0142        0.0016    0.822    0.180    344     368.6   0.93
+  recent_20      -0.0177        0.0014    0.938    0.064    527     558.1   0.94
+  recent_30      -0.0041        0.0005    0.660    0.342    670     678.3   0.99
   exposure        0.0004        0.0023    0.954    0.048 
-  owned           0.0110        0.0243    0.830    0.172 
+  owned           0.0110        0.0243    0.826    0.176 
 
-Outcome all_types (window search: best window 1 days, p_search = 0.828)
+Outcome all_types (window search: best window 1 days, p_search = 0.816)
   treatment   slope (pp)  mean shifted  p_upper  p_lower   hits  expected  ratio
-  recent_1        0.0120        0.0021    0.421    0.581     58      57.9   1.00
-  recent_3        0.0084        0.0022    0.435    0.567    162     159.5   1.02
-  recent_5       -0.0242        0.0024    0.814    0.188    228     245.7   0.93
-  recent_10      -0.0069        0.0016    0.643    0.359    386     400.5   0.96
-  recent_20      -0.0173        0.0014    0.926    0.076    578     601.2   0.96
-  recent_30      -0.0062        0.0003    0.717    0.285    726     727.4   1.00
-  exposure        0.0004        0.0031    0.970    0.032 
-  owned           0.0223        0.0401    0.852    0.150 
+  recent_1        0.0120        0.0017    0.398    0.604     58      57.9   1.00
+  recent_3        0.0084        0.0019    0.424    0.578    162     159.4   1.02
+  recent_5       -0.0242        0.0023    0.816    0.186    228     245.6   0.93
+  recent_10      -0.0069        0.0013    0.636    0.366    386     400.3   0.96
+  recent_20      -0.0173        0.0012    0.922    0.080    578     601.4   0.96
+  recent_30      -0.0062        0.0004    0.728    0.274    726     728.3   1.00
+  exposure        0.0004        0.0031    0.966    0.036 
+  owned           0.0223        0.0401    0.846    0.156 
 
-Outcome direct_trump (window search: best window 3 days, p_search = 0.920)
+Outcome direct_trump (window search: best window 3 days, p_search = 0.922)
   treatment   slope (pp)  mean shifted  p_upper  p_lower   hits  expected  ratio
-  recent_1       -0.0088        0.0019    0.601    0.401     18      20.5   0.88
-  recent_3       -0.0018        0.0017    0.533    0.469     56      56.6   0.99
-  recent_5       -0.0196        0.0016    0.946    0.056     73      87.3   0.84
-  recent_10      -0.0170        0.0006    0.974    0.028    123     141.8   0.87
-  recent_20      -0.0233       -0.0007    1.000    0.002    180     210.3   0.86
-  recent_30      -0.0117       -0.0016    0.928    0.074    238     251.9   0.94
+  recent_1       -0.0088        0.0017    0.600    0.402     18      20.5   0.88
+  recent_3       -0.0018        0.0016    0.540    0.462     56      56.6   0.99
+  recent_5       -0.0196        0.0014    0.942    0.060     73      87.2   0.84
+  recent_10      -0.0170        0.0004    0.964    0.038    123     141.6   0.87
+  recent_20      -0.0233       -0.0009    1.000    0.002    180     210.1   0.86
+  recent_30      -0.0117       -0.0014    0.926    0.076    238     252.3   0.94
   exposure       -0.0011        0.0008    1.000    0.002 
   owned          -0.0084        0.0089    1.000    0.002 
 
