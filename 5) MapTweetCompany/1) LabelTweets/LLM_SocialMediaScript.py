@@ -116,7 +116,9 @@ def make_client():
         sys.exit("AZURE_OPENAI_API_KEY is empty in .env; no calls made")
     # Azure AI Foundry v1 API: the resource base URL + the deployment name as model, no api_version.
     # max_retries=0: the back-off below is the only retry, so attempts are counted once.
-    client = OpenAI(base_url=os.environ["AZURE_OPENAI_BASE_URL"], api_key=os.environ["AZURE_OPENAI_API_KEY"], max_retries=0)
+    # timeout per request: a call takes a few seconds; a hung connection is retried after 60 s instead of the SDK default of 600 s
+    client = OpenAI(base_url=os.environ["AZURE_OPENAI_BASE_URL"], api_key=os.environ["AZURE_OPENAI_API_KEY"], max_retries=0,
+                    timeout=float(os.environ.get("LLM_TIMEOUT_SECONDS", 60)))
     deployment = os.environ["AZURE_DEPLOYMENT_STANDARD"]
     print("resource:", os.environ["AZURE_OPENAI_BASE_URL"], "| deployment:", deployment)
     return client, deployment
