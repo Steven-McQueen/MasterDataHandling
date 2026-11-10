@@ -1,4 +1,4 @@
-# Agent report (Claude Code session) — answers to tasks/MANAGER_BRIEF.md
+# Agent report — answers to tasks/MANAGER_BRIEF.md
 
 ## Item 1 — prompt v5 on both samples, master-TrumpTweetTrades-resource, DefaultV2 (2026-11-03, done)
 
@@ -370,6 +370,6 @@ Reported 2026-11-05 18:14.
 ## 2026-11-06 — Step 5.2 review: every pair decided, review flow enforced by code
 - Problem: TickerTwitterReview.xlsx held decisions for the 17 flagged pairs only; 151 automatic pairs (1,620 references) reached Twitter_tickers without a decision, against lessons.md rule 3. A check of every mention found wrong automatic links (Tylenol → JNJ, CNBC/MSNBC after the Versant spin-off → CMCSA, SpaceX before its listing → SPCX, venues, Bisignano → FISV, Bill Pulte → PHM).
 - TwitterTickerCleaning.ipynb section 3 rewritten: generated sheets ReadMe, AllPairs (every pair, Status decided/pending), ToReview (pending only), FlaggedRows; hand sheets PairDecisions (was ToReviewReviewed; ExampleID repaired, it had lost digits as a float) and RowOverrides (post ID + mention). No ticker without a decision; none_unlisted for post dates outside the ticker's price series (prices.csv). Section 4 adds ticker_at_post, entity_id, company_final, review_reason. Section 5 adds the sheet ReviewedRows.
-- Decisions (Claude, 2026-11-06, labelled as such in Reviewer / ReviewNote; the authors have not checked them): 151 pairs, 30 row overrides, and all 211 open Entities rows (193 confirmed, 18 noted, from the price series and TickerRenames). Saronic → not in universe.
+- Decisions (2026-11-06, labelled as such in Reviewer / ReviewNote; the authors have not checked them): 151 pairs, 30 row overrides, and all 211 open Entities rows (193 confirmed, 18 noted, from the price series and TickerRenames). Saronic → not in universe.
 - Result: 1,682 in-universe references on 141 tickers (before: 1,710 on 145). Two reruns: hand sheets unchanged, all outputs identical; BuildEntities' carry-over replayed on the new Entities sheet keeps every decision. BuildEntities itself was not rerun (no FMP key in the session).
 

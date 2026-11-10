@@ -1,7 +1,7 @@
 SEQ: 4
 UPDATED: 2026-11-04 00:05 Oslo (R4 added; SEQ unchanged)
 
-# Manager brief for the Claude Code session
+# Manager brief for the agent session
 
 ## Protocol (read first; agreed with Andreas 2026-11-03)
 P1. This file is the manager's channel to you; tasks/AGENT_REPORT.md is yours to the manager.
@@ -56,8 +56,8 @@ Report after F.0 (entities with events, C.4 changes) and stop for the manager's 
 then after F.3 with the full ToReview for the review agents. Do not export on this SEQ.
 ---
 
-Role split: Andreas decides (CEO). This file is written by the coordinating Claude session (manager)
-after reading tasks/todo.md, LLM_Prompt.md v3, SocialMedia.db and the Foundry portal. You (Claude Code)
+Role split: Andreas decides (CEO). This file is written by the coordinating session (manager)
+after reading tasks/todo.md, LLM_Prompt.md v3, SocialMedia.db and the Foundry portal. You (the agent)
 execute. When you finish a numbered item, append a short entry to tasks/AGENT_REPORT.md
 (what you did, numbers, anything you want decided) and stop at the next gate. Do not touch
 items marked CEO until Andreas confirms them in chat.
