@@ -1,10 +1,10 @@
-Part 3, Returns | run 2026-11-09 13:13
+Part 3, Returns | run 2026-11-10 12:51
 
 Inputs
-  2) Trades/Trump_trades_2025_2026.xlsx: 17,724 rows, modified 2026-11-09 12:21 (PurchasesMerged)
-  3) Prices/2) ComputeReturns/returns_table_presample.csv: 630,470 rows, modified 2026-11-09 12:22 (column ar_mkt)
-  3) Prices/3) ReviewPrices/PricesReview.xlsx: 10 rows, modified 2026-11-09 12:21 (ExtremeMoves, days marked wrong)
-  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,468 rows, modified 2026-11-09 12:21
+  2) Trades/Trump_trades_2025_2026.xlsx: 17,724 rows, modified 2026-11-09 11:14 (PurchasesMerged)
+  3) Prices/2) ComputeReturns/returns_table_presample.csv: 630,470 rows, modified 2026-11-10 12:48 (column ar_mkt)
+  3) Prices/3) ReviewPrices/PricesReview.xlsx: 10 rows, modified 2026-11-09 11:14 (ExtremeMoves, days marked wrong)
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,468 rows, modified 2026-11-10 12:48
 
 Purchases: 17,724 company-days on 1,594 tickers, 2025-01-23 to 2026-07-31
   window: trading days 1-10 after day 0; day 0 moved forward for 4 purchases
@@ -18,15 +18,15 @@ Part 3 sample: tickers with a return on every trading day 2025-01-21 to 2026-08-
   left-out purchases with no return day in the window: 0
 
 Labels (real world, all purchases / in the sample):
-  posted      371 /    370
-  praised     132 /    131
-  roasted      91 /     91
-  neutral     148 /    148
-  no_post  17,353 / 16,865
+  posted      373 /    369
+  praised     133 /    131
+  roasted      93 /     91
+  neutral     147 /    147
+  no_post  17,351 / 16,866
 Check against Part 2 (8) Part2Timing/1) Hits/purchase_hits.csv, priced purchases, 17,724 matched):
-  Posted here 371 vs Part 2 direct_any hits 371 -> OK
-  Praised (first post) 132; Part 2 direct_pos50 hits (any post) 176
-  Roasted (first post) 91; Part 2 direct_neg50 hits (any post) 123
+  Posted here 373 vs Part 2 direct_any hits 373 -> OK
+  Praised (first post) 133; Part 2 direct_pos50 hits (any post) 177
+  Roasted (first post) 93; Part 2 direct_neg50 hits (any post) 125
   followed by both a Praised and a Roasted post (first one decides): 17
 
 Hand recount of five returns (four random purchases in the sample, one Posted):
