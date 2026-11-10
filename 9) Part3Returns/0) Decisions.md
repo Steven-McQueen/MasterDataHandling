@@ -8,8 +8,8 @@ Did the purchases earn more, after adjusting for the market, than the same purch
 ## Unit and sample
 - One purchase = one company bought on one day: `2) Trades/Trump_trades_2025_2026.xlsx`, sheet `PurchasesMerged` (17,724 company-days). The 21 unpriceable purchases in `PurchasesLeftOut` stay in Part 2 and are left out of Part 3. [Step 2.6, open decision 2]
 - **Same purchases in every world.** Part 3 keeps only tickers with a market-adjusted return on every trading day from 2025-01-21 to 2026-08-28, the 20th trading day after the last purchase (the longest horizon, check 1). A shifted purchase can land anywhere in the sample, so a ticker with a shorter series would drop out of some worlds and not others, and the worlds would no longer hold the same purchases and amounts. We report how many purchases and what share of the amount the rule excludes, and the real-world return of the excluded purchases.
-- **Days removed in the price review** (`ReturnsReport_presample.txt`) count as a market-adjusted return of zero on that day, in the real world and in every shifted world. The full-series rule is applied after this.
-- Amounts: low, mid and high end of the disclosed range (`amount_low`, `amount_mid`, `amount_high`). Every result is run three times; mid is the main one. The highest range in the table ends at USD 25 million, so every range has an upper end.
+- **Days marked wrong in the price review** (`3) Prices/3) ReviewPrices/PricesReview.xlsx`, sheet `ExtremeMoves`, Decision = wrong; 10 days, of which Step 3 removed 5 and 5 were blank already) count as a market-adjusted return of zero on that day, in the real world and in every shifted world. The full-series rule is applied after this.
+- Amounts: the midpoint of the disclosed range (`amount_mid`). Amended 2026-11-09: the first run also reported the low and high ends; the authors decided to use the midpoint only, as the kokebok's "midpoint for value ranges". The highest range in the table ends at USD 25 million, so every range has a midpoint.
 
 ## Return of one purchase
 - Day 0 is the trade date, or the next trading day if the trade date was not one; the same rule as Part 2. Trading days are the dates of `3) Prices/2) ComputeReturns/factors_daily_presample.csv`. [Step 8.1]
@@ -39,10 +39,12 @@ Did the purchases earn more, after adjusting for the market, than the same purch
 - **Dollar excess:** Δr × the real amount of the group.
 - **Contributors:** a Posted purchase's contribution is its amount × (its MAR minus the mean r of the shifted Posted groups). The contributions add up to the Posted group's dollar excess. The ten largest are reported by name.
 
-## Still open
-- Neutral posts: a purchase whose first post in the window is neither Praised nor Roasted is Posted but in neither sub-group.
-- Whether to report the Posted group's dollar total T next to r, and direct tests of the gaps r(Praised) − r(Roasted) and r(Posted) − r(No post) against the same gaps in every world.
-- The smallest shift (Step 6): every shift from 1 day, or a 30-day minimum as in the kokebok.
+## Added after the first results (2026-11-09)
+These were open when the decisions above were fixed and were settled after the first Part 3 run; the main statistic and comparison above are unchanged.
+- **Direct tests of the group gaps:** r(Praised) − r(Roasted) and r(Posted) − r(No post), each against the same gap in every world (`GAPS`), with the same two-sided p-value.
+- **The Posted group's dollar total T** is tested beside its return per dollar, because more dollars ahead of posts would not show in r.
+- **Neutral posts** stay inside Posted: a purchase whose first post in the window is neither Praised nor Roasted is Posted and in neither sub-group.
+- **Smallest shift:** 30 days (Step 6).
 
 ## Limitations to state
 Holding period assumed at ten trading days (which sale closes which purchase is unknown); amounts known only as ranges; the 21 unpriceable purchases and the tickers without a full series are left out; daily data cannot separate a post from the news that prompted it; the accounts are discretionary, so the tests compare the account's trading calendar with the posts.
