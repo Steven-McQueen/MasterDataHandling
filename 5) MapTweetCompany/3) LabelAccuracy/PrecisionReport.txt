@@ -1,0 +1,31 @@
+Step 5.3.1, ScorePrecision | run 2026-11-10 21:26
+
+Rows: 200 post-company rows (seed 20261110); types: direct 161, brand 24, executive 15
+Corrections on the authors' word: Filip row 73 -> agree; Filip row 134 -> disagree
+
+Before discussion
+  Filip    agree 194, disagree 6, uncertain 0
+  Andreas  agree 190, disagree 8, uncertain 2
+  both answered agree / disagree: 198 rows; same answer 192 (97.0%); Cohen's kappa 0.56
+  both agree 188, both disagree 4, one disagrees 6, one or both uncertain 2
+  (kappa is low next to the percent because almost every answer is agree)
+
+After discussion (joint answer; uncertain rows left out of the share)
+  type        rows  agree  disagree  uncertain  share right   Wilson 95 %
+  all          200    191         8          1        96.0%   92.3% to 97.9%
+  direct       161    157         4          0        97.5%   93.8% to 99.0%
+  brand         24     23         0          1       100.0%   85.7% to 100.0%
+  executive     15     11         4          0        73.3%   48.0% to 89.1%
+
+Rows that are not agree after discussion
+  row   8 | executive | Tesla, Inc. TSLA | LLM positive | joint disagree | We handled this in the same way, this post is clearly highlighting Elons role in DOGE, not Tesla. 
+  row  38 | direct    | Warner Bros. Discovery, Inc. WBD | LLM positive | joint disagree | 
+  row  60 | brand     | Apple Inc. AAPL | LLM negative | joint uncertain | We both concluded that this was without context: not possible to interpret
+  row  77 | executive | Tesla, Inc. TSLA | LLM positive | joint disagree | Same as row 8: the post is about Elon in his DOGE / government role, not Tesla (joint answer filled in on Filip's word, 2026-11-10).
+  row 105 | direct    | Fox Corporation FOXA | LLM negative | joint disagree | 
+  row 125 | direct    | Skydance Corporation SKYD | LLM negative | joint disagree | Weighted too much on 60 minutes, whilst the critique was on the message, not the messenger (clooney camp) 
+  row 134 | direct    | Tesla, Inc. TSLA | LLM negative | joint disagree | We both disagreed here. 
+  row 155 | executive | Tesla, Inc. TSLA | LLM negative | joint disagree | Same as row 8: about Elon, not Tesla (joint answer filled in on Filip's word, 2026-11-10).
+  row 188 | executive | Tesla, Inc. TSLA | LLM positive | joint disagree | Same as row 8: about Elon, not Tesla (joint answer filled in on Filip's word, 2026-11-10).
+
+Written: precision_results.csv, precision_summary.csv, PrecisionReport.txt
