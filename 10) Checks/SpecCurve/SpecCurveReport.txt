@@ -1,0 +1,45 @@
+Step 10 check 8, SpecCurve | run 2026-11-11 17:39
+
+Inputs
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 1,694 rows, modified 2026-11-11 13:16 (in-universe mention rows)
+  purchases: 17,745; of the media companies: 138
+  worlds: 500 (499 shifted and the real one)
+
+Grid: 1,512 specifications = praised 648, any 216, roasted 648
+
+Checks: this script against Part 2 (window 1-10, no floor, media in) and Checks.py
+  direct_any      real  368 vs Part 2  368; all 500 worlds equal: OK
+  direct_pos50    real  164 vs Part 2  164; all 500 worlds equal: OK
+  direct_neg50    real  124 vs Part 2  124; all 500 worlds equal: OK
+  direct_pos30    real  165 vs Part 2  165; all 500 worlds equal: OK
+  direct_pos70    real   66 vs Part 2   66; all 500 worlds equal: OK
+  direct_neg30    real  124 vs Part 2  124; all 500 worlds equal: OK
+  direct_neg70    real  102 vs Part 2  102; all 500 worlds equal: OK
+  brand_pos50     real  184 vs Part 2  184; all 500 worlds equal: OK
+  alltypes_pos50  real  191 vs Part 2  191; all 500 worlds equal: OK
+  alltypes_neg50  real  136 vs Part 2  136; all 500 worlds equal: OK
+  trump_pos50     real   63 vs Part 2   63; all 500 worlds equal: OK
+  trump_neg50     real  107 vs Part 2  107; all 500 worlds equal: OK
+  check 6, relevance 0.3 real  159; all worlds equal to Checks.py: OK
+  check 7, without media real   47; all worlds equal to Checks.py: OK
+  all checks: OK
+
+Main test: outcome praised, types direct, accounts all, cutoff 0.5, relevance 0.0, window 10, media in
+   real  expected  ratio  p_upper  p_lower
+    164   195.521  0.839    0.982    0.024
+
+Per outcome (joint p = share of all worlds with a statistic at least as extreme as the real world's)
+  praised: 648 specifications (0 thin)
+    ratio above 1 in 203, below 1 in 445; median ratio 0.939 (10th to 90th percentile 0.79 to 1.15); joint p this high 0.752, this low 0.250
+    above chance in 2 (shifted worlds: 29.7 on average), joint p 0.496
+    below chance in 82 (shifted worlds: 28.4 on average), joint p 0.108
+  any: 216 specifications (0 thin)
+    ratio above 1 in 107, below 1 in 109; median ratio 0.998 (10th to 90th percentile 0.93 to 1.07); joint p this high 0.534, this low 0.468
+    above chance in 0 (shifted worlds: 10.2 on average), joint p 1.000
+    below chance in 0 (shifted worlds: 10.1 on average), joint p 1.000
+  roasted: 648 specifications (92 thin)
+    ratio above 1 in 436, below 1 in 197; median ratio 1.081 (10th to 90th percentile 0.79 to 1.28); joint p this high 0.208, this low 0.794
+    above chance in 54 (shifted worlds: 25.2 on average), joint p 0.154
+    below chance in 20 (shifted worlds: 23.0 on average), joint p 0.262
+
+Written: SpecCurve/spec_curve.xlsx, spec_curve.csv, spec_curve_joint.csv, spec_curve.png, SpecCurveReport.txt
