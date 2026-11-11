@@ -126,6 +126,8 @@ master/                                          # one folder per stage, read in
 │   └── Checks.py                                # horizons, days before, short shifts, return models, without the five largest
 │   └── robustness.csv · world_checks.csv · horizon_search.csv · horizons.png · ChecksReport.txt
 │   └── part2_check_counts.csv                   # Part 2 purchase hits per world under checks 6 (relevance) and 7 (without media)
+│   └── SpecCurve.py                             # check 8: the Part 2 count under 1,512 specifications, in every world
+│   └── SpecCurve/                               # spec_curve.xlsx (ReadMe, Summary, Specifications, Grid) · spec_curve.csv · spec_curve_joint.csv · spec_curve.png · SpecCurveReport.txt
 ├── 11) Exhibits/                                # Step 11 = kokebok step 12 (Exhibits): every table and figure for the thesis
 │   └── 0) Decisions.md                          # the list of exhibits and their format
 │   └── Exhibits.py                              # reads the outputs of Steps 2-10; estimates nothing again
