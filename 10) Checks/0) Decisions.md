@@ -20,5 +20,9 @@ Both were added after the Part 3 and check results of 2026-11-09 were seen; they
 - **Check 1, search p-value.** Because one of ten horizons can look significant by chance, the smallest two-sided p of the Posted group over 1–1 … 1–10 is compared with the same smallest p in every world (as Part 1's window search). Written to `horizon_search.csv` and the report.
 - **Check 6, relevance floor.** Labels from direct references with relevance ≥ 0.3 only (the main test has no floor; README open decision 8). The Part 3 test is rerun with these labels, and Part 2's Praised, any-mention and Roasted purchase hits are counted with the same floor in every world. A check that the count without the floor reproduces Part 2 is in the report.
 
+## Added on 2026-11-11, after the main results
+Added after the results on the v6 labels were seen; reported as a check, not as the main test.
+- **Check 7, without media companies.** 62 percent of the real Roasted purchase hits are purchases of media companies, which the accounts attack almost daily. Check 7 removes the purchases of the seven owners of a national US news network or newspaper, by their latest symbol: FOXA (Fox News), NWSA (The Wall Street Journal, New York Post), WBD (CNN), CMCSA (NBC; MSNBC and CNBC until the 2026 spin-off), DIS (ABC), SKYD (CBS) and VSNT (MSNBC and CNBC since). The list is fixed by ownership of a news outlet, not by how often a company is mentioned. The Part 3 test is rerun without these purchases in every world, and Part 2's Praised, any-mention and Roasted purchase hits are counted without them in every world.
+
 ## Output
 One robustness table (`robustness.csv`, `ChecksReport.txt`) with the Posted group's return per dollar, the mean of its shifted worlds, Δr and the p-values under each check, beside the main result, and the horizon profile (`horizons.png`).

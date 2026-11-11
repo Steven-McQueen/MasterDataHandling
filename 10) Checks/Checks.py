@@ -14,6 +14,8 @@ result. Decisions in 0) Decisions.md; Part 3 settings and functions in
     5  big purchases   without the five largest purchases by midpoint amount
     6  relevance       labels from references with relevance >= 0.3 only (added 2026-11-10);
                        the Part 2 counts under the same floor are reported beside it
+    7  media           without the purchases of the seven owners of a national US news outlet
+                       (MEDIA below; added 2026-11-11); the Part 2 counts without them beside it
 
 HOW TO RUN
     pip install pandas numpy openpyxl matplotlib
@@ -27,6 +29,7 @@ OUTPUTS (in this folder)
     world_checks.csv    one row per world: n, amount, T and r per group for every specification
     horizon_search.csv  the Posted group per horizon 1-1 .. 1-10 and the search p-value
     robustness.csv      one row per specification and group: real r, mean shifted r, delta r, p-values
+    part2_check_counts.csv  Part 2 purchase hits per world: all posts, relevance >= 0.3 (check 6), without media (check 7)
     horizons.png        the Posted group's real and mean shifted return per dollar by horizon
     ChecksReport.txt    inputs read, checks of the checks, and the robustness table
 """
@@ -52,6 +55,9 @@ RELEVANCE_FLOOR = 0.3                    # check 6: references with relevance >=
 BEFORE = (-5, -1)
 SHORT_SHIFTS = (30, 90)                  # forward 30..90, backward L-90..L-30
 N_LARGEST = 5
+# check 7: owners of a national US news network or newspaper (Fox News; WSJ and New York Post; CNN; NBC and,
+# until the 2026 spin-off, MSNBC and CNBC; ABC; CBS; MSNBC and CNBC since), by the latest symbol
+MEDIA = ["FOXA", "NWSA", "WBD", "CMCSA", "DIS", "SKYD", "VSNT"]
 PART2_COUNTS = REPO / "8) Part2Timing" / "2) Inference" / "world_counts.csv"
 PART3_STATS = REPO / "9) Part3Returns" / "2) Inference" / "world_stats.csv"
 
@@ -127,6 +133,8 @@ def main():
         specs[f"model_{c}"] = (c, S.WINDOW, models_subset, "main")
     specs["no_largest_5"] = (S.RETURN_COLUMN, S.WINDOW, no_largest, "main")
     specs["relevance_30"] = (S.RETURN_COLUMN, S.WINDOW, everyone, "rel")
+    no_media = ~p["ticker"].isin(MEDIA).to_numpy()
+    specs["no_media"] = (S.RETURN_COLUMN, S.WINDOW, no_media, "main")
 
     recs, clipped_real = [], 0
     for _, w in worlds.iterrows():
@@ -195,6 +203,7 @@ def main():
     mk = rob.query("spec == 'model_ar_mkt' and group == 'posted'").iloc[0]
     chk = [rel_ok,
            f"Check 6: {len(posts_rel):,} of {len(posts):,} mention rows have relevance >= {RELEVANCE_FLOOR}",
+           f"Check 7: {int((~no_media).sum()):,} of {len(p):,} sample purchases are of media companies ({', '.join(MEDIA)})",
            f"Horizon 1-10 reproduces Part 3 (Posted r real {h10['r_real']:.6%} vs {main_r:.6%}): "
            f"{'OK' if np.isclose(h10['r_real'], main_r) else 'MISMATCH'}",
            f"Short-shift worlds: {int(short3.sum()) - 1} shifted + real (shifts {lo}-{hi} and {L - hi}-{L - lo})",
@@ -209,9 +218,10 @@ def main():
     names |= {"h1_10": "   main (1-10)", "h1_20": "1  horizon 1-20", "relevance_30": "6  relevance >= 0.3",
              "before_5_1": "2  days -5 to -1", "short_shifts": "3  short shifts", "model_ar_raw": "4  raw",
              "model_ar_mkt": "4  market-adj.*", "model_ar_capm": "4  CAPM", "model_ar_ff3m": "4  FF3+MOM",
-             "model_ar_ff5m": "4  FF5+MOM", "no_largest_5": "5  without top 5"}
+             "model_ar_ff5m": "4  FF5+MOM", "no_largest_5": "5  without top 5", "no_media": "7  without media"}
     order = (["h1_10"] + [f"h1_{k}" for k in range(1, 10)] + ["h1_20", "before_5_1", "short_shifts", "model_ar_raw",
-             "model_ar_mkt", "model_ar_capm", "model_ar_ff3m", "model_ar_ff5m", "no_largest_5", "relevance_30"])
+             "model_ar_mkt", "model_ar_capm", "model_ar_ff3m", "model_ar_ff5m", "no_largest_5", "relevance_30",
+             "no_media"])
     lines = [f"Step 10, Checks | run {datetime.now():%Y-%m-%d %H:%M}", "", "Inputs",
              "  " + S.input_line(S.TRADES_XLSX, len(p)) + f" ({S.MERGED_SHEET}, Part 3 sample)",
              f"  {S.RETURNS_CSV.relative_to(REPO)}: columns {', '.join(MODELS)}; {len(zeroed)} reviewed days set to zero",
@@ -263,8 +273,10 @@ def horizon_search(ws):
 
 
 def part2_counts_relevance(posts, posts_rel, worlds):
-    """Part 2 purchase-hit counts with and without the relevance floor, in every world."""
+    """Part 2 purchase-hit counts with and without the relevance floor, and without the media
+    companies (check 7), in every world."""
     purchases, _, _ = P2.read_purchases()
+    no_media = ~purchases["ticker"].isin(MEDIA).to_numpy()
     tdays, cdays = P2.trading_days(), P2.calendar_days()
     tickers = sorted(set(purchases["ticker"]) | set(posts["ticker"]))
     rows = pd.Index(tickers).get_indexer(purchases["ticker"])
@@ -280,7 +292,10 @@ def part2_counts_relevance(posts, posts_rel, worlds):
         day0, end = P2.windows(dates, tdays)
         rec = {"world": int(w["world"])}
         for key, cum in cums.items():
-            rec[key] = int((P2.window_counts(cum, rows, day0, end, cdays) > 0).sum())
+            hit = P2.window_counts(cum, rows, day0, end, cdays) > 0
+            rec[key] = int(hit.sum())
+            if key.startswith("all|"):
+                rec["nomedia|" + key[4:]] = int((hit & no_media).sum())
         recs.append(rec)
     c = pd.DataFrame(recs)
     real, shifted = c[c["world"] == 0].iloc[0], c[c["world"] != 0]
@@ -293,6 +308,13 @@ def part2_counts_relevance(posts, posts_rel, worlds):
         k = f"rel|{name}"
         lines.append(f"  {name:14s} real {real[k]:4d}, expected {shifted[k].mean():6.1f}, "
                      f"p_upper {(c[k] >= real[k]).mean():.3f}, p_lower {(c[k] <= real[k]).mean():.3f}")
+    lines += ["", f"Part 2 counts without the media companies (check 7; {int((~no_media).sum()):,} of {len(purchases):,} "
+              f"purchases removed, purchase hits, {len(c)} worlds):"]
+    for name in names:
+        k = f"nomedia|{name}"
+        lines.append(f"  {name:14s} real {real[k]:4d}, expected {shifted[k].mean():6.1f}, "
+                     f"p_upper {(c[k] >= real[k]).mean():.3f}, p_lower {(c[k] <= real[k]).mean():.3f}")
+    c.to_csv(HERE / "part2_check_counts.csv", index=False)
     return lines, ok
 
 
