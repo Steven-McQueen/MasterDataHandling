@@ -49,7 +49,6 @@ master/                                          # one folder per stage, read in
 │   │   └── PricesReview.ipynb                   # final trades vs price symbols, integrity, spans vs entity events, extreme moves, ELME payouts
 │   │   └── PricesReview.xlsx                    # ExtremeMoves + ExtremeMovesNotes (hand review, Decision = genuine / wrong, read back by step 2) · Summary · Universe · SupersededSymbols · … · Unreviewed20to50 · ELME · Review20to50InWindow
 │   │   └── PricesReview2024.xlsx                # ExtremeMoves2024: pre-sample days above ±50% (Decision read back by step 2, pre-sample only) · Notes
-│   │   └── PricesReview_backup_2026-11-06.xlsx  # untouched copy of PricesReview.xlsx before the rows of 2026-11-06 were added
 │   └── RunPrices.py                             # runs step 1, then step 2, with the same Python on Windows or macOS; writes RunLog.txt
 │   └── RunLog.txt                               # output of the last RunPrices.py runs
 ├── 4) CompanyDB/                                # Step 4 = kokebok step 4 — the ticker universe for the join (input: 2) Trades, sheet Trades)
@@ -83,8 +82,6 @@ master/                                          # one folder per stage, read in
 │       └── V5V6Report.txt · v5v6_references.csv · v5v6_precision.csv
 │       └── ResultsV5V6.py                       # results of Parts 1-3 and the checks under v5 and v6, side by side
 │       └── ResultsV5V6.txt · results_v5v6.csv
-│       └── DrawRecodeV6.py                      # rows to code again for v6 (drawn, not coded: decided 2026-11-11)
-│       └── RecodeV6_Filip.xlsx · RecodeV6_Andreas.xlsx · recode_v6_key.csv · RecodeV6Report.txt
 ├── 6) CalendarShifts/                          # Step 6 = kokebok step 6: the shifted worlds
 │   └── CalendarShifts.py                        # settings (start 2025-01-20, L = 558, MIN_SHIFT = 30), shift formula, checks
 │   └── worlds.csv                               # OUTPUT: world, shift_days, shift_start, L (500 worlds, world 0 = real)
