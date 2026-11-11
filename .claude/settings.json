@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "WebFetch(domain:apidirect.io)",
-      "WebFetch(domain:docs.scrapecreators.com)",
-      "PowerShell(Get-Content \"C:\\\\Users\\\\andre\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-andre-Downloads-MasterDataHandling-MasterDataHandling\\\\38fcc881-519f-428e-8785-c4e222820528\\\\tasks\\\\bkci00a6o.output\" | Select-Object -Last 15; \\(Get-Content \"C:\\\\Users\\\\andre\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-andre-Downloads-MasterDataHandling-MasterDataHandling\\\\38fcc881-519f-428e-8785-c4e222820528\\\\tasks\\\\bkci00a6o.output\" | Measure-Object -Line\\).Lines; Test-Path \"0\\) Fetch data/WhiteHouse_TruthSocial.json\")"
-    ]
-  }
-}
