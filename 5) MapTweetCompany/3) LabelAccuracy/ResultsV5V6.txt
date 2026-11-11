@@ -1,8 +1,8 @@
-Step 5.3.3, ResultsV5V6 | run 2026-11-11 00:38
+Step 5.3.3, ResultsV5V6 | run 2026-11-11 13:05
 
-v5: pipeline copy masterdatahandling
-v6: pipeline copy prelim
-note: v5 = the results on main (run 3, 2026-11-10); v6 = Steps 7-11 run 2026-11-11 on the v6 labels with a preliminary Step 5.2 (96 new company spellings pending, counted outside the universe). Settings unchanged: L = 558, 500 worlds.
+v5: pipeline copy v5
+v6: pipeline copy masterdatahandling
+note: v5 = the results of commit 2131a01 (run 3, 2026-11-10); v6 = Steps 7-11 run 2026-11-11 on the v6 labels and the v6 Step 5.2. Settings unchanged: L = 558, 500 worlds.
 
 part       row                                           real v5    real v6   shift v5   shift v6  p_up v5  p_up v6  p_lo v5  p_lo v6   p2 v5   p2 v6
 Part 1     direct, recent_5                              161.000    158.000    186.044    184.994    0.956    0.964    0.046    0.038                

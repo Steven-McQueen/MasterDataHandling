@@ -1,24 +1,24 @@
-Part 1, EstimatePart1 | run 2026-11-10 14:31
+Part 1, EstimatePart1 | run 2026-11-11 13:00
 
-Input: 7) Part1Talk/1) BuildPanel/panel.csv.gz: 954,180 rows, modified 2026-11-10 14:30
+Input: 7) Part1Talk/1) BuildPanel/panel.csv.gz: 954,180 rows, modified 2026-11-11 12:59
 
 Main outcome: direct; main window: 10 days; LPM, ticker + day effects, SE clustered by ticker and day
 
 treatment     effect (pp)   se (pp)       p  baseline (%)   ratio
-recent_1           0.0019    0.0412   0.962        0.0964    1.02
-recent_3          -0.0031    0.0306   0.918        0.0914    0.97
-recent_5          -0.0361    0.0213   0.090        0.0895    0.60
-recent_10         -0.0162    0.0195   0.404        0.0809    0.80
-recent_20         -0.0152    0.0140   0.277        0.0692    0.78
-recent_30         -0.0039    0.0130   0.767        0.0578    0.93
+recent_1           0.0033    0.0364   0.928        0.0965    1.03
+recent_3          -0.0044    0.0289   0.878        0.0917    0.95
+recent_5          -0.0378    0.0217   0.082        0.0899    0.58
+recent_10         -0.0156    0.0192   0.418        0.0813    0.81
+recent_20         -0.0154    0.0143   0.281        0.0697    0.78
+recent_30         -0.0048    0.0131   0.715        0.0586    0.92
 
 Lead/lag bins (days since purchase; negative = purchase after the post day):
-   -30 ..  -21:   0.0120 pp (p = 0.450)
-   -20 ..  -11:  -0.0009 pp (p = 0.960)
-   -10 ..   -1:   0.0257 pp (p = 0.114)
-     0 ..    0:  -0.0434 pp (p = 0.209)
-     1 ..   10:  -0.0182 pp (p = 0.350)
-    11 ..   20:  -0.0118 pp (p = 0.439)
-    21 ..   30:   0.0284 pp (p = 0.080)
+   -30 ..  -21:   0.0091 pp (p = 0.571)
+   -20 ..  -11:  -0.0064 pp (p = 0.741)
+   -10 ..   -1:   0.0304 pp (p = 0.058)
+     0 ..    0:  -0.0438 pp (p = 0.188)
+     1 ..   10:  -0.0176 pp (p = 0.354)
+    11 ..   20:  -0.0110 pp (p = 0.479)
+    21 ..   30:   0.0311 pp (p = 0.056)
 
 All 50 specifications: results.csv. Descriptives: descriptives.txt.
