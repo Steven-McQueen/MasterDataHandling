@@ -1,9 +1,9 @@
-Step 5.3.3, CompareV5V6 | run 2026-11-11 00:36
+Step 5.3.3, CompareV5V6 | run 2026-11-11 13:02
 
 Inputs
   v5: SocialMedia_v5.db (prompt versions [5]), Twitter_tickers_2025_2026.xlsx
   v6: SocialMedia_v6_norm.db (prompt versions [6]), Twitter_tickers_2025_2026.xlsx
-  note: v5 = SocialMedia.db and Twitter_tickers_2025_2026.xlsx on main (2131a01); v6 = SocialMedia.db of the v6 run (branch prompt-v6, to go up through LFS) and Twitter_tickers from a preliminary Step 5.2 run with the existing review decisions (96 new company spellings, 115 references, pending and counted outside the universe)
+  note: v5 = SocialMedia.db and Twitter_tickers_2025_2026.xlsx of commit 2131a01 (main before v6); v6 = the same files after the v6 run and the v6 Step 5.2 (existing review decisions; 96 new company spellings, 115 references, without a decision and outside the universe)
 
 Posts
   22,273 posts in both runs; answered in v5 21,942, in v6 21,940, in both 21,940

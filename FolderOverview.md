@@ -64,20 +64,27 @@ master/                                          # one folder per stage, read in
 │   │   └── LLM_SocialMediaScript.py             # one call per post, concurrent, resumable
 │   │   └── SocialMedia.db                       # OUTPUT: SocialMedia + SocialMediaKeywords
 │   │   └── blocked_texts.csv                    # the posts Azure's content filter refused (ID, date, account, text)
+│   │   └── RunLog_v6.txt                        # log of the full prompt v6 run (2026-11-10)
 │   │   └── blocked_trial_texts.csv              # same for the two 300-post development samples, with filter category
 │   ├── 2) MapToTickers/                         # Step 5.2 — map LLM companies to trade tickers
 │   │   └── ReviewGuide.md                       # for the authors: what Part 1 needs from this step, the post -> ticker chain, the review rules, and how to read the output
 │   │   └── TwitterTickerCleaning.ipynb          # same structure and tone as TradesCleaning.ipynb
 │   │   └── TickerTwitterReview.xlsx             # review (complete 2026-11-08), sheets in order: ReadMe · 1_CompanyReview (one row per company: suggestion + v / override = its ticker on any exchange, or NONE) · 2_MentionExceptions · 3_NotListedOnPostDate · Entities (Step 4.2)
-│   │   └── Twitter_tickers_2025_2026.xlsx       # OUTPUT: one row per post × company (6,468): post · LLM label · decision (public_ticker, ticker = universe join key, listed / in_universe / purchased, status); ReadMe sheet defines the columns
+│   │   └── Twitter_tickers_2025_2026.xlsx       # OUTPUT: one row per post × company (6,093 under v6): post · LLM label · decision (public_ticker, ticker = universe join key, listed / in_universe / purchased, status); ReadMe sheet defines the columns
 │   │   └── TwitterDescriptiveAnalysis.xlsx      # descriptive tables for the data chapter; 7_Part1Share = purchased share of the listed companies posted about
-│   └── 3) LabelAccuracy/                        # Step 5.3 — hand-coded check of the LLM labels (precision check done 2026-11-10)
+│   └── 3) LabelAccuracy/                        # Step 5.3 — check of the LLM labels: precision (hand-coded on v5), v5 against v6
 │       └── DrawPrecisionSample.py               # draws the 200 precision rows (seed 20261110) and writes the four files below
 │       └── PrecisionSample_Filip.xlsx · PrecisionSample_Andreas.xlsx   # blank coding files: the LLM's labels, one agree / disagree field per row
 │       └── precision_key.csv · DrawReport.txt   # the LLM's sentiment, relevance and confidence for the 200 rows; the draw report
 │       └── coded/                               # the two coded files and the jointly resolved file
 │       └── ScorePrecision.py                    # agreement before discussion, precision after it, overall and by type
 │       └── PrecisionReport.txt · precision_summary.csv · precision_results.csv
+│       └── CompareV5V6.py                       # v5 against v6 labels: self-agreement, the Elon and media rules, the precision rows that changed
+│       └── V5V6Report.txt · v5v6_references.csv · v5v6_precision.csv
+│       └── ResultsV5V6.py                       # results of Parts 1-3 and the checks under v5 and v6, side by side
+│       └── ResultsV5V6.txt · results_v5v6.csv
+│       └── DrawRecodeV6.py                      # rows to code again for v6 (drawn, not coded: decided 2026-11-11)
+│       └── RecodeV6_Filip.xlsx · RecodeV6_Andreas.xlsx · recode_v6_key.csv · RecodeV6Report.txt
 ├── 6) CalendarShifts/                          # Step 6 = kokebok step 6: the shifted worlds
 │   └── CalendarShifts.py                        # settings (start 2025-01-20, L = 558, MIN_SHIFT = 30), shift formula, checks
 │   └── worlds.csv                               # OUTPUT: world, shift_days, shift_start, L (500 worlds, world 0 = real)

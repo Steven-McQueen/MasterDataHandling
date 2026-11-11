@@ -1,10 +1,10 @@
-Part 3, Returns | run 2026-11-10 14:30
+Part 3, Returns | run 2026-11-11 13:04
 
 Inputs
   2) Trades/Trump_trades_2025_2026.xlsx: 17,724 rows, modified 2026-11-09 11:14 (PurchasesMerged)
   3) Prices/2) ComputeReturns/returns_table_presample.csv: 630,470 rows, modified 2026-11-10 12:48 (column ar_mkt)
   3) Prices/3) ReviewPrices/PricesReview.xlsx: 10 rows, modified 2026-11-09 11:14 (ExtremeMoves, days marked wrong)
-  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,468 rows, modified 2026-11-10 12:48
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-11 12:58
 
 Purchases: 17,724 company-days on 1,594 tickers, 2025-01-23 to 2026-07-31
   window: trading days 1-10 after day 0; day 0 moved forward for 4 purchases
@@ -18,20 +18,20 @@ Part 3 sample: tickers with a return on every trading day 2025-01-21 to 2026-08-
   left-out purchases with no return day in the window: 0
 
 Labels (real world, all purchases / in the sample):
-  posted      373 /    369
-  praised     133 /    131
-  roasted      93 /     91
-  neutral     147 /    147
-  no_post  17,351 / 16,866
+  posted      368 /    364
+  praised     119 /    117
+  roasted      95 /     93
+  neutral     154 /    154
+  no_post  17,356 / 16,871
 Check against Part 2 (8) Part2Timing/1) Hits/purchase_hits.csv, priced purchases, 17,724 matched):
-  Posted here 373 vs Part 2 direct_any hits 373 -> OK
-  Praised (first post) 133; Part 2 direct_pos50 hits (any post) 177
-  Roasted (first post) 93; Part 2 direct_neg50 hits (any post) 125
-  followed by both a Praised and a Roasted post (first one decides): 17
+  Posted here 368 vs Part 2 direct_any hits 368 -> OK
+  Praised (first post) 119; Part 2 direct_pos50 hits (any post) 164
+  Roasted (first post) 95; Part 2 direct_neg50 hits (any post) 124
+  followed by both a Praised and a Roasted post (first one decides): 13
 
 Hand recount of five returns (four random purchases in the sample, one Posted):
   CABO   bought 2025-04-28, day 0 2025-04-28, days 2025-04-29 to 2025-05-12: by hand -0.377404, script -0.377404 -> OK [no_post]
   TSLA   bought 2025-11-05, day 0 2025-11-05, days 2025-11-06 to 2025-11-19: by hand -0.104969, script -0.104969 -> OK [no_post]
   DUK    bought 2025-12-04, day 0 2025-12-04, days 2025-12-05 to 2025-12-18: by hand +0.008312, script +0.008312 -> OK [no_post]
   CVI    bought 2025-07-23, day 0 2025-07-23, days 2025-07-24 to 2025-08-06: by hand -0.045518, script -0.045518 -> OK [no_post]
-  CMCSA  bought 2025-07-07, day 0 2025-07-07, days 2025-07-08 to 2025-07-21: by hand -0.023936, script -0.023936 -> OK [roasted]
+  WBD    bought 2025-07-01, day 0 2025-07-01, days 2025-07-02 to 2025-07-16: by hand +0.129769, script +0.129769 -> OK [roasted]

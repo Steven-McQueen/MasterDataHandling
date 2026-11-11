@@ -1,42 +1,42 @@
-Part 3, ShiftedWorlds | run 2026-11-10 14:30
+Part 3, ShiftedWorlds | run 2026-11-11 13:05
 
 Inputs
   2) Trades/Trump_trades_2025_2026.xlsx: 17,235 rows, modified 2026-11-09 11:14 (PurchasesMerged, purchases in the Part 3 sample)
   3) Prices/2) ComputeReturns/returns_table_presample.csv: modified 2026-11-10 12:48 (column ar_mkt; 10 reviewed days set to zero)
-  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,468 rows, modified 2026-11-10 12:48
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-11 12:58
   6) CalendarShifts/worlds.csv: 500 rows, modified 2026-11-10 14:29
 
 Worlds: 500 (world 0 = real). Window: trading days 1-10. Main: posted, amount_mid, return per dollar, two-sided p.
-Neutral (Posted, first post neither Praised nor Roasted): real 147, shifted mean 154.8
+Neutral (Posted, first post neither Praised nor Roasted): real 154, shifted mean 159.1
 
 Checks
   All purchases: same number and amount in every world: OK
-  Contributions add up to the Posted dollar excess: -12,235.11 vs -12,235.11 -> OK
-  Brute-force recount, world 0 (shift 0): T all 1,429,553, T Posted 305,193, amount Posted 52,191,716 -> OK
-  Brute-force recount, world 100 (shift 129): T all 758,440, T Posted -1,609,314, amount Posted 88,508,702 -> OK
-  Brute-force recount, world 400 (shift 429): T all -4,293,294, T Posted -546,346, amount Posted 103,795,735 -> OK
+  Contributions add up to the Posted dollar excess: -31,058.12 vs -31,058.12 -> OK
+  Brute-force recount, world 0 (shift 0): T all 1,429,553, T Posted 267,714, amount Posted 51,893,214 -> OK
+  Brute-force recount, world 100 (shift 129): T all 758,440, T Posted -1,634,565, amount Posted 87,532,202 -> OK
+  Brute-force recount, world 400 (shift 429): T all -4,293,294, T Posted -641,733, amount Posted 104,050,231 -> OK
 
 group    amount           n  n luck     amount USD    r real    r luck   delta r    excess USD  p_upper  p_lower  p_two
 all      amount_mid   17235 17235.0  1,111,275,650   0.1286%  -0.1053%  +0.2340%    +2,600,122    0.232    0.770  0.464
-posted   amount_mid     369   389.0     52,191,716   0.5848%   0.6082%  -0.0234%       -12,235    0.508    0.494  0.988   <- main
-no_post  amount_mid   16866 16846.0  1,059,083,934   0.1062%  -0.1544%  +0.2605%    +2,759,393    0.182    0.820  0.364
-praised  amount_mid     131   157.0     17,922,575   1.5267%   0.6902%  +0.8365%      +149,923    0.266    0.736  0.532
-roasted  amount_mid      91    77.3     15,744,059   0.2982%  -0.3977%  +0.6958%      +109,550    0.274    0.728  0.548
+posted   amount_mid     364   384.0     51,893,214   0.5159%   0.5757%  -0.0599%       -31,058    0.504    0.498  0.996   <- main
+no_post  amount_mid   16871 16851.0  1,059,382,436   0.1097%  -0.1512%  +0.2609%    +2,764,131    0.182    0.820  0.364
+praised  amount_mid     117   147.3     13,705,066  -0.2317%   0.4640%  -0.6956%       -95,337    0.690    0.312  0.624
+roasted  amount_mid      93    77.6     15,827,060   0.2223%  -0.8390%  +1.0613%      +167,971    0.230    0.772  0.460
 
 Direct tests (main amount):
   test                               real   shifted mean  p_upper  p_lower  p_two
-  r praised - r roasted          +1.2286%       +1.0879%    0.484    0.518  0.968
-  r posted - r no_post           +0.4786%       +0.7626%    0.580    0.422  0.844
-  T posted (USD)                  305,193        430,108    0.548    0.454  0.908
+  r praised - r roasted          -0.4539%       +1.3030%    0.844    0.158  0.316
+  r posted - r no_post           +0.4062%       +0.7270%    0.582    0.420  0.840
+  T posted (USD)                  267,714        399,958    0.544    0.458  0.916
 
-Largest contributions to the Posted dollar excess (amount_mid; luck r of Posted 0.6082%):
-  NVDA   2025-07-01 praised  amount    3,000,000  MAR +10.0666%  contribution     +283,752
-  AMZN   2025-09-08 neutral  amount    3,000,000  MAR -6.6623%  contribution     -218,114
-  GOOG   2025-08-27 neutral  amount      925,001  MAR +13.0159%  contribution     +114,771
-  NFLX   2026-02-12 roasted  amount      383,001  MAR +24.3633%  contribution      +90,982
-  AAPL   2025-08-27 praised  amount    3,000,000  MAR -2.0914%  contribution      -80,987
-  MSFT   2026-01-06 praised  amount      750,000  MAR -6.7008%  contribution      -54,817
-  GOOG   2025-08-29 neutral  amount      375,000  MAR +14.3456%  contribution      +51,515
-  MSFT   2025-09-23 roasted  amount    3,350,002  MAR +2.1362%  contribution      +51,189
-  AAPL   2025-05-15 roasted  amount      782,501  MAR -4.9552%  contribution      -43,533
-  GOOG   2025-09-23 roasted  amount    1,100,002  MAR -2.7788%  contribution      -37,257
+Largest contributions to the Posted dollar excess (amount_mid; luck r of Posted 0.5757%):
+  NVDA   2025-07-01 neutral  amount    3,000,000  MAR +10.0666%  contribution     +284,726
+  AMZN   2025-09-08 neutral  amount    3,000,000  MAR -6.6623%  contribution     -217,140
+  GOOG   2025-08-27 neutral  amount      925,001  MAR +13.0159%  contribution     +115,072
+  NFLX   2026-02-12 roasted  amount      383,001  MAR +24.3633%  contribution      +91,107
+  AAPL   2025-08-27 praised  amount    3,000,000  MAR -2.0914%  contribution      -80,013
+  MSFT   2026-01-06 praised  amount      750,000  MAR -6.7008%  contribution      -54,574
+  MSFT   2025-09-23 roasted  amount    3,350,002  MAR +2.1362%  contribution      +52,277
+  GOOG   2025-08-29 neutral  amount      375,000  MAR +14.3456%  contribution      +51,637
+  AAPL   2025-05-15 roasted  amount      782,501  MAR -4.9552%  contribution      -43,280
+  GOOG   2025-09-23 roasted  amount    1,100,002  MAR -2.7788%  contribution      -36,900
