@@ -289,7 +289,8 @@ def checks_tables_and_figure(plt):
     order = [("h1_10", "Main: trading days 1 to 10"), ("h1_2", "1. Horizon 1 to 2"), ("h1_5", "1. Horizon 1 to 5"),
              ("h1_20", "1. Horizon 1 to 20"), ("before_5_1", "2. Days $-$5 to $-$1"),
              ("short_shifts", "3. Shifts of 30 to 90 days only"), ("model_ar_ff5m", "4. FF5 + momentum"),
-             ("no_largest_5", "5. Without the five largest purchases")]
+             ("no_largest_5", "5. Without the five largest purchases"),
+             ("relevance_30", "6. Relevance of at least 0.3"), ("no_media", "7. Without the media companies")]
     rows, out = [], []
     for spec, name in order:
         r = rob.loc[spec]

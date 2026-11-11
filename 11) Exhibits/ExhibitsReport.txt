@@ -1,19 +1,19 @@
-Step 11, Exhibits | run 2026-11-11 13:05
+Step 11, Exhibits | run 2026-11-11 14:04
 
 Inputs
   2) Trades/Trump_trades_2025_2026.xlsx: modified 2026-11-09 11:14
   1) SocialMedia/SocialMediaPosts.json: modified 2026-11-09 11:14
-  7) Part1Talk/2) Estimate/results.csv: modified 2026-11-11 13:00
-  7) Part1Talk/3) Inference/inference.csv: modified 2026-11-11 13:04
-  8) Part2Timing/2) Inference/inference.csv: modified 2026-11-11 13:04
-  8) Part2Timing/2) Inference/world_counts.csv: modified 2026-11-11 13:04
-  9) Part3Returns/1) Returns/purchase_returns.csv: modified 2026-11-11 13:04
-  9) Part3Returns/2) Inference/inference.csv: modified 2026-11-11 13:04
-  9) Part3Returns/2) Inference/gaps.csv: modified 2026-11-11 13:04
-  9) Part3Returns/2) Inference/world_stats.csv: modified 2026-11-11 13:04
-  9) Part3Returns/2) Inference/contributors.csv: modified 2026-11-11 13:04
-  10) Checks/robustness.csv: modified 2026-11-11 13:05
-  10) Checks/world_checks.csv: modified 2026-11-11 13:05
+  7) Part1Talk/2) Estimate/results.csv: modified 2026-11-11 13:16
+  7) Part1Talk/3) Inference/inference.csv: modified 2026-11-11 13:16
+  8) Part2Timing/2) Inference/inference.csv: modified 2026-11-11 13:16
+  8) Part2Timing/2) Inference/world_counts.csv: modified 2026-11-11 13:16
+  9) Part3Returns/1) Returns/purchase_returns.csv: modified 2026-11-11 13:16
+  9) Part3Returns/2) Inference/inference.csv: modified 2026-11-11 13:16
+  9) Part3Returns/2) Inference/gaps.csv: modified 2026-11-11 13:16
+  9) Part3Returns/2) Inference/world_stats.csv: modified 2026-11-11 13:16
+  9) Part3Returns/2) Inference/contributors.csv: modified 2026-11-11 13:16
+  10) Checks/robustness.csv: modified 2026-11-11 14:04
+  10) Checks/world_checks.csv: modified 2026-11-11 14:04
 
 Written (20)
   tables/tab_sample.tex

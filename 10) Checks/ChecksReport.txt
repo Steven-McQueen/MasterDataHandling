@@ -1,18 +1,19 @@
-Step 10, Checks | run 2026-11-11 13:05
+Step 10, Checks | run 2026-11-11 14:04
 
 Inputs
   2) Trades/Trump_trades_2025_2026.xlsx: 17,235 rows, modified 2026-11-09 11:14 (PurchasesMerged, Part 3 sample)
   3) Prices/2) ComputeReturns/returns_table_presample.csv: columns ar_raw, ar_mkt, ar_capm, ar_ff3m, ar_ff5m; 10 reviewed days set to zero
-  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-11 12:58
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-11 13:16
   6) CalendarShifts/worlds.csv: 500 rows, modified 2026-11-10 14:29
-  8) Part2Timing/2) Inference/world_counts.csv: 500 rows, modified 2026-11-11 13:04 (check 3)
-  9) Part3Returns/2) Inference/world_stats.csv: 500 rows, modified 2026-11-11 13:04 (check 3)
+  8) Part2Timing/2) Inference/world_counts.csv: 500 rows, modified 2026-11-11 13:16 (check 3)
+  9) Part3Returns/2) Inference/world_stats.csv: 500 rows, modified 2026-11-11 13:16 (check 3)
 
 Amount: amount_mid. p_two = 2 x min(p_upper, p_lower), capped at 1.
 
 Checks
   Check 6 count without the floor reproduces Part 2 (direct_pos50: 164 vs 164): OK
   Check 6: 1,553 of 1,694 mention rows have relevance >= 0.3
+  Check 7: 136 of 17,235 sample purchases are of media companies (FOXA, NWSA, WBD, CMCSA, DIS, SKYD, VSNT)
   Horizon 1-10 reproduces Part 3 (Posted r real 0.515893% vs 0.515893%): OK
   Short-shift worlds: 122 shifted + real (shifts 30-90 and 468-528)
   Check 4 sample: 17,235 of 17,235 purchases with all five return columns; market-adjusted on that sample: Posted r 0.5159% (p_two 0.996)
@@ -41,6 +42,7 @@ Posted group (the reading):
   4  FF5+MOM           364   0.0595%   0.4164%  -0.3569%     -185,209  0.764    500
   5  without top 5     364   0.5159%   0.5099%  +0.0060%       +3,124  0.988    500
   6  relevance >= 0.3   350   0.5104%   0.6349%  -0.1245%      -64,086  0.984    500
+  7  without media     256   0.7365%   0.7476%  -0.0111%       -4,719  0.980    500
   * on the check 4 sample
 
 Horizon search over 1-1 .. 1-10 (Posted, two-sided): best horizon h1_1 (p_two 0.240), p_search 0.638 (500 worlds)
@@ -51,6 +53,11 @@ Part 2 counts with relevance >= 0.3 (purchase hits, 500 worlds):
   direct_pos50   real  159, expected  185.7, p_upper 0.946, p_lower 0.066
   direct_any     real  354, expected  365.1, p_upper 0.778, p_lower 0.246
   direct_neg50   real  124, expected  101.7, p_upper 0.030, p_lower 0.976
+
+Part 2 counts without the media companies (check 7; 138 of 17,745 purchases removed, purchase hits, 500 worlds):
+  direct_pos50   real  148, expected  177.3, p_upper 0.974, p_lower 0.028
+  direct_any     real  258, expected  279.5, p_upper 0.892, p_lower 0.120
+  direct_neg50   real   47, expected   30.8, p_upper 0.004, p_lower 1.000
 
 Other groups (p_two):
   check                               all              praised              roasted
@@ -74,3 +81,4 @@ Other groups (p_two):
   4  FF5+MOM         +0.180% vs -0.121% 0.25 +0.342% vs +0.780% 0.67 -0.342% vs -1.394% 0.41
   5  without top 5   +0.229% vs -0.129% 0.19 -0.232% vs +0.441% 0.56 +0.222% vs -0.773% 0.45
   6  relevance >= 0.3 +0.129% vs -0.105% 0.46 -0.232% vs +0.356% 0.71 +0.243% vs -0.789% 0.48
+  7  without media   +0.134% vs -0.096% 0.47 -0.229% vs +0.486% 0.62 +0.455% vs -0.908% 0.48
