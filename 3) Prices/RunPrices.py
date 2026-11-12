@@ -9,7 +9,7 @@ HOW TO RUN (from any folder)
     python "3) Prices/RunPrices.py"              both steps
     python "3) Prices/RunPrices.py" --returns    only 2) ComputeReturns (prices.csv already there)
 
-The FMP key must be pasted into 1) FetchPrices/FetchPrices.py before the fetch step.
+The FMP key is read from FMP_API_KEY in the .env at the repository root (see FetchPrices.py).
 """
 
 import importlib.util

@@ -6,7 +6,7 @@ for the pre-sample window (2023-12-15 to 2025-01-17) and save them as
 prices_2024.csv (date, ticker, adj_close). ComputeReturns.py uses this file to
 estimate the betas on the 250 trading days ending 2025-01-17 (BETA_ESTIMATION = "presample").
 Same endpoints, price field and ticker list as FetchPrices.py; only the dates differ.
-The API key is read from the environment variable FMP_API_KEY (never written in this file).
+The API key is read from FMP_API_KEY in the repository's .env or the environment (never written in this file).
 
 OUTPUTS (in this folder)
     prices_2024.csv            date, ticker, adj_close
@@ -25,9 +25,22 @@ import requests
 HERE = Path(__file__).resolve().parent   # 3) Prices/1) FetchPrices/
 ROOT = HERE.parent                         # 3) Prices/
 
+
+def load_env_file(path):
+    """Set FMP_API_KEY (and any other KEY=value line) from the repository's .env, if the file exists."""
+    if path.is_file():
+        for line in path.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = (s.strip() for s in line.split("=", 1))
+                os.environ.setdefault(k, v.strip("'\""))
+
+
+load_env_file(ROOT.parent / ".env")
+
 KEY = os.environ.get("FMP_API_KEY", "").strip()
 if len(KEY) < 20:  # only checks that a real key is set
-    sys.exit("No FMP key: set the environment variable FMP_API_KEY.")
+    sys.exit("No FMP key: set FMP_API_KEY in the repository's .env.")
 START, END = "2023-12-15", "2025-01-17"
 WINDOW_START = "2024-01-19"   # price needed for the first return in the 250-day window (2024-01-22 to 2025-01-17)
 tickers = sorted(

@@ -462,7 +462,7 @@ $\longrightarrow$ We now have all ticker names standardized and validated for ea
 - **FMP, not Yahoo Finance:** the first attempt used Yahoo, which rate-limited the download (247 of 1,606 tickers came back empty) and drops tickers after a takeover. FMP keeps delisted series. `ComputeReturns.py` still carries a Yahoo fallback for a missing `prices.csv`; it is never reached as long as the file exists.
 - **The market return comes from French, not the Schwab 1000 or the S&P 500** (the supervisor's comment; the Schwab 1000 is only the White House's description of the account).
 - **`prices.csv` is read-only:** never open and save it in Excel, which breaks the columns.
-- **The API key is never stored in a script:** `FetchPrices.py` takes it in a marked line at run time (empty in the repository); `FetchPrices2024.py` reads the environment variable `FMP_API_KEY`. The key lives in `.env`.
+- **The API key is never stored in a script:** both fetch scripts read `FMP_API_KEY` from the `.env` at the repository root (or the environment), as Step 4 does; `FetchPrices.py` also keeps its marked line for pasting the key, empty in the repository. `.env` is in `.gitignore`.
 
 ### 3.0) Purchase table
 The purchase table is built in Step 2.5 (`2) Trades/TradesCleaning.ipynb`, section 6): the purchase rows of the final trade file in the five columns the price scripts read, minus the five tickers of the review sheet `Unpriceable` (BRKL, PINC, NVRI, RNAM, WOLF: 21 purchases, listed in `PurchasesLeftOut`). Nothing in `3) Prices` derives purchases itself; `RawData/purchases.csv` is that export.

@@ -3,9 +3,11 @@
 
 Fetch dividend-adjusted daily closes from FMP for every ticker in purchases.csv
 and save them as prices.csv (date, ticker, adj_close) for ComputeReturns.py (Filip's step5_returns.py).
-Put the API key in the clearly marked line near the top (FMP_API_KEY = "...").
+The API key is read from FMP_API_KEY in the repository's .env (or the environment); the marked line
+near the top is an alternative, empty in the repository.
 """
 
+import os
 import sys
 import time
 from pathlib import Path
@@ -15,15 +17,28 @@ import requests
 
 HERE = Path(__file__).resolve().parent   # 3) Prices/1) FetchPrices/
 ROOT = HERE.parent                         # 3) Prices/
+
+
+def load_env_file(path):
+    """Set FMP_API_KEY (and any other KEY=value line) from the repository's .env, if the file exists."""
+    if path.is_file():
+        for line in path.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = (s.strip() for s in line.split("=", 1))
+                os.environ.setdefault(k, v.strip("'\""))
+
+
+load_env_file(ROOT.parent / ".env")
 # ==========================================================================
 # >>> PASTE YOUR FMP KEY BETWEEN THE QUOTES ON THE LINE BELOW <<<
 FMP_API_KEY = ""
 # NB: never share this file with the key in it (do not upload it, do not post it on Slack).
 # ==========================================================================
 
-KEY = FMP_API_KEY.strip()
-if len(KEY) < 20:  # only checks that a real key was pasted above
-    sys.exit("No FMP key: paste it at the top of FetchPrices.py.")
+KEY = (FMP_API_KEY or os.environ.get("FMP_API_KEY", "")).strip()
+if len(KEY) < 20:  # only checks that a real key is there
+    sys.exit("No FMP key: set FMP_API_KEY in the repository's .env, or paste it at the top of FetchPrices.py.")
 START, END = "2025-01-10", "2026-08-31"
 tickers = sorted(
     pd.read_csv(ROOT / "RawData" / "purchases.csv")["ticker"].str.strip().str.upper().unique()
