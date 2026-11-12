@@ -1,84 +1,84 @@
-Step 10, Checks | run 2026-11-11 14:04
+Step 10, Checks | run 2026-11-12 21:58
 
 Inputs
-  2) Trades/Trump_trades_2025_2026.xlsx: 17,235 rows, modified 2026-11-09 11:14 (PurchasesMerged, Part 3 sample)
+  2) Trades/Trump_trades_2025_2026.xlsx: 17,883 rows, modified 2026-11-12 20:55 (PurchasesMerged, Part 3 sample)
   3) Prices/2) ComputeReturns/returns_table_presample.csv: columns ar_raw, ar_mkt, ar_capm, ar_ff3m, ar_ff5m; 10 reviewed days set to zero
-  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-11 13:16
-  6) CalendarShifts/worlds.csv: 500 rows, modified 2026-11-10 14:29
-  8) Part2Timing/2) Inference/world_counts.csv: 500 rows, modified 2026-11-11 13:16 (check 3)
-  9) Part3Returns/2) Inference/world_stats.csv: 500 rows, modified 2026-11-11 13:16 (check 3)
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-12 21:52
+  6) CalendarShifts/worlds.csv: 500 rows, modified 2026-11-12 21:52
+  8) Part2Timing/2) Inference/world_counts.csv: 500 rows, modified 2026-11-12 21:58 (check 3)
+  9) Part3Returns/2) Inference/world_stats.csv: 500 rows, modified 2026-11-12 21:58 (check 3)
 
 Amount: amount_mid. p_two = 2 x min(p_upper, p_lower), capped at 1.
 
 Checks
-  Check 6 count without the floor reproduces Part 2 (direct_pos50: 164 vs 164): OK
+  Check 6 count without the floor reproduces Part 2 (direct_pos50: 176 vs 176): OK
   Check 6: 1,553 of 1,694 mention rows have relevance >= 0.3
-  Check 7: 136 of 17,235 sample purchases are of media companies (FOXA, NWSA, WBD, CMCSA, DIS, SKYD, VSNT)
-  Horizon 1-10 reproduces Part 3 (Posted r real 0.515893% vs 0.515893%): OK
+  Check 7: 140 of 17,883 sample purchases are of media companies (FOXA, NWSA, WBD, CMCSA, DIS, SKYD, VSNT)
+  Horizon 1-10 reproduces Part 3 (Posted r real 1.658114% vs 1.658114%): OK
   Short-shift worlds: 122 shifted + real (shifts 30-90 and 468-528)
-  Check 4 sample: 17,235 of 17,235 purchases with all five return columns; market-adjusted on that sample: Posted r 0.5159% (p_two 0.996)
+  Check 4 sample: 17,883 of 17,883 purchases with all five return columns; market-adjusted on that sample: Posted r 1.6581% (p_two 0.340)
   Check 2: real purchases with fewer than five days before day 0: 4
-  Check 5, removed purchases: AAPL 2025-08-18 USD 15,000,000; MSFT 2025-08-18 USD 15,000,000; NVDA 2025-08-18 USD 15,000,000; GOOG 2025-08-18 USD 6,000,001; AAPL 2025-09-23 USD 3,350,002
+  Check 5, removed purchases: AMZN 2026-04-17 USD 15,375,001; MSFT 2026-04-17 USD 15,375,001; AAPL 2025-08-18 USD 15,000,000; MSFT 2025-08-18 USD 15,000,000; NVDA 2025-08-18 USD 15,000,000
 
 Posted group (the reading):
   check                  n    r real    r luck   delta r   excess USD  p_two worlds
-     main (1-10)       364   0.5159%   0.5757%  -0.0599%      -31,058  0.996    500
-  1  horizon 1-1       364   0.4330%   0.0437%  +0.3893%     +202,011  0.240    500
-  1  horizon 1-2       364   0.2253%   0.2019%  +0.0234%      +12,144  0.916    500
-  1  horizon 1-3       364   0.2399%   0.2184%  +0.0215%      +11,178  0.900    500
-  1  horizon 1-4       364   0.3980%   0.2589%  +0.1391%      +72,190  0.840    500
-  1  horizon 1-5       364   0.4323%   0.3290%  +0.1033%      +53,606  0.908    500
-  1  horizon 1-6       364   0.5569%   0.3255%  +0.2313%     +120,044  0.800    500
-  1  horizon 1-7       364   0.3772%   0.3910%  -0.0138%       -7,138  0.988    500
-  1  horizon 1-8       364   0.2568%   0.4130%  -0.1562%      -81,072  0.908    500
-  1  horizon 1-9       364   0.5013%   0.4653%  +0.0360%      +18,676  0.968    500
-  1  horizon 1-20      364   2.9468%   1.1044%  +1.8424%     +956,086  0.248    500
-  2  days -5 to -1     364   0.7184%   0.2278%  +0.4906%     +254,583  0.540    500
-  3  short shifts      364   0.5159%   1.2223%  -0.7064%     -366,584  0.569    123
-  4  raw               364   1.6495%   1.4175%  +0.2320%     +120,407  0.904    500
-  4  market-adj.*      364   0.5159%   0.5757%  -0.0599%      -31,058  0.996    500
-  4  CAPM              364   0.2626%   0.3012%  -0.0385%      -19,998  0.988    500
-  4  FF3+MOM           364   0.1208%   0.2908%  -0.1699%      -88,188  0.884    500
-  4  FF5+MOM           364   0.0595%   0.4164%  -0.3569%     -185,209  0.764    500
-  5  without top 5     364   0.5159%   0.5099%  +0.0060%       +3,124  0.988    500
-  6  relevance >= 0.3   350   0.5104%   0.6349%  -0.1245%      -64,086  0.984    500
-  7  without media     256   0.7365%   0.7476%  -0.0111%       -4,719  0.980    500
+     main (1-10)       384   1.6581%   0.4728%  +1.1853%     +822,519  0.340    500
+  1  horizon 1-1       384   0.1624%   0.0460%  +0.1164%      +80,796  0.724    500
+  1  horizon 1-2       384   0.2471%   0.1882%  +0.0588%      +40,829  0.876    500
+  1  horizon 1-3       384   0.5692%   0.1826%  +0.3865%     +268,233  0.588    500
+  1  horizon 1-4       384   0.7967%   0.2077%  +0.5890%     +408,726  0.500    500
+  1  horizon 1-5       384   1.4390%   0.2591%  +1.1799%     +818,765  0.196    500
+  1  horizon 1-6       384   1.2688%   0.2401%  +1.0287%     +713,898  0.284    500
+  1  horizon 1-7       384   1.1676%   0.2866%  +0.8810%     +611,384  0.396    500
+  1  horizon 1-8       384   1.3670%   0.2918%  +1.0752%     +746,166  0.320    500
+  1  horizon 1-9       384   1.4654%   0.3509%  +1.1145%     +773,380  0.304    500
+  1  horizon 1-20      384   2.6192%   0.9887%  +1.6305%   +1,131,504  0.376    500
+  2  days -5 to -1     384   1.3702%   0.1948%  +1.1753%     +815,613  0.220    500
+  3  short shifts      384   1.6581%   1.0426%  +0.6155%     +427,134  0.602    123
+  4  raw               384   2.8740%   1.2402%  +1.6337%   +1,133,705  0.360    500
+  4  market-adj.*      384   1.6581%   0.4728%  +1.1853%     +822,519  0.340    500
+  4  CAPM              384   1.3409%   0.2009%  +1.1400%     +791,097  0.324    500
+  4  FF3+MOM           384   1.2526%   0.2336%  +1.0191%     +707,185  0.380    500
+  4  FF5+MOM           384   1.1225%   0.3869%  +0.7356%     +510,438  0.512    500
+  5  without top 5     383   0.5131%   0.4684%  +0.0447%      +24,164  0.968    500
+  6  relevance >= 0.3   366   0.5001%   0.5542%  -0.0541%      -28,676  0.996    500
+  7  without media     274   1.9963%   0.6194%  +1.3770%     +823,669  0.320    500
   * on the check 4 sample
 
-Horizon search over 1-1 .. 1-10 (Posted, two-sided): best horizon h1_1 (p_two 0.240), p_search 0.638 (500 worlds)
+Horizon search over 1-1 .. 1-10 (Posted, two-sided): best horizon h1_5 (p_two 0.196), p_search 0.556 (500 worlds)
 
-Part 2 main count (direct_pos50 purchase hits) under short shifts: real 164, expected 189.8, p_upper 0.967, p_lower 0.049 (123 worlds)
+Part 2 main count (direct_pos50 purchase hits) under short shifts: real 176, expected 199.1, p_upper 0.919, p_lower 0.098 (123 worlds)
 
 Part 2 counts with relevance >= 0.3 (purchase hits, 500 worlds):
-  direct_pos50   real  159, expected  185.7, p_upper 0.946, p_lower 0.066
-  direct_any     real  354, expected  365.1, p_upper 0.778, p_lower 0.246
-  direct_neg50   real  124, expected  101.7, p_upper 0.030, p_lower 0.976
+  direct_pos50   real  167, expected  194.1, p_upper 0.954, p_lower 0.054
+  direct_any     real  370, expected  380.7, p_upper 0.772, p_lower 0.244
+  direct_neg50   real  129, expected  105.4, p_upper 0.016, p_lower 0.990
 
-Part 2 counts without the media companies (check 7; 138 of 17,745 purchases removed, purchase hits, 500 worlds):
-  direct_pos50   real  148, expected  177.3, p_upper 0.974, p_lower 0.028
-  direct_any     real  258, expected  279.5, p_upper 0.892, p_lower 0.120
-  direct_neg50   real   47, expected   30.8, p_upper 0.004, p_lower 1.000
+Part 2 counts without the media companies (check 7; 142 of 18,398 purchases removed, purchase hits, 500 worlds):
+  direct_pos50   real  160, expected  185.6, p_upper 0.940, p_lower 0.068
+  direct_any     real  276, expected  292.6, p_upper 0.866, p_lower 0.148
+  direct_neg50   real   50, expected   32.3, p_upper 0.002, p_lower 1.000
 
 Other groups (p_two):
   check                               all              praised              roasted
-     main (1-10)     +0.129% vs -0.105% 0.46 -0.232% vs +0.464% 0.62 +0.222% vs -0.839% 0.46
-  1  horizon 1-1     -0.134% vs -0.003% 0.08 +0.862% vs -0.015% 0.08 -0.271% vs -0.162% 0.82
-  1  horizon 1-2     -0.121% vs -0.024% 0.41 +1.010% vs +0.137% 0.22 -0.159% vs -0.351% 0.78
-  1  horizon 1-3     -0.058% vs -0.031% 0.85 +1.116% vs +0.108% 0.26 -0.171% vs -0.532% 0.63
-  1  horizon 1-4     -0.090% vs -0.033% 0.72 +1.938% vs +0.131% 0.08 -0.787% vs -0.700% 0.94
-  1  horizon 1-5     -0.007% vs -0.052% 0.80 +1.214% vs +0.174% 0.38 -0.195% vs -0.734% 0.52
-  1  horizon 1-6     +0.085% vs -0.071% 0.45 +1.229% vs +0.110% 0.33 -0.027% vs -0.746% 0.43
-  1  horizon 1-7     +0.122% vs -0.078% 0.41 +0.699% vs +0.186% 0.71 -0.077% vs -0.739% 0.50
-  1  horizon 1-8     +0.112% vs -0.076% 0.46 +0.396% vs +0.192% 0.87 +0.083% vs -0.639% 0.46
-  1  horizon 1-9     +0.231% vs -0.086% 0.22 -0.256% vs +0.277% 0.71 +0.532% vs -0.815% 0.37
-  1  horizon 1-20    +0.390% vs -0.215% 0.11 +4.694% vs +1.782% 0.13 +2.103% vs -1.323% 0.28
-  2  days -5 to -1   -0.014% vs -0.050% 0.86 +0.780% vs +0.459% 0.77 -0.244% vs -0.563% 0.78
-  3  short shifts    +0.129% vs -0.114% 0.34 -0.232% vs +1.153% 0.29 +0.222% vs -0.671% 0.42
-  4  raw             +0.796% vs +0.655% 0.88 +1.165% vs +1.475% 0.85 +0.772% vs -0.100% 0.48
-  4  market-adj.*    +0.129% vs -0.105% 0.46 -0.232% vs +0.464% 0.62 +0.222% vs -0.839% 0.46
-  4  CAPM            +0.156% vs -0.112% 0.26 -0.236% vs -0.003% 0.87 +0.345% vs -0.666% 0.48
-  4  FF3+MOM         +0.157% vs -0.118% 0.35 +0.223% vs +0.484% 0.79 +0.039% vs -1.285% 0.35
-  4  FF5+MOM         +0.180% vs -0.121% 0.25 +0.342% vs +0.780% 0.67 -0.342% vs -1.394% 0.41
-  5  without top 5   +0.229% vs -0.129% 0.19 -0.232% vs +0.441% 0.56 +0.222% vs -0.773% 0.45
-  6  relevance >= 0.3 +0.129% vs -0.105% 0.46 -0.232% vs +0.356% 0.71 +0.243% vs -0.789% 0.48
-  7  without media   +0.134% vs -0.096% 0.47 -0.229% vs +0.486% 0.62 +0.455% vs -0.908% 0.48
+     main (1-10)     +0.006% vs -0.114% 0.74 +2.883% vs +0.336% 0.08 -0.093% vs -0.746% 0.63
+  1  horizon 1-1     -0.140% vs -0.003% 0.10 +0.012% vs -0.005% 0.99 -0.253% vs -0.164% 0.82
+  1  horizon 1-2     -0.043% vs -0.024% 0.88 +0.730% vs +0.124% 0.41 -0.327% vs -0.348% 0.99
+  1  horizon 1-3     +0.010% vs -0.034% 0.79 +1.410% vs +0.080% 0.15 -0.397% vs -0.526% 0.86
+  1  horizon 1-4     -0.075% vs -0.037% 0.89 +2.018% vs +0.093% 0.09 -0.971% vs -0.680% 0.75
+  1  horizon 1-5     +0.042% vs -0.054% 0.63 +3.125% vs +0.109% 0.02 -0.428% vs -0.699% 0.72
+  1  horizon 1-6     +0.091% vs -0.075% 0.45 +2.514% vs +0.020% 0.08 -0.249% vs -0.700% 0.63
+  1  horizon 1-7     +0.154% vs -0.084% 0.32 +2.323% vs +0.073% 0.11 -0.274% vs -0.685% 0.63
+  1  horizon 1-8     +0.145% vs -0.083% 0.36 +2.876% vs +0.053% 0.07 -0.175% vs -0.574% 0.65
+  1  horizon 1-9     +0.069% vs -0.097% 0.62 +2.392% vs +0.144% 0.10 +0.266% vs -0.737% 0.45
+  1  horizon 1-20    +0.066% vs -0.238% 0.52 +3.271% vs +1.681% 0.54 +1.531% vs -1.178% 0.37
+  2  days -5 to -1   +0.183% vs -0.059% 0.23 +2.236% vs +0.474% 0.18 -0.188% vs -0.565% 0.73
+  3  short shifts    +0.006% vs -0.147% 0.72 +2.883% vs +0.957% 0.15 -0.093% vs -0.497% 0.62
+  4  raw             +0.798% vs +0.619% 0.78 +4.235% vs +1.251% 0.11 +0.590% vs -0.019% 0.62
+  4  market-adj.*    +0.006% vs -0.114% 0.74 +2.883% vs +0.336% 0.08 -0.093% vs -0.746% 0.63
+  4  CAPM            -0.010% vs -0.124% 0.73 +2.585% vs -0.119% 0.07 +0.038% vs -0.591% 0.64
+  4  FF3+MOM         -0.038% vs -0.121% 0.75 +2.779% vs +0.424% 0.13 -0.151% vs -1.184% 0.45
+  4  FF5+MOM         -0.015% vs -0.118% 0.66 +2.640% vs +0.773% 0.23 -0.561% vs -1.292% 0.55
+  5  without top 5   +0.077% vs -0.128% 0.50 -0.003% vs +0.294% 0.79 -0.093% vs -0.738% 0.61
+  6  relevance >= 0.3 +0.006% vs -0.114% 0.74 -0.052% vs +0.240% 0.84 -0.062% vs -0.697% 0.62
+  7  without media   +0.009% vs -0.106% 0.75 +2.892% vs +0.353% 0.08 -0.079% vs -0.685% 0.66

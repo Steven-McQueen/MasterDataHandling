@@ -1,8 +1,8 @@
-Part 1, BuildPanel | run 2026-11-11 12:58
+Part 1, BuildPanel | run 2026-11-12 21:53
 
 Inputs
-  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-11 12:58
-  2) Trades/Trump_trades_2025_2026.xlsx: 27,628 rows, modified 2026-11-09 11:14
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-12 21:52
+  2) Trades/Trump_trades_2025_2026.xlsx: 28,957 rows, modified 2026-11-12 20:55
 
 Panel: 1,620 tickers x 589 days (2025-01-20 to 2026-08-31) = 954,180 rows
 Mentioned tickers outside the trade universe: 0 []
@@ -14,15 +14,15 @@ Mentions (posts per ticker and day; source = distinct post x ticker pairs)
   direct_trump  types=direct accounts=realDonaldTrump: 453 post-ticker pairs on 410 ticker-days, 58 tickers; outside the panel 0; vs source 453 OK
 
 Purchases
-  lots in panel 18,818 vs source 18,818 OK (1,599 tickers)
-  amount (midpoints) in panel 1,125,247,909 vs source 1,125,247,909 OK
-  purchase days dated on a weekend: 4 (used as dated)
+  lots in panel 19,526 vs source 19,526 OK (1,600 tickers)
+  amount (midpoints) in panel 1,237,212,263 vs source 1,237,212,263 OK
+  purchase days dated on a weekend: 0 (used as dated)
 
 Duplicate ticker-days: 0
 Days per ticker: [589]
 
 Companies (direct mentions)
-  bought and mentioned 121, mentioned never bought 1, bought never mentioned 1478, sale-only 21
+  bought and mentioned 121, mentioned never bought 1, bought never mentioned 1479, sale-only 20
 
 Spot checks (direct): ticker, date, panel count, source posts
   FOXA   2025-05-08  1  1  OK

@@ -1,42 +1,42 @@
-Part 3, ShiftedWorlds | run 2026-11-11 13:05
+Part 3, ShiftedWorlds | run 2026-11-12 21:58
 
 Inputs
-  2) Trades/Trump_trades_2025_2026.xlsx: 17,235 rows, modified 2026-11-09 11:14 (PurchasesMerged, purchases in the Part 3 sample)
-  3) Prices/2) ComputeReturns/returns_table_presample.csv: modified 2026-11-10 12:48 (column ar_mkt; 10 reviewed days set to zero)
-  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-11 12:58
-  6) CalendarShifts/worlds.csv: 500 rows, modified 2026-11-10 14:29
+  2) Trades/Trump_trades_2025_2026.xlsx: 17,883 rows, modified 2026-11-12 20:55 (PurchasesMerged, purchases in the Part 3 sample)
+  3) Prices/2) ComputeReturns/returns_table_presample.csv: modified 2026-11-12 21:52 (column ar_mkt; 10 reviewed days set to zero)
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-12 21:52
+  6) CalendarShifts/worlds.csv: 500 rows, modified 2026-11-12 21:52
 
 Worlds: 500 (world 0 = real). Window: trading days 1-10. Main: posted, amount_mid, return per dollar, two-sided p.
-Neutral (Posted, first post neither Praised nor Roasted): real 154, shifted mean 159.1
+Neutral (Posted, first post neither Praised nor Roasted): real 158, shifted mean 165.9
 
 Checks
   All purchases: same number and amount in every world: OK
-  Contributions add up to the Posted dollar excess: -31,058.12 vs -31,058.12 -> OK
-  Brute-force recount, world 0 (shift 0): T all 1,429,553, T Posted 267,714, amount Posted 51,893,214 -> OK
-  Brute-force recount, world 100 (shift 129): T all 758,440, T Posted -1,634,565, amount Posted 87,532,202 -> OK
-  Brute-force recount, world 400 (shift 429): T all -4,293,294, T Posted -641,733, amount Posted 104,050,231 -> OK
+  Contributions add up to the Posted dollar excess: 822,518.70 vs 822,518.70 -> OK
+  Brute-force recount, world 0 (shift 0): T all 71,747, T Posted 1,150,643, amount Posted 69,394,726 -> OK
+  Brute-force recount, world 100 (shift 129): T all 486,775, T Posted -1,607,318, amount Posted 89,111,708 -> OK
+  Brute-force recount, world 400 (shift 429): T all -4,422,281, T Posted -685,313, amount Posted 107,686,736 -> OK
 
 group    amount           n  n luck     amount USD    r real    r luck   delta r    excess USD  p_upper  p_lower  p_two
-all      amount_mid   17235 17235.0  1,111,275,650   0.1286%  -0.1053%  +0.2340%    +2,600,122    0.232    0.770  0.464
-posted   amount_mid     364   384.0     51,893,214   0.5159%   0.5757%  -0.0599%       -31,058    0.504    0.498  0.996   <- main
-no_post  amount_mid   16871 16851.0  1,059,382,436   0.1097%  -0.1512%  +0.2609%    +2,764,131    0.182    0.820  0.364
-praised  amount_mid     117   147.3     13,705,066  -0.2317%   0.4640%  -0.6956%       -95,337    0.690    0.312  0.624
-roasted  amount_mid      93    77.6     15,827,060   0.2223%  -0.8390%  +1.0613%      +167,971    0.230    0.772  0.460
+all      amount_mid   17883 17883.0  1,223,208,002   0.0059%  -0.1139%  +0.1198%    +1,465,298    0.372    0.630  0.744
+posted   amount_mid     384   400.3     69,394,726   1.6581%   0.4728%  +1.1853%      +822,519    0.170    0.832  0.340   <- main
+no_post  amount_mid   17499 17482.7  1,153,813,277  -0.0935%  -0.1542%  +0.0607%      +700,136    0.464    0.538  0.928
+praised  amount_mid     128   154.0     30,285,072   2.8828%   0.3358%  +2.5469%      +771,342    0.040    0.962  0.080
+roasted  amount_mid      98    80.3     16,350,062  -0.0933%  -0.7457%  +0.6524%      +106,669    0.314    0.688  0.628
 
 Direct tests (main amount):
   test                               real   shifted mean  p_upper  p_lower  p_two
-  r praised - r roasted          -0.4539%       +1.3030%    0.844    0.158  0.316
-  r posted - r no_post           +0.4062%       +0.7270%    0.582    0.420  0.840
-  T posted (USD)                  267,714        399,958    0.544    0.458  0.916
+  r praised - r roasted          +2.9761%       +1.0815%    0.206    0.796  0.412
+  r posted - r no_post           +1.7516%       +0.6270%    0.188    0.814  0.376
+  T posted (USD)                1,150,643        359,695    0.216    0.786  0.432
 
-Largest contributions to the Posted dollar excess (amount_mid; luck r of Posted 0.5757%):
-  NVDA   2025-07-01 neutral  amount    3,000,000  MAR +10.0666%  contribution     +284,726
-  AMZN   2025-09-08 neutral  amount    3,000,000  MAR -6.6623%  contribution     -217,140
-  GOOG   2025-08-27 neutral  amount      925,001  MAR +13.0159%  contribution     +115,072
-  NFLX   2026-02-12 roasted  amount      383,001  MAR +24.3633%  contribution      +91,107
-  AAPL   2025-08-27 praised  amount    3,000,000  MAR -2.0914%  contribution      -80,013
-  MSFT   2026-01-06 praised  amount      750,000  MAR -6.7008%  contribution      -54,574
-  MSFT   2025-09-23 roasted  amount    3,350,002  MAR +2.1362%  contribution      +52,277
-  GOOG   2025-08-29 neutral  amount      375,000  MAR +14.3456%  contribution      +51,637
-  AAPL   2025-05-15 roasted  amount      782,501  MAR -4.9552%  contribution      -43,280
-  GOOG   2025-09-23 roasted  amount    1,100,002  MAR -2.7788%  contribution      -36,900
+Largest contributions to the Posted dollar excess (amount_mid; luck r of Posted 0.4728%):
+  AMZN   2026-04-17 praised  amount   15,375,001  MAR +5.6811%  contribution     +800,764
+  NVDA   2025-07-01 neutral  amount    3,000,000  MAR +10.0666%  contribution     +287,813
+  AMZN   2025-09-08 neutral  amount    3,000,000  MAR -6.6623%  contribution     -214,053
+  GOOG   2025-08-27 neutral  amount      925,001  MAR +13.0159%  contribution     +116,023
+  NFLX   2026-02-12 roasted  amount      383,001  MAR +24.3633%  contribution      +91,501
+  AAPL   2025-08-27 praised  amount    3,000,000  MAR -2.0914%  contribution      -76,926
+  MSFT   2025-09-23 roasted  amount    3,350,002  MAR +2.1362%  contribution      +55,724
+  MSFT   2026-01-06 praised  amount      750,000  MAR -6.7008%  contribution      -53,802
+  GOOG   2025-08-29 neutral  amount      375,000  MAR +14.3456%  contribution      +52,023
+  WFC    2026-04-10 roasted  amount      375,000  MAR -12.0755%  contribution      -47,056
