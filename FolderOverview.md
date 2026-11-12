@@ -23,18 +23,21 @@ master/                                          # one folder per stage, read in
 │   │   └── FMP_ticker_checks.json               # FMP profile + first price date per symbol (cache, section 5.3)
 │   │   └── FirstPriceFetch/                     # co-author's notes from the first price fetch; provenance of section 5, not read by code
 │   └── Backup_2026-11-12/                       # notebook, workbooks and purchase table before the 2026 trades moved from QuiverQuant to TigZig; OldVsNew_2026.xlsx lists the rows that differ
+│   └── Verification/                            # check of the raw trades against the filed reports (Step 2.0.4), not read by code
+│   │   └── Annual2025_Part7_parsed.csv          # the transactions section of the 2025 annual report (OGE 278e), parsed from the filed PDF: 21,285 rows
+│   │   └── TradeVerification_2026.csv           # one row per 2026 TigZig row: page and line in the filed 278-T, what was read there, how it was confirmed (8,374 rows)
 │   └── TradesCleaning.ipynb                     # sections 1–4 cleaning (Steps 2.1–2.4), 5 ticker corrections after prices (Step 2.5), 6 purchase table (Step 2.6)
 │   └── TickerReview.xlsx                        # every manual decision, one sheet per review, in section order (… TickerCompanyMismatchReviewed, WrongCompanyAfterPrices, TickerRenames, NonEquity, Unpriceable); each ticker change with its reason (Reason / Why / ReviewNote)
-│   └── Trump_trades_2025_2026.xlsx              # OUTPUT: Trades (final, 27,628 rows, 1,620 tickers) · TradesBeforePriceReview (state after Step 2.4) · TickerCompanyLookup · CompanyTickerGroups · Purchases · PurchasesMerged · PurchasesLeftOut · ChangeLog
+│   └── Trump_trades_2025_2026.xlsx              # OUTPUT: Trades (final, 28,957 rows, 1,620 tickers) · TradesBeforePriceReview (state after Step 2.4) · TickerCompanyLookup · CompanyTickerGroups · Purchases · PurchasesMerged · PurchasesLeftOut · ChangeLog
 ├── 3) Prices/                                   # Step 3 = kokebok step 3: purchases -> daily prices -> abnormal returns -> review (co-author's scripts), one sub-folder per step
 │   ├── RawData/
 │   │   └── purchases.csv                        # written by 2) Trades section 6 (19,505 rows, 1,595 tickers)
 │   │   └── french/                              # Kenneth French daily factors: 3-factor, 5-factor, momentum (to 2026-09-30)
 │   ├── 1) FetchPrices/
-│   │   └── FetchPrices.py                       # FMP dividend-adjusted closes per ticker in purchases.csv (key pasted at run time, not stored)
-│   │   └── prices.csv                           # OUTPUT: date, ticker, adj_close (1,639 tickers, 2025-01-10 .. 2026-08-31)
-│   │   └── FetchPrices2024.py                   # same fetch for the pre-sample window (key from env FMP_API_KEY), own resume file
-│   │   └── prices_2024.csv                      # OUTPUT: date, ticker, adj_close (1,577 tickers, 2023-12-15 .. 2025-01-17)
+│   │   └── FetchPrices.py                       # FMP dividend-adjusted closes per ticker in purchases.csv (key FMP_API_KEY from the repository's .env, not stored in the repository)
+│   │   └── prices.csv                           # OUTPUT: date, ticker, adj_close (1,641 tickers, 2025-01-10 .. 2026-08-31)
+│   │   └── FetchPrices2024.py                   # same fetch for the pre-sample window (key from .env or the environment), own resume file
+│   │   └── prices_2024.csv                      # OUTPUT: date, ticker, adj_close (1,579 tickers, 2023-12-15 .. 2025-01-17)
 │   │   └── prices_2024_missing.csv              # tickers with no or partial 2024 data (17 none, 22 start late)
 │   │   └── prices_2024_partial.csv              # resume file of FetchPrices2024.py
 │   ├── 2) ComputeReturns/
@@ -130,12 +133,17 @@ master/                                          # one folder per stage, read in
 │   └── part2_check_counts.csv                   # Part 2 purchase hits per world under checks 6 (relevance) and 7 (without media)
 │   └── SpecCurve.py                             # check 8: the Part 2 count under 1,512 specifications, in every world
 │   └── SpecCurve/                               # spec_curve.xlsx (ReadMe, Summary, Specifications, Grid) · spec_curve.csv · spec_curve_joint.csv · spec_curve.png · SpecCurveReport.txt
+│   └── ChecksExtra.py                           # checks 9-11: day 0 included, every shift, reverse direction (added 2026-11-13)
+│   └── extra_checks.csv · extra_world_counts.csv · ExtraChecksReport.txt
+│   └── DetectableEffects.py                     # the effect each main test could detect · detectable_effects.csv · DetectableEffects.txt
 ├── 11) Exhibits/                                # Step 11 = kokebok step 12 (Exhibits): every table and figure for the thesis
 │   └── 0) Decisions.md                          # the list of exhibits and their format
 │   └── Exhibits.py                              # reads the outputs of Steps 2-10; estimates nothing again
 │   └── tables/                                  # tab_*.tex (booktabs, caption, label, note) and tab_*.csv
 │   └── figures/                                 # fig_*.pdf (vector) and fig_*.tex (caption, label, note)
 │   └── ExhibitsReport.txt
+├── RunAll.py                                    # runs Steps 3.2 and 5.2-11 from the stored inputs (Step 2 with --with-trades)
+├── requirements.txt                             # Python packages and versions
 ├── .env                                         # API keys (FMP, Twitter, Azure OpenAI); never shared
 ├── .gitattributes                               # Git LFS: the large raw and output files (SocialMedia.db, company.db, returns tables, WhiteHouse_Twitter.json)
 ├── .gitignore                                   # keeps .env and Python caches out of version control

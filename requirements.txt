@@ -1,0 +1,15 @@
+# Python packages for the whole pipeline. The versions are those of the environment that ran
+# Steps 5.2 to 11 for the results of 2026-11-12 (Python 3.13). Steps 3.1 and 4 ran on Python 3.13
+# (Anaconda) and Steps 1 and 5.1 on earlier versions of the same packages.
+#     python -m pip install -r requirements.txt
+pandas==3.0.5
+numpy==2.5.3
+openpyxl==3.1.5
+matplotlib==3.11.2
+rapidfuzz==3.14.6
+pyfixest==0.70.0
+requests==2.34.2
+python-dotenv==1.2.3
+openai==3.49.0          # Step 5.1 only (LLM labelling)
+nbconvert==7.17.2       # RunAll.py runs the notebooks of Steps 2 and 5.2
+ipykernel==7.4.0
