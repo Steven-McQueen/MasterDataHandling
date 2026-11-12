@@ -78,7 +78,9 @@ def fetch(t):
             continue
         if r.status_code in (401, 402, 403, 429):
             LAST_ERROR.update(status=r.status_code, text=r.text[:200])
-            blocked = True
+            # the old v3 endpoint now refuses every key that is not a pre-September-2025 subscription;
+            # that refusal says nothing about the main endpoint, so it does not count as a block
+            blocked = blocked or "legacy endpoint" not in r.text.lower()
             continue
         if not r.ok:
             LAST_ERROR.update(status=r.status_code, text=r.text[:200])
