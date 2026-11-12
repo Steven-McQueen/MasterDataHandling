@@ -14,13 +14,15 @@ master/                                          # one folder per stage, read in
 │   └── SocialMediaPosts.json                    # OUTPUT: one row per post (22,273)
 ├── 2) Trades/                                   # Step 2 = kokebok step 2: raw disclosures -> final trades and purchase table
 │   └── RawData/
-│   │   └── Trump_trades_2025_RAW.csv
-│   │   └── Trump_trades_2026_RAW (quiver).csv
+│   │   └── Trump_trades_2025_RAW.csv            # trades 2025 (TigZig)
+│   │   └── Trump_trades_2026_RAW (tigzig).csv   # trades 2026 (TigZig), incl. April 2026
+│   │   └── Trump_trades_2026_RAW (quiver).csv   # QuiverQuant 2026: ticker lookup only, not trade data (lacks April 2026)
 │   │   └── TickersDB.xlsx
 │   │   └── FMP_company_names.xlsx               # FMP names per ticker (cache, Step 2.4.3 and 2.5.5)
 │   │   └── FMP_symbol_changes.json              # FMP symbol-change list (cache, section 5.3)
 │   │   └── FMP_ticker_checks.json               # FMP profile + first price date per symbol (cache, section 5.3)
 │   │   └── FirstPriceFetch/                     # co-author's notes from the first price fetch; provenance of section 5, not read by code
+│   └── Backup_2026-11-12/                       # notebook, workbooks and purchase table before the 2026 trades moved from QuiverQuant to TigZig; OldVsNew_2026.xlsx lists the rows that differ
 │   └── TradesCleaning.ipynb                     # sections 1–4 cleaning (Steps 2.1–2.4), 5 ticker corrections after prices (Step 2.5), 6 purchase table (Step 2.6)
 │   └── TickerReview.xlsx                        # every manual decision, one sheet per review, in section order (… TickerCompanyMismatchReviewed, WrongCompanyAfterPrices, TickerRenames, NonEquity, Unpriceable); each ticker change with its reason (Reason / Why / ReviewNote)
 │   └── Trump_trades_2025_2026.xlsx              # OUTPUT: Trades (final, 27,628 rows, 1,620 tickers) · TradesBeforePriceReview (state after Step 2.4) · TickerCompanyLookup · CompanyTickerGroups · Purchases · PurchasesMerged · PurchasesLeftOut · ChangeLog

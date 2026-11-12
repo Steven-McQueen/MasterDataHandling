@@ -106,8 +106,9 @@ Decisions the analysis still needs, with the recommendation in brackets. Once de
       - [b) Retweets of the sampled accounts](#b-retweets-of-the-sampled-accounts)
   - [Step 2: Fetching Trades · Trading Cleaning and Ticker Handling](#step-2-fetching-trades--trading-cleaning-and-ticker-handling)
     - [2.0) Fetching Trades](#20-fetching-trades)
-      - [2.0.1) Extract 2026 trades through API from QuiverQuant](#201-extract-2026-trades-through-api-from-quiverquant)
-      - [2.0.2) Extract 2025 trades through TigZig](#202-extract-2025-trades-through-tigzig)
+      - [2.0.1) Extract 2026 trades through API from QuiverQuant (ticker lookup only)](#201-extract-2026-trades-through-api-from-quiverquant-ticker-lookup-only)
+      - [2.0.2) Extract 2025 and 2026 trades through TigZig](#202-extract-2025-and-2026-trades-through-tigzig)
+      - [2.0.3) The two 2026 sources against each other (added 2026-11-12)](#203-the-two-2026-sources-against-each-other-added-2026-11-12)
     - [2.1) Ensuring that the 2026 dataset of tickers is complete](#21-ensuring-that-the-2026-dataset-of-tickers-is-complete)
       - [a) Backfill/frontfill missing tickers in 2026](#a-backfillfrontfill-missing-tickers-in-2026)
       - [b) Removing non-equities from the list](#b-removing-non-equities-from-the-list)
@@ -185,8 +186,8 @@ Decisions the analysis still needs, with the recommendation in brackets. Once de
 
 
 ## Data sources
-- **2025 trades:** https://www.tigzig.com/tremor
-- **2026 trades:** QuiverQuant.com
+- **Trades 2025 and 2026:** TigZig, https://www.tigzig.com/tremor (transcribes the OGE 278-T filings; no tickers)
+- **Ticker lookup for the trades:** QuiverQuant.com, 2026 file. Used for its Company → Ticker pairs only, not as trade data: it lacks the filing of Jun 25, 2026 (part 1) and with it every trade of April 2026 (Step 2.0.3)
 - **TruthSocial posts:**
     - @realDonaldTrump: the API blocks scripted access to this account's timeline, so its posts come from the public HuggingFace dataset https://huggingface.co/datasets/Cameronk199/donald-trump-truth-social-posts (`RawData/Original/Trump_TruthSocial.json`), cleaned with the same rules as the fetched accounts (Step 1.3). Timestamps are at minute precision and ReTruths are not included (Step 1.1.b).
     - @WhiteHouse: `Fetch_TruthSocial.py` (TruthSocial's API)
@@ -197,14 +198,14 @@ Decisions the analysis still needs, with the recommendation in brackets. Once de
 - **Company identity:** SEC EDGAR submissions (CIK, former names, deregistration filings) for Step 4.2.
 - **Extreme-move review:** FMP full daily bars, Yahoo Finance, press releases, SEC filings and news.
 ## Notes on Trading Extraction
-In the 2026 data fetched from QuiverQuant, ticker names were also provided. This is not the case for the 2025 dataset, so we need a methodology to fill in ticker names there. QuiverQuant has also had difficulties extracting correct company names in some cases; no ticker is applied for those instances. We cover these in Step 2.1.
+The trades of both years come from TigZig, which gives no ticker names, so we need a methodology to fill them in. The 2026 file from QuiverQuant does provide ticker names and transcribes the same filings, so it serves as the ticker lookup (Step 2.2). QuiverQuant has had difficulties extracting correct company names in some cases; no ticker is applied for those instances. We cover these in Step 2.1. Until 2026-11-12 the QuiverQuant file was also the 2026 trade data; it was replaced by TigZig when April 2026 was found missing from it.
  
 - **Tickers with multiple classes are mapped to one stock class:** e.g. Berkshire Hathaway and Google. Assumption: they follow the same underlying asset and returns across stock classes move in unison.
 - **Only equities are mapped to tickers:** Bonds, index funds, and commodity ETFs also appear in the disclosures but are excluded — a post can be tied to a specific company, not to a broad index or commodity, and these assets need different return models and are driven more by macroeconomic factors.
 - **Trades include 2025 prior to inauguration** (we sort out).
 - **Dataset includes non-equities:** ETFs, bonds, index funds (we sort out).
 - **One ticker per company, the latest symbol** the price provider serves (Step 2.5 b). The symbol a row was actually traded under is kept in the entity table (Step 4.2) and in sheet `ChangeLog`: 279 trade rows were traded under another symbol than the one they carry.
-- **Four purchases are dated on a weekend** (DEI and PENN 2026-02-28, BKNG 2026-03-28, GLW 2026-03-29): filing errors, treated as the next trading day.
+- **No trade is dated on a weekend.** The four weekend purchases of the earlier QuiverQuant-based file (DEI and PENN 2026-02-28, BKNG 2026-03-28, GLW 2026-03-29) were reading errors of that provider; TigZig dates them 2026-02-26, 2026-03-26 and 2026-03-02.
 - **329 ticker-days carry both a purchase and a sale** of the same stock, the signature of a rebalancing account; only the optional sales check is affected.
 - **Trading is clustered:** 196 purchase days, median 53 purchases a day, maximum 640, 28 days with more than 200. The shifted worlds keep this pattern by design.
 - **Disclosed names vary:** 698 tickers appear under more than one spelling (GOOG under 16) and 143 merged company-days combine two spellings; the ticker is the key, so this has no effect.
@@ -323,36 +324,52 @@ File: `2) Trades/TradesCleaning.ipynb`
 ### 2.0) Fetching Trades
 File: `2) Trades/TradesCleaning.ipynb`
  
-#### 2.0.1) Extract 2026 trades through API from QuiverQuant
-- Store as CSV file.
-#### 2.0.2) Extract 2025 trades through TigZig
-- Downloaded as CSV file from webpage.
-### 2.1) Ensuring that the 2026 dataset of tickers is complete
+#### 2.0.1) Extract 2026 trades through API from QuiverQuant (ticker lookup only)
+- Store as CSV file: `RawData/Trump_trades_2026_RAW (quiver).csv`, 6,997 rows.
+#### 2.0.2) Extract 2025 and 2026 trades through TigZig
+- Downloaded as CSV files from webpage: `RawData/Trump_trades_2025_RAW.csv` (21,285 rows) and `RawData/Trump_trades_2026_RAW (tigzig).csv` (8,374 rows, trades 2026-01-06 to 2026-07-31, five filings).
+#### 2.0.3) The two 2026 sources against each other (added 2026-11-12)
+QuiverQuant has no trade in April 2026: it lacks the filing of Jun 25, 2026 (part 1), which holds all 1,375 April trades. In every other month the two sources carry the same trades, so TigZig is the trade data for 2026 as for 2025 and QuiverQuant only lends its tickers. Section 1.1 of the notebook prints the comparison on every run (same trade = same date, transaction, lower amount bound and company name):
+
+| Month | TigZig | QuiverQuant | Same trade | Same, name aside |
+|---|---|---|---|---|
+| 2026-01 | 669 | 669 | 651 | 665 |
+| 2026-02 | 799 | 799 | 783 | 794 |
+| 2026-03 | 2,174 | 2,172 | 2,125 | 2,169 |
+| 2026-04 | 1,375 | 0 | 0 | 0 |
+| 2026-05 | 1,150 | 1,150 | 1,137 | 1,150 |
+| 2026-06 | 1,051 | 1,051 | 1,037 | 1,050 |
+| 2026-07 | 1,156 | 1,156 | 1,148 | 1,156 |
+
+The rows that are not the same trade differ in how the provider read the scanned filing: the spelling of a name, or in a few cases the date. `Backup_2026-11-12/OldVsNew_2026.xlsx` lists the 42 rows of the final trade file that differ between the QuiverQuant-based and the TigZig-based version outside April, with the cause; that folder also holds the notebook, workbooks and purchase table as they were before the change.
+### 2.1) Ensuring that the QuiverQuant ticker lookup is complete
  
-#### a) Backfill/frontfill missing tickers in 2026
+#### a) Backfill/frontfill missing tickers in the QuiverQuant file
 Reasoning: we need to ensure that all rows have a corresponding ticker name, so we frontfill/backfill for all companies. Despite many investments being in bonds, ETFs, etc., there are instances where equities actually have missing tickers.
  
 #### b) Removing non-equities from the list
 Since we only focus on equities, we remove all investments that are not equities. This is done by applying a regex pattern to filter out indices, bonds, etc., and investments that may have an attached ticker. We manually go over the list to ensure that only non-equities are removed.
 **Reasoning:** we have observed some instances where indices and bonds have an associated ticker.
+**Exception (2026-11-12):** `DUE` followed by `BILLS` does not flag a row. "With due bills" is a remark the broker prints on a share trade made around a split or dividend date, not a bond's maturity; it sits on 7 share sales of 2026 (Alphabet twice, Agilent, CME, Eaton, Resideo, Stryker), which the pattern used to drop.
  
 #### c) Accounting for naming discrepancies in (a)
 The method above is not bulletproof due to naming discrepancies, so we must account for this. This is handled by manually going over the remaining missing-ticker list, identifying equities in the list, and finding their corresponding ticker name.
 **Reasoning:** we have observed some instances where there are missing tickers in the dataset despite being equities.
  
-$\longrightarrow$ We now have a complete list of the tickers of equity investments in 2026.
+$\longrightarrow$ The QuiverQuant file now has a ticker on every equity investment and serves as the ticker lookup.
  
-### 2.2) Adding tickers to the 2025 dataset
+### 2.2) Adding tickers to the 2025 and the 2026 trades
+The passes a) to e) are run for 2025 first; f) runs the same passes for 2026.
 - Downloading equity list from NYSE and NASDAQ (`TickersDB.xlsx`).
-- Standardizing names ("Corporation" → "CORP", "Incorporated" → "INC", "Public Limited Company" → "PLC") across 2025, 2026, and TickersDB, so the same company spelled differently in each source still matches.
-#### a) Exact match: 2025 company name → 2026 ticker
-If an investment was made in 2026 with the same (standardized) company name, assume the same ticker and carry it over. This is the most reliable source, since it's literally the same disclosure process, same company, same ticker convention.
+- Standardizing names ("Corporation" → "CORP", "Incorporated" → "INC", "Public Limited Company" → "PLC") across the trades, the QuiverQuant lookup, and TickersDB, so the same company spelled differently in each source still matches.
+#### a) Exact match: 2025 company name → QuiverQuant ticker
+If the QuiverQuant file has an investment with the same (standardized) company name, assume the same ticker and carry it over. This is the most reliable source, since it's literally the same disclosure process, same company, same ticker convention.
  
 #### b) Excluding non-equity holdings from 2025
 Bonds, municipal notes, and money-market/index funds have no stock ticker to find, so they're flagged (regex on patterns like "DUE", "MUNI", bond series codes, coupon %, maturity dates) and excluded from every matching step below.
  
 #### c) Sequential prefix matching for whatever's left: INC → CORP → PLC
-For companies the exact match missed, cut the name at the first occurrence of a legal-entity token (INC, CORP, PLC) and exact-match the text before the token against both the 2026 dataset and TickersDB. Only exact matches are mapped to the corresponding ticker — names that map to more than one ticker (within a source, or disagreeing between the two sources) are excluded.
+For companies the exact match missed, cut the name at the first occurrence of a legal-entity token (INC, CORP, PLC) and exact-match the text before the token against both the QuiverQuant lookup and TickersDB. Only exact matches are mapped to the corresponding ticker — names that map to more than one ticker (within a source, or disagreeing between the two sources) are excluded.
  
 #### d) Suggesting candidates for the remainder via character-similarity match against TickersDB
 For whatever's still open after (c), cut at a broader set of suffixes (INC, CORP, PLC, CO, LTD, TR, GROUP, HLDGS), and find the best letter-by-letter similarity match (rapidfuzz) against TickersDB, scored 0–100. The suggestion was never auto-applied, but subject to review in the next step.
@@ -361,6 +378,21 @@ For whatever's still open after (c), cut at a broader set of suffixes (INC, CORP
 The suggestions were subject to manual review, 575 rows, where we manually went over the suggested company and tickers. Some were correct, others were wrong, some were non-equities.
  
 $\longrightarrow$ We now have a complete list of investments throughout 2025 with ticker names.
+
+#### f) 2026: the same passes on the TigZig rows (added 2026-11-12)
+Of the 8,374 rows of 2026, 377 are non-equity by the regex of Step 2.1 b; the other 7,997 get their ticker as follows:
+
+| Pass | Rows |
+|---|---|
+| Exact name against the QuiverQuant lookup | 7,813 |
+| Exact name against the 2025 trades after their review | 102 |
+| Prefix INC / CORP / PLC against QuiverQuant and TickersDB | 38 |
+| Manual review, sheet `2026TigZigReviewed` | 32 |
+| No equity ticker (ETFs and bond funds found in the review) | 12 |
+
+Before the exact match both names lose what is not part of the company name: broker remarks some filings print after the name (`SOLICITED ORDER DISCRETION EXERCISED`, `UNSOLICITED`, `WITH DUE BILLS`, `AVERAGE UNIT PRICE TRANSACTION`, `ISIN#...`, order numbers) and a word printed twice (`CLASS CLASS A`); the disclosed name in `Company` is kept as it is. A name that QuiverQuant gives two tickers (4 names, e.g. `PUBLIC STORAGE`: `PSA` and `SPA`) is never matched on QuiverQuant. The remainder, 34 companies (44 rows), was written to `2026RemainingManual` with a TickersDB suggestion and reviewed by hand in `2026TigZigReviewed` (Andreas Borhaug, 2026-11-12), laid out as `2025ManuallyReviewed`: 21 suggestions approved, 5 corrected (Boeing, T. Rowe Price, Affirm, Equifax, Cigna), 8 ETFs and bond funds left without ticker. The notebook stops as long as a company in that sheet has no decision, and checks that every 2026 company is non-equity, has a ticker from a pass, or has a row in the sheet. All 1,323 equity rows of April have a ticker.
+
+$\longrightarrow$ We now have a complete list of investments throughout 2026 with ticker names.
  
 ### 2.3) Merge datasets
  
@@ -380,10 +412,10 @@ Example: company name "Alphabet Inc.", ticker GOOG | GOOGL.
 **Restated on the entity table (2026-11-03, see Step 4.2):** the standardization above picks one representative ticker per company for the trade file; the `entities` table in `company.db` records every ticker of a company as a validity window of one permanent `entity_id` (the SEC CIK), so GOOG and GOOGL, NWSA and NWS, BRK-A and BRK-B are one entity each, and a ticker that changed inside the sample (PARA → PSKY) is two windows. `4) CompanyDB/BuildEntities.py` assigns every trade row its `entity_id` and the ticker valid on its trade date and reports how many rows carry a different ticker than the one valid that day; the trade file itself is not changed here.
  
 #### 2.4.7) Validating ticker assignments against the disclosed company name
-Failsafe against a wrong *source* ticker (e.g. QuiverQuant mapped `MONDELEZ INTL INC` to `MDLX`, whose FMP name is an unrelated bond, "Medley LLC SR NT 26"). Fuzzy-matches (`rapidfuzz`) every unique (Company, Ticker) pair's disclosed name against its `FMPCompanyName` (from step 4) and flags pairs scoring below 60 for manual review.
+Failsafe against a wrong *source* ticker (e.g. QuiverQuant mapped `MONDELEZ INTL INC` to `MDLX`, whose FMP name is an unrelated bond, "Medley LLC SR NT 26"). Fuzzy-matches (`rapidfuzz`) every unique (Company, Ticker) pair's disclosed name against its `FMPCompanyName` (from step 4) and flags pairs scoring below 60 for manual review. Since the tickers of both years come from the QuiverQuant lookup, such an error reaches both years.
  
 #### 2.4.8) Manual review and correction of flagged mismatches
-Reviewed by hand and saved to `TickerReview.xlsx!TickerCompanyMismatchReviewed`: most flagged pairs are legitimate renames (e.g. Raytheon → RTX); genuine mismatches get a `CorrectedTicker` applied to every row sharing that (Company, Ticker) pair. Pairs with no valid equity substitute (e.g. preferred/perpetual notes that slipped past the non-equity filter) are dropped instead.
+Reviewed by hand and saved to `TickerReview.xlsx!TickerCompanyMismatchReviewed`: most flagged pairs are legitimate renames (e.g. Raytheon → RTX); genuine mismatches get a `CorrectedTicker` applied to every row sharing that (Company, Ticker) pair. Pairs with no valid equity substitute (e.g. preferred/perpetual notes that slipped past the non-equity filter) are dropped instead. Since 2026-11-12 a flagged pair without a decision is added to the bottom of the sheet and stops the notebook until it has a `v` or an `x` (81 pairs reviewed, 70 flagged in the current data).
  
 #### 2.4.9) Final non-equity sweep
 Extends the non-equity regex with `PERP`/`PFD` (checked against the full dataset first to confirm no false positives) and re-applies it once more before the final export, catching preferred/perpetual securities the original filter missed.
@@ -392,12 +424,12 @@ Extends the non-equity regex with `PERP`/`PFD` (checked against the full dataset
 - Processing file: `2) Trades/TradesCleaning.ipynb`, section 5 (ticker corrections) and section 6 (purchase table); the same notebook as Step 2.1–Step 2.4.9, read top to bottom
 - Review file: `2) Trades/TickerReview.xlsx`, four more sheets in pipeline order, each stating per row why the ticker changed: `WrongCompanyAfterPrices` (hand-reviewed pairs; `OldTickerIs` names the company the old ticker belongs to, `Why` states the correction, `OldTickerKeptFor` lists the rows that rightly keep the old ticker), `TickerRenames` (generated by section 5.3: `Decision`, `ChangeDate`, `Reason` = the rule that decided, and the reviewer's `ReviewNote`), `NonEquity` (rows dropped, `Reason`), `Unpriceable` (tickers left out of the purchase table, `Reason`)
 - RawData: `FirstPriceFetch/` (the co-author's notes from the first price fetch, 2026-11-02: `purchases_original.csv`, `ticker_fixes.csv`, `ticker_changes.csv`; the origin of the review, not read by code); `FMP_symbol_changes.json` (FMP's symbol-change list, `limit=10000`, 5,535 rows) and `FMP_ticker_checks.json` (FMP profile and first price date per symbol) as caches, so a rerun makes no FMP call unless an entry is missing; new names go into the Step 2.4 file `FMP_company_names.xlsx`
-- Output: `2) Trades/Trump_trades_2025_2026.xlsx`, written anew by section 5.6 and completed by section 6, sheets left to right: `Trades` (the final trade file, same columns as before), `TradesBeforePriceReview` (the state after section 4, i.e. Step 2.4.9: 27,649 rows, 1,629 tickers), `TickerCompanyLookup`, `CompanyTickerGroups`, `Purchases` (step-H input: `ticker, trade_date, Company, amount_low, amount_high`, one row per lot), `PurchasesMerged` (lots of one company and day added up, `amount_low/mid/high` summed, `lots` kept), `PurchasesLeftOut`, `ChangeLog` (one row per trade row whose ticker changed, that was dropped, or whose purchases are not priced, with the ticker before, the ticker after, the rule and the review sheet); `Purchases` is also exported to `3) Prices/RawData/purchases.csv`
+- Output: `2) Trades/Trump_trades_2025_2026.xlsx`, written anew by section 5.6 and completed by section 6, sheets left to right: `Trades` (the final trade file, same columns as before), `TradesBeforePriceReview` (the state after section 4, i.e. Step 2.4.9: 28,978 rows, 1,629 tickers), `TickerCompanyLookup`, `CompanyTickerGroups`, `Purchases` (step-H input: `ticker, trade_date, Company, amount_low, amount_high`, one row per lot), `PurchasesMerged` (lots of one company and day added up, `amount_low/mid/high` summed, `lots` kept), `PurchasesLeftOut`, `ChangeLog` (one row per trade row whose ticker changed, that was dropped, or whose purchases are not priced, with the ticker before, the ticker after, the rule and the review sheet); `Purchases` is also exported to `3) Prices/RawData/purchases.csv`
 
 Fetching the price series in Step 3 exposed ticker errors that survived Step 2.1–Step 2.4.9. They are corrected here, by code from the review sheets, never by editing the data by hand, and the `Trades` sheet is the trade file every later step reads (Steps 3, 4.1, 4.2 and 5.2). Nothing downstream is needed to run the notebook: section 5 reads FMP directly (cached), not the company database.
 
 #### a) Wrong company or stock
-A ticker whose price series belongs to another company than the one the disclosure names (`NCL` is Northann, the disclosure says Northern Trust; `HSAI` is Hesai, the disclosure says Hess; `AEVA` was Dynavax; `LODE` was Comstock Resources). Andreas reviewed these by hand; sheet `WrongCompanyAfterPrices` lists one row per (Ticker, disclosed Company) pair with the corrected ticker and name. The correction is applied per exact pair, as in Step 2.4.8, because six tickers are right for some rows and wrong for others (Box Inc. keeps `BOX`, Jack in the Box moves to `JACK`; HCA Healthcare keeps `HCA`, Acadia moves to `ACHC`; Pool keeps `POOL`, Whirlpool moves to `WHR`; Rogers keeps `ROG`, Kroger moves to `KR`; The Bancorp keeps `TBBK`, five other banks move to `CATY`, `NBTB`, `ONB`, `USB`, `WABC`; First BanCorp PR keeps `FBP`, the Ohio and North Carolina banks move to `FFBC` and `FBNC`). 27 pairs, 184 rows.
+A ticker whose price series belongs to another company than the one the disclosure names (`NCL` is Northann, the disclosure says Northern Trust; `HSAI` is Hesai, the disclosure says Hess; `AEVA` was Dynavax; `LODE` was Comstock Resources). Andreas reviewed these by hand; sheet `WrongCompanyAfterPrices` lists one row per (Ticker, disclosed Company) pair with the corrected ticker and name. The correction is applied per exact pair, as in Step 2.4.8, because six tickers are right for some rows and wrong for others (Box Inc. keeps `BOX`, Jack in the Box moves to `JACK`; HCA Healthcare keeps `HCA`, Acadia moves to `ACHC`; Pool keeps `POOL`, Whirlpool moves to `WHR`; Rogers keeps `ROG`, Kroger moves to `KR`; The Bancorp keeps `TBBK`, five other banks move to `CATY`, `NBTB`, `ONB`, `USB`, `WABC`; First BanCorp PR keeps `FBP`, the Ohio and North Carolina banks move to `FFBC` and `FBNC`). 27 pairs, 188 rows.
 
 #### b) Ticker changes and merger successors: the latest symbol
 The price provider serves a company's whole history under its newest symbol, so every row of a ticker that was renamed, inside or after the sample window, moves to the last symbol in its change chain, whatever the trade date; a symbol replaced by a successor's after a merger is treated the same way (`PARA` → `PSKY` → `SKYD`, `INDV` → `SUPN`). The chains come from FMP's symbol-change history (cached in `company.db` by Step 4.2, followed in date order; rows for preferred shares, notes, warrants and when-issued symbols dropped), the merger successors from the entity table, and two when-issued pairs from the hand review (`HONAV` → `HONA`, `VSNTV` → `VSNT`). Sheet `TickerRenames` lists every chain with a `Decision`: pairs on the hand review list are applied; other chains are applied when FMP's profile of the latest symbol carries the old ticker's CIK (a rename: `EQR` → `VMRK`, `MSGS` → `MSGK`, `MGPI` → `CASK`, `PSKY` → `SKYD`) or a different CIK while the symbol change fell inside the sample window, the old ticker no longer trades and the new profile is an operating company (a merger successor); otherwise they are marked `check` and skipped for the reviewer (`AROC` → `IDLDX`, no FMP profile; `SPCX` → `SPCK`, the symbol is now an ETF; `INDV` → `SUPN`, a takeover dated 2026-11-03, after the sample, so the two traded as separate companies throughout it). Two safeguards came from the co-author's check of the returns: the latest symbol's FMP price history must start on or before the first trade of the old ticker, otherwise the row is `check` (`HLX` → `HOS`: HOS prices exist only from 2026-08-04, the trades run from January 2025, so HLX keeps its own full series); and a `skip` written in the sheet by the reviewer survives every rerun (INDV and HLX are recorded as `skip` with the reason). The notebook writes the deciding rule into `Reason` on every run; the reviewer's explanation in `ReviewNote` (rows moved, successor, after-sample change, price continuity) is carried over like a `skip`. Price continuity at each applied change date is checked in `PricesReview.xlsx`, sheet `RenameContinuity`: 19 of 21 series run through the date without a break; EFOR and ACH carry reviewed genuine moves on that day.
@@ -406,13 +438,13 @@ The price provider serves a company's whole history under its newest symbol, so 
 Disclosures that name a company's financing vehicle are purchases of notes, not shares, and the Step 2.4.9 sweep cannot see them because the names carry no bond vocabulary. The co-author's return check surfaced them and the CEO decided (2026-11-04): BlackRock Funding Inc. (7 rows under `BLK`), BP Capital Markets plc (9 rows under `BP`), Société Générale SA (4 rows under `SCGLY`, bought in the same weeks as the BP notes) and the unidentifiable "CAST CORP" (1 row) are dropped; sheet `NonEquity` lists the (Ticker, Company) pairs with the reason. The parents' own rows stay (BlackRock Inc. keeps `BLK`).
 
 #### d) Names, checks and export
-Tickers new to the file are looked up at FMP exactly as in Step 2.4.3 and appended to `RawData/FMP_company_names.xlsx` (30 symbols entered here); `FMPCompanyName` is refreshed. Checks before the export: row count equals the Step 2.4.9 count minus the dropped rows, no row left on a reviewed pair or an applied old ticker, every corrected ticker present after the renames, no company with two tickers, every `Unpriceable` ticker a purchased ticker. `CompanyTickerGroups` is rebuilt here. Result (2026-11-05 run of the merged notebook, identical to the 2026-11-04 run): 385 rows re-tickered (1.4%: 184 wrong company, 201 latest ticker), 21 rows dropped as non-equity, 27,649 → 27,628 rows, 1,629 → 1,620 distinct tickers, 39 tickers left the universe and 30 entered; `AROC` and `SPCX` stay as they are pending the CEO's decision.
+Tickers new to the file are looked up at FMP exactly as in Step 2.4.3 and appended to `RawData/FMP_company_names.xlsx` (30 symbols entered here); `FMPCompanyName` is refreshed. Checks before the export: row count equals the Step 2.4.9 count minus the dropped rows, no row left on a reviewed pair or an applied old ticker, every corrected ticker present after the renames, no company with two tickers, every `Unpriceable` ticker a purchased ticker. `CompanyTickerGroups` is rebuilt here. Result (run of 2026-11-12, 2026 trades from TigZig; the run of 2026-11-05 on the QuiverQuant rows gave 27,649 → 27,628 rows): 392 rows re-tickered (1.4%: 188 wrong company, 204 latest ticker), 21 rows dropped as non-equity, 28,978 → 28,957 rows (1,323 of them in April 2026), 1,629 → 1,620 distinct tickers, 39 tickers left the universe and 30 entered; `AROC` and `SPCX` stay as they are pending the CEO's decision.
 
 **Reasoning:** the trade data is the universe for every later step, so a ticker that points at the wrong company poisons the company database, the entity table and the post mapping at once. Doing the correction as reviewed sheets applied by code, in the same notebook and workbook as the cleaning, with the pre-review state kept as a sheet, keeps it auditable and repeatable, like Step 2.4.8 and Step 2.4.9, and lets a reviewer compare before and after without leaving the file.
  
  
 ### 2.6) The purchase table for Step 3 and the tickers left out (section 6)
-Step 3 prices purchases only. The `Purchases` sheet holds the purchase rows of `Trades` (18,818 lots on 1,599 tickers) in the five columns the price scripts read, one row per disclosed lot, minus the left-out tickers below (18,797 rows on 1,594 tickers); `PurchasesMerged` adds the lots of one company and day into one row (17,724 company-days; 1,073 lots merged), with `amount_low`, `amount_mid` and `amount_high` summed, which is the table the hit count and the return test read (kokebok Step 2.3). Five purchased tickers are left out, as listed in sheet `Unpriceable` with the reason: BRKL and PINC (the symbols belong to ETFs today, so FMP's series is another instrument), NVRI and RNAM (re-registered in 2026), WOLF (old shares cancelled in the Chapter 11 exit); FMP serves no price for the purchased company on their purchase dates under any symbol. Their 21 purchases stay in `Sheet1` and are listed in `PurchasesLeftOut`. The `ChangeLog` sheet (423 rows: 381 ticker changed, 21 dropped, 21 kept but not priced) lets a reviewer follow any single row from the Step 2.4.9 file to the final file.
+Step 3 prices purchases only. The `Purchases` sheet holds the purchase rows of `Trades` (19,526 lots on 1,600 tickers) in the five columns the price scripts read, one row per disclosed lot, minus the left-out tickers below (19,505 rows on 1,595 tickers, 709 of them in April 2026); `PurchasesMerged` adds the lots of one company and day into one row (18,377 company-days; 1,128 lots merged), with `amount_low`, `amount_mid` and `amount_high` summed, which is the table the hit count and the return test read (kokebok Step 2.3). Five purchased tickers are left out, as listed in sheet `Unpriceable` with the reason: BRKL and PINC (the symbols belong to ETFs today, so FMP's series is another instrument), NVRI and RNAM (re-registered in 2026), WOLF (old shares cancelled in the Chapter 11 exit); FMP serves no price for the purchased company on their purchase dates under any symbol. Their 21 purchases stay in `Sheet1` and are listed in `PurchasesLeftOut`. The `ChangeLog` sheet (430 rows: 388 ticker changed, 21 dropped, 21 kept but not priced) lets a reviewer follow any single row from the Step 2.4.9 file to the final file.
 
 $\longrightarrow$ We now have all ticker names standardized and validated for each company, one ticker per company, the one the price provider serves.
  
@@ -1086,27 +1118,28 @@ flowchart TD
     %% ---------------- STEP B + C ----------------
     subgraph BC ["Step 2 · 2) Trades · TradesCleaning.ipynb (sections 1–6)"]
         direction TB
-        srcTig(["TigZig<br/>2025 trades"]):::src
-        srcQQ(["QuiverQuant<br/>2026 trades"]):::src
+        srcTig(["TigZig<br/>2025 and 2026 trades"]):::src
+        srcQQ(["QuiverQuant<br/>2026 tickers (lookup only)"]):::src
         srcNY(["NYSE + NASDAQ<br/>equity list"]):::src
         t25[("Trump_trades_2025_RAW.csv")]:::data
-        t26[("Trump_trades_2026_RAW (quiver).csv")]:::data
+        t26[("Trump_trades_2026_RAW (tigzig).csv")]:::data
+        tqq[("Trump_trades_2026_RAW (quiver).csv<br/>Company → Ticker")]:::data
         tdb[("TickersDB.xlsx")]:::data
  
-        subgraph C1 ["Step 2.1 Complete 2026 tickers"]
+        subgraph C1 ["Step 2.1 Complete the QuiverQuant ticker lookup"]
             c1a["a) back/front-fill missing tickers"]:::script
             c1b["b) regex: remove non-equities"]:::script
             c1c[/"c) manual: fix naming discrepancies"/]:::manual
             c1a --> c1b --> c1c
         end
  
-        subgraph C2 ["Step 2.2 Add tickers to 2025"]
+        subgraph C2 ["Step 2.2 Add tickers to the 2025 and 2026 trades"]
             c2s["standardize names<br/>CORP / INC / PLC"]:::script
-            c2a["a) exact match → 2026 ticker"]:::script
+            c2a["a) exact match → QuiverQuant ticker"]:::script
             c2b["b) flag + exclude non-equities"]:::script
-            c2c["c) prefix match INC → CORP → PLC<br/>vs 2026 + TickersDB"]:::script
+            c2c["c) prefix match INC → CORP → PLC<br/>vs QuiverQuant + TickersDB"]:::script
             c2d["d) rapidfuzz candidates vs TickersDB"]:::script
-            c2e[/"e) manual review of 575 rows"/]:::manual
+            c2e[/"e) manual review: 575 companies (2025),<br/>34 companies (2026)"/]:::manual
             c2s --> c2a --> c2b --> c2c --> c2d --> c2e
         end
  
@@ -1121,10 +1154,12 @@ flowchart TD
         trades[("Trump_trades_2025_2026.xlsx<br/>Trades · TradesBeforePriceReview · ChangeLog")]:::data
  
         srcTig --> t25
-        srcQQ --> t26
+        srcTig --> t26
+        srcQQ --> tqq
         srcNY --> tdb
-        t26 --> C1
+        tqq --> C1
         t25 --> C2
+        t26 --> C2
         tdb --> C2
         C1 --> C2
         C1 --> c3
