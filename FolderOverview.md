@@ -28,7 +28,7 @@ master/                                          # one folder per stage, read in
 │   └── Trump_trades_2025_2026.xlsx              # OUTPUT: Trades (final, 27,628 rows, 1,620 tickers) · TradesBeforePriceReview (state after Step 2.4) · TickerCompanyLookup · CompanyTickerGroups · Purchases · PurchasesMerged · PurchasesLeftOut · ChangeLog
 ├── 3) Prices/                                   # Step 3 = kokebok step 3: purchases -> daily prices -> abnormal returns -> review (co-author's scripts), one sub-folder per step
 │   ├── RawData/
-│   │   └── purchases.csv                        # written by 2) Trades section 6 (18,797 rows, 1,594 tickers)
+│   │   └── purchases.csv                        # written by 2) Trades section 6 (19,505 rows, 1,595 tickers)
 │   │   └── french/                              # Kenneth French daily factors: 3-factor, 5-factor, momentum (to 2026-09-30)
 │   ├── 1) FetchPrices/
 │   │   └── FetchPrices.py                       # FMP dividend-adjusted closes per ticker in purchases.csv (key pasted at run time, not stored)
@@ -39,7 +39,7 @@ master/                                          # one folder per stage, read in
 │   │   └── prices_2024_partial.csv              # resume file of FetchPrices2024.py
 │   ├── 2) ComputeReturns/
 │   │   └── ComputeReturns.py                    # factors, returns, wrong days blanked, betas (BETA_ESTIMATION = "presample" or "insample"), abnormal returns
-│   │   └── returns_table_presample.csv          # OUTPUT used by the analysis: ret, ar_raw, ar_mkt, ar_capm, ar_ff3m, ar_ff5m per ticker and day (630,470 rows)
+│   │   └── returns_table_presample.csv          # OUTPUT used by the analysis: ret, ar_raw, ar_mkt, ar_capm, ar_ff3m, ar_ff5m per ticker and day (630,875 rows)
 │   │   └── betas_presample.csv                  # OUTPUT: the one beta table for every world; method, nobs, window, alpha, R2, betas, note per ticker and model
 │   │   └── factors_daily_presample.csv          # daily factors as decimals plus the market return
 │   │   └── ReturnsReport_presample.txt          # run report (methods, forced fallbacks, review days removed)
