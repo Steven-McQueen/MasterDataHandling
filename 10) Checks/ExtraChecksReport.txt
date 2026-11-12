@@ -1,0 +1,32 @@
+Step 10, ChecksExtra (checks 9-11) | run 2026-11-13 00:08
+
+Inputs
+  2) Trades/Trump_trades_2025_2026.xlsx: 18,377 rows, modified 2026-11-12 20:55 (PurchasesMerged); 21 company-days from PurchasesLeftOut (Part 2)
+  Part 3 sample: 17,883 purchases on 1,502 tickers; 10 reviewed days set to zero
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-12 21:52
+  6) CalendarShifts/worlds.csv: 500 rows, modified 2026-11-12 21:52
+
+Checks
+  Main design reproduces Part 2 direct_pos50: real 176 vs 176, expected 204.12 vs 204.12: OK
+  Main design reproduces Part 2 direct_any: real 388 vs 388, expected 401.36 vs 401.36: OK
+  Main design reproduces Part 2 direct_neg50: real 129 vs 129, expected 105.45 vs 105.45: OK
+  Main design reproduces Part 3 Posted r: 1.658114% vs 1.658114%, mean shifted 0.472838% vs 0.472838%: OK
+  Check 11: real purchases with fewer than 10 trading days before day 0: 1658 (they use the days available; in a shifted world a day 0 on the first trading day has an empty window)
+  Check 10: 557 shifted worlds (shifts 1 to 557)
+
+design                 statistic                     real  expected  ratio  p_upper  p_lower  p_two worlds
+main (as run)          Praised hits                   176     204.1   0.86    0.958    0.048  0.096    500
+main (as run)          any post hits                  388     401.4   0.97    0.818    0.198  0.396    500
+main (as run)          Roasted hits                   129     105.5   1.22    0.016    0.990  0.032    500
+main (as run)          Posted r (Part 3)          1.6581%   0.4728%           0.170    0.832  0.340    500
+9  day 0 included      Praised hits                   187     218.5   0.86    0.976    0.034  0.068    500
+9  day 0 included      any post hits                  403     423.5   0.95    0.902    0.110  0.220    500
+9  day 0 included      Roasted hits                   134     110.8   1.21    0.016    0.992  0.032    500
+9  day 0 included      Posted r (Part 3)          1.6654%   0.4700%           0.158    0.844  0.316    500
+10 every shift         Praised hits                   176     203.4   0.87    0.944    0.061  0.122    558
+10 every shift         any post hits                  388     402.0   0.97    0.830    0.186  0.373    558
+10 every shift         Roasted hits                   129     106.7   1.21    0.016    0.991  0.032    558
+10 every shift         Posted r (Part 3)          1.6581%   0.5679%           0.197    0.805  0.394    558
+11 reverse (-10..-1)   Praised hits                   202     188.5   1.07    0.232    0.784  0.464    500
+11 reverse (-10..-1)   any post hits                  417     380.9   1.09    0.026    0.978  0.052    500
+11 reverse (-10..-1)   Roasted hits                   126     103.0   1.22    0.010    0.992  0.020    500
