@@ -48,7 +48,7 @@ N_SAMPLE = 200
 SEED = 20261110                     # fixed, so the same 200 rows come out on every run
 TYPES = ["direct", "brand", "executive"]
 CODERS = ["Filip", "Andreas"]
-POS, NEG = 0.5, -0.5                # the LLM score's categories, as Praised / Roasted in Part 2
+POS, NEG = 0.5, -0.5                # the LLM score's categories, as Praised / Roasted in Part 1
 TZ = "America/New_York"
 
 REQUIRED = ["ID", "created_at", "User", "platform", "text", "mention_text", "reference_type",
@@ -110,7 +110,7 @@ def write_workbook(path, sample, coder):
         "disagree = at least one of them is wrong. A short note on what looks off helps when you go through the "
         "disagreements together; the note column is optional.",
         f"   The LLM's score runs from -1 to 1; its category is positive at {POS} or more, negative at {NEG} or less, "
-        "neutral in between (the Praised and Roasted cut-offs of Part 2).",
+        "neutral in between (the Praised and Roasted cut-offs of Part 1).",
         "   positive = praise, endorsement, good news the author celebrates, or the company doing something the author approves of;",
         "   neutral = factual mention, a list of names, a neutral citation;",
         "   negative = criticism, a demand, an attack, blame, a threat, \"fake news\".",

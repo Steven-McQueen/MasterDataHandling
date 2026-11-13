@@ -1,14 +1,14 @@
-Step 10, DetectableEffects | run 2026-11-13 08:46
+Step 10, DetectableEffects | run 2026-11-13 12:55
 
-Critical value: the top 5 percent of all worlds (top 2.5 percent for the two-sided Part 3 test); approximate by one world.
+Critical value: the top 5 percent of all worlds (top 2.5 percent for the two-sided Part 2 test); approximate by one world.
 Detectable effect: critical value minus the mean of the shifted worlds.
 
 test                                                                          real      mean       sd  critical  detectable
-Part 1 (talk), slope, direct, 10 days (pp)                                  -0.013     0.001    0.014     0.023      +0.022
-Part 1 (talk), mention-days, direct, 10 days                               299.000   320.160   15.435   345.000     +24.840  (+8% of expected)
-Part 2 (timing), Praised hits (main)                                       176.000   204.116   16.730   230.000     +25.884  (+13% of expected)
-Part 2 (timing), any-post hits                                             388.000   402.884   16.652   431.000     +28.116  (+7% of expected)
-Part 2 (timing), Roasted hits                                              129.000   106.974    9.556   124.000     +17.026  (+16% of expected)
-Part 3 (returns), posted, return per dollar, days 1-10 (%; two-sided 5%)     1.658     0.472    1.212     2.711      +2.239  (USD 1,553,747 on the real amount of USD 69,394,726)
-Part 3 (returns), praised, return per dollar, days 1-10 (%; two-sided 5%)     2.883     0.336    1.552     3.647      +3.311  (USD 1,002,681 on the real amount of USD 30,285,072)
-Part 3 (returns), all, return per dollar, days 1-10 (%; two-sided 5%)        0.006    -0.114    0.310     0.538      +0.652  (USD 7,973,363 on the real amount of USD 1,223,208,002)
+Part 1b (talk), slope, direct, 10 days (pp)                                 -0.013     0.001    0.014     0.023      +0.022
+Part 1b (talk), mention-days, direct, 10 days                              299.000   320.160   15.435   345.000     +24.840  (+8% of expected)
+Part 1 (timing), Praised hits (main)                                       176.000   204.116   16.730   230.000     +25.884  (+13% of expected)
+Part 1 (timing), any-post hits                                             388.000   402.884   16.652   431.000     +28.116  (+7% of expected)
+Part 1 (timing), Roasted hits                                              129.000   106.974    9.556   124.000     +17.026  (+16% of expected)
+Part 2 (returns), posted, return per dollar, days 1-10 (%; two-sided 5%)     1.658     0.472    1.212     2.711      +2.239  (USD 1,553,747 on the real amount of USD 69,394,726)
+Part 2 (returns), praised, return per dollar, days 1-10 (%; two-sided 5%)     2.883     0.336    1.552     3.647      +3.311  (USD 1,002,681 on the real amount of USD 30,285,072)
+Part 2 (returns), all, return per dollar, days 1-10 (%; two-sided 5%)        0.006    -0.114    0.310     0.538      +0.652  (USD 7,973,363 on the real amount of USD 1,223,208,002)

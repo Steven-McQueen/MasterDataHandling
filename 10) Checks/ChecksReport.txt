@@ -1,20 +1,20 @@
-Step 10, Checks | run 2026-11-13 08:45
+Step 10, Checks | run 2026-11-13 12:54
 
 Inputs
-  2) Trades/Trump_trades_2025_2026.xlsx: 17,883 rows, modified 2026-11-12 20:55 (PurchasesMerged, Part 3 sample)
+  2) Trades/Trump_trades_2025_2026.xlsx: 17,883 rows, modified 2026-11-12 20:55 (PurchasesMerged, Part 2 sample)
   3) Prices/2) ComputeReturns/returns_table_presample.csv: columns ar_raw, ar_mkt, ar_capm, ar_ff3m, ar_ff5m; 10 reviewed days set to zero
-  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-13 08:38
-  6) CalendarShifts/worlds.csv: 500 rows, modified 2026-11-13 08:38
-  8) Part2Timing/2) Inference/world_counts.csv: 500 rows, modified 2026-11-13 08:44 (check 3)
-  9) Part3Returns/2) Inference/world_stats.csv: 500 rows, modified 2026-11-13 08:44 (check 3)
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-13 12:44
+  6) CalendarShifts/worlds.csv: 500 rows, modified 2026-11-13 12:44
+  8) Part1_Timing/2) Inference/world_counts.csv: 500 rows, modified 2026-11-13 12:50 (check 3)
+  9) Part2_Returns/2) Inference/world_stats.csv: 500 rows, modified 2026-11-13 12:50 (check 3)
 
 Amount: amount_mid. p_two = 2 x min(p_upper, p_lower), capped at 1.
 
 Checks
-  Check 6 count without the floor reproduces Part 2 (direct_pos50: 176 vs 176): OK
+  Check 6 count without the floor reproduces Part 1 (direct_pos50: 176 vs 176): OK
   Check 6: 1,555 of 1,696 mention rows have relevance >= 0.3
   Check 7: 140 of 17,883 sample purchases are of media companies (FOXA, NWSA, WBD, CMCSA, DIS, SKYD, VSNT)
-  Horizon 1-10 reproduces Part 3 (Posted r real 1.658114% vs 1.658114%): OK
+  Horizon 1-10 reproduces Part 2 (Posted r real 1.658114% vs 1.658114%): OK
   Short-shift worlds: 122 shifted + real (shifts 30-90 and 468-528)
   Check 4 sample: 17,883 of 17,883 purchases with all five return columns; market-adjusted on that sample: Posted r 1.6581% (p_two 0.340)
   Check 2: real purchases with fewer than five days before day 0: 4
@@ -47,14 +47,14 @@ Posted group (the reading):
 
 Horizon search over 1-1 .. 1-10 (Posted, two-sided): best horizon h1_5 (p_two 0.192), p_search 0.546 (500 worlds)
 
-Part 2 main count (direct_pos50 purchase hits) under short shifts: real 176, expected 199.1, p_upper 0.919, p_lower 0.098 (123 worlds)
+Part 1 main count (direct_pos50 purchase hits) under short shifts: real 176, expected 199.1, p_upper 0.919, p_lower 0.098 (123 worlds)
 
-Part 2 counts with relevance >= 0.3 (purchase hits, 500 worlds):
+Part 1 counts with relevance >= 0.3 (purchase hits, 500 worlds):
   direct_pos50   real  167, expected  194.1, p_upper 0.954, p_lower 0.054
   direct_any     real  370, expected  382.2, p_upper 0.806, p_lower 0.214
   direct_neg50   real  129, expected  106.9, p_upper 0.018, p_lower 0.986
 
-Part 2 counts without the media companies (check 7; 142 of 18,398 purchases removed, purchase hits, 500 worlds):
+Part 1 counts without the media companies (check 7; 142 of 18,398 purchases removed, purchase hits, 500 worlds):
   direct_pos50   real  160, expected  185.6, p_upper 0.940, p_lower 0.068
   direct_any     real  276, expected  293.8, p_upper 0.876, p_lower 0.140
   direct_neg50   real   50, expected   33.6, p_upper 0.004, p_lower 1.000

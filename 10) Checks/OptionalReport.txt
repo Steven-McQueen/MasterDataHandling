@@ -1,15 +1,15 @@
-Step 10, OptionalAnalyses (checks 12-13) | run 2026-11-13 09:26
+Step 10, OptionalAnalyses (checks 12-13) | run 2026-11-13 12:55
 
 Inputs
-  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-13 08:38
-  6) CalendarShifts/worlds.csv: 500 rows, modified 2026-11-13 08:38
-  Returns: ar_mkt, 1,502 tickers with a full series (the Part 3 sample); 10 reviewed days set to zero
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-13 12:44
+  6) CalendarShifts/worlds.csv: 500 rows, modified 2026-11-13 12:44
+  Returns: ar_mkt, 1,502 tickers with a full series (the Part 2 sample); 10 reviewed days set to zero
   Sales: 9,431 sale lots in Trump_trades_2025_2026.xlsx / Trades, 9,008 company-days (USD 638,745,216 at midpoints)
-  Check 12 sample: 8,740 company-days on 1,435 tickers (USD 630,704,078); left out 268 company-days on 105 tickers (USD 8,041,137): 268 not in the Part 3 sample, 0 outside the shift calendar
-  Check 13: 1,274 direct post-company rows on 115 Part 3 tickers inside the post calendar 2025-01-20 to 2026-08-26 (584 days); 13 rows outside, left out; 525 shifted worlds (shifts 30 to 554 days)
+  Check 12 sample: 8,740 company-days on 1,435 tickers (USD 630,704,078); left out 268 company-days on 105 tickers (USD 8,041,137): 268 not in the Part 2 sample, 0 outside the shift calendar
+  Check 13: 1,274 direct post-company rows on 115 Part 2 tickers inside the post calendar 2025-01-20 to 2026-08-26 (584 days); 13 rows outside, left out; 525 shifted worlds (shifts 30 to 554 days)
 
 Checks
-  The labelling and return code reproduces Part 3's real Posted return on the purchases: 1.658114% vs 1.658114%: OK
+  The labelling and return code reproduces Part 2's real Posted return on the purchases: 1.658114% vs 1.658114%: OK
   Check 13, real world: 857 events (company x event day) from the direct posts; 302 Praised, 218 Roasted, 7 both
 
 Check 12, sales (500 worlds of Step 6)

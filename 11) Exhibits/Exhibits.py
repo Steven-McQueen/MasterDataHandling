@@ -2,8 +2,8 @@
 Step 11. Exhibits
 -----------------
 Every table and figure the thesis needs, drawn from the outputs of Steps 2 to 10 (kokebok
-step 12, Exhibits). Nothing is estimated again here, except the Part 2 gap between Praised
-and Roasted hits, computed from Part 2's world table. Decisions in 0) Decisions.md.
+step 12, Exhibits). Nothing is estimated again here, except the Part 1 gap between Praised
+and Roasted hits, computed from Part 1's world table. Decisions in 0) Decisions.md.
 
 HOW TO RUN
     pip install pandas numpy openpyxl matplotlib
@@ -11,9 +11,9 @@ HOW TO RUN
 
 INPUTS
     2) Trades/Trump_trades_2025_2026.xlsx (PurchasesMerged), 1) SocialMedia/SocialMediaPosts.json,
-    7) Part1Talk/2) Estimate/results.csv, 7) Part1Talk/3) Inference/inference.csv,
-    8) Part2Timing/2) Inference/inference.csv and world_counts.csv,
-    9) Part3Returns/1) Returns/purchase_returns.csv, 9) Part3Returns/2) Inference/
+    7) Part1b_Talk/2) Estimate/results.csv, 7) Part1b_Talk/3) Inference/inference.csv,
+    8) Part1_Timing/2) Inference/inference.csv and world_counts.csv,
+    9) Part2_Returns/1) Returns/purchase_returns.csv, 9) Part2_Returns/2) Inference/
     (inference.csv, gaps.csv, world_stats.csv, contributors.csv),
     10) Checks/robustness.csv and world_checks.csv
 
@@ -35,15 +35,15 @@ TAB, FIG = HERE / "tables", HERE / "figures"
 
 TRADES_XLSX = REPO / "2) Trades" / "Trump_trades_2025_2026.xlsx"
 POSTS_JSON = REPO / "1) SocialMedia" / "SocialMediaPosts.json"
-P1_RESULTS = REPO / "7) Part1Talk" / "2) Estimate" / "results.csv"
-P1_INF = REPO / "7) Part1Talk" / "3) Inference" / "inference.csv"
-P2_INF = REPO / "8) Part2Timing" / "2) Inference" / "inference.csv"
-P2_WORLDS = REPO / "8) Part2Timing" / "2) Inference" / "world_counts.csv"
-P3_PURCH = REPO / "9) Part3Returns" / "1) Returns" / "purchase_returns.csv"
-P3_INF = REPO / "9) Part3Returns" / "2) Inference" / "inference.csv"
-P3_GAPS = REPO / "9) Part3Returns" / "2) Inference" / "gaps.csv"
-P3_WORLDS = REPO / "9) Part3Returns" / "2) Inference" / "world_stats.csv"
-P3_CONTRIB = REPO / "9) Part3Returns" / "2) Inference" / "contributors.csv"
+P1_RESULTS = REPO / "7) Part1b_Talk" / "2) Estimate" / "results.csv"
+P1_INF = REPO / "7) Part1b_Talk" / "3) Inference" / "inference.csv"
+P2_INF = REPO / "8) Part1_Timing" / "2) Inference" / "inference.csv"
+P2_WORLDS = REPO / "8) Part1_Timing" / "2) Inference" / "world_counts.csv"
+P3_PURCH = REPO / "9) Part2_Returns" / "1) Returns" / "purchase_returns.csv"
+P3_INF = REPO / "9) Part2_Returns" / "2) Inference" / "inference.csv"
+P3_GAPS = REPO / "9) Part2_Returns" / "2) Inference" / "gaps.csv"
+P3_WORLDS = REPO / "9) Part2_Returns" / "2) Inference" / "world_stats.csv"
+P3_CONTRIB = REPO / "9) Part2_Returns" / "2) Inference" / "contributors.csv"
 CH_ROB = REPO / "10) Checks" / "robustness.csv"
 CH_WORLDS = REPO / "10) Checks" / "world_checks.csv"
 
@@ -152,15 +152,15 @@ def sample_table():
     prow.append(["All posts", f"{len(posts):,}", ""])
     tex_table("tab_sample", "Purchases and posts in the sample",
               "Purchases are disclosed stock purchases from 20 January 2025 to 31 July 2026, merged to one row per company "
-              "and trade day. The Part 3 sample keeps the companies with a market-adjusted return on every trading day "
+              "and trade day. The Part 2 sample keeps the companies with a market-adjusted return on every trading day "
               "from 21 January 2025 to 28 August 2026. Posts run from 20 January 2025 to 31 August 2026; a post that "
               "appears on several accounts is counted once, at its earliest copy.",
-              ["", "All purchases", "Part 3 sample"], rows + [["\\textit{Posts by account}", "", ""]] + prow,
+              ["", "All purchases", "Part 2 sample"], rows + [["\\textit{Posts by account}", "", ""]] + prow,
               "lrr", midrules=(len(rows),))
-    csv_out("tab_sample", pd.DataFrame(rows + prow, columns=["item", "all", "part3_sample"]))
+    csv_out("tab_sample", pd.DataFrame(rows + prow, columns=["item", "all", "part2_sample"]))
 
 
-def part1_table():
+def talk_table():
     inf = pd.read_csv(P1_INF).query("outcome == 'direct' and treatment.str.startswith('recent_')", engine="python")
     res = pd.read_csv(P1_RESULTS).query("spec == 'window' and outcome == 'direct' and sample == 'universe' and model == 'lpm'")
     base = res.set_index("treatment")["baseline"]
@@ -173,7 +173,7 @@ def part1_table():
                     "p_upper": r["p_upper"], "p_lower": r["p_lower"], "mention_days": r["hits_real"],
                     "expected": r["hits_expected"], "baseline": base.get(r["treatment"], np.nan)})
     b10 = base.get("recent_10", np.nan)
-    tex_table("tab_part1", "Part 1: mentions of a company after a recent purchase",
+    tex_table("tab_part1b", "Part 1b: mentions of a company after a recent purchase",
               "Linear probability model of a direct mention of the company on a day, with company and day effects, on "
               f"a recent purchase in the k calendar days before. Slope in percentage points; the baseline probability "
               f"of a mention is {b10 * 100:.3f} percent. p\\textsubscript{{upper}} is the share of all "
@@ -182,10 +182,10 @@ def part1_table():
               f"{inf['p_search'].iloc[0] * 100:.0f} percent of the worlds.",
               ["k (days)", "Slope", "Shifted mean", "p\\textsubscript{upper}", "p\\textsubscript{lower}", "Mention-days", "Expected"],
               rows, "rrrrrrr")
-    csv_out("tab_part1", pd.DataFrame(out))
+    csv_out("tab_part1b", pd.DataFrame(out))
 
 
-def part2_figure_and_table(plt):
+def timing_figure_and_table(plt):
     w = pd.read_csv(P2_WORLDS)
     inf = pd.read_csv(P2_INF)
     real, sh = w[w["world"] == 0].iloc[0], w[w["world"] != 0]
@@ -195,10 +195,10 @@ def part2_figure_and_table(plt):
         hist_panel(ax, sh[f"{o}|purchase_hits"], real[f"{o}|purchase_hits"], t, "Purchases with a hit", integer=True)
     axes[0].set_ylabel("Shifted worlds")
     fig.tight_layout()
-    fig.savefig(FIG / "fig_part2_worlds.pdf")
+    fig.savefig(FIG / "fig_part1_worlds.pdf")
     plt.close(fig)
-    written.append("figures/fig_part2_worlds.pdf")
-    tex_figure("fig_part2_worlds", "Part 2: purchases followed by a post, real calendar against the shifted worlds",
+    written.append("figures/fig_part1_worlds.pdf")
+    tex_figure("fig_part1_worlds", "Part 1: purchases followed by a post, real calendar against the shifted worlds",
                f"Each bar counts shifted worlds ({len(sh)} in all) by the number of purchases followed by a direct "
                "mention of the company within trading days 1 to 10; the vertical line is the real count. Praised: "
                "sentiment of 0.5 or more; Roasted: $-$0.5 or less.")
@@ -216,7 +216,7 @@ def part2_figure_and_table(plt):
     rows.insert(3, ["Praised minus Roasted", f"{int(gr)}", f"{gm:.1f}", f"{gr - gm:+.1f}".replace("-", "$-$"), "", p3(pu), p3(pl)])
     out.insert(3, {"outcome": "Praised minus Roasted", "real": gr, "mean_shifted": gm, "excess": gr - gm,
                    "ratio": np.nan, "p_upper": pu, "p_lower": pl})
-    tex_table("tab_part2", "Part 2: purchases followed by a post about the same company",
+    tex_table("tab_part1", "Part 1: purchases followed by a post about the same company",
               "A hit is a purchase followed by a direct mention of the company within trading days 1 to 10 after the "
               "trade date, all three accounts. Praised: sentiment of 0.5 or more; Roasted: $-$0.5 or less. The shifted "
               f"mean is the average over the {len(sh)} shifted worlds; excess is real minus shifted mean. "
@@ -224,10 +224,10 @@ def part2_figure_and_table(plt):
               "least as small as the real count. The last row is a description, not a test of the research question.",
               ["Outcome", "Real", "Shifted mean", "Excess", "Ratio", "p\\textsubscript{upper}", "p\\textsubscript{lower}"],
               rows, "lrrrrrr", midrules=(3, 4))
-    csv_out("tab_part2", pd.DataFrame(out))
+    csv_out("tab_part1", pd.DataFrame(out))
 
 
-def part3_figure_and_tables(plt):
+def returns_figure_and_tables(plt):
     w = pd.read_csv(P3_WORLDS)
     inf = pd.read_csv(P3_INF).query("amount == @AMOUNT")
     gaps = pd.read_csv(P3_GAPS)
@@ -238,10 +238,10 @@ def part3_figure_and_tables(plt):
         hist_panel(ax, sh[f"{g}|{AMOUNT}|r"], real[f"{g}|{AMOUNT}|r"], GROUP_NAMES[g], "Percent", scale=100)
     axes[0].set_ylabel("Shifted worlds")
     fig.tight_layout()
-    fig.savefig(FIG / "fig_part3_groups.pdf")
+    fig.savefig(FIG / "fig_part2_groups.pdf")
     plt.close(fig)
-    written.append("figures/fig_part3_groups.pdf")
-    tex_figure("fig_part3_groups", "Part 3: return per dollar of each group, real calendar against the shifted worlds",
+    written.append("figures/fig_part2_groups.pdf")
+    tex_figure("fig_part2_groups", "Part 2: return per dollar of each group, real calendar against the shifted worlds",
                f"Each bar counts shifted worlds ({len(sh)} in all) by the group's market-adjusted return per dollar over "
                "trading days 1 to 10, in percent, amounts at the midpoint; the vertical line is the real value. Group "
                "membership is set again in every world.")
@@ -261,7 +261,7 @@ def part3_figure_and_tables(plt):
         else:
             grows.append([names.get(g["test"], g["test"]), "", "", pct(g["real"]), pct(g["mean_shifted"]),
                           signed_pct(g["excess"]), "", p3(g["p_two"])])
-    tex_table("tab_part3", "Part 3: market-adjusted return per dollar of the purchases, real against shifted dates",
+    tex_table("tab_part2", "Part 2: market-adjusted return per dollar of the purchases, real against shifted dates",
               "Return per dollar: the sum of amount times the market-adjusted return over trading days 1 to 10 after "
               "the purchase, divided by the amount of the group, in percent; amounts at the midpoint of the disclosed "
               "range. The shifted mean is the average over the shifted worlds; $\\Delta r$ is real minus shifted mean in "
@@ -271,12 +271,12 @@ def part3_figure_and_tables(plt):
               "statistic in every world.",
               ["Group", "n", "USD m", "Real", "Shifted mean", "$\\Delta r$", "Excess (USD)", "p"],
               rows + grows, "lrrrrrrr", midrules=(len(rows),))
-    csv_out("tab_part3", pd.concat([pd.DataFrame(out), gaps.assign(group=gaps["test"])], ignore_index=True))
+    csv_out("tab_part2", pd.concat([pd.DataFrame(out), gaps.assign(group=gaps["test"])], ignore_index=True))
 
     con = pd.read_csv(P3_CONTRIB).head(10)
     crow = [[r.ticker, r.trade_date, r.label.capitalize(), usd(r.amount_mid), signed_pct(r.mar), usd(r.contribution)]
             for r in con.itertuples()]
-    tex_table("tab_contributors", "Part 3: the ten Posted purchases with the largest contributions to the dollar excess",
+    tex_table("tab_contributors", "Part 2: the ten Posted purchases with the largest contributions to the dollar excess",
               "Contribution: amount times (the purchase's market-adjusted return over trading days 1 to 10 minus the "
               "average return per dollar of the shifted Posted groups). Sorted by absolute size. All contributions "
               f"together add up to the Posted dollar excess of USD {usd(inf.query('group == \"posted\"')['dollar_excess'].iloc[0])}.",
@@ -298,7 +298,7 @@ def checks_tables_and_figure(plt):
                      p3(r["p_two"]), f"{int(r['n_worlds'])}"])
         out.append({"check": name.replace("$-$", "-"), **r.to_dict()})
     tex_table("tab_robustness", "Checks: the Posted group's return per dollar under each check",
-              "Each row reruns the Part 3 test for the Posted group with one thing changed; the main result is the "
+              "Each row reruns the Part 2 test for the Posted group with one thing changed; the main result is the "
               "first row. Return per dollar in percent; $\\Delta r$ in percentage points; p is two-sided. Check 3 uses "
               "only the worlds shifted 30 to 90 days forward or backward. Check 4 shows the strictest return model; "
               "all five are in the return-model table. Check 5 removes the five largest purchases by amount, all of "
@@ -350,9 +350,9 @@ def main():
     FIG.mkdir(exist_ok=True)
     plt = style()
     sample_table()
-    part1_table()
-    part2_figure_and_table(plt)
-    part3_figure_and_tables(plt)
+    talk_table()
+    timing_figure_and_table(plt)
+    returns_figure_and_tables(plt)
     checks_tables_and_figure(plt)
     inputs = [TRADES_XLSX, POSTS_JSON, P1_RESULTS, P1_INF, P2_INF, P2_WORLDS, P3_PURCH, P3_INF, P3_GAPS,
               P3_WORLDS, P3_CONTRIB, CH_ROB, CH_WORLDS]

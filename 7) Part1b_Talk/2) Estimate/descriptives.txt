@@ -1,0 +1,38 @@
+Part 1b descriptives (direct mentions)
+
+direct       : 1,309 post-ticker pairs, 947 ticker-days, 122 tickers
+direct_brand : 1,548 post-ticker pairs, 1,107 ticker-days, 134 tickers
+all_types    : 1,682 post-ticker pairs, 1,174 ticker-days, 137 tickers
+direct_trump : 455 post-ticker pairs, 412 ticker-days, 58 tickers
+
+Raw rates among mentioned tickers (share of ticker-days with a mention):
+  recent_1  = 1: 1.129% of 3,720 days; = 0: 1.328% of 68,138 days
+  recent_3  = 1: 1.206% of 10,203 days; = 0: 1.336% of 61,655 days
+  recent_5  = 1: 1.067% of 15,648 days; = 0: 1.388% of 56,210 days
+  recent_10 = 1: 1.167% of 25,624 days; = 0: 1.402% of 46,234 days
+  recent_20 = 1: 1.226% of 38,018 days; = 0: 1.421% of 33,840 days
+  recent_30 = 1: 1.299% of 44,955 days; = 0: 1.349% of 26,903 days
+
+Ownership description (mentioned tickers):
+  mentioned tickers: 122; never bought: 1
+  first purchase by 2025-02-02: 94
+  first purchase by month: 2025-01: 94, 2025-02: 9, 2025-03: 2, 2025-04: 10, 2025-05: 1, 2025-09: 1, 2025-12: 1, 2026-01: 1, 2026-03: 1, 2026-06: 1
+  mention-days before the first purchase (or never bought): 46, after: 901
+  raw rate before: 0.998% of 4,608 days; after: 1.340% of 67,250 days
+
+Most mentioned tickers: ticker, mention days, purchase days, first purchase
+  FOXA    214   13  2025-02-24
+  NWSA     95    7  2025-02-24
+  CMCSA    72   50  2025-01-29
+  WBD      70   19  2025-01-29
+  DIS      58   44  2025-01-29
+  SKYD     50    7  2025-05-06
+  AAPL     25   70  2025-01-29
+  BA       19   36  2025-01-29
+  NVDA     16   62  2025-01-29
+  TKO      16    4  2025-03-10
+  GM       13   29  2025-04-03
+  WMT      12   58  2025-01-29
+  INTC     11   36  2025-01-29
+  MU       10   43  2025-01-29
+  VSNT     10    2  2026-01-26

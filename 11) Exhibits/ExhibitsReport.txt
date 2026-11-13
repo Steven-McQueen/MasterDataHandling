@@ -1,33 +1,33 @@
-Step 11, Exhibits | run 2026-11-13 08:46
+Step 11, Exhibits | run 2026-11-13 12:57
 
 Inputs
   2) Trades/Trump_trades_2025_2026.xlsx: modified 2026-11-12 20:55
   1) SocialMedia/SocialMediaPosts.json: modified 2026-11-09 11:14
-  7) Part1Talk/2) Estimate/results.csv: modified 2026-11-13 08:40
-  7) Part1Talk/3) Inference/inference.csv: modified 2026-11-13 08:43
-  8) Part2Timing/2) Inference/inference.csv: modified 2026-11-13 08:44
-  8) Part2Timing/2) Inference/world_counts.csv: modified 2026-11-13 08:44
-  9) Part3Returns/1) Returns/purchase_returns.csv: modified 2026-11-13 08:44
-  9) Part3Returns/2) Inference/inference.csv: modified 2026-11-13 08:44
-  9) Part3Returns/2) Inference/gaps.csv: modified 2026-11-13 08:44
-  9) Part3Returns/2) Inference/world_stats.csv: modified 2026-11-13 08:44
-  9) Part3Returns/2) Inference/contributors.csv: modified 2026-11-13 08:44
-  10) Checks/robustness.csv: modified 2026-11-13 08:45
-  10) Checks/world_checks.csv: modified 2026-11-13 08:45
+  7) Part1b_Talk/2) Estimate/results.csv: modified 2026-11-13 12:46
+  7) Part1b_Talk/3) Inference/inference.csv: modified 2026-11-13 12:49
+  8) Part1_Timing/2) Inference/inference.csv: modified 2026-11-13 12:50
+  8) Part1_Timing/2) Inference/world_counts.csv: modified 2026-11-13 12:50
+  9) Part2_Returns/1) Returns/purchase_returns.csv: modified 2026-11-13 12:50
+  9) Part2_Returns/2) Inference/inference.csv: modified 2026-11-13 12:50
+  9) Part2_Returns/2) Inference/gaps.csv: modified 2026-11-13 12:50
+  9) Part2_Returns/2) Inference/world_stats.csv: modified 2026-11-13 12:50
+  9) Part2_Returns/2) Inference/contributors.csv: modified 2026-11-13 12:50
+  10) Checks/robustness.csv: modified 2026-11-13 12:54
+  10) Checks/world_checks.csv: modified 2026-11-13 12:54
 
 Written (20)
   tables/tab_sample.tex
   tables/tab_sample.csv
+  tables/tab_part1b.tex
+  tables/tab_part1b.csv
+  figures/fig_part1_worlds.pdf
+  figures/fig_part1_worlds.tex
   tables/tab_part1.tex
   tables/tab_part1.csv
-  figures/fig_part2_worlds.pdf
-  figures/fig_part2_worlds.tex
+  figures/fig_part2_groups.pdf
+  figures/fig_part2_groups.tex
   tables/tab_part2.tex
   tables/tab_part2.csv
-  figures/fig_part3_groups.pdf
-  figures/fig_part3_groups.tex
-  tables/tab_part3.tex
-  tables/tab_part3.csv
   tables/tab_contributors.tex
   tables/tab_contributors.csv
   tables/tab_robustness.tex

@@ -96,7 +96,7 @@ def main():
 
     lines = [f"Step 10, OptionalRobustness (robustness of checks 12-13) | run {datetime.now():%Y-%m-%d %H:%M}", "", "Inputs",
              "  " + P2.input_line(P2.POSTS_XLSX, post_rows),
-             f"  Check 13 base: {len(base):,} direct post-company rows on {base['ticker'].nunique()} Part 3 tickers; "
+             f"  Check 13 base: {len(base):,} direct post-company rows on {base['ticker'].nunique()} Part 2 tickers; "
              f"{len(shifts) - 1} shifted worlds; short shifts: {len(short) - 1}",
              f"  Return models: {len(keep_all):,} tickers with a full series under {', '.join(ALL_COLUMNS)}"]
 

@@ -1,0 +1,552 @@
+
+=== RunPart2 2026-11-10 12:50 | /usr/local/bin/python3
+--- Hits.py
+Part 2, Hits | run 2026-11-10 12:50
+
+Inputs
+  2) Trades/Trump_trades_2025_2026.xlsx: 17,724 rows, modified 2026-11-09 11:14 (PurchasesMerged); 21 company-days from PurchasesLeftOut
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,468 rows, modified 2026-11-10 12:48
+  3) Prices/2) ComputeReturns/factors_daily_presample.csv: 405 rows, modified 2026-11-09 11:14 (trading calendar)
+
+Purchases: 17,745 company-days on 1,599 tickers (18,818 lots), 2025-01-23 to 2026-07-31
+  trade date not a trading day (day 0 moved forward): 4
+  window: trading days 1-10 after day 0; posts on day 0 do not count; last window ends 2026-08-14 (posts end 2026-08-31)
+  calendar days per window: min 14, median 14, max 18
+
+Outcomes: qualifying post-ticker pairs | purchases with a hit | pairs inside a window
+  direct_any       1,303 |    373 |    530
+  direct_pos50       411 |    177 |    178
+  direct_neg50       269 |    125 |    125
+  direct_pos30       414 |    177 |    179
+  direct_pos70       140 |     65 |     59
+  direct_neg30       269 |    125 |    125
+  direct_neg70       246 |    107 |    109
+  brand_any        1,547 |    457 |    622
+  brand_pos50        486 |    193 |    195
+  brand_neg50        292 |    131 |    133
+  alltypes_any     1,682 |    491 |    727
+  alltypes_pos50     551 |    215 |    243
+  alltypes_neg50     299 |    140 |    137
+  trump_any          450 |    197 |    186
+  trump_pos50        148 |     63 |     61
+  trump_neg50        214 |    107 |     94
+
+Traced examples (direct_pos50): ticker, trade date, window, panel count, recount from post rows
+  NUE    2025-01-29  01-29..02-12  1  1  OK
+  NUE    2025-01-30  01-30..02-13  1  1  OK
+  AAPL   2025-02-13  02-13..02-28  4  4  OK
+  DIS    2025-02-24  02-24..03-10  1  1  OK
+  FOXA   2025-02-24  02-24..03-10  2  2  OK
+
+Written: purchase_hits.csv (17,745 rows), hit_posts.csv (1,308 rows), hits_summary.csv
+--- ShiftedWorlds.py
+world 0 of 498
+world 100 of 498
+world 200 of 498
+world 300 of 498
+world 400 of 498
+Part 2, ShiftedWorlds | run 2026-11-10 12:51
+
+Inputs
+  2) Trades/Trump_trades_2025_2026.xlsx: 17,724 rows, modified 2026-11-09 11:14 (PurchasesMerged); 21 company-days from PurchasesLeftOut
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,468 rows, modified 2026-11-10 12:48
+  3) Prices/2) ComputeReturns/factors_daily_presample.csv: 405 rows, modified 2026-11-09 11:14 (trading calendar)
+  6) CalendarShifts/worlds.csv: 499 rows, modified 2026-11-10 11:51
+
+Worlds: 499 (world 0 = real). Main test: direct_pos50, purchase hits.
+
+outcome          count              real  expected  ratio  p_upper  p_lower
+direct_any       purchase_hits       373     390.2   0.96    0.838    0.172
+direct_any       post_hits           530     535.1   0.99    0.581    0.435
+direct_pos50     purchase_hits       177     208.4   0.85    0.954    0.056   <- main
+direct_pos50     post_hits           178     190.1   0.94    0.812    0.226
+direct_neg50     purchase_hits       125     102.7   1.22    0.034    0.970
+direct_neg50     post_hits           125     116.1   1.08    0.238    0.786
+direct_pos30     purchase_hits       177     208.5   0.85    0.954    0.056
+direct_pos30     post_hits           179     191.0   0.94    0.804    0.222
+direct_pos70     purchase_hits        65      78.2   0.83    0.892    0.142
+direct_pos70     post_hits            59      62.2   0.95    0.721    0.333
+direct_neg30     purchase_hits       125     102.7   1.22    0.034    0.970
+direct_neg30     post_hits           125     116.1   1.08    0.238    0.786
+direct_neg70     purchase_hits       107      93.8   1.14    0.096    0.916
+direct_neg70     post_hits           109     105.7   1.03    0.415    0.625
+brand_any        purchase_hits       457     474.8   0.96    0.846    0.172
+brand_any        post_hits           622     638.3   0.97    0.707    0.311
+brand_pos50      purchase_hits       193     231.8   0.83    0.992    0.016
+brand_pos50      post_hits           195     213.9   0.91    0.936    0.078
+brand_neg50      purchase_hits       131     113.0   1.16    0.082    0.928
+brand_neg50      post_hits           133     126.3   1.05    0.297    0.721
+alltypes_any     purchase_hits       491     504.9   0.97    0.745    0.263
+alltypes_any     post_hits           727     717.7   1.01    0.405    0.605
+alltypes_pos50   purchase_hits       215     249.4   0.86    0.940    0.074
+alltypes_pos50   post_hits           243     252.0   0.96    0.641    0.369
+alltypes_neg50   purchase_hits       140     119.0   1.18    0.084    0.924
+alltypes_neg50   post_hits           137     130.4   1.05    0.319    0.707
+trump_any        purchase_hits       197     215.6   0.91    0.878    0.144
+trump_any        post_hits           186     196.1   0.95    0.792    0.224
+trump_pos50      purchase_hits        63      93.5   0.67    1.000    0.002
+trump_pos50      post_hits            61      66.6   0.92    0.774    0.265
+trump_neg50      purchase_hits       107      92.3   1.16    0.108    0.908
+trump_neg50      post_hits            94      92.9   1.01    0.503    0.559
+tone_given_talk  pos_share         0.475     0.534   0.89    0.972    0.030
+finished
+
+=== RunPart2 2026-11-10 14:30 | /usr/local/bin/python3
+--- Hits.py
+Part 2, Hits | run 2026-11-10 14:30
+
+Inputs
+  2) Trades/Trump_trades_2025_2026.xlsx: 17,724 rows, modified 2026-11-09 11:14 (PurchasesMerged); 21 company-days from PurchasesLeftOut
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,468 rows, modified 2026-11-10 12:48
+  3) Prices/2) ComputeReturns/factors_daily_presample.csv: 405 rows, modified 2026-11-09 11:14 (trading calendar)
+
+Purchases: 17,745 company-days on 1,599 tickers (18,818 lots), 2025-01-23 to 2026-07-31
+  trade date not a trading day (day 0 moved forward): 4
+  window: trading days 1-10 after day 0; posts on day 0 do not count; last window ends 2026-08-14 (posts end 2026-08-31)
+  calendar days per window: min 14, median 14, max 18
+
+Outcomes: qualifying post-ticker pairs | purchases with a hit | pairs inside a window
+  direct_any       1,303 |    373 |    530
+  direct_pos50       411 |    177 |    178
+  direct_neg50       269 |    125 |    125
+  direct_pos30       414 |    177 |    179
+  direct_pos70       140 |     65 |     59
+  direct_neg30       269 |    125 |    125
+  direct_neg70       246 |    107 |    109
+  brand_any        1,547 |    457 |    622
+  brand_pos50        486 |    193 |    195
+  brand_neg50        292 |    131 |    133
+  alltypes_any     1,682 |    491 |    727
+  alltypes_pos50     551 |    215 |    243
+  alltypes_neg50     299 |    140 |    137
+  trump_any          450 |    197 |    186
+  trump_pos50        148 |     63 |     61
+  trump_neg50        214 |    107 |     94
+
+Traced examples (direct_pos50): ticker, trade date, window, panel count, recount from post rows
+  NUE    2025-01-29  01-29..02-12  1  1  OK
+  NUE    2025-01-30  01-30..02-13  1  1  OK
+  AAPL   2025-02-13  02-13..02-28  4  4  OK
+  DIS    2025-02-24  02-24..03-10  1  1  OK
+  FOXA   2025-02-24  02-24..03-10  2  2  OK
+
+Written: purchase_hits.csv (17,745 rows), hit_posts.csv (1,308 rows), hits_summary.csv
+--- ShiftedWorlds.py
+world 0 of 499
+world 100 of 499
+world 200 of 499
+world 300 of 499
+world 400 of 499
+Part 2, ShiftedWorlds | run 2026-11-10 14:30
+
+Inputs
+  2) Trades/Trump_trades_2025_2026.xlsx: 17,724 rows, modified 2026-11-09 11:14 (PurchasesMerged); 21 company-days from PurchasesLeftOut
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,468 rows, modified 2026-11-10 12:48
+  3) Prices/2) ComputeReturns/factors_daily_presample.csv: 405 rows, modified 2026-11-09 11:14 (trading calendar)
+  6) CalendarShifts/worlds.csv: 500 rows, modified 2026-11-10 14:29
+
+Worlds: 500 (world 0 = real). Main test: direct_pos50, purchase hits.
+
+outcome          count              real  expected  ratio  p_upper  p_lower
+direct_any       purchase_hits       373     390.1   0.96    0.838    0.170
+direct_any       post_hits           530     535.3   0.99    0.580    0.434
+direct_pos50     purchase_hits       177     208.6   0.85    0.954    0.056   <- main
+direct_pos50     post_hits           178     190.3   0.94    0.806    0.208
+direct_neg50     purchase_hits       125     102.6   1.22    0.034    0.968
+direct_neg50     post_hits           125     116.0   1.08    0.232    0.802
+direct_pos30     purchase_hits       177     208.7   0.85    0.954    0.056
+direct_pos30     post_hits           179     191.3   0.94    0.808    0.216
+direct_pos70     purchase_hits        65      78.4   0.83    0.890    0.128
+direct_pos70     post_hits            59      62.5   0.94    0.730    0.326
+direct_neg30     purchase_hits       125     102.6   1.22    0.034    0.968
+direct_neg30     post_hits           125     116.0   1.08    0.232    0.802
+direct_neg70     purchase_hits       107      93.7   1.14    0.098    0.920
+direct_neg70     post_hits           109     105.6   1.03    0.420    0.628
+brand_any        purchase_hits       457     474.7   0.96    0.834    0.182
+brand_any        post_hits           622     638.4   0.97    0.694    0.318
+brand_pos50      purchase_hits       193     231.9   0.83    0.992    0.014
+brand_pos50      post_hits           195     214.1   0.91    0.934    0.078
+brand_neg50      purchase_hits       131     112.9   1.16    0.084    0.930
+brand_neg50      post_hits           133     126.2   1.05    0.300    0.720
+alltypes_any     purchase_hits       491     504.7   0.97    0.746    0.264
+alltypes_any     post_hits           727     717.9   1.01    0.404    0.602
+alltypes_pos50   purchase_hits       215     249.5   0.86    0.942    0.066
+alltypes_pos50   post_hits           243     252.2   0.96    0.650    0.366
+alltypes_neg50   purchase_hits       140     118.8   1.18    0.082    0.928
+alltypes_neg50   post_hits           137     130.3   1.05    0.316    0.708
+trump_any        purchase_hits       197     215.2   0.92    0.872    0.142
+trump_any        post_hits           186     195.9   0.95    0.792    0.232
+trump_pos50      purchase_hits        63      93.4   0.67    1.000    0.002
+trump_pos50      post_hits            61      66.5   0.92    0.778    0.264
+trump_neg50      purchase_hits       107      92.2   1.16    0.106    0.910
+trump_neg50      post_hits            94      92.8   1.01    0.500    0.558
+tone_given_talk  pos_share         0.475     0.534   0.89    0.970    0.032
+finished
+
+=== RunPart2 2026-11-11 13:04 | /usr/local/bin/python3
+--- Hits.py
+Part 2, Hits | run 2026-11-11 13:04
+
+Inputs
+  2) Trades/Trump_trades_2025_2026.xlsx: 17,724 rows, modified 2026-11-09 11:14 (PurchasesMerged); 21 company-days from PurchasesLeftOut
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-11 12:58
+  3) Prices/2) ComputeReturns/factors_daily_presample.csv: 405 rows, modified 2026-11-09 11:14 (trading calendar)
+
+Purchases: 17,745 company-days on 1,599 tickers (18,818 lots), 2025-01-23 to 2026-07-31
+  trade date not a trading day (day 0 moved forward): 4
+  window: trading days 1-10 after day 0; posts on day 0 do not count; last window ends 2026-08-14 (posts end 2026-08-31)
+  calendar days per window: min 14, median 14, max 18
+
+Outcomes: qualifying post-ticker pairs | purchases with a hit | pairs inside a window
+  direct_any       1,307 |    368 |    528
+  direct_pos50       412 |    164 |    168
+  direct_neg50       267 |    124 |    123
+  direct_pos30       413 |    165 |    169
+  direct_pos70       129 |     66 |     60
+  direct_neg30       268 |    124 |    123
+  direct_neg70       236 |    102 |    101
+  brand_any        1,546 |    458 |    623
+  brand_pos50        474 |    184 |    185
+  brand_neg50        285 |    131 |    130
+  alltypes_any     1,680 |    490 |    724
+  alltypes_pos50     493 |    191 |    193
+  alltypes_neg50     289 |    136 |    132
+  trump_any          453 |    198 |    189
+  trump_pos50        155 |     63 |     62
+  trump_neg50        216 |    107 |     95
+
+Traced examples (direct_pos50): ticker, trade date, window, panel count, recount from post rows
+  NUE    2025-01-29  01-29..02-12  1  1  OK
+  NUE    2025-01-30  01-30..02-13  1  1  OK
+  AAPL   2025-02-13  02-13..02-28  5  5  OK
+  AAPL   2025-02-24  02-24..03-10  1  1  OK
+  DIS    2025-02-24  02-24..03-10  1  1  OK
+
+Written: purchase_hits.csv (17,745 rows), hit_posts.csv (1,286 rows), hits_summary.csv
+--- ShiftedWorlds.py
+world 0 of 499
+world 100 of 499
+world 200 of 499
+world 300 of 499
+world 400 of 499
+Part 2, ShiftedWorlds | run 2026-11-11 13:04
+
+Inputs
+  2) Trades/Trump_trades_2025_2026.xlsx: 17,724 rows, modified 2026-11-09 11:14 (PurchasesMerged); 21 company-days from PurchasesLeftOut
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-11 12:58
+  3) Prices/2) ComputeReturns/factors_daily_presample.csv: 405 rows, modified 2026-11-09 11:14 (trading calendar)
+  6) CalendarShifts/worlds.csv: 500 rows, modified 2026-11-10 14:29
+
+Worlds: 500 (world 0 = real). Main test: direct_pos50, purchase hits.
+
+outcome          count              real  expected  ratio  p_upper  p_lower
+direct_any       purchase_hits       368     385.0   0.96    0.846    0.164
+direct_any       post_hits           528     533.0   0.99    0.564    0.446
+direct_pos50     purchase_hits       164     195.5   0.84    0.982    0.024   <- main
+direct_pos50     post_hits           168     181.2   0.93    0.890    0.128
+direct_neg50     purchase_hits       124     101.8   1.22    0.030    0.976
+direct_neg50     post_hits           123     115.2   1.07    0.276    0.746
+direct_pos30     purchase_hits       165     195.9   0.84    0.980    0.028
+direct_pos30     post_hits           169     181.7   0.93    0.884    0.134
+direct_pos70     purchase_hits        66      73.3   0.90    0.748    0.294
+direct_pos70     post_hits            60      60.1   1.00    0.540    0.516
+direct_neg30     purchase_hits       124     101.9   1.22    0.030    0.976
+direct_neg30     post_hits           123     115.3   1.07    0.284    0.744
+direct_neg70     purchase_hits       102      90.5   1.13    0.096    0.914
+direct_neg70     post_hits           101      99.9   1.01    0.488    0.548
+brand_any        purchase_hits       458     471.8   0.97    0.802    0.216
+brand_any        post_hits           623     638.5   0.98    0.688    0.332
+brand_pos50      purchase_hits       184     219.9   0.84    0.982    0.024
+brand_pos50      post_hits           185     203.0   0.91    0.938    0.076
+brand_neg50      purchase_hits       131     111.8   1.17    0.072    0.944
+brand_neg50      post_hits           130     124.5   1.04    0.362    0.686
+alltypes_any     purchase_hits       490     501.6   0.98    0.732    0.292
+alltypes_any     post_hits           724     716.4   1.01    0.408    0.598
+alltypes_pos50   purchase_hits       191     227.7   0.84    0.978    0.024
+alltypes_pos50   post_hits           193     212.3   0.91    0.944    0.066
+alltypes_neg50   purchase_hits       136     115.6   1.18    0.074    0.934
+alltypes_neg50   post_hits           132     126.8   1.04    0.380    0.660
+trump_any        purchase_hits       198     214.6   0.92    0.858    0.158
+trump_any        post_hits           189     197.2   0.96    0.748    0.268
+trump_pos50      purchase_hits        63      92.2   0.68    1.000    0.002
+trump_pos50      post_hits            62      67.8   0.91    0.818    0.220
+trump_neg50      purchase_hits       107      92.5   1.16    0.098    0.912
+trump_neg50      post_hits            95      93.8   1.01    0.476    0.556
+tone_given_talk  pos_share         0.446     0.507   0.88    0.952    0.050
+finished
+
+=== RunPart2 2026-11-12 21:57 | /usr/local/bin/python3
+--- Hits.py
+Part 2, Hits | run 2026-11-12 21:57
+
+Inputs
+  2) Trades/Trump_trades_2025_2026.xlsx: 18,377 rows, modified 2026-11-12 20:55 (PurchasesMerged); 21 company-days from PurchasesLeftOut
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-12 21:52
+  3) Prices/2) ComputeReturns/factors_daily_presample.csv: 405 rows, modified 2026-11-12 21:51 (trading calendar)
+
+Purchases: 18,398 company-days on 1,600 tickers (19,526 lots), 2025-01-23 to 2026-07-31
+  trade date not a trading day (day 0 moved forward): 0
+  window: trading days 1-10 after day 0; posts on day 0 do not count; last window ends 2026-08-14 (posts end 2026-08-31)
+  calendar days per window: min 14, median 14, max 18
+
+Outcomes: qualifying post-ticker pairs | purchases with a hit | pairs inside a window
+  direct_any       1,307 |    388 |    553
+  direct_pos50       412 |    176 |    177
+  direct_neg50       267 |    129 |    131
+  direct_pos30       413 |    177 |    178
+  direct_pos70       129 |     70 |     62
+  direct_neg30       268 |    129 |    131
+  direct_neg70       236 |    107 |    109
+  brand_any        1,546 |    482 |    655
+  brand_pos50        474 |    198 |    196
+  brand_neg50        285 |    136 |    139
+  alltypes_any     1,680 |    514 |    756
+  alltypes_pos50     493 |    205 |    204
+  alltypes_neg50     289 |    141 |    141
+  trump_any          453 |    214 |    203
+  trump_pos50        155 |     73 |     68
+  trump_neg50        216 |    112 |    102
+
+Traced examples (direct_pos50): ticker, trade date, window, panel count, recount from post rows
+  NUE    2025-01-29  01-29..02-12  1  1  OK
+  NUE    2025-01-30  01-30..02-13  1  1  OK
+  AAPL   2025-02-13  02-13..02-28  5  5  OK
+  AAPL   2025-02-24  02-24..03-10  1  1  OK
+  DIS    2025-02-24  02-24..03-10  1  1  OK
+
+Written: purchase_hits.csv (18,398 rows), hit_posts.csv (1,340 rows), hits_summary.csv
+--- ShiftedWorlds.py
+world 0 of 499
+world 100 of 499
+world 200 of 499
+world 300 of 499
+world 400 of 499
+Part 2, ShiftedWorlds | run 2026-11-12 21:58
+
+Inputs
+  2) Trades/Trump_trades_2025_2026.xlsx: 18,377 rows, modified 2026-11-12 20:55 (PurchasesMerged); 21 company-days from PurchasesLeftOut
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-12 21:52
+  3) Prices/2) ComputeReturns/factors_daily_presample.csv: 405 rows, modified 2026-11-12 21:51 (trading calendar)
+  6) CalendarShifts/worlds.csv: 500 rows, modified 2026-11-12 21:52
+
+Worlds: 500 (world 0 = real). Main test: direct_pos50, purchase hits.
+
+outcome          count              real  expected  ratio  p_upper  p_lower
+direct_any       purchase_hits       388     401.4   0.97    0.818    0.198
+direct_any       post_hits           553     557.3   0.99    0.586    0.434
+direct_pos50     purchase_hits       176     204.1   0.86    0.958    0.048   <- main
+direct_pos50     post_hits           177     190.4   0.93    0.888    0.130
+direct_neg50     purchase_hits       129     105.5   1.22    0.016    0.990
+direct_neg50     post_hits           131     119.8   1.09    0.194    0.828
+direct_pos30     purchase_hits       177     204.6   0.87    0.960    0.050
+direct_pos30     post_hits           178     191.0   0.93    0.882    0.146
+direct_pos70     purchase_hits        70      76.9   0.91    0.732    0.304
+direct_pos70     post_hits            62      63.6   0.97    0.650    0.420
+direct_neg30     purchase_hits       129     105.6   1.22    0.016    0.990
+direct_neg30     post_hits           131     119.9   1.09    0.194    0.828
+direct_neg70     purchase_hits       107      93.5   1.14    0.072    0.942
+direct_neg70     post_hits           109     103.8   1.05    0.352    0.688
+brand_any        purchase_hits       482     492.2   0.98    0.762    0.264
+brand_any        post_hits           655     668.0   0.98    0.680    0.342
+brand_pos50      purchase_hits       198     229.6   0.86    0.960    0.046
+brand_pos50      post_hits           196     213.1   0.92    0.924    0.088
+brand_neg50      purchase_hits       136     116.0   1.17    0.040    0.970
+brand_neg50      post_hits           139     129.6   1.07    0.242    0.784
+alltypes_any     purchase_hits       514     523.6   0.98    0.704    0.314
+alltypes_any     post_hits           756     752.5   1.00    0.426    0.592
+alltypes_pos50   purchase_hits       205     237.6   0.86    0.956    0.050
+alltypes_pos50   post_hits           204     222.7   0.92    0.936    0.072
+alltypes_neg50   purchase_hits       141     119.9   1.18    0.046    0.962
+alltypes_neg50   post_hits           141     132.1   1.07    0.252    0.762
+trump_any        purchase_hits       214     223.5   0.96    0.754    0.272
+trump_any        post_hits           203     206.1   0.99    0.630    0.404
+trump_pos50      purchase_hits        73      95.9   0.76    0.990    0.018
+trump_pos50      post_hits            68      70.8   0.96    0.686    0.368
+trump_neg50      purchase_hits       112      96.0   1.17    0.072    0.938
+trump_neg50      post_hits           102      97.9   1.04    0.366    0.680
+tone_given_talk  pos_share         0.454     0.508   0.89    0.952    0.050
+finished
+
+=== RunPart2 2026-11-13 08:43 | /usr/local/bin/python3
+--- Hits.py
+Part 2, Hits | run 2026-11-13 08:44
+
+Inputs
+  2) Trades/Trump_trades_2025_2026.xlsx: 18,377 rows, modified 2026-11-12 20:55 (PurchasesMerged); 21 company-days from PurchasesLeftOut
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-13 08:38
+  3) Prices/2) ComputeReturns/factors_daily_presample.csv: 405 rows, modified 2026-11-12 21:51 (trading calendar)
+
+Purchases: 18,398 company-days on 1,600 tickers (19,526 lots), 2025-01-23 to 2026-07-31
+  trade date not a trading day (day 0 moved forward): 0
+  window: trading days 1-10 after day 0; posts on day 0 do not count; last window ends 2026-08-14 (posts end 2026-08-31)
+  calendar days per window: min 14, median 14, max 18
+
+Outcomes: qualifying post-ticker pairs | purchases with a hit | pairs inside a window
+  direct_any       1,309 |    388 |    553
+  direct_pos50       412 |    176 |    177
+  direct_neg50       269 |    129 |    131
+  direct_pos30       413 |    177 |    178
+  direct_pos70       129 |     70 |     62
+  direct_neg30       270 |    129 |    131
+  direct_neg70       238 |    107 |    109
+  brand_any        1,548 |    482 |    655
+  brand_pos50        474 |    198 |    196
+  brand_neg50        287 |    136 |    139
+  alltypes_any     1,682 |    514 |    756
+  alltypes_pos50     493 |    205 |    204
+  alltypes_neg50     291 |    141 |    141
+  trump_any          455 |    214 |    203
+  trump_pos50        155 |     73 |     68
+  trump_neg50        218 |    112 |    102
+
+Traced examples (direct_pos50): ticker, trade date, window, panel count, recount from post rows
+  NUE    2025-01-29  01-29..02-12  1  1  OK
+  NUE    2025-01-30  01-30..02-13  1  1  OK
+  AAPL   2025-02-13  02-13..02-28  5  5  OK
+  AAPL   2025-02-24  02-24..03-10  1  1  OK
+  DIS    2025-02-24  02-24..03-10  1  1  OK
+
+Written: purchase_hits.csv (18,398 rows), hit_posts.csv (1,340 rows), hits_summary.csv
+--- ShiftedWorlds.py
+world 0 of 499
+world 100 of 499
+world 200 of 499
+world 300 of 499
+world 400 of 499
+Part 2, ShiftedWorlds | run 2026-11-13 08:44
+
+Inputs
+  2) Trades/Trump_trades_2025_2026.xlsx: 18,377 rows, modified 2026-11-12 20:55 (PurchasesMerged); 21 company-days from PurchasesLeftOut
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-13 08:38
+  3) Prices/2) ComputeReturns/factors_daily_presample.csv: 405 rows, modified 2026-11-12 21:51 (trading calendar)
+  6) CalendarShifts/worlds.csv: 500 rows, modified 2026-11-13 08:38
+
+Worlds: 500 (world 0 = real). Main test: direct_pos50, purchase hits.
+
+outcome          count              real  expected  ratio  p_upper  p_lower
+direct_any       purchase_hits       388     402.9   0.96    0.836    0.174
+direct_any       post_hits           553     558.4   0.99    0.602    0.414
+direct_pos50     purchase_hits       176     204.1   0.86    0.958    0.048   <- main
+direct_pos50     post_hits           177     190.4   0.93    0.888    0.130
+direct_neg50     purchase_hits       129     107.0   1.21    0.018    0.986
+direct_neg50     post_hits           131     120.9   1.08    0.206    0.810
+direct_pos30     purchase_hits       177     204.6   0.87    0.960    0.050
+direct_pos30     post_hits           178     191.0   0.93    0.882    0.146
+direct_pos70     purchase_hits        70      76.9   0.91    0.732    0.304
+direct_pos70     post_hits            62      63.6   0.97    0.650    0.420
+direct_neg30     purchase_hits       129     107.1   1.20    0.018    0.986
+direct_neg30     post_hits           131     121.0   1.08    0.208    0.810
+direct_neg70     purchase_hits       107      95.0   1.13    0.094    0.926
+direct_neg70     post_hits           109     105.0   1.04    0.382    0.656
+brand_any        purchase_hits       482     493.7   0.98    0.788    0.236
+brand_any        post_hits           655     669.1   0.98    0.688    0.324
+brand_pos50      purchase_hits       198     229.6   0.86    0.960    0.046
+brand_pos50      post_hits           196     213.1   0.92    0.924    0.088
+brand_neg50      purchase_hits       136     117.5   1.16    0.052    0.962
+brand_neg50      post_hits           139     130.8   1.06    0.258    0.762
+alltypes_any     purchase_hits       514     525.1   0.98    0.732    0.292
+alltypes_any     post_hits           756     753.6   1.00    0.450    0.574
+alltypes_pos50   purchase_hits       205     237.6   0.86    0.956    0.050
+alltypes_pos50   post_hits           204     222.7   0.92    0.936    0.072
+alltypes_neg50   purchase_hits       141     121.4   1.16    0.054    0.958
+alltypes_neg50   post_hits           141     133.3   1.06    0.274    0.746
+trump_any        purchase_hits       214     225.0   0.95    0.794    0.234
+trump_any        post_hits           203     207.2   0.98    0.658    0.368
+trump_pos50      purchase_hits        73      95.9   0.76    0.990    0.018
+trump_pos50      post_hits            68      70.8   0.96    0.686    0.368
+trump_neg50      purchase_hits       112      97.5   1.15    0.092    0.924
+trump_neg50      post_hits           102      99.1   1.03    0.408    0.636
+tone_given_talk  pos_share         0.454     0.506   0.90    0.944    0.058
+finished
+
+=== RunTiming 2026-11-13 12:49 | /usr/local/bin/python3
+--- Hits.py
+Part 1, Hits | run 2026-11-13 12:49
+
+Inputs
+  2) Trades/Trump_trades_2025_2026.xlsx: 18,377 rows, modified 2026-11-12 20:55 (PurchasesMerged); 21 company-days from PurchasesLeftOut
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-13 12:44
+  3) Prices/2) ComputeReturns/factors_daily_presample.csv: 405 rows, modified 2026-11-13 12:44 (trading calendar)
+
+Purchases: 18,398 company-days on 1,600 tickers (19,526 lots), 2025-01-23 to 2026-07-31
+  trade date not a trading day (day 0 moved forward): 0
+  window: trading days 1-10 after day 0; posts on day 0 do not count; last window ends 2026-08-14 (posts end 2026-08-31)
+  calendar days per window: min 14, median 14, max 18
+
+Outcomes: qualifying post-ticker pairs | purchases with a hit | pairs inside a window
+  direct_any       1,309 |    388 |    553
+  direct_pos50       412 |    176 |    177
+  direct_neg50       269 |    129 |    131
+  direct_pos30       413 |    177 |    178
+  direct_pos70       129 |     70 |     62
+  direct_neg30       270 |    129 |    131
+  direct_neg70       238 |    107 |    109
+  brand_any        1,548 |    482 |    655
+  brand_pos50        474 |    198 |    196
+  brand_neg50        287 |    136 |    139
+  alltypes_any     1,682 |    514 |    756
+  alltypes_pos50     493 |    205 |    204
+  alltypes_neg50     291 |    141 |    141
+  trump_any          455 |    214 |    203
+  trump_pos50        155 |     73 |     68
+  trump_neg50        218 |    112 |    102
+
+Traced examples (direct_pos50): ticker, trade date, window, panel count, recount from post rows
+  NUE    2025-01-29  01-29..02-12  1  1  OK
+  NUE    2025-01-30  01-30..02-13  1  1  OK
+  AAPL   2025-02-13  02-13..02-28  5  5  OK
+  AAPL   2025-02-24  02-24..03-10  1  1  OK
+  DIS    2025-02-24  02-24..03-10  1  1  OK
+
+Written: purchase_hits.csv (18,398 rows), hit_posts.csv (1,340 rows), hits_summary.csv
+--- ShiftedWorlds.py
+world 0 of 499
+world 100 of 499
+world 200 of 499
+world 300 of 499
+world 400 of 499
+Part 1, ShiftedWorlds | run 2026-11-13 12:50
+
+Inputs
+  2) Trades/Trump_trades_2025_2026.xlsx: 18,377 rows, modified 2026-11-12 20:55 (PurchasesMerged); 21 company-days from PurchasesLeftOut
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-13 12:44
+  3) Prices/2) ComputeReturns/factors_daily_presample.csv: 405 rows, modified 2026-11-13 12:44 (trading calendar)
+  6) CalendarShifts/worlds.csv: 500 rows, modified 2026-11-13 12:44
+
+Worlds: 500 (world 0 = real). Main test: direct_pos50, purchase hits.
+
+outcome          count              real  expected  ratio  p_upper  p_lower
+direct_any       purchase_hits       388     402.9   0.96    0.836    0.174
+direct_any       post_hits           553     558.4   0.99    0.602    0.414
+direct_pos50     purchase_hits       176     204.1   0.86    0.958    0.048   <- main
+direct_pos50     post_hits           177     190.4   0.93    0.888    0.130
+direct_neg50     purchase_hits       129     107.0   1.21    0.018    0.986
+direct_neg50     post_hits           131     120.9   1.08    0.206    0.810
+direct_pos30     purchase_hits       177     204.6   0.87    0.960    0.050
+direct_pos30     post_hits           178     191.0   0.93    0.882    0.146
+direct_pos70     purchase_hits        70      76.9   0.91    0.732    0.304
+direct_pos70     post_hits            62      63.6   0.97    0.650    0.420
+direct_neg30     purchase_hits       129     107.1   1.20    0.018    0.986
+direct_neg30     post_hits           131     121.0   1.08    0.208    0.810
+direct_neg70     purchase_hits       107      95.0   1.13    0.094    0.926
+direct_neg70     post_hits           109     105.0   1.04    0.382    0.656
+brand_any        purchase_hits       482     493.7   0.98    0.788    0.236
+brand_any        post_hits           655     669.1   0.98    0.688    0.324
+brand_pos50      purchase_hits       198     229.6   0.86    0.960    0.046
+brand_pos50      post_hits           196     213.1   0.92    0.924    0.088
+brand_neg50      purchase_hits       136     117.5   1.16    0.052    0.962
+brand_neg50      post_hits           139     130.8   1.06    0.258    0.762
+alltypes_any     purchase_hits       514     525.1   0.98    0.732    0.292
+alltypes_any     post_hits           756     753.6   1.00    0.450    0.574
+alltypes_pos50   purchase_hits       205     237.6   0.86    0.956    0.050
+alltypes_pos50   post_hits           204     222.7   0.92    0.936    0.072
+alltypes_neg50   purchase_hits       141     121.4   1.16    0.054    0.958
+alltypes_neg50   post_hits           141     133.3   1.06    0.274    0.746
+trump_any        purchase_hits       214     225.0   0.95    0.794    0.234
+trump_any        post_hits           203     207.2   0.98    0.658    0.368
+trump_pos50      purchase_hits        73      95.9   0.76    0.990    0.018
+trump_pos50      post_hits            68      70.8   0.96    0.686    0.368
+trump_neg50      purchase_hits       112      97.5   1.15    0.092    0.924
+trump_neg50      post_hits           102      99.1   1.03    0.408    0.636
+tone_given_talk  pos_share         0.454     0.506   0.90    0.944    0.058
+finished

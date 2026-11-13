@@ -1,10 +1,10 @@
 """
 Step 10. Checks
 ---------------
-Reruns the Part 3 return test with one thing changed per check (kokebok step 10) and
+Reruns the Part 2 return test with one thing changed per check (kokebok step 10) and
 reports the Posted group's return per dollar against its shifted worlds, beside the main
-result. Decisions in 0) Decisions.md; Part 3 settings and functions in
-9) Part3Returns/Part3Settings.py.
+result. Decisions in 0) Decisions.md; Part 2 settings and functions in
+9) Part2_Returns/ReturnsSettings.py.
 
     1  horizons        trading days 1-1, 1-2, ..., 1-10 and 1-20 after day 0, with a search
                        p-value over 1-1 .. 1-10 (added 2026-11-10)
@@ -13,23 +13,23 @@ result. Decisions in 0) Decisions.md; Part 3 settings and functions in
     4  return models   raw, market-adjusted, CAPM, FF3+MOM, FF5+MOM
     5  big purchases   without the five largest purchases by midpoint amount
     6  relevance       labels from references with relevance >= 0.3 only (added 2026-11-10);
-                       the Part 2 counts under the same floor are reported beside it
+                       the Part 1 counts under the same floor are reported beside it
     7  media           without the purchases of the seven owners of a national US news outlet
-                       (MEDIA below; added 2026-11-11); the Part 2 counts without them beside it
+                       (MEDIA below; added 2026-11-11); the Part 1 counts without them beside it
 
 HOW TO RUN
     pip install pandas numpy openpyxl matplotlib
     python Checks.py
 
 INPUTS
-    the Part 3 inputs (via Part3Settings.py), 6) CalendarShifts/worlds.csv,
-    8) Part2Timing/2) Inference/world_counts.csv and 9) Part3Returns/2) Inference/world_stats.csv (check 3)
+    the Part 2 inputs (via ReturnsSettings.py), 6) CalendarShifts/worlds.csv,
+    8) Part1_Timing/2) Inference/world_counts.csv and 9) Part2_Returns/2) Inference/world_stats.csv (check 3)
 
 OUTPUTS (in this folder)
     world_checks.csv    one row per world: n, amount, T and r per group for every specification
     horizon_search.csv  the Posted group per horizon 1-1 .. 1-10 and the search p-value
     robustness.csv      one row per specification and group: real r, mean shifted r, delta r, p-values
-    part2_check_counts.csv  Part 2 purchase hits per world: all posts, relevance >= 0.3 (check 6), without media (check 7)
+    timing_check_counts.csv  Part 1 purchase hits per world: all posts, relevance >= 0.3 (check 6), without media (check 7)
     horizons.png        the Posted group's real and mean shifted return per dollar by horizon
     ChecksReport.txt    inputs read, checks of the checks, and the robustness table
 """
@@ -42,8 +42,8 @@ import pandas as pd
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent
-sys.path.insert(0, str(REPO / "9) Part3Returns"))
-import Part3Settings as S                                # noqa: E402
+sys.path.insert(0, str(REPO / "9) Part2_Returns"))
+import ReturnsSettings as S                                # noqa: E402
 P2 = S.P2
 
 AMOUNT = S.MAIN_AMOUNT
@@ -58,8 +58,8 @@ N_LARGEST = 5
 # check 7: owners of a national US news network or newspaper (Fox News; WSJ and New York Post; CNN; NBC and,
 # until the 2026 spin-off, MSNBC and CNBC; ABC; CBS; MSNBC and CNBC since), by the latest symbol
 MEDIA = ["FOXA", "NWSA", "WBD", "CMCSA", "DIS", "SKYD", "VSNT"]
-PART2_COUNTS = REPO / "8) Part2Timing" / "2) Inference" / "world_counts.csv"
-PART3_STATS = REPO / "9) Part3Returns" / "2) Inference" / "world_stats.csv"
+PART2_COUNTS = REPO / "8) Part1_Timing" / "2) Inference" / "world_counts.csv"
+PART3_STATS = REPO / "9) Part2_Returns" / "2) Inference" / "world_stats.csv"
 
 
 def window_sum_clipped(cum, rows, i0, window):
@@ -162,7 +162,7 @@ def main():
     rows = []
     for spec in specs:
         rows += inference_rows(ws, spec)
-    # check 3: short shifts, read from the Part 3 world table (main specification)
+    # check 3: short shifts, read from the Part 2 world table (main specification)
     L = int(worlds["L"].iloc[0])
     lo, hi = SHORT_SHIFTS
     p3 = pd.read_csv(PART3_STATS)
@@ -176,35 +176,35 @@ def main():
     rob = pd.DataFrame(rows)
     rob.to_csv(HERE / "robustness.csv", index=False, float_format="%.8g")
 
-    # check 1: search p-value over horizons 1-1 .. 1-10 (Posted, two-sided), as Part 1's window search:
+    # check 1: search p-value over horizons 1-1 .. 1-10 (Posted, two-sided), as Part 1b's window search:
     # the smallest p_two over the horizons, compared with the same smallest p_two in every world
     search, p_search, best = horizon_search(ws)
     search.to_csv(HERE / "horizon_search.csv", index=False, float_format="%.8g")
     search_line = (f"Horizon search over 1-1 .. 1-10 (Posted, two-sided): best horizon {best} "
                    f"(p_two {search.loc[search['spec'] == best, 'p_two'].iloc[0]:.3f}), p_search {p_search:.3f} ({len(ws)} worlds)")
 
-    # check 6: Part 2 counts with the relevance floor, on Part 2's own purchases and calendar
-    rel_lines, rel_ok = part2_counts_relevance(posts, posts_rel, worlds)
+    # check 6: Part 1 counts with the relevance floor, on Part 1's own purchases and calendar
+    rel_lines, rel_ok = timing_counts_relevance(posts, posts_rel, worlds)
 
-    # Part 2 main count under short shifts
+    # Part 1 main count under short shifts
     p2 = pd.read_csv(PART2_COUNTS)
     short2 = (p2["shift_days"] == 0) | p2["shift_days"].between(lo, hi) | p2["shift_days"].between(L - hi, L - lo)
     col = f"{P2.MAIN_OUTCOME}|purchase_hits"
     c2 = p2[short2]
     real2 = c2.loc[c2["world"] == 0, col].iloc[0]
-    p2_line = (f"Part 2 main count ({P2.MAIN_OUTCOME} purchase hits) under short shifts: real {real2}, "
+    p2_line = (f"Part 1 main count ({P2.MAIN_OUTCOME} purchase hits) under short shifts: real {real2}, "
                f"expected {c2.loc[c2['world'] != 0, col].mean():.1f}, p_upper {(c2[col] >= real2).mean():.3f}, "
                f"p_lower {(c2[col] <= real2).mean():.3f} ({len(c2)} worlds)")
 
     # checks of the checks
-    main_inf = pd.read_csv(REPO / "9) Part3Returns" / "2) Inference" / "inference.csv")
+    main_inf = pd.read_csv(REPO / "9) Part2_Returns" / "2) Inference" / "inference.csv")
     main_r = main_inf.query("group == 'posted' and amount == @AMOUNT")["r_real"].iloc[0]
     h10 = rob.query("spec == 'h1_10' and group == 'posted'").iloc[0]
     mk = rob.query("spec == 'model_ar_mkt' and group == 'posted'").iloc[0]
     chk = [rel_ok,
            f"Check 6: {len(posts_rel):,} of {len(posts):,} mention rows have relevance >= {RELEVANCE_FLOOR}",
            f"Check 7: {int((~no_media).sum()):,} of {len(p):,} sample purchases are of media companies ({', '.join(MEDIA)})",
-           f"Horizon 1-10 reproduces Part 3 (Posted r real {h10['r_real']:.6%} vs {main_r:.6%}): "
+           f"Horizon 1-10 reproduces Part 2 (Posted r real {h10['r_real']:.6%} vs {main_r:.6%}): "
            f"{'OK' if np.isclose(h10['r_real'], main_r) else 'MISMATCH'}",
            f"Short-shift worlds: {int(short3.sum()) - 1} shifted + real (shifts {lo}-{hi} and {L - hi}-{L - lo})",
            f"Check 4 sample: {int(models_subset.sum()):,} of {len(p):,} purchases with all five return columns; "
@@ -223,7 +223,7 @@ def main():
              "model_ar_mkt", "model_ar_capm", "model_ar_ff3m", "model_ar_ff5m", "no_largest_5", "relevance_30",
              "no_media"])
     lines = [f"Step 10, Checks | run {datetime.now():%Y-%m-%d %H:%M}", "", "Inputs",
-             "  " + S.input_line(S.TRADES_XLSX, len(p)) + f" ({S.MERGED_SHEET}, Part 3 sample)",
+             "  " + S.input_line(S.TRADES_XLSX, len(p)) + f" ({S.MERGED_SHEET}, Part 2 sample)",
              f"  {S.RETURNS_CSV.relative_to(REPO)}: columns {', '.join(MODELS)}; {len(zeroed)} reviewed days set to zero",
              "  " + S.input_line(P2.POSTS_XLSX, post_rows),
              "  " + S.input_line(P2.WORLDS_CSV, len(worlds)),
@@ -272,8 +272,8 @@ def horizon_search(ws):
     return search, p_search, best
 
 
-def part2_counts_relevance(posts, posts_rel, worlds):
-    """Part 2 purchase-hit counts with and without the relevance floor, and without the media
+def timing_counts_relevance(posts, posts_rel, worlds):
+    """Part 1 purchase-hit counts with and without the relevance floor, and without the media
     companies (check 7), in every world."""
     purchases, _, _ = P2.read_purchases()
     no_media = ~purchases["ticker"].isin(MEDIA).to_numpy()
@@ -301,20 +301,20 @@ def part2_counts_relevance(posts, posts_rel, worlds):
     real, shifted = c[c["world"] == 0].iloc[0], c[c["world"] != 0]
     p2 = pd.read_csv(PART2_COUNTS)
     p2_real = p2.loc[p2["world"] == 0, f"{P2.MAIN_OUTCOME}|purchase_hits"].iloc[0]
-    ok = (f"Check 6 count without the floor reproduces Part 2 ({P2.MAIN_OUTCOME}: {real[f'all|{P2.MAIN_OUTCOME}']} vs "
+    ok = (f"Check 6 count without the floor reproduces Part 1 ({P2.MAIN_OUTCOME}: {real[f'all|{P2.MAIN_OUTCOME}']} vs "
           f"{p2_real}): {'OK' if real[f'all|{P2.MAIN_OUTCOME}'] == p2_real else 'MISMATCH'}")
-    lines = [f"Part 2 counts with relevance >= {RELEVANCE_FLOOR} (purchase hits, {len(c)} worlds):"]
+    lines = [f"Part 1 counts with relevance >= {RELEVANCE_FLOOR} (purchase hits, {len(c)} worlds):"]
     for name in names:
         k = f"rel|{name}"
         lines.append(f"  {name:14s} real {real[k]:4d}, expected {shifted[k].mean():6.1f}, "
                      f"p_upper {(c[k] >= real[k]).mean():.3f}, p_lower {(c[k] <= real[k]).mean():.3f}")
-    lines += ["", f"Part 2 counts without the media companies (check 7; {int((~no_media).sum()):,} of {len(purchases):,} "
+    lines += ["", f"Part 1 counts without the media companies (check 7; {int((~no_media).sum()):,} of {len(purchases):,} "
               f"purchases removed, purchase hits, {len(c)} worlds):"]
     for name in names:
         k = f"nomedia|{name}"
         lines.append(f"  {name:14s} real {real[k]:4d}, expected {shifted[k].mean():6.1f}, "
                      f"p_upper {(c[k] >= real[k]).mean():.3f}, p_lower {(c[k] <= real[k]).mean():.3f}")
-    c.to_csv(HERE / "part2_check_counts.csv", index=False)
+    c.to_csv(HERE / "timing_check_counts.csv", index=False)
     return lines, ok
 
 

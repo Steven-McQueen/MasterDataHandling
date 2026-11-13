@@ -11,9 +11,9 @@ data on is rerun:
     3.2  3) Prices/RunPrices.py --returns           returns and abnormal returns
     5.2  5) MapTweetCompany/2) MapToTickers/TwitterTickerCleaning.ipynb
     6    6) CalendarShifts/CalendarShifts.py
-    7    7) Part1Talk/RunPart1.py
-    8    8) Part2Timing/RunPart2.py
-    9    9) Part3Returns/RunPart3.py
+    7    7) Part1b_Talk/RunTalk.py
+    8    8) Part1_Timing/RunTiming.py
+    9    9) Part2_Returns/RunReturns.py
     10   10) Checks/Checks.py, SpecCurve.py, ChecksExtra.py, DetectableEffects.py, OptionalAnalyses.py, OptionalRobustness.py
     11   11) Exhibits/Exhibits.py
 
@@ -46,9 +46,9 @@ STEPS = [
     ("3.2", "Returns", REPO / "3) Prices", lambda d: [sys.executable, "RunPrices.py", "--returns"]),
     ("5.2", "Post tickers", REPO / "5) MapTweetCompany" / "2) MapToTickers", lambda d: nb(d / "TwitterTickerCleaning.ipynb")),
     ("6", "Calendar shifts", REPO / "6) CalendarShifts", lambda d: [sys.executable, "CalendarShifts.py"]),
-    ("7", "Part 1 (talk)", REPO, lambda d: [sys.executable, "7) Part1Talk/RunPart1.py"]),
-    ("8", "Part 2 (timing)", REPO, lambda d: [sys.executable, "8) Part2Timing/RunPart2.py"]),
-    ("9", "Part 3 (returns)", REPO, lambda d: [sys.executable, "9) Part3Returns/RunPart3.py"]),
+    ("7", "Part 1b (talk)", REPO, lambda d: [sys.executable, "7) Part1b_Talk/RunTalk.py"]),
+    ("8", "Part 1 (timing)", REPO, lambda d: [sys.executable, "8) Part1_Timing/RunTiming.py"]),
+    ("9", "Part 2 (returns)", REPO, lambda d: [sys.executable, "9) Part2_Returns/RunReturns.py"]),
     ("10", "Checks 1-8", REPO / "10) Checks", lambda d: [sys.executable, "Checks.py"]),
     ("10", "Specification curve", REPO / "10) Checks", lambda d: [sys.executable, "SpecCurve.py"]),
     ("10", "Checks 9-11", REPO / "10) Checks", lambda d: [sys.executable, "ChecksExtra.py"]),

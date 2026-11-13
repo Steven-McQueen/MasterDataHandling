@@ -118,7 +118,7 @@ def main():
         f"Check, same number of purchases and purchase days in shifted worlds: {'OK' if not bad else 'FAILED for ' + str(bad)}",
         "",
         "Shifted dates are calendar days and can fall on weekends or holidays; each analysis step",
-        "decides how to treat them (Part 1 works on calendar days).",
+        "decides how to treat them (Part 1b works on calendar days).",
     ]
     (OUT_DIR / "ShiftsReport.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines))

@@ -1,7 +1,7 @@
 """
-Step 10, check 8. Specification curve for Part 2
+Step 10, check 8. Specification curve for Part 1
 ------------------------------------------------
-Runs the Part 2 purchase-hit count under every combination of seven choices, in every world, and
+Runs the Part 1 purchase-hit count under every combination of seven choices, in every world, and
 reads the combinations together. The grid was fixed on 2026-11-11, before this script was run, and
 every combination is reported (0) Decisions.md). It was added after the main results were seen.
 
@@ -29,8 +29,8 @@ HOW TO RUN
     python SpecCurve.py                 about two minutes
 
 INPUTS
-    the Part 2 inputs (Part2Settings: the post-ticker file of Step 5.2, the purchases, the worlds)
-    ../8) Part2Timing/2) Inference/world_counts.csv   to check that this script reproduces Part 2
+    the Part 1 inputs (TimingSettings: the post-ticker file of Step 5.2, the purchases, the worlds)
+    ../8) Part1_Timing/2) Inference/world_counts.csv   to check that this script reproduces Part 1
 
 OUTPUTS (in SpecCurve/)
     spec_curve.xlsx        ReadMe, Summary (per outcome), Specifications (one row each), Grid
@@ -51,8 +51,8 @@ import pandas as pd
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent
 OUT = HERE / "SpecCurve"
-sys.path.insert(0, str(REPO / "8) Part2Timing"))
-import Part2Settings as P2                               # noqa: E402
+sys.path.insert(0, str(REPO / "8) Part1_Timing"))
+import TimingSettings as P2                               # noqa: E402
 
 # --------------------------------------------------------------------------
 # THE GRID (fixed 2026-11-11)
@@ -70,7 +70,7 @@ MAIN = dict(outcome="praised", types="direct", accounts="all", cutoff=0.5, relev
 ALPHA = 0.05
 THIN = 5.0                                               # expected count below this: flagged as thin
 
-# Part 2's own outcomes (window 10, no floor, media in), to check this script against world_counts.csv
+# Part 1's own outcomes (window 10, no floor, media in), to check this script against world_counts.csv
 REPRODUCE = {"direct_any": ("any", "direct", "all", None), "direct_pos50": ("praised", "direct", "all", 0.5),
              "direct_neg50": ("roasted", "direct", "all", 0.5), "direct_pos30": ("praised", "direct", "all", 0.3),
              "direct_pos70": ("praised", "direct", "all", 0.7), "direct_neg30": ("roasted", "direct", "all", 0.3),
@@ -151,7 +151,7 @@ def main():
     if int(worlds.iloc[0]["world"]) != 0:
         raise SystemExit("the first world is not the real one")
 
-    # ---- check against Part 2's own counts, in every world
+    # ---- check against Part 1's own counts, in every world
     p2 = pd.read_csv(P2.INFERENCE_DIR / "world_counts.csv")
     idx = {s: j for j, s in enumerate(specs)}
     checks, ok_all = [], True
@@ -162,8 +162,8 @@ def main():
         mine = counts[:, idx[(o, t, a, c, 0.0, P2.WINDOW_TRADING_DAYS, "in")]]
         same = bool((mine == p2[col].to_numpy()).all())
         ok_all &= same
-        checks.append(f"  {name:15s} real {mine[0]:4d} vs Part 2 {int(p2[col].iloc[0]):4d}; all {len(p2)} worlds equal: {'OK' if same else 'MISMATCH'}")
-    c6 = HERE / "part2_check_counts.csv"
+        checks.append(f"  {name:15s} real {mine[0]:4d} vs Part 1 {int(p2[col].iloc[0]):4d}; all {len(p2)} worlds equal: {'OK' if same else 'MISMATCH'}")
+    c6 = HERE / "timing_check_counts.csv"
     if c6.exists():
         k = pd.read_csv(c6)
         for label, col, sp in [("check 6, relevance 0.3", "rel|direct_pos50", ("praised", "direct", "all", 0.5, 0.3, 10, "in")),
@@ -230,7 +230,7 @@ def main():
                                      "0.3, 0.5, 0.7 (not for any post)", "none, 0.3, 0.5, 0.7", "1-5, 1-10, 1-20",
                                      "purchases of " + ", ".join(MEDIA) + " in or out"],
                          "main test": ["Praised", "direct", "all", "0.5", "none", "1-10", "in"]})
-    readme = pd.DataFrame({"Specification curve for Part 2 (Step 10, check 8)": [
+    readme = pd.DataFrame({"Specification curve for Part 1 (Step 10, check 8)": [
         f"Run {datetime.now():%Y-%m-%d %H:%M}. {len(df):,} specifications, {len(counts)} worlds ({len(counts) - 1} shifted and the real one).",
         "The grid (sheet Grid) was fixed on 2026-11-11 before the run and every combination is on the sheet Specifications. "
         "It was added after the main results had been seen: a check, not the main test.",
@@ -291,7 +291,7 @@ def main():
              f"  purchases: {len(purchases):,}; of the media companies: {int((~not_media).sum())}",
              f"  worlds: {len(counts)} ({len(counts) - 1} shifted and the real one)", "",
              f"Grid: {len(df):,} specifications = " + ", ".join(f"{o} {int((df.outcome == o).sum())}" for o in OUTCOMES),
-             "", "Checks: this script against Part 2 (window 1-10, no floor, media in) and Checks.py"] + checks + [
+             "", "Checks: this script against Part 1 (window 1-10, no floor, media in) and Checks.py"] + checks + [
              f"  all checks: {'OK' if ok_all else 'MISMATCH'}", "",
              "Main test: " + ", ".join(f"{k} {v}" for k, v in MAIN.items()),
              "  " + df[df.main_test][["real", "expected", "ratio", "p_upper", "p_lower"]].round(3).to_string(index=False).replace("\n", "\n  "),

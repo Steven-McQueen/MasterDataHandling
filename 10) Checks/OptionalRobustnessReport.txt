@@ -1,14 +1,14 @@
-Step 10, OptionalRobustness (robustness of checks 12-13) | run 2026-11-13 09:38
+Step 10, OptionalRobustness (robustness of checks 12-13) | run 2026-11-13 12:55
 
 Inputs
-  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-13 08:38
-  Check 13 base: 1,274 direct post-company rows on 115 Part 3 tickers; 525 shifted worlds; short shifts: 122
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-13 12:44
+  Check 13 base: 1,274 direct post-company rows on 115 Part 2 tickers; 525 shifted worlds; short shifts: 122
   Return models: 1,502 tickers with a full series under ar_raw, ar_mkt, ar_capm, ar_ff5m
 
 Checks
   Main variant reproduces check 13 (Praised held mean): 0.534711% vs 0.534711%, expected 0.079829% vs 0.079829%: OK
   Check 12, the five largest sales removed: AMZN 2026-02-10 USD 15,000,000; META 2026-02-10 USD 15,000,000; MSFT 2026-02-10 USD 15,000,000; AMZN 2026-07-20 USD 15,000,000; MSFT 2026-07-20 USD 15,000,000
-  Check 12 sample: 8,735 company-days on 1,435 tickers (USD 555,704,076); left out 268 company-days on 105 tickers (USD 8,041,137): 268 not in the Part 3 sample, 0 outside the shift calendar
+  Check 12 sample: 8,735 company-days on 1,435 tickers (USD 555,704,076); left out 268 company-days on 105 tickers (USD 8,041,137): 268 not in the Part 2 sample, 0 outside the shift calendar
 
 Check 13 variants (mean market-adjusted return, held events)
   variant                                          group    events      real  expected  p_upper  p_lower  p_two worlds clipped

@@ -2,21 +2,23 @@
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
-\caption{Part 2: purchases followed by a post about the same company}
+\caption{Part 2: market-adjusted return per dollar of the purchases, real against shifted dates}
 \label{tab:part2}
-\begin{tabular}{lrrrrrr}
+\begin{tabular}{lrrrrrrr}
 \toprule
-Outcome & Real & Shifted mean & Excess & Ratio & p\textsubscript{upper} & p\textsubscript{lower} \\
+Group & n & USD m & Real & Shifted mean & $\Delta r$ & Excess (USD) & p \\
 \midrule
-Any post & 388 & 402.9 & $-$14.9 & 0.96 & 0.836 & 0.174 \\
-Praised & 176 & 204.1 & $-$28.1 & 0.86 & 0.958 & 0.048 \\
-Roasted & 129 & 107.0 & +22.0 & 1.21 & 0.018 & 0.986 \\
+All & 17,883 & 1,223.2 & 0.01 & $-$0.11 & +0.12 & 1,465,298 & 0.744 \\
+Posted & 384 & 69.4 & 1.66 & 0.47 & +1.19 & 823,140 & 0.340 \\
+No post & 17,499 & 1,153.8 & $-$0.09 & $-$0.15 & +0.06 & 700,426 & 0.928 \\
+Praised & 128 & 30.3 & 2.88 & 0.34 & +2.55 & 771,342 & 0.080 \\
+Roasted & 98 & 16.4 & $-$0.09 & $-$0.73 & +0.63 & 103,792 & 0.616 \\
 \midrule
-Praised minus Roasted & 47 & 97.1 & $-$50.1 &  & 1.000 & 0.004 \\
-\midrule
-Praised, @realDonaldTrump only & 73 & 95.9 & $-$22.9 & 0.76 & 0.990 & 0.018 \\
+Praised minus Roasted &  &  & 2.98 & 1.06 & +1.91 &  & 0.420 \\
+Posted minus No post &  &  & 1.75 & 0.63 & +1.13 &  & 0.380 \\
+Posted, dollar total (USD) &  &  & 1,150,643 & 359,801 & 790,843 &  & 0.432 \\
 \bottomrule
 \end{tabular}
 \par\medskip
-\begin{minipage}{\linewidth}\footnotesize\textit{Note:} A hit is a purchase followed by a direct mention of the company within trading days 1 to 10 after the trade date, all three accounts. Praised: sentiment of 0.5 or more; Roasted: $-$0.5 or less. The shifted mean is the average over the 499 shifted worlds; excess is real minus shifted mean. p\textsubscript{upper} and p\textsubscript{lower} are the shares of all 500 worlds at least as large and at least as small as the real count. The last row is a description, not a test of the research question.\end{minipage}
+\begin{minipage}{\linewidth}\footnotesize\textit{Note:} Return per dollar: the sum of amount times the market-adjusted return over trading days 1 to 10 after the purchase, divided by the amount of the group, in percent; amounts at the midpoint of the disclosed range. The shifted mean is the average over the shifted worlds; $\Delta r$ is real minus shifted mean in percentage points, and the dollar excess is $\Delta r$ times the real amount. p is two-sided: twice the smaller of the shares of all worlds at least as large and at least as small as the real value. The lower panel tests the gaps between groups and the Posted group's dollar total against the same statistic in every world.\end{minipage}
 \end{table}

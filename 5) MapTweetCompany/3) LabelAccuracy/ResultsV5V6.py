@@ -19,10 +19,10 @@ from pathlib import Path
 import pandas as pd
 
 HERE = Path(__file__).resolve().parent
-P1 = Path("7) Part1Talk/3) Inference/inference.csv")
-P2 = Path("8) Part2Timing/2) Inference/inference.csv")
-P3 = Path("9) Part3Returns/2) Inference/inference.csv")
-GAPS = Path("9) Part3Returns/2) Inference/gaps.csv")
+P1 = Path("7) Part1b_Talk/3) Inference/inference.csv")
+P2 = Path("8) Part1_Timing/2) Inference/inference.csv")
+P3 = Path("9) Part2_Returns/2) Inference/inference.csv")
+GAPS = Path("9) Part2_Returns/2) Inference/gaps.csv")
 CHECKS = Path("10) Checks/robustness.csv")
 
 
@@ -32,21 +32,21 @@ def rows(root):
     p1 = pd.read_csv(root / P1)
     for t in ["recent_5", "recent_10", "recent_20"]:
         r = p1[(p1.outcome == "direct") & (p1.treatment == t)].iloc[0]
-        out.append(("Part 1", f"direct, {t}", r.hits_real, r.hits_expected, r.p_upper, r.p_lower, None))
+        out.append(("Part 1b", f"direct, {t}", r.hits_real, r.hits_expected, r.p_upper, r.p_lower, None))
     p2 = pd.read_csv(root / P2)
     for o in ["direct_pos50", "direct_any", "direct_neg50", "alltypes_pos50", "alltypes_neg50", "trump_pos50", "tone_given_talk"]:
         c = "pos_share" if o == "tone_given_talk" else "purchase_hits"
         r = p2[(p2.outcome == o) & (p2["count"] == c)].iloc[0]
-        out.append(("Part 2", f"{o} ({c})", r.real, r.mean_shifted, r.p_upper, r.p_lower, None))
+        out.append(("Part 1", f"{o} ({c})", r.real, r.mean_shifted, r.p_upper, r.p_lower, None))
     p3 = pd.read_csv(root / P3)
     for g in ["posted", "no_post", "praised", "roasted"]:
         r = p3[(p3.group == g) & (p3.amount == "amount_mid")].iloc[0]
-        out.append(("Part 3", f"{g}: purchases (n)", r.n_real, r.n_mean_shifted, None, None, None))
-        out.append(("Part 3", f"{g}: r real (%)", 100 * r.r_real, 100 * r.r_mean_shifted, r.p_upper, r.p_lower, r.p_two))
+        out.append(("Part 2", f"{g}: purchases (n)", r.n_real, r.n_mean_shifted, None, None, None))
+        out.append(("Part 2", f"{g}: r real (%)", 100 * r.r_real, 100 * r.r_mean_shifted, r.p_upper, r.p_lower, r.p_two))
     gp = pd.read_csv(root / GAPS)
     for r in gp.itertuples(index=False):
         scale = 1 if "USD" in r.test else 100
-        out.append(("Part 3 gap", r.test + ("" if scale == 1 else " (%)"), scale * r.real, scale * r.mean_shifted, r.p_upper, r.p_lower, r.p_two))
+        out.append(("Part 2 gap", r.test + ("" if scale == 1 else " (%)"), scale * r.real, scale * r.mean_shifted, r.p_upper, r.p_lower, r.p_two))
     ch = pd.read_csv(root / CHECKS)
     for r in ch[ch.group == "posted"].itertuples(index=False):
         out.append(("Checks", f"{r.spec}: r real (%)", 100 * r.r_real, 100 * r.r_mean_shifted, r.p_upper, r.p_lower, r.p_two))

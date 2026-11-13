@@ -4,14 +4,14 @@ Step 10. Checks 9-11
 Three checks fixed on 2026-11-13 (0) Decisions.md, "Added on 2026-11-13"), each a rerun of a
 main test with one thing changed:
 
-    9   day 0       posts on day 0 count: Part 2 hits in [day 0, trading day 10]; Part 3 labels
+    9   day 0       posts on day 0 count: Part 1 hits in [day 0, trading day 10]; Part 2 labels
                     from the same window (return window unchanged, trading days 1-10)
-    10  all shifts  every shift from 1 to L-1 days (557 shifted worlds), Part 2 counts and the
-                    Part 3 Posted return
-    11  reverse     posts before the purchase: Part 2 hits in trading days -10 .. -1 before day 0
+    10  all shifts  every shift from 1 to L-1 days (557 shifted worlds), Part 1 counts and the
+                    Part 2 Posted return
+    11  reverse     posts before the purchase: Part 1 hits in trading days -10 .. -1 before day 0
 
-Part 2 counts use Part 2's own purchases (PurchasesMerged plus the left-out lots) and calendar;
-the Part 3 return uses the Part 3 sample, as in Checks.py. Outcomes: Praised (direct_pos50, the
+Part 1 counts use Part 1's own purchases (PurchasesMerged plus the left-out lots) and calendar;
+the Part 2 return uses the Part 2 sample, as in Checks.py. Outcomes: Praised (direct_pos50, the
 main hit), any post (direct_any) and Roasted (direct_neg50).
 
 HOW TO RUN
@@ -32,8 +32,8 @@ import pandas as pd
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent
-sys.path.insert(0, str(REPO / "9) Part3Returns"))
-import Part3Settings as S                                # noqa: E402
+sys.path.insert(0, str(REPO / "9) Part2_Returns"))
+import ReturnsSettings as S                                # noqa: E402
 P2 = S.P2
 
 OUTCOMES = ["direct_pos50", "direct_any", "direct_neg50"]
@@ -79,7 +79,7 @@ def infer(ws, col, design):
 
 
 def main():
-    # ---- Part 2 inputs
+    # ---- Part 1 inputs
     pur, n_merged, n_left = P2.read_purchases()
     posts, post_rows = P2.read_mentions()
     worlds = P2.read_worlds()
@@ -92,7 +92,7 @@ def main():
         m, _ = P2.count_matrix(P2.outcome_rows(posts, o), tickers, cdays)
         mats[o] = np.concatenate([np.zeros((len(tickers), 1)), np.cumsum(m, axis=1)], axis=1)
 
-    # ---- Part 3 inputs (sample as in Part 3 and Checks.py)
+    # ---- Part 2 inputs (sample as in Part 2 and Checks.py)
     p = S.read_purchases()
     mat, rtickers, rdays, zeroed, _ = S.read_returns(S.RETURN_COLUMN)
     keep = S.sample_tickers(mat, rtickers, rdays)
@@ -152,19 +152,19 @@ def main():
     res = pd.DataFrame(rows)
     res.to_csv(HERE / "extra_checks.csv", index=False, float_format="%.8g")
 
-    # checks of the checks: the main design reproduces Part 2 and Part 3
-    p2 = pd.read_csv(REPO / "8) Part2Timing" / "2) Inference" / "inference.csv").query("count == 'purchase_hits'")
-    p3 = pd.read_csv(REPO / "9) Part3Returns" / "2) Inference" / "inference.csv").query("group == 'posted' and amount == @S.MAIN_AMOUNT")
+    # checks of the checks: the main design reproduces Part 1 and Part 2
+    p2 = pd.read_csv(REPO / "8) Part1_Timing" / "2) Inference" / "inference.csv").query("count == 'purchase_hits'")
+    p3 = pd.read_csv(REPO / "9) Part2_Returns" / "2) Inference" / "inference.csv").query("group == 'posted' and amount == @S.MAIN_AMOUNT")
     chk = []
     for o in OUTCOMES:
         mine = res.query("design == 'main' and statistic == @o + '|purchase_hits'").iloc[0]
         theirs = p2.query("outcome == @o").iloc[0]
         ok = mine["real"] == theirs["real"] and np.isclose(mine["mean_shifted"], theirs["mean_shifted"])
-        chk.append(f"Main design reproduces Part 2 {o}: real {mine['real']:.0f} vs {theirs['real']:.0f}, "
+        chk.append(f"Main design reproduces Part 1 {o}: real {mine['real']:.0f} vs {theirs['real']:.0f}, "
                    f"expected {mine['mean_shifted']:.2f} vs {theirs['mean_shifted']:.2f}: {'OK' if ok else 'MISMATCH'}")
     mr = res.query("design == 'main' and statistic == 'posted|r'").iloc[0]
     ok = np.isclose(mr["real"], p3["r_real"].iloc[0]) and np.isclose(mr["mean_shifted"], p3["r_mean_shifted"].iloc[0])
-    chk.append(f"Main design reproduces Part 3 Posted r: {mr['real']:.6%} vs {p3['r_real'].iloc[0]:.6%}, "
+    chk.append(f"Main design reproduces Part 2 Posted r: {mr['real']:.6%} vs {p3['r_real'].iloc[0]:.6%}, "
                f"mean shifted {mr['mean_shifted']:.6%} vs {p3['r_mean_shifted'].iloc[0]:.6%}: {'OK' if ok else 'MISMATCH'}")
     chk.append(f"Check 11: real purchases with fewer than {REVERSE} trading days before day 0: {clipped_reverse} "
                "(they use the days available; in a shifted world a day 0 on the first trading day has an empty window)")
@@ -172,8 +172,8 @@ def main():
 
     label = {"main": "main (as run)", "day0": "9  day 0 included", "all_shifts": "10 every shift", "reverse": "11 reverse (-10..-1)"}
     lines = [f"Step 10, ChecksExtra (checks 9-11) | run {datetime.now():%Y-%m-%d %H:%M}", "", "Inputs",
-             "  " + P2.input_line(P2.TRADES_XLSX, n_merged) + f" ({P2.MERGED_SHEET}); {n_left} company-days from {P2.LEFTOUT_SHEET} (Part 2)",
-             f"  Part 3 sample: {len(p):,} purchases on {len(keep):,} tickers; {len(zeroed)} reviewed days set to zero",
+             "  " + P2.input_line(P2.TRADES_XLSX, n_merged) + f" ({P2.MERGED_SHEET}); {n_left} company-days from {P2.LEFTOUT_SHEET} (Part 1)",
+             f"  Part 2 sample: {len(p):,} purchases on {len(keep):,} tickers; {len(zeroed)} reviewed days set to zero",
              "  " + P2.input_line(P2.POSTS_XLSX, post_rows),
              "  " + P2.input_line(P2.WORLDS_CSV, len(worlds)), "", "Checks"] + ["  " + c for c in chk] + ["",
              f"{'design':22s} {'statistic':24s} {'real':>9s} {'expected':>9s} {'ratio':>6s} {'p_upper':>8s} {'p_lower':>8s} {'p_two':>6s} {'worlds':>6s}"]
@@ -182,7 +182,7 @@ def main():
         for o, n in NAMES.items():
             stat = stat.replace(o, n)
         if r.statistic == "posted|r":
-            stat = "Posted r (Part 3)"
+            stat = "Posted r (Part 2)"
             vals = f"{r.real:9.4%} {r.mean_shifted:9.4%} {'':>6s}"
         else:
             vals = f"{r.real:9.0f} {r.mean_shifted:9.1f} {r.ratio:6.2f}"

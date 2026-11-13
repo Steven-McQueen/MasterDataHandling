@@ -2,20 +2,21 @@
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
-\caption{Part 1: mentions of a company after a recent purchase}
+\caption{Part 1: purchases followed by a post about the same company}
 \label{tab:part1}
-\begin{tabular}{rrrrrrr}
+\begin{tabular}{lrrrrrr}
 \toprule
-k (days) & Slope & Shifted mean & p\textsubscript{upper} & p\textsubscript{lower} & Mention-days & Expected \\
+Outcome & Real & Shifted mean & Excess & Ratio & p\textsubscript{upper} & p\textsubscript{lower} \\
 \midrule
-1 & $-$0.0003 & +0.0007 & 0.490 & 0.512 & 42 & 44.8 \\
-3 & +0.0005 & +0.0011 & 0.508 & 0.494 & 123 & 124.4 \\
-5 & $-$0.0351 & +0.0016 & 0.954 & 0.048 & 167 & 193.3 \\
-10 & $-$0.0133 & +0.0011 & 0.822 & 0.180 & 299 & 320.2 \\
-20 & $-$0.0134 & +0.0014 & 0.870 & 0.132 & 466 & 488.0 \\
-30 & $-$0.0049 & +0.0005 & 0.668 & 0.334 & 584 & 589.7 \\
+Any post & 388 & 402.9 & $-$14.9 & 0.96 & 0.836 & 0.174 \\
+Praised & 176 & 204.1 & $-$28.1 & 0.86 & 0.958 & 0.048 \\
+Roasted & 129 & 107.0 & +22.0 & 1.21 & 0.018 & 0.986 \\
+\midrule
+Praised minus Roasted & 47 & 97.1 & $-$50.1 &  & 1.000 & 0.004 \\
+\midrule
+Praised, @realDonaldTrump only & 73 & 95.9 & $-$22.9 & 0.76 & 0.990 & 0.018 \\
 \bottomrule
 \end{tabular}
 \par\medskip
-\begin{minipage}{\linewidth}\footnotesize\textit{Note:} Linear probability model of a direct mention of the company on a day, with company and day effects, on a recent purchase in the k calendar days before. Slope in percentage points; the baseline probability of a mention is 0.080 percent. p\textsubscript{upper} is the share of all 500 worlds with a slope at least as large as the real one, p\textsubscript{lower} at least as small. Over all windows, the best window's p-value is matched or beaten in 89 percent of the worlds.\end{minipage}
+\begin{minipage}{\linewidth}\footnotesize\textit{Note:} A hit is a purchase followed by a direct mention of the company within trading days 1 to 10 after the trade date, all three accounts. Praised: sentiment of 0.5 or more; Roasted: $-$0.5 or less. The shifted mean is the average over the 499 shifted worlds; excess is real minus shifted mean. p\textsubscript{upper} and p\textsubscript{lower} are the shares of all 500 worlds at least as large and at least as small as the real count. The last row is a description, not a test of the research question.\end{minipage}
 \end{table}

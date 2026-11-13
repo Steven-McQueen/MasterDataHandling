@@ -8,8 +8,7 @@ master/                                          # one folder per stage, read in
 │   │   └── Fetch_Twitter.py
 │   ├── RawData/
 │   │   ├── Original/                            # untouched API / dataset output
-│   │   └── *.json                               # cleaned per-account files (CleanRawData.py)
-│   └── CleanRawData.py
+│   │   └── *.json                               # cleaned per-account files (written by the fetch scripts)
 │   └── Merge.py                                 # merges the cleaned files
 │   └── SocialMediaPosts.json                    # OUTPUT: one row per post (22,273)
 ├── 2) Trades/                                   # Step 2 = kokebok step 2: raw disclosures -> final trades and purchase table
@@ -22,7 +21,6 @@ master/                                          # one folder per stage, read in
 │   │   └── FMP_symbol_changes.json              # FMP symbol-change list (cache, section 5.3)
 │   │   └── FMP_ticker_checks.json               # FMP profile + first price date per symbol (cache, section 5.3)
 │   │   └── FirstPriceFetch/                     # co-author's notes from the first price fetch; provenance of section 5, not read by code
-│   └── Backup_2026-11-12/                       # notebook, workbooks and purchase table before the 2026 trades moved from QuiverQuant to TigZig; OldVsNew_2026.xlsx lists the rows that differ
 │   └── Verification/                            # check of the raw trades against the filed reports (Step 2.0.4), not read by code
 │   │   └── Annual2025_Part7_parsed.csv          # the transactions section of the 2025 annual report (OGE 278e), parsed from the filed PDF: 21,285 rows
 │   │   └── TradeVerification_2026.csv           # one row per 2026 TigZig row: page and line in the filed 278-T, what was read there, how it was confirmed (8,374 rows)
@@ -39,7 +37,6 @@ master/                                          # one folder per stage, read in
 │   │   └── FetchPrices2024.py                   # same fetch for the pre-sample window (key from .env or the environment), own resume file
 │   │   └── prices_2024.csv                      # OUTPUT: date, ticker, adj_close (1,579 tickers, 2023-12-15 .. 2025-01-17)
 │   │   └── prices_2024_missing.csv              # tickers with no or partial 2024 data (17 none, 22 start late)
-│   │   └── prices_2024_partial.csv              # resume file of FetchPrices2024.py
 │   ├── 2) ComputeReturns/
 │   │   └── ComputeReturns.py                    # factors, returns, wrong days blanked, betas (BETA_ESTIMATION = "presample" or "insample"), abnormal returns
 │   │   └── returns_table_presample.csv          # OUTPUT used by the analysis: ret, ar_raw, ar_mkt, ar_capm, ar_ff3m, ar_ff5m per ticker and day (630,875 rows)
@@ -62,7 +59,7 @@ master/                                          # one folder per stage, read in
 │   └── company.db                               # companies + executives + entities + entity_sources (raw SEC/FMP answers)
 │   └── CompanyDB_long.xlsx                      # QA export
 │   └── PromptKeywords.md                        # empty; keyword generation dropped 2026-11-03
-├── 5) MapTweetCompany/                           # Step 5 = kokebok step 5, label posts: which company a post mentions, in what tone
+├── 5) MapTweetCompany/                          # Step 5 = kokebok step 5, label posts: which company a post mentions, in what tone
 │   ├── 1) LabelTweets/                          # Step 5.1 — LLM labelling, text only, blind to trades
 │   │   └── LLM_Prompt.md                        # frozen prompt + schema, version history at the bottom
 │   │   └── LLM_SocialMediaScript.py             # one call per post, concurrent, resumable
@@ -71,7 +68,7 @@ master/                                          # one folder per stage, read in
 │   │   └── RunLog_v6.txt                        # log of the full prompt v6 run (2026-11-10)
 │   │   └── blocked_trial_texts.csv              # same for the two 300-post development samples, with filter category
 │   ├── 2) MapToTickers/                         # Step 5.2 — map LLM companies to trade tickers
-│   │   └── ReviewGuide.md                       # for the authors: what Part 1 needs from this step, the post -> ticker chain, the review rules, and how to read the output
+│   │   └── ReviewGuide.md                       # for the authors: what Part 1b needs from this step, the post -> ticker chain, the review rules, and how to read the output
 │   │   └── TwitterTickerCleaning.ipynb          # same structure and tone as TradesCleaning.ipynb
 │   │   └── TickerTwitterReview.xlsx             # review (complete 2026-11-08), sheets in order: ReadMe · 1_CompanyReview (one row per company: suggestion + v / override = its ticker on any exchange, or NONE) · 2_MentionExceptions · 3_NotListedOnPostDate · Entities (Step 4.2)
 │   │   └── Twitter_tickers_2025_2026.xlsx       # OUTPUT: one row per post × company (6,093 under v6): post · LLM label · decision (public_ticker, ticker = universe join key, listed / in_universe / purchased, status); ReadMe sheet defines the columns
@@ -87,51 +84,51 @@ master/                                          # one folder per stage, read in
 │       └── V5V6Report.txt · v5v6_references.csv · v5v6_precision.csv
 │       └── ResultsV5V6.py                       # results of Parts 1-3 and the checks under v5 and v6, side by side
 │       └── ResultsV5V6.txt · results_v5v6.csv
-├── 6) CalendarShifts/                          # Step 6 = kokebok step 6: the shifted worlds
+├── 6) CalendarShifts/                           # Step 6 = kokebok step 6: the shifted worlds
 │   └── CalendarShifts.py                        # settings (start 2025-01-20, L = 558, MIN_SHIFT = 30), shift formula, checks
 │   └── worlds.csv                               # OUTPUT: world, shift_days, shift_start, L (500 worlds, world 0 = real)
 │   └── ShiftsReport.txt                         # inputs read, purchases outside the calendar, checks
-├── 7) Part1Talk/                                # Step 7 = kokebok step 7, Part 1: does he mention what he has bought?
-│   └── 0) Decisions.md                          # every Part 1 choice, fixed before results
-│   └── Part1Settings.py                         # all paths, dates, windows, mention definitions; shared functions
-│   └── RunPart1.py                              # runs 1) to 3) in order; writes RunLog.txt
+├── 7) Part1b_Talk/                              # Step 7 = kokebok step 7, Part 1b: does he mention what he has bought?
+│   └── 0) Decisions.md                          # every Part 1b choice, fixed before results
+│   └── TalkSettings.py                          # all paths, dates, windows, mention definitions; shared functions
+│   └── RunTalk.py                               # runs 1) to 3) in order; writes RunLog.txt
 │   ├── 1) BuildPanel/
 │   │   └── BuildPanel.py                        # ticker x calendar-day panel from Step 5.2 and Step 2
 │   │   └── panel.csv.gz                         # OUTPUT: 954,180 rows; mentions per definition, purchases, treatments
 │   │   └── tickers.csv                          # per ticker: first purchase, purchase days, mention days
 │   │   └── BuildPanelChecks.txt                 # counts against the sources, spot checks
 │   ├── 2) Estimate/
-│   │   └── EstimatePart1.py                     # LPM and Poisson with ticker + day effects, lead/lag bins, descriptives
+│   │   └── EstimateTalk.py                      # LPM and Poisson with ticker + day effects, lead/lag bins, descriptives
 │   │   └── results.csv · leadlag.csv · leadlag.png · descriptives.txt · EstimateReport.txt
 │   └── 3) Inference/
 │       └── ShiftedWorlds.py                     # the same slope in all 500 worlds; p-values, hits, window search
 │       └── inference.csv · world_estimates.csv · worlds_main.png · InferenceReport.txt
-├── 8) Part2Timing/                              # Step 8 = kokebok step 8, Part 2: do purchases precede (positive) posts?
-│   └── 0) Decisions.md                          # every Part 2 choice, fixed before results
-│   └── Part2Settings.py                         # paths, window, thresholds, outcomes; shared functions
-│   └── RunPart2.py                              # runs 1) and 2) in order; writes RunLog.txt
+├── 8) Part1_Timing/                             # Step 8 = kokebok step 8, Part 1: do purchases precede (positive) posts?
+│   └── 0) Decisions.md                          # every Part 1 choice, fixed before results
+│   └── TimingSettings.py                        # paths, window, thresholds, outcomes; shared functions
+│   └── RunTiming.py                             # runs 1) and 2) in order; writes RunLog.txt
 │   ├── 1) Hits/
 │   │   └── Hits.py                              # posts inside each purchase's 10-trading-day window
 │   │   └── purchase_hits.csv · hit_posts.csv · hits_summary.csv · HitsChecks.txt
 │   └── 2) Inference/
 │       └── ShiftedWorlds.py                     # the same counts in all 500 worlds; p-values, ratios
 │       └── inference.csv · world_counts.csv · worlds_main.png · InferenceReport.txt
-├── 9) Part3Returns/                             # Step 9 = kokebok step 9, Part 3: did those purchases earn more than on shifted dates?
-│   └── 0) Decisions.md                          # every Part 3 choice, fixed before results
-│   └── Part3Settings.py                         # paths, sample, window, labels, groups; shared functions (imports Part2Settings.py)
-│   └── RunPart3.py                              # runs 1) and 2) in order; writes RunLog.txt
+├── 9) Part2_Returns/                            # Step 9 = kokebok step 9, Part 2: did those purchases earn more than on shifted dates?
+│   └── 0) Decisions.md                          # every Part 2 choice, fixed before results
+│   └── ReturnsSettings.py                       # paths, sample, window, labels, groups; shared functions (imports TimingSettings.py)
+│   └── RunReturns.py                            # runs 1) and 2) in order; writes RunLog.txt
 │   ├── 1) Returns/
 │   │   └── Returns.py                           # sample, MAR over trading days 1-10, labels from the first post
 │   │   └── purchase_returns.csv · ReturnsChecks.txt
 │   └── 2) Inference/
 │       └── ShiftedWorlds.py                     # the same groups in all 500 worlds; return per dollar, excess, p-values
 │       └── inference.csv · gaps.csv · world_stats.csv · contributors.csv · worlds_main.png · InferenceReport.txt
-├── 10) Checks/                                  # Step 10 = kokebok step 10: the five checks on the Part 3 result
+├── 10) Checks/                                  # Step 10 = kokebok step 10: the five checks on the Part 2 result
 │   └── 0) Decisions.md                          # every choice for the checks, fixed before results
 │   └── Checks.py                                # horizons, days before, short shifts, return models, without the five largest
 │   └── robustness.csv · world_checks.csv · horizon_search.csv · horizons.png · ChecksReport.txt
-│   └── part2_check_counts.csv                   # Part 2 purchase hits per world under checks 6 (relevance) and 7 (without media)
-│   └── SpecCurve.py                             # check 8: the Part 2 count under 1,512 specifications, in every world
+│   └── timing_check_counts.csv                  # Part 1 purchase hits per world under checks 6 (relevance) and 7 (without media)
+│   └── SpecCurve.py                             # check 8: the Part 1 count under 1,512 specifications, in every world
 │   └── SpecCurve/                               # spec_curve.xlsx (ReadMe, Summary, Specifications, Grid) · spec_curve.csv · spec_curve_joint.csv · spec_curve.png · SpecCurveReport.txt
 │   └── ChecksExtra.py                           # checks 9-11: day 0 included, every shift, reverse direction (added 2026-11-13)
 │   └── extra_checks.csv · extra_world_counts.csv · ExtraChecksReport.txt
@@ -145,6 +142,7 @@ master/                                          # one folder per stage, read in
 │   └── figures/                                 # fig_*.pdf (vector) and fig_*.tex (caption, label, note)
 │   └── ExhibitsReport.txt
 ├── RunAll.py                                    # runs Steps 3.2 and 5.2-11 from the stored inputs (Step 2 with --with-trades)
+├── RunAllLog.txt                                # log of RunAll.py
 ├── requirements.txt                             # Python packages and versions
 ├── .env                                         # API keys (FMP, Twitter, Azure OpenAI); never shared
 ├── .gitattributes                               # Git LFS: the large raw and output files (SocialMedia.db, company.db, returns tables, WhiteHouse_Twitter.json)

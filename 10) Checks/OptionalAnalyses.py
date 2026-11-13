@@ -28,8 +28,8 @@ import pandas as pd
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent
-sys.path.insert(0, str(REPO / "9) Part3Returns"))
-import Part3Settings as S                                # noqa: E402
+sys.path.insert(0, str(REPO / "9) Part2_Returns"))
+import ReturnsSettings as S                                # noqa: E402
 P2 = S.P2
 
 TRADES_SHEET = "Trades"
@@ -81,7 +81,7 @@ def sales_check(worlds, tdays, cdays, posts, mat, rtickers, rdays, keep, cum, li
               f"  Check 12 sample: {len(sales):,} company-days on {sales['ticker'].nunique():,} tickers "
               f"(USD {sales['amount_mid'].sum():,.0f}); left out {len(left):,} company-days on "
               f"{left['ticker'].nunique():,} tickers (USD {left['amount_mid'].sum():,.0f}): "
-              f"{int((~in_sample).sum()):,} not in the Part 3 sample, {int((~inside).sum()):,} outside the shift calendar"]
+              f"{int((~in_sample).sum()):,} not in the Part 2 sample, {int((~inside).sum()):,} outside the shift calendar"]
 
     trow = pd.Index(rtickers).get_indexer(sales["ticker"])
     lab_tickers = sorted(set(sales["ticker"]))
@@ -195,7 +195,7 @@ def postwindow_check(posts, keep, mat, rtickers, rdays, lines):
     sel, out, first, held_dates = post_events_setup(posts, keep, purchases)   # first: ticker index
     Lp = (POST_CAL_END - POST_CAL_START).days + 1
     shifts = [0] + list(range(MIN_SHIFT, Lp - MIN_SHIFT + 1))
-    lines += [f"  Check 13: {len(sel):,} direct post-company rows on {sel['ticker'].nunique():,} Part 3 tickers inside the post calendar "
+    lines += [f"  Check 13: {len(sel):,} direct post-company rows on {sel['ticker'].nunique():,} Part 2 tickers inside the post calendar "
               f"{POST_CAL_START:%Y-%m-%d} to {POST_CAL_END:%Y-%m-%d} ({Lp} days); {len(out):,} rows outside, left out; "
               f"{len(shifts) - 1} shifted worlds (shifts {MIN_SHIFT} to {Lp - MIN_SHIFT} days)"]
     rindex = pd.Index(rtickers)
@@ -231,9 +231,9 @@ def main():
     cum = S.cumulative(mat)
     lines = [f"Step 10, OptionalAnalyses (checks 12-13) | run {datetime.now():%Y-%m-%d %H:%M}", "", "Inputs",
              "  " + P2.input_line(P2.POSTS_XLSX, post_rows), "  " + P2.input_line(P2.WORLDS_CSV, len(worlds)),
-             f"  Returns: {S.RETURN_COLUMN}, {len(keep):,} tickers with a full series (the Part 3 sample); {len(zeroed)} reviewed days set to zero"]
+             f"  Returns: {S.RETURN_COLUMN}, {len(keep):,} tickers with a full series (the Part 2 sample); {len(zeroed)} reviewed days set to zero"]
 
-    # check of the checks: the sales machinery on the Part 3 purchases reproduces Part 3's real Posted return
+    # check of the checks: the sales machinery on the Part 2 purchases reproduces Part 2's real Posted return
     p = S.read_purchases()
     p = p[p["ticker"].isin(keep)].reset_index(drop=True)
     lab_t = sorted(set(p["ticker"]))
@@ -243,9 +243,9 @@ def main():
     mar = S.window_sum(cum, pd.Index(rtickers).get_indexer(p["ticker"]), S.day0_index(p["trade_date"], rdays))
     a = p[S.MAIN_AMOUNT].to_numpy(float)
     r_posted = float((a[lab["posted"]] * mar[lab["posted"]]).sum() / a[lab["posted"]].sum())
-    p3 = pd.read_csv(REPO / "9) Part3Returns" / "2) Inference" / "inference.csv").query("group == 'posted' and amount == @S.MAIN_AMOUNT")
+    p3 = pd.read_csv(REPO / "9) Part2_Returns" / "2) Inference" / "inference.csv").query("group == 'posted' and amount == @S.MAIN_AMOUNT")
     ok = np.isclose(r_posted, p3["r_real"].iloc[0])
-    checks = [f"The labelling and return code reproduces Part 3's real Posted return on the purchases: {r_posted:.6%} vs "
+    checks = [f"The labelling and return code reproduces Part 2's real Posted return on the purchases: {r_posted:.6%} vs "
               f"{p3['r_real'].iloc[0]:.6%}: {'OK' if ok else 'MISMATCH'}"]
     if not ok:
         raise SystemExit(checks[0])

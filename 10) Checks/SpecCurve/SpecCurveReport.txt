@@ -1,25 +1,25 @@
-Step 10 check 8, SpecCurve | run 2026-11-13 08:46
+Step 10 check 8, SpecCurve | run 2026-11-13 12:55
 
 Inputs
-  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 1,696 rows, modified 2026-11-13 08:38 (in-universe mention rows)
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 1,696 rows, modified 2026-11-13 12:44 (in-universe mention rows)
   purchases: 18,398; of the media companies: 142
   worlds: 500 (499 shifted and the real one)
 
 Grid: 1,512 specifications = praised 648, any 216, roasted 648
 
-Checks: this script against Part 2 (window 1-10, no floor, media in) and Checks.py
-  direct_any      real  388 vs Part 2  388; all 500 worlds equal: OK
-  direct_pos50    real  176 vs Part 2  176; all 500 worlds equal: OK
-  direct_neg50    real  129 vs Part 2  129; all 500 worlds equal: OK
-  direct_pos30    real  177 vs Part 2  177; all 500 worlds equal: OK
-  direct_pos70    real   70 vs Part 2   70; all 500 worlds equal: OK
-  direct_neg30    real  129 vs Part 2  129; all 500 worlds equal: OK
-  direct_neg70    real  107 vs Part 2  107; all 500 worlds equal: OK
-  brand_pos50     real  198 vs Part 2  198; all 500 worlds equal: OK
-  alltypes_pos50  real  205 vs Part 2  205; all 500 worlds equal: OK
-  alltypes_neg50  real  141 vs Part 2  141; all 500 worlds equal: OK
-  trump_pos50     real   73 vs Part 2   73; all 500 worlds equal: OK
-  trump_neg50     real  112 vs Part 2  112; all 500 worlds equal: OK
+Checks: this script against Part 1 (window 1-10, no floor, media in) and Checks.py
+  direct_any      real  388 vs Part 1  388; all 500 worlds equal: OK
+  direct_pos50    real  176 vs Part 1  176; all 500 worlds equal: OK
+  direct_neg50    real  129 vs Part 1  129; all 500 worlds equal: OK
+  direct_pos30    real  177 vs Part 1  177; all 500 worlds equal: OK
+  direct_pos70    real   70 vs Part 1   70; all 500 worlds equal: OK
+  direct_neg30    real  129 vs Part 1  129; all 500 worlds equal: OK
+  direct_neg70    real  107 vs Part 1  107; all 500 worlds equal: OK
+  brand_pos50     real  198 vs Part 1  198; all 500 worlds equal: OK
+  alltypes_pos50  real  205 vs Part 1  205; all 500 worlds equal: OK
+  alltypes_neg50  real  141 vs Part 1  141; all 500 worlds equal: OK
+  trump_pos50     real   73 vs Part 1   73; all 500 worlds equal: OK
+  trump_neg50     real  112 vs Part 1  112; all 500 worlds equal: OK
   check 6, relevance 0.3 real  167; all worlds equal to Checks.py: OK
   check 7, without media real   50; all worlds equal to Checks.py: OK
   all checks: OK
