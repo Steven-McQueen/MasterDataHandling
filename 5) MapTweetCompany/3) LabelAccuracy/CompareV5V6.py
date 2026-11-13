@@ -17,7 +17,7 @@ HOW TO RUN
     pip install pandas numpy openpyxl
     python CompareV5V6.py --v5-db V5.db --v6-db V6.db --v5-tickers V5.xlsx --v6-tickers V6.xlsx
 
-    V5.db, V5.xlsx   SocialMedia.db and Twitter_tickers_2025_2026.xlsx of the v5 run (main, commit 2131a01)
+    V5.db, V5.xlsx   SocialMedia.db and Twitter_tickers_2025_2026.xlsx of the v5 run (main, commit d052ace)
     V6.db, V6.xlsx   the same files of the v6 run (branch prompt-v6)
 
 OUTPUTS (in this folder)

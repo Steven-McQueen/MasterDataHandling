@@ -368,7 +368,7 @@ QuiverQuant has no trade in April 2026: it lacks the filing of Jun 25, 2026 (par
 | 2026-06 | 1,051 | 1,051 | 1,037 | 1,050 |
 | 2026-07 | 1,156 | 1,156 | 1,148 | 1,156 |
 
-The rows that are not the same trade differ in how the provider read the scanned filing: the spelling of a name, or in a few cases the date. 42 rows of the final trade file differ between the QuiverQuant-based and the TigZig-based version outside April; the comparison and the files as they were before the change are in the repository history (commit `38ad0a2`, folder `2) Trades/Backup_2026-11-12/`, removed 2026-11-13). Step 2.0.4 shows that on every one of them the filed report agrees with TigZig.
+The rows that are not the same trade differ in how the provider read the scanned filing: the spelling of a name, or in a few cases the date. 42 rows of the final trade file differ between the QuiverQuant-based and the TigZig-based version outside April; the comparison and the files as they were before the change are in the repository history (commit `b1eabdd`, folder `2) Trades/Backup_2026-11-12/`, removed 2026-11-13). Step 2.0.4 shows that on every one of them the filed report agrees with TigZig.
 #### 2.0.4) The raw trades against the filed reports
 Every raw trade row was checked against the report it comes from, on company name, transaction type, transaction date and value range. Result: no difference.
 
@@ -1074,7 +1074,7 @@ No check gives a Posted excess that does not rest on the Amazon purchase of 2026
 
 
 ### 10.2) Checks 9 to 11 · `ChecksExtra.py`
-Fixed in `0) Decisions.md` before the script was written (commit `e8de826`), after every result of 2026-11-12 had been seen. Outputs `extra_checks.csv`, `extra_world_counts.csv`, `ExtraChecksReport.txt`; the main design inside the script reproduces Part 1's three counts and Part 2's Posted return exactly.
+Fixed in `0) Decisions.md` before the script was written (commit `9ffda3d`), after every result of 2026-11-12 had been seen. Outputs `extra_checks.csv`, `extra_world_counts.csv`, `ExtraChecksReport.txt`; the main design inside the script reproduces Part 1's three counts and Part 2's Posted return exactly.
 
 | Check | Statistic | Real | Expected | p_upper | p_lower |
 |---|---|---|---|---|---|
@@ -1095,7 +1095,7 @@ Checks 9 and 10 change nothing. Check 11: purchases are preceded by a post about
 ### 10.3) Detectable effects · `DetectableEffects.py`
 Read from the world tables of Parts 1 to 3; the critical value is the 25th largest of the 500 worlds (top 5 percent; top 2.5 percent for the two-sided Part 2 test), approximate by one world. Part 1b, direct mentions within ten days: about 345 mention-days against 320 expected (+8 percent). Part 1, Praised hits: about 230 against 204 (+13 percent); any post 431 against 403 (+7 percent); Roasted 124 against 107 (+16 percent). Part 2, Posted: about 2.71 percent per dollar against 0.47 (+2.2 percentage points, about USD 1.6 million on the real amount). The real values are below every one of these, except Roasted hits.
 ### 10.4) Checks 12 and 13, the optional analyses · `OptionalAnalyses.py`
-The two analyses the kokebok lists under "Optional, if time allows", fixed in `0) Decisions.md` before the script was written (commit `896a5fe`), after every main result and checks 1–11 had been seen. Outputs `optional_sales.csv`, `optional_postwindows.csv`, `optional_world_stats.csv`, `OptionalReport.txt`; the script checks that its labelling and return code reproduces Part 2's real Posted return (1.6581 %).
+The two analyses the kokebok lists under "Optional, if time allows", fixed in `0) Decisions.md` before the script was written (commit `2e0f488`), after every main result and checks 1–11 had been seen. Outputs `optional_sales.csv`, `optional_postwindows.csv`, `optional_world_stats.csv`, `OptionalReport.txt`; the script checks that its labelling and return code reproduces Part 2's real Posted return (1.6581 %).
 
 **Check 12, sales** (a sale counts as a purchase with the sign reversed: amount × −MAR, trading days 1–10; 8,740 sale company-days on 1,435 tickers of the Part 2 sample, USD 630.7 million at midpoints; 268 company-days outside the sample left out; 500 worlds).
 
@@ -1124,7 +1124,7 @@ No sign that he sells before criticizing a company: fewer sales than chance are 
 
 His Praised posts are followed by a market-adjusted rise of about half a percent over the post day and the next, more than on shifted dates (two-sided p 0.03), as Ge, Kurov and Wolfe (2019) found for 2016–2017; Roasted posts are not followed by a fall. Almost every company he posts about he had already bought, so held and all events give the same answer. The question differs from the research question: it asks whether posts move his stocks, not whether purchases come before posts. Descriptive, not tests: the median Praised event is +0.39 percent and 55 percent are positive; without the five largest events the mean is 0.25 percent, without the ten largest 0.06 percent (MU 2026-05-26 +22 percent, HOOD, TSLA, INTC); FOXA is 65 of the 290 events. The dollar total uses the amount bought before the post as the position, ignoring sales and price changes, so it is a rough proxy and not his gain.
 
-**Robustness of checks 12 and 13** (`OptionalRobustness.py`, fixed in `0) Decisions.md` before it was run, commit `7014992`; `optional_robustness.csv`, `optional_robustness_sales.csv`, `OptionalRobustnessReport.txt`). Praised held events, equal-weighted mean market-adjusted return, 526 worlds unless stated:
+**Robustness of checks 12 and 13** (`OptionalRobustness.py`, fixed in `0) Decisions.md` before it was run, commit `d623303`; `optional_robustness.csv`, `optional_robustness_sales.csv`, `OptionalRobustnessReport.txt`). Praised held events, equal-weighted mean market-adjusted return, 526 worlds unless stated:
 
 | Variant | Events | Real | Expected | p_upper | p_two |
 |---|---|---|---|---|---|
