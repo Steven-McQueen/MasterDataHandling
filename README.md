@@ -1104,6 +1104,30 @@ No sign that he sells before criticizing a company: fewer sales than chance are 
 
 His Praised posts are followed by a market-adjusted rise of about half a percent over the post day and the next, more than on shifted dates (two-sided p 0.03), as Ge, Kurov and Wolfe (2019) found for 2016–2017; Roasted posts are not followed by a fall. Almost every company he posts about he had already bought, so held and all events give the same answer. The question differs from the research question: it asks whether posts move his stocks, not whether purchases come before posts. Descriptive, not tests: the median Praised event is +0.39 percent and 55 percent are positive; without the five largest events the mean is 0.25 percent, without the ten largest 0.06 percent (MU 2026-05-26 +22 percent, HOOD, TSLA, INTC); FOXA is 65 of the 290 events. The dollar total uses the amount bought before the post as the position, ignoring sales and price changes, so it is a rough proxy and not his gain.
 
+**Robustness of checks 12 and 13** (`OptionalRobustness.py`, fixed in `0) Decisions.md` before it was run, commit `7014992`; `optional_robustness.csv`, `optional_robustness_sales.csv`, `OptionalRobustnessReport.txt`). Praised held events, equal-weighted mean market-adjusted return, 526 worlds unless stated:
+
+| Variant | Events | Real | Expected | p_upper | p_two |
+|---|---|---|---|---|---|
+| Main, days 0–1 | 290 | 0.53 % | 0.08 % | 0.013 | 0.027 |
+| Day 0 only | 290 | 0.55 % | 0.04 % | 0.002 | 0.004 |
+| Days 0–2 | 290 | 0.33 % | 0.12 % | 0.181 | 0.361 |
+| Days 0–5 | 290 | −0.21 % | 0.24 % | 0.916 | 0.171 |
+| Days 2–10 (reversal) | 290 | −0.25 % | 0.37 % | 0.928 | 0.148 |
+| Before: day −1 | 290 | 0.14 % | 0.06 % | 0.291 | 0.582 |
+| Before: days −5 to −1 | 290 | 0.84 % | 0.23 % | 0.015 | 0.030 |
+| Without the five largest events | 285 | 0.24 % | −0.11 % | 0.030 | 0.061 |
+| Relevance ≥ 0.3 | 277 | 0.58 % | 0.08 % | 0.010 | 0.019 |
+| Without the media companies | 212 | 0.71 % | 0.12 % | 0.013 | 0.027 |
+| @realDonaldTrump only | 121 | 0.48 % | 0.12 % | 0.137 | 0.274 |
+| Cut-off 0.3 | 291 | 0.53 % | 0.08 % | 0.015 | 0.030 |
+| Cut-off 0.7 | 85 | 1.16 % | 0.15 % | 0.004 | 0.008 |
+| Short shifts (123 worlds) | 290 | 0.53 % | 0.08 % | 0.024 | 0.049 |
+| Raw returns | 290 | 0.87 % | 0.27 % | 0.002 | 0.004 |
+| CAPM | 290 | 0.56 % | 0.10 % | 0.011 | 0.023 |
+| FF5 + momentum | 290 | 0.80 % | 0.10 % | 0.002 | 0.004 |
+
+The rise after a Praised post sits on the post day itself and holds across the return models, the relevance floor, the cut-offs, short shifts and without the media companies; it is weaker without the five largest events (p 0.06) and for @realDonaldTrump alone (121 events, p 0.27). It does not last: from day 2 to day 10 the return is below the shifted worlds (−0.25 against 0.37 percent), so the move reverses, as Ge, Kurov and Wolfe (2019) found. The stocks were already rising in the five days before a Praised post (0.84 against 0.23 percent, p 0.03), so the posts follow good news about a company as much as they cause a move. Roasted posts are followed by no fall in any variant. Check 12 without the five largest sales (AMZN, META and MSFT on 2026-02-10 and AMZN and MSFT on 2026-07-20, USD 15 million each): the Posted sales earn −0.89 against 0.17 percent (p 0.44), so the earlier loss was the large sales; fewer sales than chance are still followed by a Roasted post (32 against 42.9, p_lower 0.022).
+
 ## Step 11: Exhibits
 `11) Exhibits/` (added 2026-11-09; kokebok step 12). Every table and figure for the thesis, drawn from the outputs of Steps 2 to 10; decisions and the list of exhibits in `0) Decisions.md`. `Exhibits.py` writes `tables/tab_*.tex` (one LaTeX `table` with booktabs, caption, label and note) with the same numbers as `tab_*.csv`, `figures/fig_*.pdf` (vector) with a `fig_*.tex` snippet holding the caption, label and note, and `ExhibitsReport.txt`. In Overleaf, copy the folders and `\input{}` the files; the tables need `booktabs` and the figures `graphicx`.
 

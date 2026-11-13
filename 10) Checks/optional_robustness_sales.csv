@@ -1,0 +1,10 @@
+variant,statistic,real,mean_shifted,sd_shifted,p_upper,p_lower,p_two,n_worlds,n_real,amount_real
+12 without the five largest sales,"Praised hits (sales followed by a post, days 1-10)",74,66.436874,9.3843303,0.232,0.794,0.464,500,,
+12 without the five largest sales,"any post hits (sales followed by a post, days 1-10)",139,145.15431,10.720639,0.718,0.328,0.656,500,,
+12 without the five largest sales,"Roasted hits (sales followed by a post, days 1-10)",32,42.8998,5.323783,0.988,0.022,0.044,500,,
+12 without the five largest sales,"all: return per dollar sold, -MAR days 1-10",-0.0028039643,0.0032987017,0.005721367,0.898,0.104,0.208,500,8735,5.5570408e+08
+12 without the five largest sales,"posted: return per dollar sold, -MAR days 1-10",-0.0088919817,0.0017184075,0.016419419,0.78,0.222,0.444,500,139,19596080
+12 without the five largest sales,"praised: return per dollar sold, -MAR days 1-10",-0.0050708575,0.0018335109,0.022569621,0.612,0.39,0.78,500,56,10568533
+12 without the five largest sales,"roasted: return per dollar sold, -MAR days 1-10",-0.0095497339,0.010370006,0.033702037,0.782,0.22,0.44,500,26,4637515
+12 without the five largest sales,"no_post: return per dollar sold, -MAR days 1-10",-0.0025814321,0.0033654175,0.0058268255,0.902,0.1,0.2,500,8596,5.36108e+08
+12 without the five largest sales,"posted: dollar total, -MAR days 1-10 (USD)",-174247.98,26026.039,335900.58,0.784,0.218,0.436,500,,

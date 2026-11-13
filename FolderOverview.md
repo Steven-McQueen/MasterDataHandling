@@ -137,6 +137,7 @@ master/                                          # one folder per stage, read in
 │   └── extra_checks.csv · extra_world_counts.csv · ExtraChecksReport.txt
 │   └── DetectableEffects.py                     # the effect each main test could detect · detectable_effects.csv · DetectableEffects.txt
 │   └── OptionalAnalyses.py                      # checks 12-13: sales with the sign reversed; post windows · optional_sales.csv · optional_postwindows.csv · optional_world_stats.csv · OptionalReport.txt
+│   └── OptionalRobustness.py                    # robustness of checks 12-13 (windows, before the post, models, trimming, accounts, cut-offs, short shifts; sales without the five largest) · optional_robustness.csv · optional_robustness_sales.csv · OptionalRobustnessReport.txt
 ├── 11) Exhibits/                                # Step 11 = kokebok step 12 (Exhibits): every table and figure for the thesis
 │   └── 0) Decisions.md                          # the list of exhibits and their format
 │   └── Exhibits.py                              # reads the outputs of Steps 2-10; estimates nothing again
