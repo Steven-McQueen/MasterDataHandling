@@ -31,5 +31,25 @@ Fixed before the script below was written or run, after every result of 2026-11-
 - **Check 10, every shift.** The worlds of every shift from 1 to 557 days (557 shifted worlds and the real one), the design before the smallest shift of 30 days was set on 2026-11-09. Part 2's three counts and Part 3's Posted return are recomputed in these worlds; nothing else changes.
 - **Check 11, the reverse direction.** Do posts about a company come before its purchases more often than chance? Part 2's count with the window moved before the purchase: purchases with at least one qualifying post on the calendar days from trading day −10 to trading day −1 before day 0 (day 0 excluded), for Praised, any post and Roasted, in the same 500 worlds. A purchase whose day 0 lies fewer than ten trading days after the first day of the trading calendar uses the days available; the report counts them. No return test: the question is about the order of posts and purchases, not about returns.
 
+## Added on 2026-11-13: the two optional analyses of the kokebok
+Fixed before the script was written or run, after every main result and checks 1–11 had been seen; reported as optional analyses, not as the main test. The kokebok lists them under "Optional, if time allows" (step 10). Script: `OptionalAnalyses.py`; outputs `optional_sales.csv`, `optional_postwindows.csv`, `optional_world_stats.csv`, `OptionalReport.txt`.
+
+**Check 12, sales.** A sale is treated as a purchase with the sign reversed: amount times minus the market-adjusted equity return, so money not lost counts as money earned (kokebok).
+- Sales: the `Trades` rows with `Transaction` = sale, lots merged to one row per company and trade date, amounts summed at low, midpoint and high; the midpoint is used.
+- Sample: the tickers of the Part 3 sample (a market-adjusted return on every trading day of the returns table); the other sales are left out and counted in the report.
+- Window and labels as in Part 3: day 0 is the sale date or the next trading day; the first direct post about the company (all accounts) in trading days 1–10 after day 0 decides the label: Posted, Praised (sentiment ≥ 0.5), Roasted (≤ −0.5), No post.
+- Returns: return per dollar sold over trading days 1–10, r = Σ amount × (−MAR) / Σ amount, per group (All, Posted, Praised, Roasted, No post), and the dollar total.
+- Timing: sales followed by at least one Praised, any, or Roasted direct post within trading days 1–10 (Part 2's count, for sales).
+- Worlds: the 500 worlds of Step 6; every sale moves by the same number of days as the purchases. p_upper, p_lower and the two-sided p as in Parts 2 and 3.
+- Reading: the mirror of the research question for sales is a sale followed by criticism. Roasted counts and the Roasted return are read beside Posted; no group is the main test.
+
+**Check 13, post windows.** Keep the purchases fixed and move the posts: do the stocks he has bought move on the day of a post about them and the day after? (kokebok).
+- Events: direct mentions (all accounts) of the companies in the Part 3 sample, one event per company and event day (several posts about one company on one event day are one event; it is Praised if any of them is Praised and Roasted if any is Roasted).
+- Event day 0: the first trading day whose close comes after the post: a post on a trading day before 16:00 US Eastern time has that day, any later post the next trading day.
+- Held: at least one purchase of the company with a trade date before day 0 (holdings before 2025 are not observed).
+- Return: market-adjusted return on day 0 plus day 1.
+- Statistics per group (Praised, any, Roasted): the mean return over held events (equal-weighted; the reading), and a dollar version that weights each event by the summed midpoint amount of the company bought before day 0 (a proxy for the position: sales and price changes are ignored). The mean over all events, held or not, is reported for comparison with Ge, Kurov and Wolfe (2018).
+- Worlds: the purchases stay; every post's US Eastern timestamp moves by the same number of calendar days, circularly over the post calendar from 2025-01-20 to 2026-08-26 (the last day whose day 1 is in the returns table; later posts are left out and counted). Every shift from 30 days to the calendar length minus 30, plus the real world. p_upper, p_lower and the two-sided p (Praised is predicted to be positive).
+
 ## Output
 One robustness table (`robustness.csv`, `ChecksReport.txt`) with the Posted group's return per dollar, the mean of its shifted worlds, Δr and the p-values under each check, beside the main result, and the horizon profile (`horizons.png`).
