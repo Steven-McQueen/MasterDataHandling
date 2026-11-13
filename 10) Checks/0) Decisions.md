@@ -51,5 +51,18 @@ Fixed before the script was written or run, after every main result and checks 1
 - Statistics per group (Praised, any, Roasted): the mean return over held events (equal-weighted; the reading), and a dollar version that weights each event by the summed midpoint amount of the company bought before day 0 (a proxy for the position: sales and price changes are ignored). The mean over all events, held or not, is reported for comparison with Ge, Kurov and Wolfe (2018).
 - Worlds: the purchases stay; every post's US Eastern timestamp moves by the same number of calendar days, circularly over the post calendar from 2025-01-20 to 2026-08-26 (the last day whose day 1 is in the returns table; later posts are left out and counted). Every shift from 30 days to the calendar length minus 30, plus the real world. p_upper, p_lower and the two-sided p (Praised is predicted to be positive).
 
+## Added on 2026-11-13: robustness of checks 12 and 13
+Fixed before the script was written or run, after the results of checks 12 and 13 had been seen; every variant is reported. Script: `OptionalRobustness.py`; outputs `optional_robustness.csv`, `OptionalRobustnessReport.txt`. Each variant changes one thing in check 13 and keeps the rest (Praised held events, equal-weighted mean, the real world and every shift of the posts, p_upper, p_lower, p_two). Praised is the reading; Roasted is reported beside it.
+- **13.1 Windows.** Market-adjusted return on day 0 only, days 0–1 (main), 0–2 and 0–5, and days 2–10 (does the move reverse?). A window that runs past the returns table uses the days available; the report counts these events in the real world.
+- **13.2 Before the post.** Day −1, and days −5 to −1 (does he praise stocks that are already rising?). A window that starts before the returns table uses the days available.
+- **13.3 Return models.** Raw, CAPM and FF5 + momentum (`ar_raw`, `ar_capm`, `ar_ff5m`), on the events whose company has a full series under all four columns; the market-adjusted result is reported on the same events.
+- **13.4 Without the five largest events.** In every world, the five Praised held events with the largest return are dropped before the mean is taken (and the five most negative Roasted events for Roasted).
+- **13.5 Relevance ≥ 0.3.** Only direct references with relevance of at least 0.3 make events.
+- **13.6 Without the media companies.** The seven tickers of check 7 (FOXA, NWSA, WBD, CMCSA, DIS, SKYD, VSNT) are removed.
+- **13.7 Accounts.** @realDonaldTrump only.
+- **13.8 Sentiment cut-offs.** Praised at 0.3 and at 0.7 (Roasted at −0.3 and −0.7).
+- **13.9 Short shifts.** Only the shifts of 30 to 90 days forward or backward (30–90 and Lp − 90 to Lp − 30).
+- **Check 12, without the five largest sales.** The five largest sales by midpoint amount (ties broken by date, then ticker) are removed in every world, as check 5 does for purchases; the sale returns per group and the three timing counts are reported.
+
 ## Output
 One robustness table (`robustness.csv`, `ChecksReport.txt`) with the Posted group's return per dollar, the mean of its shifted worlds, Δr and the p-values under each check, beside the main result, and the horizon profile (`horizons.png`).
