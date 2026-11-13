@@ -1,44 +1,44 @@
-Part 2, ShiftedWorlds | run 2026-11-12 21:58
+Part 2, ShiftedWorlds | run 2026-11-13 08:44
 
 Inputs
   2) Trades/Trump_trades_2025_2026.xlsx: 18,377 rows, modified 2026-11-12 20:55 (PurchasesMerged); 21 company-days from PurchasesLeftOut
-  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-12 21:52
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-13 08:38
   3) Prices/2) ComputeReturns/factors_daily_presample.csv: 405 rows, modified 2026-11-12 21:51 (trading calendar)
-  6) CalendarShifts/worlds.csv: 500 rows, modified 2026-11-12 21:52
+  6) CalendarShifts/worlds.csv: 500 rows, modified 2026-11-13 08:38
 
 Worlds: 500 (world 0 = real). Main test: direct_pos50, purchase hits.
 
 outcome          count              real  expected  ratio  p_upper  p_lower
-direct_any       purchase_hits       388     401.4   0.97    0.818    0.198
-direct_any       post_hits           553     557.3   0.99    0.586    0.434
+direct_any       purchase_hits       388     402.9   0.96    0.836    0.174
+direct_any       post_hits           553     558.4   0.99    0.602    0.414
 direct_pos50     purchase_hits       176     204.1   0.86    0.958    0.048   <- main
 direct_pos50     post_hits           177     190.4   0.93    0.888    0.130
-direct_neg50     purchase_hits       129     105.5   1.22    0.016    0.990
-direct_neg50     post_hits           131     119.8   1.09    0.194    0.828
+direct_neg50     purchase_hits       129     107.0   1.21    0.018    0.986
+direct_neg50     post_hits           131     120.9   1.08    0.206    0.810
 direct_pos30     purchase_hits       177     204.6   0.87    0.960    0.050
 direct_pos30     post_hits           178     191.0   0.93    0.882    0.146
 direct_pos70     purchase_hits        70      76.9   0.91    0.732    0.304
 direct_pos70     post_hits            62      63.6   0.97    0.650    0.420
-direct_neg30     purchase_hits       129     105.6   1.22    0.016    0.990
-direct_neg30     post_hits           131     119.9   1.09    0.194    0.828
-direct_neg70     purchase_hits       107      93.5   1.14    0.072    0.942
-direct_neg70     post_hits           109     103.8   1.05    0.352    0.688
-brand_any        purchase_hits       482     492.2   0.98    0.762    0.264
-brand_any        post_hits           655     668.0   0.98    0.680    0.342
+direct_neg30     purchase_hits       129     107.1   1.20    0.018    0.986
+direct_neg30     post_hits           131     121.0   1.08    0.208    0.810
+direct_neg70     purchase_hits       107      95.0   1.13    0.094    0.926
+direct_neg70     post_hits           109     105.0   1.04    0.382    0.656
+brand_any        purchase_hits       482     493.7   0.98    0.788    0.236
+brand_any        post_hits           655     669.1   0.98    0.688    0.324
 brand_pos50      purchase_hits       198     229.6   0.86    0.960    0.046
 brand_pos50      post_hits           196     213.1   0.92    0.924    0.088
-brand_neg50      purchase_hits       136     116.0   1.17    0.040    0.970
-brand_neg50      post_hits           139     129.6   1.07    0.242    0.784
-alltypes_any     purchase_hits       514     523.6   0.98    0.704    0.314
-alltypes_any     post_hits           756     752.5   1.00    0.426    0.592
+brand_neg50      purchase_hits       136     117.5   1.16    0.052    0.962
+brand_neg50      post_hits           139     130.8   1.06    0.258    0.762
+alltypes_any     purchase_hits       514     525.1   0.98    0.732    0.292
+alltypes_any     post_hits           756     753.6   1.00    0.450    0.574
 alltypes_pos50   purchase_hits       205     237.6   0.86    0.956    0.050
 alltypes_pos50   post_hits           204     222.7   0.92    0.936    0.072
-alltypes_neg50   purchase_hits       141     119.9   1.18    0.046    0.962
-alltypes_neg50   post_hits           141     132.1   1.07    0.252    0.762
-trump_any        purchase_hits       214     223.5   0.96    0.754    0.272
-trump_any        post_hits           203     206.1   0.99    0.630    0.404
+alltypes_neg50   purchase_hits       141     121.4   1.16    0.054    0.958
+alltypes_neg50   post_hits           141     133.3   1.06    0.274    0.746
+trump_any        purchase_hits       214     225.0   0.95    0.794    0.234
+trump_any        post_hits           203     207.2   0.98    0.658    0.368
 trump_pos50      purchase_hits        73      95.9   0.76    0.990    0.018
 trump_pos50      post_hits            68      70.8   0.96    0.686    0.368
-trump_neg50      purchase_hits       112      96.0   1.17    0.072    0.938
-trump_neg50      post_hits           102      97.9   1.04    0.366    0.680
-tone_given_talk  pos_share         0.454     0.508   0.89    0.952    0.050
+trump_neg50      purchase_hits       112      97.5   1.15    0.092    0.924
+trump_neg50      post_hits           102      99.1   1.03    0.408    0.636
+tone_given_talk  pos_share         0.454     0.506   0.90    0.944    0.058

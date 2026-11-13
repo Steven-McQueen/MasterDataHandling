@@ -1,8 +1,8 @@
-Part 2, Hits | run 2026-11-12 21:57
+Part 2, Hits | run 2026-11-13 08:44
 
 Inputs
   2) Trades/Trump_trades_2025_2026.xlsx: 18,377 rows, modified 2026-11-12 20:55 (PurchasesMerged); 21 company-days from PurchasesLeftOut
-  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-12 21:52
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-13 08:38
   3) Prices/2) ComputeReturns/factors_daily_presample.csv: 405 rows, modified 2026-11-12 21:51 (trading calendar)
 
 Purchases: 18,398 company-days on 1,600 tickers (19,526 lots), 2025-01-23 to 2026-07-31
@@ -11,22 +11,22 @@ Purchases: 18,398 company-days on 1,600 tickers (19,526 lots), 2025-01-23 to 202
   calendar days per window: min 14, median 14, max 18
 
 Outcomes: qualifying post-ticker pairs | purchases with a hit | pairs inside a window
-  direct_any       1,307 |    388 |    553
+  direct_any       1,309 |    388 |    553
   direct_pos50       412 |    176 |    177
-  direct_neg50       267 |    129 |    131
+  direct_neg50       269 |    129 |    131
   direct_pos30       413 |    177 |    178
   direct_pos70       129 |     70 |     62
-  direct_neg30       268 |    129 |    131
-  direct_neg70       236 |    107 |    109
-  brand_any        1,546 |    482 |    655
+  direct_neg30       270 |    129 |    131
+  direct_neg70       238 |    107 |    109
+  brand_any        1,548 |    482 |    655
   brand_pos50        474 |    198 |    196
-  brand_neg50        285 |    136 |    139
-  alltypes_any     1,680 |    514 |    756
+  brand_neg50        287 |    136 |    139
+  alltypes_any     1,682 |    514 |    756
   alltypes_pos50     493 |    205 |    204
-  alltypes_neg50     289 |    141 |    141
-  trump_any          453 |    214 |    203
+  alltypes_neg50     291 |    141 |    141
+  trump_any          455 |    214 |    203
   trump_pos50        155 |     73 |     68
-  trump_neg50        216 |    112 |    102
+  trump_neg50        218 |    112 |    102
 
 Traced examples (direct_pos50): ticker, trade date, window, panel count, recount from post rows
   NUE    2025-01-29  01-29..02-12  1  1  OK

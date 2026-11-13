@@ -1,9 +1,9 @@
 test,real,mean_shifted,sd_shifted,critical,detectable,detectable_pct,worlds,detectable_usd,amount_real
-"Part 1 (talk), slope, direct, 10 days (pp)",-0.0123753,0.00123018,0.0141461,0.0236546,0.0224244,,500,,
-"Part 1 (talk), mention-days, direct, 10 days",299,319.244,15.4458,344,24.7555,7.75441,500,,
+"Part 1 (talk), slope, direct, 10 days (pp)",-0.0132875,0.00111511,0.0141591,0.02344,0.0223249,,500,,
+"Part 1 (talk), mention-days, direct, 10 days",299,320.16,15.435,345,24.8397,7.75851,500,,
 "Part 2 (timing), Praised hits (main)",176,204.116,16.7296,230,25.8838,12.6809,500,,
-"Part 2 (timing), any-post hits",388,401.363,16.5668,429,27.6373,6.88586,500,,
-"Part 2 (timing), Roasted hits",129,105.453,9.69615,123,17.5471,16.6397,500,,
-"Part 3 (returns), posted, return per dollar, days 1-10 (%; two-sided 5%)",1.65811,0.472838,1.2169,2.72019,2.24735,,500,1.55954e+06,6.93947e+07
+"Part 2 (timing), any-post hits",388,402.884,16.6524,431,28.1162,6.97875,500,,
+"Part 2 (timing), Roasted hits",129,106.974,9.55594,124,17.0261,15.9161,500,,
+"Part 3 (returns), posted, return per dollar, days 1-10 (%; two-sided 5%)",1.65811,0.471942,1.21172,2.71094,2.239,,500,1.55375e+06,6.93947e+07
 "Part 3 (returns), praised, return per dollar, days 1-10 (%; two-sided 5%)",2.88278,0.335848,1.55244,3.64666,3.31081,,500,1.00268e+06,3.02851e+07
 "Part 3 (returns), all, return per dollar, days 1-10 (%; two-sided 5%)",0.00586545,-0.113926,0.309598,0.537914,0.65184,,500,7.97336e+06,1.22321e+09

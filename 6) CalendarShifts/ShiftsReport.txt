@@ -1,4 +1,4 @@
-Step 6, calendar shifts | run 2026-11-12 21:52
+Step 6, calendar shifts | run 2026-11-13 08:38
 
 Input: 2) Trades/Trump_trades_2025_2026.xlsx / Trades: 28,957 rows, modified 2026-11-12 20:55
 Purchases: 19,526 lots on 1,600 tickers, 204 purchase days, 2025-01-23 to 2026-07-31
