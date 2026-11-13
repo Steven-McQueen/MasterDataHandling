@@ -14,7 +14,7 @@ data on is rerun:
     7    7) Part1Talk/RunPart1.py
     8    8) Part2Timing/RunPart2.py
     9    9) Part3Returns/RunPart3.py
-    10   10) Checks/Checks.py, SpecCurve.py, ChecksExtra.py, DetectableEffects.py
+    10   10) Checks/Checks.py, SpecCurve.py, ChecksExtra.py, DetectableEffects.py, OptionalAnalyses.py
     11   11) Exhibits/Exhibits.py
 
 HOW TO RUN (from the repository root, after `git lfs pull`)
@@ -53,6 +53,7 @@ STEPS = [
     ("10", "Specification curve", REPO / "10) Checks", lambda d: [sys.executable, "SpecCurve.py"]),
     ("10", "Checks 9-11", REPO / "10) Checks", lambda d: [sys.executable, "ChecksExtra.py"]),
     ("10", "Detectable effects", REPO / "10) Checks", lambda d: [sys.executable, "DetectableEffects.py"]),
+    ("10", "Checks 12-13", REPO / "10) Checks", lambda d: [sys.executable, "OptionalAnalyses.py"]),
     ("11", "Exhibits", REPO / "11) Exhibits", lambda d: [sys.executable, "Exhibits.py"]),
 ]
 

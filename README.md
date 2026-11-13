@@ -74,6 +74,7 @@ Choices made while building the data, and what each one means for the analysis. 
 - **Check 7, without media companies** (2026-11-11, added after the results): the seven owners of a national US news outlet are removed in every world; a check, not the main test. [Step 10]
 - **Check 8, specification curve for Part 2** (2026-11-11, added after the results): 1,512 combinations of outcome, reference types, accounts, sentiment cut-off, relevance floor, window and media companies, fixed before the run and all reported; read per outcome with a joint test over the worlds. [Step 10]
 - **Checks 9 to 11** (2026-11-13, added after the results, fixed in `10) Checks/0) Decisions.md` and committed before the script was written): posts on day 0 counted, every shift from 1 to 557 days, and the reverse order (posts in the ten trading days before a purchase). [Step 10]
+- **Checks 12 and 13, the kokebok's optional analyses** (2026-11-13, fixed in `10) Checks/0) Decisions.md` before the script was written): sales with the sign reversed, and post windows (the posts move, the purchases stay). [Step 10]
 - **Detectable effects are reported** (2026-11-13): for each main test, the effect a real world would need to reach the top 5 percent of all worlds (`10) Checks/DetectableEffects.txt`). [Step 10]
 
 ## Open analysis decisions
@@ -1073,6 +1074,36 @@ Checks 9 and 10 change nothing. Check 11: purchases are preceded by a post about
 
 ### 10.3) Detectable effects · `DetectableEffects.py` (added 2026-11-13)
 Read from the world tables of Parts 1 to 3; the critical value is the 25th largest of the 500 worlds (top 5 percent; top 2.5 percent for the two-sided Part 3 test), approximate by one world. Part 1, direct mentions within ten days: about 345 mention-days against 320 expected (+8 percent). Part 2, Praised hits: about 230 against 204 (+13 percent); any post 431 against 403 (+7 percent); Roasted 124 against 107 (+16 percent). Part 3, Posted: about 2.71 percent per dollar against 0.47 (+2.2 percentage points, about USD 1.6 million on the real amount). The real values are below every one of these, except Roasted hits.
+### 10.4) Checks 12 and 13, the optional analyses · `OptionalAnalyses.py` (added 2026-11-13)
+The two analyses the kokebok lists under "Optional, if time allows", fixed in `0) Decisions.md` before the script was written (commit `896a5fe`), after every main result and checks 1–11 had been seen. Outputs `optional_sales.csv`, `optional_postwindows.csv`, `optional_world_stats.csv`, `OptionalReport.txt`; the script checks that its labelling and return code reproduces Part 3's real Posted return (1.6581 %).
+
+**Check 12, sales** (a sale counts as a purchase with the sign reversed: amount × −MAR, trading days 1–10; 8,740 sale company-days on 1,435 tickers of the Part 3 sample, USD 630.7 million at midpoints; 268 company-days outside the sample left out; 500 worlds).
+
+| Statistic | Real | Expected | p_upper | p_lower | p_two |
+|---|---|---|---|---|---|
+| Sales followed by a Praised post | 75 | 66.8 | 0.212 | 0.814 | 0.424 |
+| Sales followed by any post | 140 | 145.9 | 0.716 | 0.332 | 0.664 |
+| Sales followed by a Roasted post | 32 | 43.0 | 0.988 | 0.022 | 0.044 |
+| All sales, return per dollar sold | −0.90 % | 0.32 % | 0.962 | 0.040 | 0.080 |
+| Posted sales (140, USD 34.6 million) | −5.67 % | 0.27 % | 0.998 | 0.004 | 0.008 |
+| Praised sales (57) | −7.20 % | 0.26 % | 0.996 | 0.006 | 0.012 |
+| Roasted sales (26) | −0.96 % | 0.94 % | 0.774 | 0.228 | 0.456 |
+
+No sign that he sells before criticizing a company: fewer sales than chance are followed by a Roasted post. The sales followed by a post lost money relative to the shifted worlds, which is the opposite of exploitation, and the loss is one sale: AMZN on 2026-07-20 (USD 15.0 million at midpoint, −MAR −11.9 percent, USD −1.79 million of the group's USD −1.96 million), labelled Praised by a post of 2026-07-24 that defends Apple, Meta, Amazon and Google against EU fines (sentiment 0.8). Without the five largest contributions the Posted sales earn −0.36 percent (descriptive, not a test).
+
+**Check 13, post windows** (the purchases stay, the posts move: market-adjusted return on day 0 and day 1 after a direct post; day 0 is the post's trading day if posted before 16:00 US Eastern, else the next; 857 company × event-day events from 1,274 post rows on 115 Part 3 tickers; a company is held if bought before day 0; 525 shifts of 30 to 554 days and the real world).
+
+| Statistic | Events | Real | Expected | p_upper | p_lower | p_two |
+|---|---|---|---|---|---|---|
+| Praised, held, mean (the reading) | 290 | 0.53 % | 0.08 % | 0.013 | 0.989 | 0.027 |
+| Praised, held, weighted by amount bought | 290 | 0.74 % | 0.08 % | 0.036 | 0.966 | 0.072 |
+| Praised, all events (held or not) | 302 | 0.54 % | 0.10 % | 0.013 | 0.989 | 0.027 |
+| Any post, held, mean | 825 | 0.14 % | 0.04 % | 0.160 | 0.842 | 0.319 |
+| Roasted, held, mean | 208 | −0.04 % | 0.05 % | 0.658 | 0.344 | 0.688 |
+| Praised, position-weighted dollar total | 290 | USD 10.5 million | USD 1.0 million | 0.032 | 0.970 | 0.065 |
+
+His Praised posts are followed by a market-adjusted rise of about half a percent over the post day and the next, more than on shifted dates (two-sided p 0.03), as Ge, Kurov and Wolfe (2019) found for 2016–2017; Roasted posts are not followed by a fall. Almost every company he posts about he had already bought, so held and all events give the same answer. The question differs from the research question: it asks whether posts move his stocks, not whether purchases come before posts. Descriptive, not tests: the median Praised event is +0.39 percent and 55 percent are positive; without the five largest events the mean is 0.25 percent, without the ten largest 0.06 percent (MU 2026-05-26 +22 percent, HOOD, TSLA, INTC); FOXA is 65 of the 290 events. The dollar total uses the amount bought before the post as the position, ignoring sales and price changes, so it is an upper-bound proxy and not his gain.
+
 ## Step 11: Exhibits
 `11) Exhibits/` (added 2026-11-09; kokebok step 12). Every table and figure for the thesis, drawn from the outputs of Steps 2 to 10; decisions and the list of exhibits in `0) Decisions.md`. `Exhibits.py` writes `tables/tab_*.tex` (one LaTeX `table` with booktabs, caption, label and note) with the same numbers as `tab_*.csv`, `figures/fig_*.pdf` (vector) with a `fig_*.tex` snippet holding the caption, label and note, and `ExhibitsReport.txt`. In Overleaf, copy the folders and `\input{}` the files; the tables need `booktabs` and the figures `graphicx`.
 
