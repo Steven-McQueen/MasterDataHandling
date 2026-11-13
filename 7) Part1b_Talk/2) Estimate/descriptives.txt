@@ -1,24 +1,24 @@
 Part 1b descriptives (direct mentions)
 
-direct       : 1,309 post-ticker pairs, 947 ticker-days, 122 tickers
-direct_brand : 1,548 post-ticker pairs, 1,107 ticker-days, 134 tickers
-all_types    : 1,682 post-ticker pairs, 1,174 ticker-days, 137 tickers
+direct       : 1,310 post-ticker pairs, 948 ticker-days, 123 tickers
+direct_brand : 1,549 post-ticker pairs, 1,108 ticker-days, 135 tickers
+all_types    : 1,683 post-ticker pairs, 1,175 ticker-days, 138 tickers
 direct_trump : 455 post-ticker pairs, 412 ticker-days, 58 tickers
 
 Raw rates among mentioned tickers (share of ticker-days with a mention):
-  recent_1  = 1: 1.129% of 3,720 days; = 0: 1.328% of 68,138 days
-  recent_3  = 1: 1.206% of 10,203 days; = 0: 1.336% of 61,655 days
-  recent_5  = 1: 1.067% of 15,648 days; = 0: 1.388% of 56,210 days
-  recent_10 = 1: 1.167% of 25,624 days; = 0: 1.402% of 46,234 days
-  recent_20 = 1: 1.226% of 38,018 days; = 0: 1.421% of 33,840 days
-  recent_30 = 1: 1.299% of 44,955 days; = 0: 1.349% of 26,903 days
+  recent_1  = 1: 1.126% of 3,729 days; = 0: 1.318% of 68,718 days
+  recent_3  = 1: 1.203% of 10,227 days; = 0: 1.326% of 62,220 days
+  recent_5  = 1: 1.065% of 15,685 days; = 0: 1.376% of 56,762 days
+  recent_10 = 1: 1.164% of 25,690 days; = 0: 1.388% of 46,757 days
+  recent_20 = 1: 1.222% of 38,125 days; = 0: 1.404% of 34,322 days
+  recent_30 = 1: 1.295% of 45,102 days; = 0: 1.331% of 27,345 days
 
 Ownership description (mentioned tickers):
-  mentioned tickers: 122; never bought: 1
-  first purchase by 2025-02-02: 94
-  first purchase by month: 2025-01: 94, 2025-02: 9, 2025-03: 2, 2025-04: 10, 2025-05: 1, 2025-09: 1, 2025-12: 1, 2026-01: 1, 2026-03: 1, 2026-06: 1
-  mention-days before the first purchase (or never bought): 46, after: 901
-  raw rate before: 0.998% of 4,608 days; after: 1.340% of 67,250 days
+  mentioned tickers: 123; never bought: 1
+  first purchase by 2025-02-02: 95
+  first purchase by month: 2025-01: 95, 2025-02: 9, 2025-03: 2, 2025-04: 10, 2025-05: 1, 2025-09: 1, 2025-12: 1, 2026-01: 1, 2026-03: 1, 2026-06: 1
+  mention-days before the first purchase (or never bought): 46, after: 902
+  raw rate before: 0.996% of 4,619 days; after: 1.330% of 67,828 days
 
 Most mentioned tickers: ticker, mention days, purchase days, first purchase
   FOXA    214   13  2025-02-24
@@ -34,5 +34,5 @@ Most mentioned tickers: ticker, mention days, purchase days, first purchase
   GM       13   29  2025-04-03
   WMT      12   58  2025-01-29
   INTC     11   36  2025-01-29
-  MU       10   43  2025-01-29
   VSNT     10    2  2026-01-26
+  MU       10   43  2025-01-29

@@ -1,10 +1,10 @@
 statistic,real,mean_shifted,sd_shifted,p_upper,p_lower,p_two,n_worlds,n_real,amount_real
 "Praised hits (sales followed by a post, days 1-10)",75,66.811623,9.2943723,0.212,0.814,0.424,500,,
-"any post hits (sales followed by a post, days 1-10)",140,145.93988,10.636855,0.716,0.332,0.664,500,,
-"Roasted hits (sales followed by a post, days 1-10)",32,42.955912,5.3316896,0.988,0.022,0.044,500,,
+"any post hits (sales followed by a post, days 1-10)",140,146.10822,10.769414,0.718,0.33,0.66,500,,
+"Roasted hits (sales followed by a post, days 1-10)",32,43.124248,5.3484395,0.988,0.022,0.044,500,,
 "all: return per dollar sold, -MAR days 1-10",-0.0089916963,0.0032469082,0.0064537786,0.962,0.04,0.08,500,8740,6.3070408e+08
-"posted: return per dollar sold, -MAR days 1-10",-0.056687587,0.002727225,0.017649025,0.998,0.004,0.008,500,140,34596080
+"posted: return per dollar sold, -MAR days 1-10",-0.056687587,0.0027322148,0.017645027,0.998,0.004,0.008,500,140,34596080
 "praised: return per dollar sold, -MAR days 1-10",-0.071983473,0.0025766082,0.025711717,0.996,0.006,0.012,500,57,25568534
-"roasted: return per dollar sold, -MAR days 1-10",-0.0095497339,0.0093828935,0.033525041,0.774,0.228,0.456,500,26,4637515
-"no_post: return per dollar sold, -MAR days 1-10",-0.0062235891,0.0032831676,0.0065307872,0.936,0.066,0.132,500,8600,5.96108e+08
-"posted: dollar total, -MAR days 1-10 (USD)",-1961168.3,96333.963,719309.07,0.986,0.016,0.032,500,,
+"roasted: return per dollar sold, -MAR days 1-10",-0.0095497339,0.0094514419,0.03338694,0.774,0.228,0.456,500,26,4637515
+"no_post: return per dollar sold, -MAR days 1-10",-0.0062235891,0.0032830061,0.0065307471,0.936,0.066,0.132,500,8600,5.96108e+08
+"posted: dollar total, -MAR days 1-10 (USD)",-1961168.3,96445.499,719330.3,0.986,0.016,0.032,500,,

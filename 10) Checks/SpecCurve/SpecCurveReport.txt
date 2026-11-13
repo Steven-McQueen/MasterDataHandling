@@ -1,7 +1,7 @@
-Step 10 check 8, SpecCurve | run 2026-11-13 12:55
+Step 10 check 8, SpecCurve | run 2026-11-13 13:31
 
 Inputs
-  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 1,696 rows, modified 2026-11-13 12:44 (in-universe mention rows)
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 1,697 rows, modified 2026-11-13 13:24 (in-universe mention rows)
   purchases: 18,398; of the media companies: 142
   worlds: 500 (499 shifted and the real one)
 
@@ -34,12 +34,12 @@ Per outcome (joint p = share of all worlds with a statistic at least as extreme 
     above chance in 0 (shifted worlds: 29.5 on average), joint p 1.000
     below chance in 26 (shifted worlds: 28.3 on average), joint p 0.286
   any: 216 specifications (0 thin)
-    ratio above 1 in 104, below 1 in 112; median ratio 0.997 (10th to 90th percentile 0.95 to 1.06); joint p this high 0.552, this low 0.450
+    ratio above 1 in 103, below 1 in 113; median ratio 0.997 (10th to 90th percentile 0.95 to 1.06); joint p this high 0.562, this low 0.440
     above chance in 0 (shifted worlds: 10.1 on average), joint p 1.000
-    below chance in 0 (shifted worlds: 10.0 on average), joint p 1.000
+    below chance in 0 (shifted worlds: 10.1 on average), joint p 1.000
   roasted: 648 specifications (92 thin)
-    ratio above 1 in 453, below 1 in 180; median ratio 1.074 (10th to 90th percentile 0.85 to 1.27); joint p this high 0.206, this low 0.796
-    above chance in 58 (shifted worlds: 25.3 on average), joint p 0.138
-    below chance in 0 (shifted worlds: 22.6 on average), joint p 1.000
+    ratio above 1 in 428, below 1 in 214; median ratio 1.069 (10th to 90th percentile 0.79 to 1.26); joint p this high 0.228, this low 0.774
+    above chance in 50 (shifted worlds: 26.1 on average), joint p 0.164
+    below chance in 0 (shifted worlds: 22.4 on average), joint p 1.000
 
 Written: SpecCurve/spec_curve.xlsx, spec_curve.csv, spec_curve_joint.csv, spec_curve.png, SpecCurveReport.txt

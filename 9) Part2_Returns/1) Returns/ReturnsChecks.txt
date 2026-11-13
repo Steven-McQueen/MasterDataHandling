@@ -1,10 +1,10 @@
-Part 2, Returns | run 2026-11-13 12:50
+Part 2, Returns | run 2026-11-13 13:30
 
 Inputs
   2) Trades/Trump_trades_2025_2026.xlsx: 18,377 rows, modified 2026-11-12 20:55 (PurchasesMerged)
   3) Prices/2) ComputeReturns/returns_table_presample.csv: 630,875 rows, modified 2026-11-13 12:44 (column ar_mkt)
   3) Prices/3) ReviewPrices/PricesReview.xlsx: 10 rows, modified 2026-11-09 11:14 (ExtremeMoves, days marked wrong)
-  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-13 12:44
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-13 13:24
 
 Purchases: 18,377 company-days on 1,595 tickers, 2025-01-23 to 2026-07-31
   window: trading days 1-10 after day 0; day 0 moved forward for 0 purchases
