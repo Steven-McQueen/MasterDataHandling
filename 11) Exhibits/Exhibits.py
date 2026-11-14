@@ -301,8 +301,8 @@ def checks_tables_and_figure(plt):
               "Each row reruns the Part 2 test for the Posted group with one thing changed; the main result is the "
               "first row. Return per dollar in percent; $\\Delta r$ in percentage points; p is two-sided. Check 3 uses "
               "only the worlds shifted 30 to 90 days forward or backward. Check 4 shows the strictest return model; "
-              "all five are in the return-model table. Check 5 removes the five largest purchases by amount, all of "
-              "them without a post.",
+              "all five are in the return-model table. Check 5 removes the five largest purchases by amount, of "
+              "which one, Amazon on 2026-04-17, is in the Posted group.",
               ["Check", "Real", "Shifted mean", "$\\Delta r$", "Excess (USD)", "p", "Worlds"], rows, "lrrrrrr", midrules=(1,))
     csv_out("tab_robustness", pd.DataFrame(out))
 
