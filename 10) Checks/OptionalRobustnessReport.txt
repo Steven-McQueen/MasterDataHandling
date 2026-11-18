@@ -1,4 +1,4 @@
-Step 10, OptionalRobustness (robustness of checks 12-13) | run 2026-11-13 13:32
+Step 10, OptionalRobustness (robustness of checks 12-13) | run 2026-11-18 11:39
 
 Inputs
   5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, modified 2026-11-13 13:24
@@ -11,43 +11,61 @@ Checks
   Check 12 sample: 8,735 company-days on 1,435 tickers (USD 555,704,076); left out 268 company-days on 105 tickers (USD 8,041,137): 268 not in the Part 2 sample, 0 outside the shift calendar
 
 Check 13 variants (mean market-adjusted return, held events)
-  variant                                          group    events      real  expected  p_upper  p_lower  p_two worlds clipped
-  main: days 0-1                                   praised     290   0.5347%   0.0798%    0.013    0.989  0.027    526       0
-  main: days 0-1                                   roasted     209  -0.0492%   0.0536%    0.662    0.340  0.681    526       0
-  13.1 window: day 0                               praised     290   0.5463%   0.0354%    0.002    1.000  0.004    526       0
-  13.1 window: day 0                               roasted     209  -0.0033%  -0.0027%    0.494    0.508  0.989    526       0
-  13.1 window: days 0-2                            praised     290   0.3288%   0.1204%    0.181    0.821  0.361    526       0
-  13.1 window: days 0-2                            roasted     209  -0.0549%   0.0791%    0.652    0.350  0.700    526       0
-  13.1 window: days 0-5                            praised     290  -0.2111%   0.2380%    0.916    0.086  0.171    526       1
-  13.1 window: days 0-5                            roasted     209  -0.0531%   0.1361%    0.700    0.302  0.605    526       1
-  13.1 window: days 2-10                           praised     290  -0.2520%   0.3736%    0.928    0.074  0.148    526       7
-  13.1 window: days 2-10                           roasted     209   0.0023%   0.2565%    0.700    0.302  0.605    526       7
-  13.2 before: day -1                              praised     290   0.1406%   0.0635%    0.291    0.711  0.582    526       0
-  13.2 before: day -1                              roasted     209  -0.0764%   0.0445%    0.760    0.241  0.483    526       0
-  13.2 before: days -5 to -1                       praised     290   0.8419%   0.2264%    0.015    0.987  0.030    526       0
-  13.2 before: days -5 to -1                       roasted     209  -0.2999%   0.1154%    0.863    0.139  0.278    526       0
-  13.4 without the five largest events             praised     285   0.2364%  -0.1094%    0.030    0.971  0.061    526       0
-  13.4 without the five largest events             roasted     204   0.0979%   0.2541%    0.738    0.264  0.529    526       0
-  13.5 relevance >= 0.3                            praised     277   0.5778%   0.0829%    0.010    0.992  0.019    526       0
-  13.5 relevance >= 0.3                            roasted     207  -0.0577%   0.0551%    0.677    0.325  0.650    526       0
-  13.6 without the media companies                 praised     212   0.7058%   0.1174%    0.013    0.989  0.027    526       0
-  13.6 without the media companies                 roasted      27  -0.2656%   0.0499%    0.719    0.283  0.567    526       0
-  13.7 @realDonaldTrump only                       praised     121   0.4786%   0.1215%    0.137    0.865  0.274    526       0
-  13.7 @realDonaldTrump only                       roasted     168   0.0228%   0.0308%    0.534    0.468  0.935    526       0
-  13.8 cut-off 0.3                                 praised     291   0.5336%   0.0795%    0.015    0.987  0.030    526       0
-  13.8 cut-off 0.3                                 roasted     210  -0.0479%   0.0536%    0.663    0.338  0.677    526       0
-  13.8 cut-off 0.7                                 praised      85   1.1637%   0.1519%    0.004    0.998  0.008    526       0
-  13.8 cut-off 0.7                                 roasted     183   0.0162%   0.0535%    0.578    0.424  0.848    526       0
-  13.9 short shifts (30-90 days either way)        praised     290   0.5347%   0.0816%    0.024    0.984  0.049    123       0
-  13.9 short shifts (30-90 days either way)        roasted     209  -0.0492%   0.0102%    0.626    0.382  0.764    123       0
-  13.3 market-adjusted, same events as the models  praised     290   0.5347%   0.0798%    0.013    0.989  0.027    526       0
-  13.3 market-adjusted, same events as the models  roasted     209  -0.0492%   0.0536%    0.662    0.340  0.681    526       0
-  13.3 model: ar_raw                               praised     290   0.8698%   0.2680%    0.002    1.000  0.004    526       0
-  13.3 model: ar_raw                               roasted     209   0.2375%   0.2388%    0.511    0.490  0.981    526       0
-  13.3 model: ar_capm                              praised     290   0.5594%   0.1017%    0.011    0.990  0.023    526       0
-  13.3 model: ar_capm                              roasted     209   0.0187%   0.1103%    0.650    0.352  0.703    526       0
-  13.3 model: ar_ff5m                              praised     290   0.8042%   0.0953%    0.002    1.000  0.004    526       0
-  13.3 model: ar_ff5m                              roasted     209  -0.0036%   0.1207%    0.694    0.308  0.616    526       0
+  variant                                                      group    events      real  expected  p_upper  p_lower  p_two worlds clipped
+  main: days 0-1                                               praised     290   0.5347%   0.0798%    0.013    0.989  0.027    526       0
+  main: days 0-1                                               roasted     209  -0.0492%   0.0536%    0.662    0.340  0.681    526       0
+  13.1 window: day 0                                           praised     290   0.5463%   0.0354%    0.002    1.000  0.004    526       0
+  13.1 window: day 0                                           roasted     209  -0.0033%  -0.0027%    0.494    0.508  0.989    526       0
+  13.1 window: days 0-2                                        praised     290   0.3288%   0.1204%    0.181    0.821  0.361    526       0
+  13.1 window: days 0-2                                        roasted     209  -0.0549%   0.0791%    0.652    0.350  0.700    526       0
+  13.1 window: days 0-5                                        praised     290  -0.2111%   0.2380%    0.916    0.086  0.171    526       1
+  13.1 window: days 0-5                                        roasted     209  -0.0531%   0.1361%    0.700    0.302  0.605    526       1
+  13.1 window: days 2-10                                       praised     290  -0.2520%   0.3736%    0.928    0.074  0.148    526       7
+  13.1 window: days 2-10                                       roasted     209   0.0023%   0.2565%    0.700    0.302  0.605    526       7
+  13.2 before: day -1                                          praised     290   0.1406%   0.0635%    0.291    0.711  0.582    526       0
+  13.2 before: day -1                                          roasted     209  -0.0764%   0.0445%    0.760    0.241  0.483    526       0
+  13.2 before: days -5 to -1                                   praised     290   0.8419%   0.2264%    0.015    0.987  0.030    526       0
+  13.2 before: days -5 to -1                                   roasted     209  -0.2999%   0.1154%    0.863    0.139  0.278    526       0
+  13.4 without the five largest events                         praised     285   0.2364%  -0.1094%    0.030    0.971  0.061    526       0
+  13.4 without the five largest events                         roasted     204   0.0979%   0.2541%    0.738    0.264  0.529    526       0
+  13.5 relevance >= 0.3                                        praised     277   0.5778%   0.0829%    0.010    0.992  0.019    526       0
+  13.5 relevance >= 0.3                                        roasted     207  -0.0577%   0.0551%    0.677    0.325  0.650    526       0
+  13.6 without the media companies                             praised     212   0.7058%   0.1174%    0.013    0.989  0.027    526       0
+  13.6 without the media companies                             roasted      27  -0.2656%   0.0499%    0.719    0.283  0.567    526       0
+  13.7 @realDonaldTrump only                                   praised     121   0.4786%   0.1215%    0.137    0.865  0.274    526       0
+  13.7 @realDonaldTrump only                                   roasted     168   0.0228%   0.0308%    0.534    0.468  0.935    526       0
+  13.8 cut-off 0.3                                             praised     291   0.5336%   0.0795%    0.015    0.987  0.030    526       0
+  13.8 cut-off 0.3                                             roasted     210  -0.0479%   0.0536%    0.663    0.338  0.677    526       0
+  13.8 cut-off 0.7                                             praised      85   1.1637%   0.1519%    0.004    0.998  0.008    526       0
+  13.8 cut-off 0.7                                             roasted     183   0.0162%   0.0535%    0.578    0.424  0.848    526       0
+  13.9 short shifts (30-90 days either way)                    praised     290   0.5347%   0.0816%    0.024    0.984  0.049    123       0
+  13.9 short shifts (30-90 days either way)                    roasted     209  -0.0492%   0.0102%    0.626    0.382  0.764    123       0
+  13.10 after a recent purchase: day 0                         praised     128   0.9264%   0.0798%    0.002    1.000  0.004    526       0
+  13.10 after a recent purchase: day 0                         roasted     108  -0.0218%  -0.0034%    0.519    0.483  0.966    526       0
+  13.10 after a recent purchase: days 0-1                      praised     128   0.8457%   0.1670%    0.006    0.996  0.011    526       0
+  13.10 after a recent purchase: days 0-1                      roasted     108  -0.1816%   0.1029%    0.865    0.137  0.274    526       0
+  13.10 after a recent purchase: days 0-2                      praised     128   0.6363%   0.2673%    0.084    0.918  0.167    526       0
+  13.10 after a recent purchase: days 0-2                      roasted     108  -0.2051%   0.0695%    0.806    0.196  0.392    526       0
+  13.10 after a recent purchase: days 0-5                      praised     128   0.1727%   0.5210%    0.821    0.181  0.361    526       0
+  13.10 after a recent purchase: days 0-5                      roasted     108  -0.1720%   0.0612%    0.702    0.300  0.601    526       0
+  13.10 after a recent purchase: days 2-10                     praised     128   0.6489%   0.8263%    0.646    0.356  0.711    526       0
+  13.10 after a recent purchase: days 2-10                     roasted     108   0.6481%   0.4388%    0.416    0.586  0.833    526       0
+  13.10 after a recent purchase: days 1-10                     praised     128   0.5683%   0.9135%    0.787    0.215  0.430    526       0
+  13.10 after a recent purchase: days 1-10                     roasted     108   0.4884%   0.5451%    0.553    0.449  0.897    526       0
+  13.10 after a recent purchase: days 1-20                     praised     128   1.2984%   1.7271%    0.713    0.289  0.578    526       1
+  13.10 after a recent purchase: days 1-20                     roasted     108   0.5375%   0.9791%    0.703    0.298  0.597    526       1
+  13.10 after a recent purchase: days 0-1, amount-weighted     praised     128   0.2350%   0.1603%    0.439    0.563  0.878    526       0
+  13.10 after a recent purchase: days 0-1, amount-weighted     roasted     108  -0.2930%   0.0466%    0.696    0.306  0.612    526       0
+  13.10 after a recent purchase: days 1-10, amount-weighted    praised     128  -0.5764%   0.6782%    0.854    0.148  0.297    526       0
+  13.10 after a recent purchase: days 1-10, amount-weighted    roasted     108   1.4728%   0.8563%    0.308    0.694  0.616    526       0
+  13.3 market-adjusted, same events as the models              praised     290   0.5347%   0.0798%    0.013    0.989  0.027    526       0
+  13.3 market-adjusted, same events as the models              roasted     209  -0.0492%   0.0536%    0.662    0.340  0.681    526       0
+  13.3 model: ar_raw                                           praised     290   0.8698%   0.2680%    0.002    1.000  0.004    526       0
+  13.3 model: ar_raw                                           roasted     209   0.2375%   0.2388%    0.511    0.490  0.981    526       0
+  13.3 model: ar_capm                                          praised     290   0.5594%   0.1017%    0.011    0.990  0.023    526       0
+  13.3 model: ar_capm                                          roasted     209   0.0187%   0.1103%    0.650    0.352  0.703    526       0
+  13.3 model: ar_ff5m                                          praised     290   0.8042%   0.0953%    0.002    1.000  0.004    526       0
+  13.3 model: ar_ff5m                                          roasted     209  -0.0036%   0.1207%    0.694    0.308  0.616    526       0
 
 Check 12 without the five largest sales (500 worlds)
   statistic                                                              real     expected  p_upper  p_lower  p_two

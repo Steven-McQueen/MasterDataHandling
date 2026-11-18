@@ -5,6 +5,8 @@ Fixed on 2026-11-13 in 0) Decisions.md ("Added on 2026-11-13: robustness of chec
 before this script was written. Each variant of check 13 changes one thing and keeps the rest:
 Praised held events, equal-weighted mean of the market-adjusted return, the real world and every
 shift of the posts. Check 12 is rerun without the five largest sales.
+13.10 (added 2026-11-18, fixed in 0) Decisions.md before it was run) keeps only the posts that land 1 to 10
+trading days after a purchase of the same company.
 
 HOW TO RUN
     pip install pandas numpy openpyxl
@@ -39,8 +41,11 @@ def window_returns(mat, rows, i0, window):
     return c[rows, hi + 1] - c[rows, lo], clipped
 
 
-def run13(sel, shifts, mat, rindex, tdays, held_key, window=(0, 1), praised_at=0.5, roasted_at=-0.5, drop_top=0):
-    """Praised and Roasted held means in every world; returns per-world values and the real clip count."""
+def run13(sel, shifts, mat, rindex, tdays, held_key, window=(0, 1), praised_at=0.5, roasted_at=-0.5, drop_top=0,
+          recent=None, weighted=False):
+    """Praised and Roasted held means in every world; returns per-world values and the real clip count.
+    recent (13.10): keep only events 1-10 trading days after day 0 of a purchase of the same company;
+    weighted: weight each event by the midpoint amount bought in those ten trading days."""
     key, cumamt, ktid, tix = held_key
     vals, clip_real, n_real = {"praised": [], "roasted": []}, 0, {}
     for k, s in enumerate(shifts):
@@ -52,8 +57,18 @@ def run13(sel, shifts, mat, rindex, tdays, held_key, window=(0, 1), praised_at=0
         q = et * 1_000_000 + (d0 - OA.POST_CAL_START).days.to_numpy()
         j = np.searchsorted(key, q, side="left") - 1
         held = (et >= 0) & (j >= 0) & (ktid[np.maximum(j, 0)] == et)
+        w = None
+        if recent is not None:
+            amt = recent_amount(recent, ev["ticker"], ev["i0"].to_numpy())
+            held = held & (amt > 0)
+            w = amt
         for g, sign in (("praised", -1), ("roasted", 1)):
             m = ev[g].to_numpy() & held
+            if weighted:
+                vals[g].append(float((r[m] * w[m]).sum() / w[m].sum()) if m.any() else np.nan)
+                if k == 0:
+                    n_real[g] = int(m.sum())
+                continue
             x = np.sort(r[m] * sign) * sign                     # praised: descending; roasted: ascending
             x = x[drop_top:] if drop_top else x
             vals[g].append(float(x.mean()) if len(x) else np.nan)
@@ -62,6 +77,26 @@ def run13(sel, shifts, mat, rindex, tdays, held_key, window=(0, 1), praised_at=0
         if k == 0:
             clip_real = int((clipped & held & (ev["praised"].to_numpy() | ev["roasted"].to_numpy())).sum())
     return vals, clip_real, n_real
+
+
+def recent_lookup(purchases, tdays):
+    """(13.10) Purchases keyed by ticker and day-0 trading-day index, with cumulative midpoint amounts."""
+    pu = purchases.copy()
+    pu["p0"] = tdays.searchsorted(pd.DatetimeIndex(pu["trade_date"]))   # trade date, or the next trading day
+    pu = pu.sort_values(["ticker", "p0"]).reset_index(drop=True)
+    tix = pd.Index(sorted(set(pu["ticker"])))
+    key = tix.get_indexer(pu["ticker"]).astype(np.int64) * 100_000 + pu["p0"].to_numpy(np.int64)
+    cum = np.concatenate([[0.0], pu["amount_mid"].to_numpy(float).cumsum()])
+    return key, cum, tix
+
+
+def recent_amount(recent, tickers, i0):
+    """Midpoint amount bought in trading days i0-10 .. i0-1 (event day 1 to 10 after day 0), per event."""
+    key, cum, tix = recent
+    t = tix.get_indexer(tickers).astype(np.int64)
+    hi = np.searchsorted(key, t * 100_000 + (i0 - 1), side="right")
+    lo = np.searchsorted(key, t * 100_000 + (i0 - 11), side="right")
+    return np.where(t >= 0, cum[hi] - cum[lo], 0.0)
 
 
 def held_lookup(purchases):
@@ -114,6 +149,12 @@ def main():
                 ("13.8 cut-off 0.3", dict(praised_at=0.3, roasted_at=-0.3)),
                 ("13.8 cut-off 0.7", dict(praised_at=0.7, roasted_at=-0.7)),
                 ("13.9 short shifts (30-90 days either way)", dict(shifts=short))]
+    rk = recent_lookup(purchases, tdays)
+    for nm, wdw in (("day 0", (0, 0)), ("days 0-1", (0, 1)), ("days 0-2", (0, 2)), ("days 0-5", (0, 5)),
+                    ("days 2-10", (2, 10)), ("days 1-10", (1, 10)), ("days 1-20", (1, 20))):
+        variants.append((f"13.10 after a recent purchase: {nm}", dict(window=wdw, recent=rk)))
+    variants.append(("13.10 after a recent purchase: days 0-1, amount-weighted", dict(recent=rk, weighted=True)))
+    variants.append(("13.10 after a recent purchase: days 1-10, amount-weighted", dict(window=(1, 10), recent=rk, weighted=True)))
     sel_models = base[base["ticker"].isin(keep_all)].reset_index(drop=True)
     variants.append(("13.3 market-adjusted, same events as the models", dict(sel=sel_models)))
     for col in MODELS:
@@ -123,7 +164,8 @@ def main():
     for name, v in variants:
         vals, clip, n = run13(v.get("sel", base), v.get("shifts", shifts), v.get("mat", mat), v.get("rindex", rindex), tdays, hk,
                               window=v.get("window", (0, 1)), praised_at=v.get("praised_at", 0.5),
-                              roasted_at=v.get("roasted_at", -0.5), drop_top=v.get("drop_top", 0))
+                              roasted_at=v.get("roasted_at", -0.5), drop_top=v.get("drop_top", 0),
+                              recent=v.get("recent"), weighted=v.get("weighted", False))
         for g in ("praised", "roasted"):
             w = np.asarray(vals[g])
             rows.append({"check": "13", "variant": name, "group": g, "events_real": n[g], "clipped_real": clip,
@@ -155,9 +197,9 @@ def main():
     res.to_csv(HERE / "optional_robustness.csv", index=False, float_format="%.8g")
     res12.to_csv(HERE / "optional_robustness_sales.csv", index=False, float_format="%.8g")
     lines += ["", "Checks"] + ["  " + c for c in checks] + ["", "Check 13 variants (mean market-adjusted return, held events)",
-              f"  {'variant':48s} {'group':8s} {'events':>6s} {'real':>9s} {'expected':>9s} {'p_upper':>8s} {'p_lower':>8s} {'p_two':>6s} {'worlds':>6s} {'clipped':>7s}"]
+              f"  {'variant':60s} {'group':8s} {'events':>6s} {'real':>9s} {'expected':>9s} {'p_upper':>8s} {'p_lower':>8s} {'p_two':>6s} {'worlds':>6s} {'clipped':>7s}"]
     for r in res.itertuples():
-        lines.append(f"  {r.variant:48s} {r.group:8s} {r.events_real:6d} {r.real:9.4%} {r.mean_shifted:9.4%} {r.p_upper:8.3f} "
+        lines.append(f"  {r.variant:60s} {r.group:8s} {r.events_real:6d} {r.real:9.4%} {r.mean_shifted:9.4%} {r.p_upper:8.3f} "
                      f"{r.p_lower:8.3f} {r.p_two:6.3f} {r.n_worlds:6d} {r.clipped_real:7d}")
     lines += ["", "Check 12 without the five largest sales (500 worlds)",
               f"  {'statistic':62s} {'real':>12s} {'expected':>12s} {'p_upper':>8s} {'p_lower':>8s} {'p_two':>6s}"]

@@ -1146,6 +1146,22 @@ His Praised posts are followed by a market-adjusted rise of about half a percent
 | CAPM | 290 | 0.56 % | 0.10 % | 0.011 | 0.023 |
 | FF5 + momentum | 290 | 0.80 % | 0.10 % | 0.002 | 0.004 |
 
+**13.10 Posts after a recent purchase** (added 2026-11-18 after every result above had been seen; fixed in `0) Decisions.md` before it was run, commit `5db1fe7`). Only Praised held events whose event day falls 1 to 10 trading days after day 0 of a purchase of the same company; the purchases stay in place and each world keeps the shifted posts that land in a real purchase window. 128 events in the real world, 526 worlds:
+
+| Window | Real | Expected | p_upper | p_two |
+|---|---|---|---|---|
+| Day 0 | 0.93 % | 0.08 % | 0.002 | 0.004 |
+| Days 0–1 | 0.85 % | 0.17 % | 0.006 | 0.011 |
+| Days 0–2 | 0.64 % | 0.27 % | 0.084 | 0.167 |
+| Days 0–5 | 0.17 % | 0.52 % | 0.821 | 0.361 |
+| Days 2–10 | 0.65 % | 0.83 % | 0.646 | 0.711 |
+| Days 1–10 after the post | 0.57 % | 0.91 % | 0.787 | 0.430 |
+| Days 1–20 after the post (one event clipped) | 1.30 % | 1.73 % | 0.713 | 0.578 |
+| Days 0–1, weighted by the amount bought | 0.24 % | 0.16 % | 0.439 | 0.878 |
+| Days 1–10, weighted by the amount bought | −0.58 % | 0.68 % | 0.854 | 0.297 |
+
+A Praised post that follows a purchase is accompanied by a larger rise on the post day than Praised posts in general (0.93 against 0.08 percent), and the rise is gone within a week: over the ten and twenty trading days after the post the stocks earn less than in the shifted worlds (0.57 against 0.91 and 1.30 against 1.73 percent). Weighted by the amount bought, the post-day rise is no larger than chance (0.24 against 0.16 percent, p 0.88), so it sits in the small purchases and adds nothing to what the accounts earned in dollars. Roasted (108 events) is close to the shifted worlds in every window. The return after the post does not show the timing of the posts that the timing of the purchases lacks.
+
 The rise after a Praised post sits on the post day itself and holds across the return models, the relevance floor, the cut-offs, short shifts and without the media companies; it is weaker without the five largest events (p 0.06) and for @realDonaldTrump alone (121 events, p 0.27). It does not last: from day 2 to day 10 the return is below the shifted worlds (−0.25 against 0.37 percent), so the move reverses, as Ge, Kurov and Wolfe (2019) found. The stocks were already rising in the five days before a Praised post (0.84 against 0.23 percent, p 0.03), so the posts follow good news about a company as much as they cause a move. Roasted posts are followed by no fall in any variant. Check 12 without the five largest sales (AMZN, META and MSFT on 2026-02-10 and AMZN and MSFT on 2026-07-20, USD 15 million each): the Posted sales earn −0.89 against 0.17 percent (p 0.44), so the earlier loss was the large sales; fewer sales than chance are still followed by a Roasted post (32 against 43.1, p_lower 0.022).
 
 ## Step 11: Exhibits
