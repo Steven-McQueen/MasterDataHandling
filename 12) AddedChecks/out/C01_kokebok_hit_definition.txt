@@ -1,0 +1,11 @@
+C01. Part 1 hits under the 6 Nov definition (calendar days 1-10) and the 7 Nov definition (trading days 1-10)
+
+Purchases: 18398; worlds: 500. Check: trading-day counts reproduce world_counts.csv in all worlds: OK
+
+outcome        window               real  shifted  ratio  p_upper  p_lower
+any post       calendar days 1-10    298    310.9  0.959    0.770    0.252
+any post       trading days 1-10     388    403.1  0.963    0.838    0.174
+Praised        calendar days 1-10    132    149.9  0.880    0.882    0.132
+Praised        trading days 1-10     176    204.1  0.862    0.958    0.048
+
+6 Nov main outcome: any post, calendar days 1-10. 7 Nov main outcome (the thesis): Praised, trading days 1-10.

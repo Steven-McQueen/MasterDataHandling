@@ -1,5 +1,29 @@
 B7 decision timeline | 12) AddedChecks/B7_decision_timeline.py
 
+- Smallest shift of 30 days$^{b}$
+    documented: kokebok version of 6 Nov 2026 (Step 6); README L54, Step 6; 7) and 8) Decisions.md (amended 2026-11-09, 447cadf)
+    recorded: doc. 2026-11-06 12:34 "kokebok version of 6 Nov 2026 12:34"
+    first result: 9eec96b 2026-11-06 16:05 "Add Step 6 calendar shifts and Step 7 Part 1 (talk)"
+    rerun: 447cadf 2026-11-09 12:46
+    order: B; written in the kokebok of 6 Nov before any result; Parts 1b and 1 first ran with every shift from 1 day and were rerun with the 30-day minimum in 447cadf, before the first Part 2 result (5ebcbe5)
+- Part 1 main outcome in the methodology document (any post, calendar days 1 to 10; Praised second)$^{d}$
+    documented: kokebok version of 6 Nov 2026 12:34, Step 8.1 and 8.5 (0) Kokebok/kokebok_2026-11-06.pdf)
+    recorded: doc. 2026-11-06 12:34 "kokebok version of 6 Nov 2026 12:34"
+    first result: 12131e7 2026-11-07 12:43 "Add Step 8 Part 2 (timing): hits and shifted-world inference"
+    rerun:  
+    order: B; replaced on 7 Nov by the Part 1 decision file (Praised, trading days 1-10), committed with the first Part 1 counts; both give no excess (12) AddedChecks/out/C01_kokebok_hit_definition.txt)
+- Checks 1 to 5$^{b}$
+    documented: kokebok version of 6 Nov 2026 (Step 10); 10) Checks/0) Decisions.md (The checks)
+    recorded: doc. 2026-11-06 12:34 "kokebok version of 6 Nov 2026 12:34"
+    first result: cf57e57 2026-11-09 13:03 "Step 10: the five checks on the Part 3 result"
+    rerun:  
+    order: B; in the kokebok of 6 Nov before any result; in the repository first recorded with the first check results (cf57e57), after every main result
+- Part 1 gap test$^{b}$
+    documented: kokebok version of 6 Nov 2026 (Step 8.5); 11) Exhibits/0) Decisions.md; README L58
+    recorded: doc. 2026-11-06 12:34 "kokebok version of 6 Nov 2026 12:34"
+    first result: 9d6b529 2026-11-09 13:27 "Step 11: tables and figures for the thesis"
+    rerun:  
+    order: B; in the kokebok of 6 Nov before any result; in the repository first recorded after the Part 1 counts (12131e7), in 9d6b529
 - Sentiment cut-offs ($\pm$0.5; $\pm$0.3 and $\pm$0.7 as sensitivity)
     documented: README L39 of 7fcf075; 8) Part1_Timing/0) Decisions.md (Outcomes)
     recorded: 7fcf075 2026-11-06 14:14 "First Push: Fundament for Part 1, 2, and 3. Before final clean on twitterTickers and WindowCreation"
@@ -30,18 +54,6 @@ B7 decision timeline | 12) AddedChecks/B7_decision_timeline.py
     first result: 5ebcbe5 2026-11-09 12:52 "Part 3: returns against the shifted worlds (Step 9)"
     rerun:  
     order: B; decisions committed 18 minutes before the first Part 2 run
-- Smallest shift of 30 days
-    documented: README L54, Step 6; 7) and 8) Decisions.md (amended 2026-11-09)
-    recorded: 447cadf 2026-11-09 12:46 "Step 6: smallest shift 30 days (kokebok); rerun Part 1 and Part 2 inference on 499 worlds"
-    first result: 9eec96b 2026-11-06 16:05 "Add Step 6 calendar shifts and Step 7 Part 1 (talk)"
-    rerun: 447cadf 2026-11-09 12:46
-    order: A; Parts 1b and 1 first ran with every shift from 1 day; before the first Part 2 result (5ebcbe5)
-- Checks 1 to 5$^{b}$
-    documented: 10) Checks/0) Decisions.md (The checks); kokebok rev 117
-    recorded: cf57e57 2026-11-09 13:03 "Step 10: the five checks on the Part 3 result"
-    first result: cf57e57 2026-11-09 13:03 "Step 10: the five checks on the Part 3 result"
-    rerun:  
-    order: S; recorded with the first check results, after every main result (9eec96b, 12131e7, 5ebcbe5); 0) Decisions.md: fixed before any check was computed; the 6 Nov kokebok text is not retrievable
 - Midpoint amounts only
     documented: README L55; 9) Part2_Returns/0) Decisions.md (amended)
     recorded: c745131 2026-11-09 13:09 "Part 3: midpoint amounts only; decisions and open items in the README"
@@ -54,12 +66,6 @@ B7 decision timeline | 12) AddedChecks/B7_decision_timeline.py
     first result: 06444f0 2026-11-09 13:14 "Part 3: direct tests of the group gaps and the Posted dollar total; open items 8-11 decided"
     rerun:  
     order: A; added after the first Part 2 run (5ebcbe5); first computed in 06444f0
-- Part 1 gap test$^{b}$
-    documented: 11) Exhibits/0) Decisions.md; README L58; kokebok Step 8 point 5 (rev 117)
-    recorded: 9d6b529 2026-11-09 13:27 "Step 11: tables and figures for the thesis"
-    first result: 9d6b529 2026-11-09 13:27 "Step 11: tables and figures for the thesis"
-    rerun:  
-    order: S; first recorded in the repository after the Part 1 counts (12131e7); 9d6b529's decisions file says the kokebok asks for it and kokebok rev 117 lists it; the 6 Nov kokebok cannot be checked
 - Shift calendar $L$ = 558 (500 worlds)
     documented: README L63, Step 6; 7) and 8) Decisions.md (amended 2026-11-10)
     recorded: e266b1c 2026-11-10 14:37 "L = 558, every horizon 1-10 and a relevance check; open decisions settled"
@@ -128,4 +134,4 @@ B7 decision timeline | 12) AddedChecks/B7_decision_timeline.py
     order: P; decision committed 4 minutes before the run
 - Checks added after all results$^{c}$: 2026-11-20, order A (folder 12, not yet committed)
 
-Order counts (without the closing row): A: 11, S: 4, P: 4, B: 2
+Order counts (without the closing row): A: 10, B: 6, P: 4, S: 2

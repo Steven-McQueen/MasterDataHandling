@@ -1,0 +1,5 @@
+outcome,window,real,mean_shifted,ratio,p_upper,p_lower,worlds
+any post,calendar days 1-10,298,310.89,0.958539,0.77,0.252,500
+any post,trading days 1-10,388,403.084,0.962578,0.838,0.174,500
+Praised,calendar days 1-10,132,149.926,0.880435,0.882,0.132,500
+Praised,trading days 1-10,176,204.116,0.862254,0.958,0.048,500

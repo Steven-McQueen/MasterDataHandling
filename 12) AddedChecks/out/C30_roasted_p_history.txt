@@ -1,0 +1,12 @@
+C30. Part 1 purchase hits in each committed run (Praised and Roasted, direct, all accounts)
+
+commit   date             Praised    exp.  p_low   Roasted    exp.   p_up  message
+12131e7  2026-11-07 12:43     176   207.4  0.056       123   107.1  0.081  Add Step 8 Part 2 (timing): hits and shifted-world inference
+447cadf  2026-11-09 12:46     176   207.9  0.052       123   106.2  0.076  Step 6: smallest shift 30 days (kokebok); rerun Part 1 and Part 2 infe
+23fe648  2026-11-10 12:58     177   208.4  0.056       125   102.7  0.034  Rerun Steps 7-11 on the reviewed Step 5.2 ticker file
+e266b1c  2026-11-10 14:37     177   208.6  0.056       125   102.6  0.034  L = 558, every horizon 1-10 and a relevance check; open decisions sett
+a62ccee  2026-11-11 13:05     164   195.5  0.024       124   101.8  0.030  Steps 7-11 on the v6 labels; README and overview updated
+1e20749  2026-11-12 22:01     176   204.1  0.048       129   105.5  0.016  Steps 3-11 rerun with the April 2026 trades
+0f39707  2026-11-13 08:49     176   204.1  0.048       129   107.0  0.018  Step 5.2: the 96 new company spellings decided; Steps 5.2-11 rerun; RE
+6e802d0  2026-11-13 12:57     176   204.1  0.048       129   107.0  0.018  Repository cleaned for submission: folders and scripts named after the
+3f53699  2026-11-13 13:35     176   204.1  0.048       129   107.2  0.028  Step 5.2: The Daily Beast and IAC Inc. set to PPLI (People Inc.); Step

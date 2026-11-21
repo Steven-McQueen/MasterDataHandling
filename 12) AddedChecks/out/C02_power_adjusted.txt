@@ -1,0 +1,26 @@
+C02. Calendar-adjusted Part 1 statistic O/E: critical value and detectable effects (500 worlds)
+
+Praised
+  real O 176, real E 235.512, real O/E 0.747; shifted O/E mean 0.761, median 0.760, 20th pct 0.719, range 0.640 to 0.881
+  p_upper 0.584, p_lower 0.418
+  critical O/E (real must exceed the 25th largest shifted ratio): 0.846 = 199.3 hits on the real E
+  real-calendar expectation (mean shifted ratio x real E): 179.2 hits
+  effect at 50% power: +20.3 hits (critical - median), +20.1 (critical - mean)
+  effect at 80% power: +30.1 hits (critical - 20th percentile)
+  own-company pairs in the windows: real 282 against the Poisson mean 278.5; shifted worlds, observed/Poisson mean 1.021
+  pairs per hit window: real 1.60 against 1.18 under Poisson; shifted 1.63 against 1.21
+
+  unadjusted count (C16): critical 231, shifted mean 204.1
+  distance from the real-calendar expectation to the unadjusted critical value: +51.8 hits
+  shifted mean minus real-calendar expectation: 24.9 hits
+
+Roasted
+  real O 129, real E 111.037, real O/E 1.162; shifted O/E mean 0.931, median 0.928, 20th pct 0.876, range 0.743 to 1.127
+  p_upper 0.002, p_lower 1.000
+  critical O/E (real must exceed the 25th largest shifted ratio): 1.042 = 115.7 hits on the real E
+  real-calendar expectation (mean shifted ratio x real E): 103.4 hits
+  effect at 50% power: +12.7 hits (critical - median), +12.4 (critical - mean)
+  effect at 80% power: +18.5 hits (critical - 20th percentile)
+  own-company pairs in the windows: real 210 against the Poisson mean 176.5; shifted worlds, observed/Poisson mean 0.992
+  pairs per hit window: real 1.63 against 1.59 under Poisson; shifted 1.72 against 1.62
+

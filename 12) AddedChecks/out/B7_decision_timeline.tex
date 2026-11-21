@@ -10,16 +10,17 @@
 \toprule
 Choice & Recorded & First result & Rerun & Order \\
 \midrule
+Smallest shift of 30 days$^{b}$ & Nov 6 (doc.) & Nov 6 (9eec96b) & Nov 9 (447cadf) & B \\
+Part 1 main outcome in the methodology document (any post, calendar days 1 to 10; Praised second)$^{d}$ & Nov 6 (doc.) & Nov 7 (12131e7) &  & B \\
+Checks 1 to 5$^{b}$ & Nov 6 (doc.) & Nov 9 (cf57e57) &  & B \\
+Part 1 gap test$^{b}$ & Nov 6 (doc.) & Nov 9 (9d6b529) &  & B \\
 Sentiment cut-offs ($\pm$0.5; $\pm$0.3 and $\pm$0.7 as sensitivity) & Nov 6 (7fcf075) & Nov 7 (12131e7) &  & B \\
 Part 1b design ($k$ = 1 to 30 days, main 10) & Nov 6 (9eec96b) & Nov 6 (9eec96b) &  & S \\
 Part 1 design (trading days 1 to 10, Praised direct mentions) & Nov 7 (12131e7) & Nov 7 (12131e7) &  & S \\
 Company review of Step 5.2 (559 decisions)$^{a}$ & Nov 8 (f122a01) & Nov 6 (9eec96b) & Nov 10 (23fe648) & A \\
 Part 2 design (days 1 to 10, first post, two-sided p) & Nov 9 (66c4aa1) & Nov 9 (5ebcbe5) &  & B \\
-Smallest shift of 30 days & Nov 9 (447cadf) & Nov 6 (9eec96b) & Nov 9 (447cadf) & A \\
-Checks 1 to 5$^{b}$ & Nov 9 (cf57e57) & Nov 9 (cf57e57) &  & S \\
 Midpoint amounts only & Nov 9 (c745131) & Nov 9 (5ebcbe5) &  & A \\
 Part 2 gap tests and Posted dollar total & Nov 9 (06444f0) & Nov 9 (06444f0) &  & A \\
-Part 1 gap test$^{b}$ & Nov 9 (9d6b529) & Nov 9 (9d6b529) &  & S \\
 Shift calendar $L$ = 558 (500 worlds) & Nov 10 (e266b1c) & Nov 6 (9eec96b) & Nov 10 (e266b1c) & A \\
 Check 1 at every horizon; Check 6 & Nov 10 (e266b1c) & Nov 10 (e266b1c) &  & A \\
 Prompt version 6 & Nov 10 (009b721) & Nov 6 (9eec96b) & Nov 11 (a62ccee) & A \\
@@ -36,5 +37,5 @@ Checks added after all results$^{c}$ & Nov 20 & Nov 20 &  & A \\
 \bottomrule
 \end{tabularx}
 \par\medskip
-\begin{minipage}{\linewidth}\scriptsize\textit{Note:} All dates in 2026. Recorded: the commit of the project repository in which the choice was first written down. First result: the first commit with an output that the choice affects. Rerun: the commit in which the results were computed again under the choice. Order: B, recorded before that result; S, recorded in the same commit, so that the order rests on the dated decision file; A, recorded after a result it affects, or after the main results of its part, had been computed; P, fixed in a commit before its own run, after the main results. Commit dates are the authors' own record and cannot be checked against an outside timestamp: the history was rewritten on November 13 (commit 6f1004d), which kept the dates and changed the hashes, and for three commits the author date and the committer date differ (f122a01, b1eabdd, 21bbbb8). $^{a}$The commit message records the decisions as made on November 8; the author date of the commit is November 6, earlier than the decision it records, and its committer date November 9. $^{b}$Checks 1 to 5 were recorded together with their results, after the main results, and the Part 1 gap test was first recorded after the Part 1 counts. The methodology document lists both in its revision of November 11; its revision of November 6 cannot be retrieved, so that the earliest record that can be checked is the repository's. $^{c}$The calendar-adjusted comparison, the separate calendars for 2025 and 2026, the dependence between neighboring worlds, the power at 80 percent, the Part 2 test without the largest contributor and with equal weights, and the test of the tax-loss reading of the Roasted excess.\end{minipage}
+\begin{minipage}{\linewidth}\scriptsize\textit{Note:} All dates in 2026. Recorded: the commit of the project repository in which the choice was first written down, or (doc.) the version of the methodology document of November 6, 2026, 12:34, which predates the first commit (7fcf075, 14:14). First result: the first commit with an output that the choice affects. Rerun: the commit in which the results were computed again under the choice. Order: B, recorded before that result; S, recorded in the same commit, so that the order rests on the dated decision file; A, recorded after a result it affects, or after the main results of its part, had been computed; P, decision committed minutes before the commit of its own run, after the main results, with the script first committed in the run commit. Commit dates are the authors' own record and cannot be checked against an outside timestamp: the history was rewritten on November 13 (commit 6f1004d), which kept the dates and changed the hashes, and for three commits the author date and the committer date differ (f122a01, b1eabdd, 21bbbb8). $^{a}$The commit message records the decisions as made on November 8; the author date of the commit is November 6, earlier than the decision it records, and its committer date November 9. $^{b}$In the repository, Checks 1 to 5 were first recorded together with their results (cf57e57) and the Part 1 gap test after the Part 1 counts (9d6b529); the methodology document of November 6 is in the repository as \texttt{0) Kokebok/kokebok\_2026-11-06.pdf}. $^{d}$Neither definition shows an excess (computed after the main results): 298 hits against 310.9 on shifted dates (upper p-value 0.770) under the definition of November 6, and 176 against 204.1 (0.958) under that of November 7. $^{c}$The calendar-adjusted comparison, the separate calendars for 2025 and 2026, the dependence between neighboring worlds, the power at 80 percent, the Part 2 test without the largest contributor and with equal weights, and the test of the tax-loss reading of the Roasted excess.\end{minipage}
 \end{table}

@@ -1,0 +1,9 @@
+C22. Part 1b: search p-value over the six windows, upper (repo) and lower direction (500 worlds)
+
+outcome         upper: p_search  best k   min p    lower: p_search  best k   min p
+direct                    0.888       1   0.488              0.184       5   0.048
+direct_brand              0.852       3   0.434              0.340       5   0.102
+all_types                 0.698       3   0.276              0.366      20   0.102
+direct_trump              0.790       3   0.372              0.100      20   0.022
+
+min p: the real world's smallest one-sided p over the six windows; p_search: share of worlds with a minimum at least as small.

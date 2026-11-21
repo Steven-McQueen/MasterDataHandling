@@ -21,9 +21,13 @@ Reading rules.
     a rewritten hash and the old hashes cited in the pre-rewrite texts (2131a01, 38ad0a2,
     e8de826, 896a5fe) no longer exist. The dates are therefore the authors' own record and
     cannot be checked against an outside timestamp.
-  * The kokebok (methods document, Google Doc) is outside the repository. Kokebok version
-    history: revisions of 6 Nov not downloadable; rev 117 of 11 Nov is available. Where the thesis says "methodology document before any result", the
-    earliest checkable record is the repository one given here.
+  * The kokebok (methods document, Google Doc) is outside the repository. Its version of
+    6 Nov 2026 12:34 (Google Docs version history, Andreas Borhaug; before the first commit 7fcf075,
+    14:14) is exported as `0) Kokebok/kokebok_2026-11-06.pdf`. Corrected 2026-11-21 (audit F01): that
+    version is retrievable and holds Checks 1 to 5, the smallest shift of 30 days (L = 557, 498
+    worlds), the Part 1 gap test and a two-sided Part 2 p-value, and defines the main hit as any post
+    1 to 10 calendar days after the purchase, with positive posts as the second analysis. Rows whose
+    first record is that version carry the pseudo-commit "doc:<date>" and the order is read against it.
 
 Outputs: out/B7_decision_timeline.csv, out/B7_decision_timeline.tex (draft appendix table),
 out/B7_decision_timeline.txt.
@@ -50,6 +54,10 @@ ROWS = [
      "7fcf075 states the cut-offs but also lists them as an open decision; no result used sentiment before 12131e7"),
     ("Part 1b design ($k$ = 1 to 30 days, main 10)",
      "7) Part1b_Talk/0) Decisions.md", "9eec96b", "9eec96b", None, "S", "decision file and first Part 1b estimates in one commit"),
+    ("Part 1 main outcome in the methodology document (any post, calendar days 1 to 10; Praised second)$^{d}$",
+     "kokebok version of 6 Nov 2026 12:34, Step 8.1 and 8.5 (0) Kokebok/kokebok_2026-11-06.pdf)", "doc:2026-11-06 12:34", "12131e7", None, "B",
+     "replaced on 7 Nov by the Part 1 decision file (Praised, trading days 1-10), committed with the first Part 1 counts; "
+     "both give no excess (12) AddedChecks/out/C01_kokebok_hit_definition.txt)"),
     ("Part 1 design (trading days 1 to 10, Praised direct mentions)",
      "README L35, L39, L57, L66-L67; 8) Part1_Timing/0) Decisions.md (Window, Outcomes)", "12131e7", "12131e7", None, "S",
      "README of 7fcf075 (6 Nov) already has a ten-day window; the trading-day definition, the main outcome and direct mentions are first written in the Part 1 decisions, committed with the first Part 1 counts; stated again 'as run' on 2026-11-10 (e266b1c)"),
@@ -58,12 +66,14 @@ ROWS = [
      "message: every row decided by the authors on 2026-11-08; author date 2026-11-06 16:51 UTC, committer date 2026-11-09 11:37 CET; first Part 1b (9eec96b) and Part 1 (12131e7) results ran on the unreviewed 7fcf075 file; first results on the reviewed file 23fe648"),
     ("Part 2 design (days 1 to 10, first post, two-sided p)",
      "9) Part2_Returns/0) Decisions.md", "66c4aa1", "5ebcbe5", None, "B", "decisions committed 18 minutes before the first Part 2 run"),
-    ("Smallest shift of 30 days",
-     "README L54, Step 6; 7) and 8) Decisions.md (amended 2026-11-09)", "447cadf", "9eec96b", "447cadf", "A",
-     "Parts 1b and 1 first ran with every shift from 1 day; before the first Part 2 result (5ebcbe5)"),
+    ("Smallest shift of 30 days$^{b}$",
+     "kokebok version of 6 Nov 2026 (Step 6); README L54, Step 6; 7) and 8) Decisions.md (amended 2026-11-09, 447cadf)",
+     "doc:2026-11-06 12:34", "9eec96b", "447cadf", "B",
+     "written in the kokebok of 6 Nov before any result; Parts 1b and 1 first ran with every shift from 1 day and were rerun "
+     "with the 30-day minimum in 447cadf, before the first Part 2 result (5ebcbe5)"),
     ("Checks 1 to 5$^{b}$",
-     "10) Checks/0) Decisions.md (The checks); kokebok rev 117", "cf57e57", "cf57e57", None, "S",
-     "recorded with the first check results, after every main result (9eec96b, 12131e7, 5ebcbe5); 0) Decisions.md: fixed before any check was computed; the 6 Nov kokebok text is not retrievable"),
+     "kokebok version of 6 Nov 2026 (Step 10); 10) Checks/0) Decisions.md (The checks)", "doc:2026-11-06 12:34", "cf57e57", None, "B",
+     "in the kokebok of 6 Nov before any result; in the repository first recorded with the first check results (cf57e57), after every main result"),
     ("Midpoint amounts only",
      "README L55; 9) Part2_Returns/0) Decisions.md (amended)", "c745131", "5ebcbe5", None, "A",
      "the first Part 2 run reported low, mid and high; decided after it"),
@@ -71,8 +81,8 @@ ROWS = [
      "README L60; 9) Part2_Returns/0) Decisions.md (Added after the first results)", "06444f0", "06444f0", None, "A",
      "added after the first Part 2 run (5ebcbe5); first computed in 06444f0"),
     ("Part 1 gap test$^{b}$",
-     "11) Exhibits/0) Decisions.md; README L58; kokebok Step 8 point 5 (rev 117)", "9d6b529", "9d6b529", None, "S",
-     "first recorded in the repository after the Part 1 counts (12131e7); 9d6b529's decisions file says the kokebok asks for it and kokebok rev 117 lists it; the 6 Nov kokebok cannot be checked"),
+     "kokebok version of 6 Nov 2026 (Step 8.5); 11) Exhibits/0) Decisions.md; README L58", "doc:2026-11-06 12:34", "9d6b529", None, "B",
+     "in the kokebok of 6 Nov before any result; in the repository first recorded after the Part 1 counts (12131e7), in 9d6b529"),
     ("Shift calendar $L$ = 558 (500 worlds)",
      "README L63, Step 6; 7) and 8) Decisions.md (amended 2026-11-10)", "e266b1c", "9eec96b", "e266b1c", "A",
      "all main results first ran with L = 557, where the 44 purchases of 2026-07-31 wrapped in every world; Steps 7-11 rerun in e266b1c"),
@@ -109,6 +119,8 @@ CLOSING = ("Checks added after all results$^{c}$", "2026-11-20", "2026-11-20", "
 RECORDED_DATE = {"f122a01": "2026-11-08"}     # date of the decision as its commit message records it
 
 def git1(h):
+    if h.startswith("doc:"):                       # first record outside git: the kokebok version of 6 Nov
+        return "doc.", h[4:], "kokebok version of 6 Nov 2026 12:34"
     r = subprocess.run(["git", "-C", str(REPO), "log", "-1", "--date=iso", "--format=%h|%ad|%s", h],
                        capture_output=True, text=True, check=True)
     short, date, subj = r.stdout.strip().split("|", 2)
@@ -146,18 +158,21 @@ def main():
     lines += [r"\midrule", f"{c[0]} & {pd.Timestamp(c[1]):%b} {pd.Timestamp(c[1]).day} & {pd.Timestamp(c[2]):%b} {pd.Timestamp(c[2]).day} &  & {c[3]} \\\\"]
     lines += [r"\bottomrule", r"\end{tabularx}", r"\par\medskip",
               r"\begin{minipage}{\linewidth}\scriptsize\textit{Note:} All dates in 2026. Recorded: the commit of the project repository "
-              r"in which the choice was first written down. First result: the first commit with an output that the choice affects. "
+              r"in which the choice was first written down, or (doc.) the version of the methodology document of November 6, 2026, 12:34, "
+              r"which predates the first commit (7fcf075, 14:14). First result: the first commit with an output that the choice affects. "
               r"Rerun: the commit in which the results were computed again under the choice. Order: B, recorded before that result; "
               r"S, recorded in the same commit, so that the order rests on the dated decision file; A, recorded after a result it "
-              r"affects, or after the main results of its part, had been computed; P, fixed in a commit before its own run, after the "
-              r"main results. Commit dates are the authors' own record and cannot be checked against an outside timestamp: the history "
+              r"affects, or after the main results of its part, had been computed; P, decision committed minutes before the commit of its "
+              r"own run, after the main results, with the script first committed in the run commit. Commit dates are the authors' own record and cannot be checked against an outside timestamp: the history "
               r"was rewritten on November 13 (commit 6f1004d), which kept the dates and changed the hashes, and for three commits the "
               r"author date and the committer date differ (f122a01, b1eabdd, 21bbbb8). "
               r"$^{a}$The commit message records the decisions as made on November 8; the author date of the commit is November 6, "
               r"earlier than the decision it records, and its committer date November 9. "
-              r"$^{b}$Checks 1 to 5 were recorded together with their results, after the main results, and the Part 1 gap test was first "
-              r"recorded after the Part 1 counts. The methodology document lists both in its revision of November 11; its revision of "
-              r"November 6 cannot be retrieved, so that the earliest record that can be checked is the repository's. "
+              r"$^{b}$In the repository, Checks 1 to 5 were first recorded together with their results (cf57e57) and the Part 1 gap test "
+              r"after the Part 1 counts (9d6b529); the methodology document of November 6 is in the repository as "
+              r"\texttt{0) Kokebok/kokebok\_2026-11-06.pdf}. "
+              r"$^{d}$Neither definition shows an excess (computed after the main results): 298 hits against 310.9 on shifted dates "
+              r"(upper p-value 0.770) under the definition of November 6, and 176 against 204.1 (0.958) under that of November 7. "
               r"$^{c}$The calendar-adjusted comparison, the separate calendars for 2025 and 2026, the dependence between neighboring "
               r"worlds, the power at 80 percent, the Part 2 test without the largest contributor and with equal weights, and the "
               r"test of the tax-loss reading of the Roasted excess.\end{minipage}", r"\end{table}"]

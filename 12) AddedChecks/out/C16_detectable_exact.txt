@@ -1,0 +1,15 @@
+C16. Critical values under the thesis's p rule (share of all 500 worlds); effects as location shifts
+
+test                                       rule       real     mean     crit     repo  d50(mean)      d80 pow50 pow80
+Part 1, Praised hits                       reach   176.000  204.116  231.000  230.000    +26.884  +42.000  0.51  0.80  (13% / 21% of mean)
+Part 1, any-post hits                      reach   388.000  403.084  432.000  431.000    +28.916  +41.000  0.53  0.80  (7% / 10% of mean)
+Part 1, Roasted hits                       reach   129.000  107.174  126.000  125.000    +18.826  +28.000  0.51  0.84  (18% / 26% of mean)
+Part 1b, mention-days within ten days      reach   299.000  320.271  346.000  345.000    +25.729  +39.000  0.52  0.81  (8% / 12% of mean)
+Part 2, Posted, return per dollar (%)      exceed    1.658    0.472    2.707    2.707     +2.235   +3.162  0.50  0.80  USD: 50% 1,551,048, 80% 2,194,202
+Part 2, Praised, return per dollar (%)     exceed    2.883    0.336    3.647    3.647     +3.311   +4.549  0.50  0.80  USD: 50% 1,002,681, 80% 1,377,725
+Part 2, All, return per dollar (%)         exceed    0.006   -0.114    0.538    0.538     +0.652   +0.941  0.50  0.80  USD: 50% 7,973,363, 80% 11,506,977
+Part 1, Praised hits at the 0.7 cut-off    reach    70.000   76.908   94.000   93.000    +17.092  +27.000  0.51  0.82  (22% / 35% of mean)
+
+rule 'reach': smallest integer with 1 + #(shifted >= x) <= k; rule 'exceed': the real value must be
+larger than the critical value (the k-th largest shifted value). k = 25 (one-sided 5%) or 12 (two-sided 5%).
+repo = k-th largest of all 500 worlds (10) Checks/DetectableEffects.py). d50 = critical - mean; d80 = critical - 20th pct.

@@ -1,0 +1,36 @@
+C03. Disclosure lag of the 2026 purchases (calendar days from trade date to filing date)
+
+PurchasesLeftOut sheet: 21 rows, columns ['ticker', 'trade_date', 'Company', 'amount_low', 'amount_high', 'reason']
+
+filing dates as in README; with prices (PurchasesMerged)
+  2026, all reports              n  4035  over 45 days  3322 ( 82.3%)  median  58.0  min   34  max  122
+  Jan-Mar (filed 2026-05-08)     n  2159  over 45 days  1872 ( 86.7%)  median  65.0  min   39  max  122
+  Apr (filed 2026-06-25)         n   653  over 45 days   653 (100.0%)  median  69.0  min   56  max   79
+  May (filed 2026-06-25)         n   381  over 45 days    19 (  5.0%)  median  41.0  min   34  max   51
+  Jun (filed 2026-08-12)         n   465  over 45 days   465 (100.0%)  median  58.0  min   49  max   72
+  Jul (filed 2026-09-08)         n   377  over 45 days   313 ( 83.0%)  median  50.0  min   39  max   69
+
+filing dates as in README; all purchases (incl. without prices)
+  2026, all reports              n  4035  over 45 days  3322 ( 82.3%)  median  58.0  min   34  max  122
+  Jan-Mar (filed 2026-05-08)     n  2159  over 45 days  1872 ( 86.7%)  median  65.0  min   39  max  122
+  Apr (filed 2026-06-25)         n   653  over 45 days   653 (100.0%)  median  69.0  min   56  max   79
+  May (filed 2026-06-25)         n   381  over 45 days    19 (  5.0%)  median  41.0  min   34  max   51
+  Jun (filed 2026-08-12)         n   465  over 45 days   465 (100.0%)  median  58.0  min   49  max   72
+  Jul (filed 2026-09-08)         n   377  over 45 days   313 ( 83.0%)  median  50.0  min   39  max   69
+
+April dated to OGE receipt 2026-06-29; with prices (PurchasesMerged)
+  2026, all reports              n  4035  over 45 days  3322 ( 82.3%)  median  58.0  min   34  max  122
+  Jan-Mar (filed 2026-05-08)     n  2159  over 45 days  1872 ( 86.7%)  median  65.0  min   39  max  122
+  Apr (filed 2026-06-29)         n   653  over 45 days   653 (100.0%)  median  73.0  min   60  max   83
+  May (filed 2026-06-25)         n   381  over 45 days    19 (  5.0%)  median  41.0  min   34  max   51
+  Jun (filed 2026-08-12)         n   465  over 45 days   465 (100.0%)  median  58.0  min   49  max   72
+  Jul (filed 2026-09-08)         n   377  over 45 days   313 ( 83.0%)  median  50.0  min   39  max   69
+
+April dated to OGE receipt 2026-06-29; all purchases (incl. without prices)
+  2026, all reports              n  4035  over 45 days  3322 ( 82.3%)  median  58.0  min   34  max  122
+  Jan-Mar (filed 2026-05-08)     n  2159  over 45 days  1872 ( 86.7%)  median  65.0  min   39  max  122
+  Apr (filed 2026-06-29)         n   653  over 45 days   653 (100.0%)  median  73.0  min   60  max   83
+  May (filed 2026-06-25)         n   381  over 45 days    19 (  5.0%)  median  41.0  min   34  max   51
+  Jun (filed 2026-08-12)         n   465  over 45 days   465 (100.0%)  median  58.0  min   49  max   72
+  Jul (filed 2026-09-08)         n   377  over 45 days   313 ( 83.0%)  median  50.0  min   39  max   69
+

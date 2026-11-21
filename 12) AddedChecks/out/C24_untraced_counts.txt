@@ -1,0 +1,33 @@
+C24. Counts in Chapter 5 traced to stored files
+
+(a) References to companies in the universe (Twitter_tickers_2025_2026.xlsx)
+  references 1697; Praised 501 (29.5%), of which at exactly 0.5: 349 (69.7% of Praised)
+  Roasted 295 (17.4%), of which at -1: 234; neither 901 (53.1%)
+  0.3 <= |sentiment| < 0.5: 3
+  distribution: -1.0: 234, -0.8: 22, -0.7: 1, -0.5: 38, -0.3: 1, +0.0: 893, +0.2: 5, +0.3: 2, +0.5: 349, +0.8: 61, +0.9: 3, +1.0: 88
+
+(b) Labeled posts (21,940, README Step 5.1)
+  posts with a reference to a company (not indirect): 2252 (10.3%)
+  posts with a reference to a company in the universe: 1438 (6.6%)
+  posts with at least one reference of any kind: 4111
+
+(c) Company names in the final labels (TickerTwitterReview.xlsx, 1_CompanyReview)
+  names in the label file: 572; with a review row: 559
+  accepted           names  137  distinct final tickers 135
+  corrected          names    7  distinct final tickers 4
+  listed_not_traded  names   42  distinct final tickers 39
+  not_listed         names  373  distinct final tickers 1
+  accepted + corrected: names 144, distinct final tickers 136
+  universe tickers in the label file: 138
+
+(d) Self-agreement v5 against v6, posts outside both rules (v5v6_references.csv, group 'plain')
+  pairs in either run 717; in both 683; same sentiment category 590 (86.4%)
+  Praised in either run 398; in both 299 (75.1%)
+  among the pairs found in both runs: Praised in either run 387; in both 299 (77.3%)
+
+(e) Table 5.2 (Trump_trades_2025_2026.xlsx)
+  purchases with prices 18377, lots 19505; left out 21 rows; all purchases 18398
+  Part 2 sample: companies 1502, purchases 17883, lots 19005
+  purchase days (all) 204: median 55, maximum 633 (2025-01-30), days with more than 200: 27
+  purchase days (with prices) 204: median 55, maximum 629
+

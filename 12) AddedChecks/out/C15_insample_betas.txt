@@ -1,0 +1,10 @@
+C15. Factor-model betas estimated in the sample or on a short pre-sample history (Part 2 sample)
+
+Part 2 sample: 1502 companies, 17883 purchases, USD 1,223.2 million
+
+in-sample fallback: 19 tickers in the report; in the Part 2 sample 7: CNR, ECG, NBIS, PRSU, QXO, SUPN, TTAN
+  purchases 42 (0.23% of the sample), amount USD 0.84 million (0.07%); Posted in the real world 0
+
+pre-sample with 60-249 days: 19 tickers in the report; in the Part 2 sample 19: ALAB, AMTM, BTSG, CON, CURB, GEV, INVX, KBDC, LIF, LOAR, PENG, RBRK, RDDT, SARO, SITC, SOLV, TEM, VIK, WAY
+  purchases 122 (0.68% of the sample), amount USD 3.50 million (0.29%); Posted in the real world 1
+
