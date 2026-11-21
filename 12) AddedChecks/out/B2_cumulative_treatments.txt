@@ -1,0 +1,16 @@
+B2 cumulative treatments of Part 1b against the shifted worlds | 12) AddedChecks/B2_cumulative_treatments.py
+
+diagnostic                           real  shifted mean  shifted min  shifted max  p_upper  p_lower
+owned_share                      0.885902      0.778706     0.679757     0.884477    0.002    1.000
+exposure_mean                     10.3832       9.14273      8.03931      10.2683    0.002    1.000
+first_purchase_day_mean           59.6812       123.609      60.5312      182.618    1.000    0.002
+recent10_share                   0.152734      0.152918     0.152715     0.154695    0.658    0.348
+within_var_owned                0.0343301      0.060928    0.0356173    0.0752086    1.000    0.002
+within_var_exposure               3.68809       6.27897      3.82405      7.90185    1.000    0.002
+within_var_recent_10            0.0946807     0.0948302    0.0946772    0.0966505    0.874    0.128
+
+Correlation across the 499 shifted worlds between the slope (direct mentions) and the shift size
+(7) Part1b_Talk/3) Inference/world_estimates.csv):
+  recent_10  corr(slope, shift_days) = +0.142
+  exposure   corr(slope, shift_days) = -0.345
+  owned      corr(slope, shift_days) = -0.325

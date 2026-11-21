@@ -1,0 +1,24 @@
+A9. Part 2, equal-weighted: mean MAR per purchase (trading days 1-10), real against shifted worlds
+
+Checks:
+  value-weighted r from the same loop reproduces inference.csv for posted: OK
+  value-weighted r from the same loop reproduces inference.csv for praised: OK
+  value-weighted r from the same loop reproduces inference.csv for all: OK
+  value-weighted r from the same loop reproduces inference.csv for no_post: OK
+  value-weighted r from the same loop reproduces inference.csv for roasted: OK
+
+sample                     group                     n   real % shifted %  delta pp  p_upper  p_lower  p_two
+full sample                posted                  384     0.70      0.50     +0.20    0.292    0.710  0.584
+full sample                praised                 128     2.05      1.12     +0.92    0.148    0.854  0.296
+full sample                all                   17883    -0.29     -0.05     -0.24    0.844    0.158  0.316
+full sample                no_post               17499    -0.32     -0.07     -0.25    0.852    0.150  0.300
+full sample                roasted                  98    -0.42     -0.39     -0.03    0.478    0.524  0.956
+full sample                gap_praised_roasted             2.46      1.51     +0.95    0.214    0.788  0.428
+full sample                gap_posted_nopost               1.02      0.57     +0.45    0.196    0.806  0.392
+without AMZN 2026-04-17    posted                  383     0.69      0.50     +0.19    0.296    0.706  0.592
+without AMZN 2026-04-17    praised                 127     2.02      1.12     +0.89    0.148    0.854  0.296
+without AMZN 2026-04-17    all                   17882    -0.29     -0.05     -0.24    0.844    0.158  0.316
+without AMZN 2026-04-17    no_post               17499    -0.32     -0.07     -0.25    0.854    0.148  0.296
+without AMZN 2026-04-17    roasted                  98    -0.42     -0.39     -0.03    0.478    0.524  0.956
+without AMZN 2026-04-17    gap_praised_roasted             2.44      1.51     +0.92    0.218    0.784  0.436
+without AMZN 2026-04-17    gap_posted_nopost               1.01      0.57     +0.44    0.208    0.794  0.416

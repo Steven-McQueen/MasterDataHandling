@@ -1,0 +1,26 @@
+B5 Roasted excess, test of the tax-loss reading (post hoc, design in the script header) | 12) AddedChecks/B5_roasted_taxloss.py
+
+Part 2 sample, 500 worlds. Roasted hits (Part 1 rule, direct_neg50, days 1-10): real 127, shifted mean 107.0 (p_upper 0.030)
+Purchases with fewer than 5 prior days, left out of S: real 0 of the Roasted hits; all purchases real 4, shifted worlds 0 to 1008
+
+statistic (20-day market-adjusted return before day 0)         real  shifted      sd  p_upper  p_lower  p_two
+TEST  Roasted hits, mean prior return (one-sided, lower)     +0.17%   -0.81%   0.65%    0.068    0.934  0.136
+desc. all purchases                                          -1.24%   -0.08%   0.37%    1.000    0.002  0.004
+desc. Praised hits (direct_pos50)                            +1.75%   +1.46%   1.00%    0.368    0.634  0.736
+desc. Roasted hits without the media companies               +0.68%   -0.79%   1.31%    0.150    0.852  0.300
+desc. Roasted hits, mean ABSOLUTE prior return               +7.07%   +6.36%   0.63%    0.126    0.876  0.252
+
+Group sizes, real (shifted mean): Roasted 127 (107.0); without media 50 (33.8); Praised 174 (203.3)
+
+Five lowest and five highest prior returns among the real Roasted hits:
+  TSLA   2025-03-05 prior  -28.55% (20 days)
+  TSLA   2025-03-10 prior  -27.74% (20 days)
+  NWSA   2025-10-29 prior  -16.90% (20 days)  media
+  INTC   2025-08-04 prior  -13.68% (20 days)
+  SKYD   2025-12-17 prior  -13.59% (20 days)  media
+  BA     2025-05-06 prior  +20.76% (20 days)
+  WBD    2025-01-29 prior  +20.94% (6 days)  media
+  WBD    2025-11-18 prior  +23.75% (20 days)  media
+  WBD    2025-10-09 prior  +37.51% (20 days)  media
+  WBD    2025-09-23 prior  +50.12% (20 days)  media
+  median prior return of the real Roasted hits -1.69%; share below zero 59.8%

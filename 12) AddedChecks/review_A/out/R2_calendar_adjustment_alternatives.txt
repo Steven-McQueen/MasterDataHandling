@@ -1,0 +1,27 @@
+R2. Alternatives to A2's ratio adjustment (500 worlds; p shares include the real world)
+
+outcome   method                                                 slope      real   shifted  ratio   p_up  p_low
+Praised   covariance-adjusted, OLS slope, shifted worlds          2.42   178.882   204.116  0.876  0.936  0.066
+Praised   covariance-adjusted, OLS slope, all 500                 2.52   179.003   204.116  0.877  0.934  0.068
+Praised   covariance-adjusted, proportional (A2 ratio, linearised)   20.69   200.630   204.116  0.983  0.632  0.370
+Praised   indirect standardization O/E                             nan     0.747     0.761  0.982  0.584  0.418
+Praised     expected hits E_w (calendar x company)                 nan   235.512   268.325  0.878  0.960  0.042
+Praised   O/E, own company's posts excluded from N                 nan     0.749     0.763  0.981  0.586  0.416
+Praised   covariance-adjusted on E_w (OLS, shifted)               0.65   197.378   204.116  0.967  0.672  0.330
+Praised     corr(O_w, E_w) over shifted worlds                     nan     0.583       nan    nan    nan    nan
+Roasted   covariance-adjusted, OLS slope, shifted worlds          4.95   131.776   107.174  1.230  0.010  0.992
+Roasted   covariance-adjusted, OLS slope, all 500                 4.89   131.740   107.174  1.229  0.010  0.992
+Roasted   covariance-adjusted, proportional (A2 ratio, linearised)   15.71   137.807   107.174  1.286  0.002  1.000
+Roasted   indirect standardization O/E                             nan     1.162     0.931  1.248  0.002  1.000
+Roasted     expected hits E_w (calendar x company)                 nan   111.037   115.135  0.964  0.798  0.204
+Roasted   O/E, own company's posts excluded from N                 nan     1.182     0.938  1.260  0.002  1.000
+Roasted   covariance-adjusted on E_w (OLS, shifted)               0.88   132.604   107.174  1.237  0.002  1.000
+Roasted     corr(O_w, E_w) over shifted worlds                     nan     0.605       nan    nan    nan    nan
+any tone  covariance-adjusted, OLS slope, shifted worlds          3.66   394.898   403.084  0.980  0.746  0.256
+any tone  covariance-adjusted, OLS slope, all 500                 3.67   394.917   403.084  0.980  0.746  0.256
+any tone  covariance-adjusted, proportional (A2 ratio, linearised)   12.43   411.409   403.084  1.021  0.386  0.616
+any tone  indirect standardization O/E                             nan     0.731     0.721  1.014  0.334  0.668
+any tone    expected hits E_w (calendar x company)                 nan   530.615   559.240  0.949  0.922  0.080
+any tone  O/E, own company's posts excluded from N                 nan     0.732     0.721  1.014  0.334  0.668
+any tone  covariance-adjusted on E_w (OLS, shifted)               0.52   402.954   403.084  1.000  0.474  0.528
+any tone    corr(O_w, E_w) over shifted worlds                     nan     0.616       nan    nan    nan    nan

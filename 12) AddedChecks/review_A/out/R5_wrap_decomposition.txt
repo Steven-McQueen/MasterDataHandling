@@ -1,0 +1,30 @@
+R5. The wrap decomposed (paired comparisons; returns in % per dollar)
+
+Check: F_s + B_s hits reproduce world_counts.csv for every shift: OK
+
+design                                               statistic          real  shifted  ratio   p_up  p_low worlds
+F_s: forward-moved part (= A5 v1)                    Praised hits      90.97   121.59  0.748  1.000  0.002    500
+F_s: forward-moved part (= A5 v1)                    Roasted hits      73.59    55.04  1.337  0.024  0.994    500
+F_s: forward-moved part (= A5 v1)                    any-post hits    219.00   221.86  0.987  0.512  0.504    500
+F_s: forward-moved part (= A5 v1)                    posted r           0.66     0.81  0.814  0.490  0.512    500
+F_s: forward-moved part (= A5 v1)                    praised r          1.48     0.31  4.820  0.320  0.682    500
+B_s: wrapped part, moved back (dropped by A5 v1)     Praised hits      85.03    82.53  1.030  0.396  0.630    500
+B_s: wrapped part, moved back (dropped by A5 v1)     Roasted hits      55.41    52.14  1.063  0.456  0.584    500
+B_s: wrapped part, moved back (dropped by A5 v1)     any-post hits    169.00   181.22  0.933  0.722  0.296    500
+B_s: wrapped part, moved back (dropped by A5 v1)     posted r           2.25     0.41  5.546  0.178  0.824    500
+B_s: wrapped part, moved back (dropped by A5 v1)     praised r          3.04     0.83  3.661  0.176  0.826    500
+two-direction no-wrap, +/-30..528 (998 worlds)       Praised hits      88.00   102.06  0.862  0.698  0.315    999
+two-direction no-wrap, +/-30..528 (998 worlds)       Roasted hits      64.50    53.59  1.204  0.239  0.789    999
+two-direction no-wrap, +/-30..528 (998 worlds)       any-post hits    194.00   201.54  0.963  0.617  0.399    999
+two-direction no-wrap, +/-30..528 (998 worlds)       posted r           1.45     0.61  2.389  0.333  0.668    999
+two-direction no-wrap, +/-30..528 (998 worlds)       praised r          2.26     0.57  3.974  0.247  0.754    999
+  forward only                                       Praised hits      90.97   121.59  0.748  1.000  0.002    500
+  forward only                                       Roasted hits      73.59    55.04  1.337  0.024  0.994    500
+  forward only                                       any-post hits    219.00   221.86  0.987  0.512  0.504    500
+  forward only                                       posted r           0.66     0.81  0.814  0.490  0.512    500
+  forward only                                       praised r          1.48     0.31  4.820  0.320  0.682    500
+  backward only                                      Praised hits      85.03    82.53  1.030  0.396  0.630    500
+  backward only                                      Roasted hits      55.41    52.14  1.063  0.456  0.584    500
+  backward only                                      any-post hits    169.00   181.22  0.933  0.722  0.296    500
+  backward only                                      posted r           2.25     0.41  5.546  0.178  0.824    500
+  backward only                                      praised r          3.04     0.83  3.661  0.176  0.826    500

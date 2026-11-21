@@ -1,0 +1,38 @@
+A5. Checks without the wrap
+
+Version 1: share of Part 1 purchases that wrap per world: min 0.020, median 0.347, max 0.854 (shift 30: 0.020; shift 528: 0.854)
+
+version                                                                  statistic          real  shifted  ratio  p_upper  p_lower  p_two worlds
+1 no wrap (paired)                                                       Praised hits       91.0    121.6  0.748    1.000    0.002  0.004    500
+1 no wrap (paired)                                                       any-post hits     219.0    221.9  0.987    0.512    0.504  1.000    500
+1 no wrap (paired)                                                       Roasted hits       73.6     55.0  1.337    0.024    0.994  0.048    500
+1 no wrap (paired)                                                       posted r           0.66     0.81  0.814    0.490    0.512  0.980    500
+1 no wrap (paired)                                                       praised r          1.48     0.31  4.820    0.320    0.682  0.640    500
+2 year 2025 (L=346, 14363 Part 1 / 13921 Part 2 purchases)               Praised hits      122.0    140.0  0.871    0.931    0.104  0.208    288
+2 year 2025 (L=346, 14363 Part 1 / 13921 Part 2 purchases)               any-post hits     291.0    302.4  0.962    0.757    0.253  0.507    288
+2 year 2025 (L=346, 14363 Part 1 / 13921 Part 2 purchases)               Roasted hits      101.0     90.7  1.113    0.080    0.938  0.160    288
+2 year 2025 (L=346, 14363 Part 1 / 13921 Part 2 purchases)               posted r           0.53     0.62  0.868    0.542    0.462  0.924    288
+2 year 2025 (L=346, 14363 Part 1 / 13921 Part 2 purchases)               praised r          0.37     0.82  0.447    0.625    0.378  0.757    288
+2 year 2026 (L=212, 4035 Part 1 / 3962 Part 2 purchases)                 Praised hits       54.0     58.5  0.923    0.695    0.331  0.662    154
+2 year 2026 (L=212, 4035 Part 1 / 3962 Part 2 purchases)                 any-post hits      97.0    101.4  0.956    0.714    0.338  0.675    154
+2 year 2026 (L=212, 4035 Part 1 / 3962 Part 2 purchases)                 Roasted hits       28.0     21.0  1.332    0.136    0.877  0.273    154
+2 year 2026 (L=212, 4035 Part 1 / 3962 Part 2 purchases)                 posted r           3.50     0.15 22.778    0.026    0.981  0.052    154
+2 year 2026 (L=212, 4035 Part 1 / 3962 Part 2 purchases)                 praised r          4.20     0.14 30.287    0.052    0.955  0.104    154
+2 year 2026 without AMZN 2026-04-17 (L=212, 4035 Part 1 / 3961 Part 2 purchases) Praised hits       54.0     58.5  0.923    0.695    0.331  0.662    154
+2 year 2026 without AMZN 2026-04-17 (L=212, 4035 Part 1 / 3961 Part 2 purchases) any-post hits      97.0    101.4  0.956    0.714    0.338  0.675    154
+2 year 2026 without AMZN 2026-04-17 (L=212, 4035 Part 1 / 3961 Part 2 purchases) Roasted hits       28.0     21.0  1.332    0.136    0.877  0.273    154
+2 year 2026 without AMZN 2026-04-17 (L=212, 4035 Part 1 / 3961 Part 2 purchases) posted r           0.43     0.14  3.048    0.494    0.513  0.987    154
+2 year 2026 without AMZN 2026-04-17 (L=212, 4035 Part 1 / 3961 Part 2 purchases) praised r         -0.86    -0.19  4.517    0.662    0.344  0.688    154
+
+Quarterly profile (posts: direct post-company pairs, post days to 2026-08-31; 2026Q3 = July-August):
+        purchases (Part 1)  Praised pairs  any-post pairs  Roasted pairs
+2025Q1                4279             49             144             27
+2025Q2                3846             58             248             43
+2025Q3                3221             75             235             62
+2025Q4                3017             47             149             37
+2026Q1                2159             31             155             43
+2026Q2                1499             67             205             45
+2026Q3                 377             85             174             13
+
+Returns in percent per dollar (trading days 1-10, midpoint amounts). Version 1 'real' and 'shifted' are means over
+worlds of the values on the non-wrapping set N_s; its p-values are paired shares, not exact permutation p-values.

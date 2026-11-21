@@ -1,0 +1,15 @@
+A6. Power under a location shift (critical value = repo rule; null = the 499 shifted worlds)
+
+test                                         real     mean     crit d50 (c-mean) d50 (c-med)      d80 pow@d80
+Part 1b mention-days, direct, 10 days     299.000  320.271  345.000      +24.729     +25.000  +38.000    0.81  (+12% of expected at 80%)
+Part 1b slope, direct, 10 days (pp)        -0.014    0.001    0.023       +0.022      +0.021   +0.034    0.80
+Part 1 Praised hits (main)                176.000  204.116  230.000      +25.884     +26.000  +41.000    0.80  (+20% of expected at 80%)
+Part 1 any-post hits                      388.000  403.084  431.000      +27.916     +28.000  +40.000    0.80  (+10% of expected at 80%)
+Part 1 Roasted hits                       129.000  107.174  125.000      +17.826     +18.000  +27.000    0.84  (+25% of expected at 80%)
+Part 1 gap Praised - Roasted               47.000   96.942  131.000      +34.058     +35.000  +54.000    0.80  (+56% of expected at 80%)
+Part 2 Posted r (%; two-sided 5%)           1.658    0.472    2.707       +2.235      +2.278   +3.162    0.80  USD: 50% 1,551,048, 80% 2,194,202
+Part 2 Praised r (%; two-sided 5%)          2.883    0.336    3.647       +3.311      +3.341   +4.549    0.80  USD: 50% 1,002,681, 80% 1,377,725
+Part 2 All r (%; two-sided 5%)              0.006   -0.114    0.538       +0.652      +0.617   +0.941    0.80  USD: 50% 7,973,363, 80% 11,506,977
+
+d50 (c-mean) reproduces 10) Checks/detectable_effects.csv ('detectable'); d80 = critical minus the 20th percentile.
+Caveat: the worlds are autocorrelated (A4), so the percentiles rest on far fewer than 499 independent values.

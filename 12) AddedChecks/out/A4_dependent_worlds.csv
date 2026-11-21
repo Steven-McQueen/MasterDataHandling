@@ -1,0 +1,7 @@
+statistic,n_shifted,rho1,rho5,rho10,first_nonpositive_lag,n_eff_ar1,n_eff_iat,tail_side,p_one_sided,p_two,tail_worlds,tail_blocks
+Part 1 Praised hits (main),499,0.9279,0.6854,0.3777,70,18.66,15.34,lower,0.048,0.096,23,10
+Part 1 any-post hits,499,0.8991,0.6479,0.4316,51,26.52,18.18,lower,0.174,0.348,86,17
+Part 1 Roasted hits,499,0.9286,0.6622,0.321,76,18.47,13.12,upper,0.028,0.056,13,4
+Part 1 gap Praised - Roasted,499,0.9466,0.7245,0.4201,94,13.68,10.27,lower,0.004,0.008,1,1
+Part 2 Posted r (main),499,0.8733,0.485,0.1909,14,33.75,44.96,upper,0.17,0.34,84,17
+Part 2 Praised r,499,0.8262,0.3645,0.09012,13,47.49,57.85,upper,0.04,0.08,19,8

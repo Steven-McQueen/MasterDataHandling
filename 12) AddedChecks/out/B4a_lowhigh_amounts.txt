@@ -1,0 +1,31 @@
+B4(a) Part 2 with low, mid and high amounts, final data (17,883 purchases, 500 worlds) | 12) AddedChecks/B4a_lowhigh_amounts.py
+
+Checks
+  all      mid reproduces 9) Part2_Returns inference.csv: OK
+  posted   mid reproduces 9) Part2_Returns inference.csv: OK
+  no_post  mid reproduces 9) Part2_Returns inference.csv: OK
+  praised  mid reproduces 9) Part2_Returns inference.csv: OK
+  roasted  mid reproduces 9) Part2_Returns inference.csv: OK
+
+test               amount            n     USD m  r real % r shift %  delta pp   p_up   p_lo  p_two
+all                amount_low    17883     597.6     0.065    -0.124    +0.189  0.224  0.778  0.448
+all                amount_mid    17883    1223.2     0.006    -0.114    +0.120  0.372  0.630  0.744
+all                amount_high   17883    1848.8    -0.013    -0.111    +0.097  0.420  0.582  0.840
+posted             amount_low      384      32.6     1.335     0.511    +0.823  0.206  0.796  0.412
+posted             amount_mid      384      69.4     1.658     0.472    +1.186  0.170  0.832  0.340
+posted             amount_high     384     106.2     1.757     0.461    +1.297  0.166  0.836  0.332
+no_post            amount_low    17499     565.0    -0.008    -0.166    +0.158  0.290  0.712  0.580
+no_post            amount_mid    17499    1153.8    -0.094    -0.154    +0.061  0.464  0.538  0.928
+no_post            amount_high   17499    1742.6    -0.121    -0.150    +0.029  0.510  0.492  0.984
+praised            amount_low      128      13.3     2.258     0.380    +1.878  0.066  0.936  0.132
+praised            amount_mid      128      30.3     2.883     0.336    +2.547  0.040  0.962  0.080
+praised            amount_high     128      47.2     3.059     0.324    +2.735  0.040  0.962  0.080
+roasted            amount_low       98       8.1    -0.349    -0.681    +0.332  0.372  0.630  0.744
+roasted            amount_mid       98      16.4    -0.093    -0.729    +0.636  0.308  0.694  0.616
+roasted            amount_high      98      24.6    -0.009    -0.744    +0.735  0.278  0.724  0.556
+praised - roasted  amount_low                        2.607     1.061    +1.546  0.226  0.776  0.452
+praised - roasted  amount_mid                        2.976     1.065    +1.911  0.210  0.792  0.420
+praised - roasted  amount_high                       3.069     1.068    +2.000  0.216  0.786  0.432
+posted - no_post   amount_low                        1.343     0.677    +0.666  0.262  0.740  0.524
+posted - no_post   amount_mid                        1.752     0.626    +1.126  0.190  0.812  0.380
+posted - no_post   amount_high                       1.879     0.611    +1.268  0.174  0.828  0.348

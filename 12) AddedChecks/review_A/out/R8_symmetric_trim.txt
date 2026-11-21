@@ -1,0 +1,11 @@
+R8. Part 2 with each world's own largest dollar contributors removed (symmetric trim)
+
+   statistic   real  mean_shifted  p_upper  p_lower  p_two
+ posted|top0  1.658         0.472    0.170    0.832  0.340
+ posted|top1  0.513        -0.088    0.312    0.690  0.624
+ posted|top5 -0.669        -1.028    0.378    0.624  0.756
+praised|top0  2.883         0.336    0.040    0.962  0.080
+praised|top1 -0.003        -0.523    0.392    0.610  0.784
+praised|top5 -0.416        -1.678    0.164    0.838  0.328
+
+top0 reproduces inference.csv (Posted 1.66 vs 0.47, p 0.340; Praised 2.88 vs 0.34, p 0.080).

@@ -1,0 +1,7 @@
+outcome,count,real,mean_shifted,ratio,p_upper,p_lower,csv_line,recomputed_ok
+direct_pos50,purchase_hits,176,204.116,0.862254,0.958,0.048,4,True
+direct_pos50,post_hits,177,190.427,0.929491,0.888,0.13,5,True
+direct_neg50,purchase_hits,129,107.174,1.20365,0.028,0.98,6,True
+direct_neg50,post_hits,131,121.07,1.08202,0.21,0.808,7,True
+direct_any,purchase_hits,388,403.084,0.962578,0.838,0.174,2,True
+direct_any,post_hits,553,558.533,0.990094,0.602,0.412,3,True

@@ -1,0 +1,63 @@
+source,line,check,variant,group,n,real,mean_shifted,p_upper,p_lower,p_two,n_worlds
+10) Checks/robustness.csv,38,Part 2 main,h1_10,posted,384,0.0165811,0.00471823,0.17,0.832,0.34,500
+10) Checks/robustness.csv,40,Part 2 main,h1_10,praised,128,0.0288278,0.00335848,0.04,0.962,0.08,500
+10) Checks/robustness.csv,41,Part 2 main,h1_10,roasted,98,-0.000932947,-0.00728839,0.308,0.694,0.616,500
+10) Checks/robustness.csv,39,Part 2 main,h1_10,all,17883,5.86545e-05,-0.00113926,0.372,0.63,0.744,500
+10) Checks/robustness.csv,46,Check 2,before_5_1,posted,384,0.0137017,0.0019612,0.11,0.892,0.22,500
+10) Checks/robustness.csv,48,Check 2,before_5_1,praised,128,0.0223642,0.00473693,0.09,0.912,0.18,500
+10) Checks/robustness.csv,49,Check 2,before_5_1,roasted,98,-0.00187599,-0.00549514,0.366,0.636,0.732,500
+10) Checks/robustness.csv,47,Check 2,before_5_1,all,17883,0.001832,-0.000589671,0.114,0.888,0.228,500
+10) Checks/optional_robustness.csv,2,Check 13,main: days 0-1,praised,290,0.00534711,0.00079829,0.013308,0.988593,0.026616,526
+10) Checks/optional_robustness.csv,3,Check 13,main: days 0-1,roasted,209,-0.000492233,0.000535858,0.661597,0.340304,0.680608,526
+10) Checks/optional_robustness.csv,4,Check 13,13.1 window: day 0,praised,290,0.00546321,0.000353682,0.00190114,1,0.00380228,526
+10) Checks/optional_robustness.csv,5,Check 13,13.1 window: day 0,roasted,209,-3.31766e-05,-2.666e-05,0.494297,0.507605,0.988593,526
+10) Checks/optional_robustness.csv,6,Check 13,13.1 window: days 0-2,praised,290,0.00328772,0.00120392,0.180608,0.821293,0.361217,526
+10) Checks/optional_robustness.csv,7,Check 13,13.1 window: days 0-2,roasted,209,-0.000548534,0.000791415,0.652091,0.34981,0.69962,526
+10) Checks/optional_robustness.csv,8,Check 13,13.1 window: days 0-5,praised,290,-0.00211111,0.00238032,0.91635,0.0855513,0.171103,526
+10) Checks/optional_robustness.csv,9,Check 13,13.1 window: days 0-5,roasted,209,-0.00053098,0.00136089,0.69962,0.302281,0.604563,526
+10) Checks/optional_robustness.csv,10,Check 13,13.1 window: days 2-10,praised,290,-0.00251971,0.00373569,0.927757,0.0741445,0.148289,526
+10) Checks/optional_robustness.csv,11,Check 13,13.1 window: days 2-10,roasted,209,2.33654e-05,0.0025646,0.69962,0.302281,0.604563,526
+10) Checks/optional_robustness.csv,12,Check 13,13.2 before: day -1,praised,290,0.00140595,0.000635473,0.290875,0.711027,0.581749,526
+10) Checks/optional_robustness.csv,13,Check 13,13.2 before: day -1,roasted,209,-0.000764118,0.000444864,0.760456,0.241445,0.48289,526
+10) Checks/optional_robustness.csv,14,Check 13,13.2 before: days -5 to -1,praised,290,0.00841862,0.00226446,0.0152091,0.986692,0.0304183,526
+10) Checks/optional_robustness.csv,15,Check 13,13.2 before: days -5 to -1,roasted,209,-0.0029989,0.00115427,0.863118,0.138783,0.277567,526
+10) Checks/optional_robustness.csv,16,Check 13,13.4 without the five largest events,praised,285,0.00236394,-0.00109387,0.0304183,0.971483,0.0608365,526
+10) Checks/optional_robustness.csv,17,Check 13,13.4 without the five largest events,roasted,204,0.00097942,0.00254089,0.737643,0.264259,0.528517,526
+10) Checks/optional_robustness.csv,18,Check 13,13.5 relevance >= 0.3,praised,277,0.00577796,0.000829215,0.0095057,0.992395,0.0190114,526
+10) Checks/optional_robustness.csv,19,Check 13,13.5 relevance >= 0.3,roasted,207,-0.000576744,0.000550522,0.676806,0.325095,0.65019,526
+10) Checks/optional_robustness.csv,20,Check 13,13.6 without the media companies,praised,212,0.00705781,0.00117356,0.013308,0.988593,0.026616,526
+10) Checks/optional_robustness.csv,21,Check 13,13.6 without the media companies,roasted,27,-0.00265648,0.000499474,0.718631,0.28327,0.56654,526
+10) Checks/optional_robustness.csv,22,Check 13,13.7 @realDonaldTrump only,praised,121,0.00478641,0.00121524,0.136882,0.865019,0.273764,526
+10) Checks/optional_robustness.csv,23,Check 13,13.7 @realDonaldTrump only,roasted,168,0.000228031,0.000308039,0.534221,0.467681,0.935361,526
+10) Checks/optional_robustness.csv,24,Check 13,13.8 cut-off 0.3,praised,291,0.00533635,0.000795381,0.0152091,0.986692,0.0304183,526
+10) Checks/optional_robustness.csv,25,Check 13,13.8 cut-off 0.3,roasted,210,-0.000478549,0.000535733,0.663498,0.338403,0.676806,526
+10) Checks/optional_robustness.csv,26,Check 13,13.8 cut-off 0.7,praised,85,0.0116368,0.00151899,0.00380228,0.998099,0.00760456,526
+10) Checks/optional_robustness.csv,27,Check 13,13.8 cut-off 0.7,roasted,183,0.000162385,0.000534657,0.577947,0.423954,0.847909,526
+10) Checks/optional_robustness.csv,28,Check 13,13.9 short shifts (30-90 days either way),praised,290,0.00534711,0.000815766,0.0243902,0.98374,0.0487805,123
+10) Checks/optional_robustness.csv,29,Check 13,13.9 short shifts (30-90 days either way),roasted,209,-0.000492233,0.000101803,0.626016,0.382114,0.764228,123
+10) Checks/optional_robustness.csv,30,Check 13,13.10 after a recent purchase: day 0,praised,128,0.00926377,0.000797814,0.00190114,1,0.00380228,526
+10) Checks/optional_robustness.csv,31,Check 13,13.10 after a recent purchase: day 0,roasted,108,-0.000218348,-3.44688e-05,0.519011,0.48289,0.965779,526
+10) Checks/optional_robustness.csv,32,Check 13,13.10 after a recent purchase: days 0-1,praised,128,0.00845746,0.00166964,0.00570342,0.996198,0.0114068,526
+10) Checks/optional_robustness.csv,33,Check 13,13.10 after a recent purchase: days 0-1,roasted,108,-0.00181612,0.00102897,0.865019,0.136882,0.273764,526
+10) Checks/optional_robustness.csv,34,Check 13,13.10 after a recent purchase: days 0-2,praised,128,0.00636349,0.00267301,0.0836502,0.918251,0.1673,526
+10) Checks/optional_robustness.csv,35,Check 13,13.10 after a recent purchase: days 0-2,roasted,108,-0.00205079,0.000694505,0.806084,0.195817,0.391635,526
+10) Checks/optional_robustness.csv,36,Check 13,13.10 after a recent purchase: days 0-5,praised,128,0.00172705,0.0052101,0.821293,0.180608,0.361217,526
+10) Checks/optional_robustness.csv,37,Check 13,13.10 after a recent purchase: days 0-5,roasted,108,-0.00171994,0.000611802,0.701521,0.30038,0.60076,526
+10) Checks/optional_robustness.csv,38,Check 13,13.10 after a recent purchase: days 2-10,praised,128,0.00648882,0.00826333,0.646388,0.355513,0.711027,526
+10) Checks/optional_robustness.csv,39,Check 13,13.10 after a recent purchase: days 2-10,roasted,108,0.0064814,0.00438783,0.41635,0.585551,0.8327,526
+10) Checks/optional_robustness.csv,40,Check 13,13.10 after a recent purchase: days 1-10,praised,128,0.00568251,0.00913516,0.787072,0.214829,0.429658,526
+10) Checks/optional_robustness.csv,41,Check 13,13.10 after a recent purchase: days 1-10,roasted,108,0.00488364,0.00545126,0.553232,0.448669,0.897338,526
+10) Checks/optional_robustness.csv,42,Check 13,13.10 after a recent purchase: days 1-20,praised,128,0.0129841,0.0172709,0.712928,0.288973,0.577947,526
+10) Checks/optional_robustness.csv,43,Check 13,13.10 after a recent purchase: days 1-20,roasted,108,0.00537468,0.00979068,0.703422,0.298479,0.596958,526
+10) Checks/optional_robustness.csv,44,Check 13,"13.10 after a recent purchase: days 0-1, amount-weighted",praised,128,0.00235023,0.00160323,0.439163,0.562738,0.878327,526
+10) Checks/optional_robustness.csv,45,Check 13,"13.10 after a recent purchase: days 0-1, amount-weighted",roasted,108,-0.00292999,0.000466203,0.695817,0.306084,0.612167,526
+10) Checks/optional_robustness.csv,46,Check 13,"13.10 after a recent purchase: days 1-10, amount-weighted",praised,128,-0.00576361,0.00678156,0.853612,0.148289,0.296578,526
+10) Checks/optional_robustness.csv,47,Check 13,"13.10 after a recent purchase: days 1-10, amount-weighted",roasted,108,0.0147285,0.00856319,0.307985,0.693916,0.61597,526
+10) Checks/optional_robustness.csv,48,Check 13,"13.3 market-adjusted, same events as the models",praised,290,0.00534711,0.00079829,0.013308,0.988593,0.026616,526
+10) Checks/optional_robustness.csv,49,Check 13,"13.3 market-adjusted, same events as the models",roasted,209,-0.000492233,0.000535858,0.661597,0.340304,0.680608,526
+10) Checks/optional_robustness.csv,50,Check 13,13.3 model: ar_raw,praised,290,0.00869849,0.00267992,0.00190114,1,0.00380228,526
+10) Checks/optional_robustness.csv,51,Check 13,13.3 model: ar_raw,roasted,209,0.00237475,0.00238804,0.511407,0.490494,0.980989,526
+10) Checks/optional_robustness.csv,52,Check 13,13.3 model: ar_capm,praised,290,0.00559441,0.00101656,0.0114068,0.990494,0.0228137,526
+10) Checks/optional_robustness.csv,53,Check 13,13.3 model: ar_capm,roasted,209,0.000187096,0.0011034,0.65019,0.351711,0.703422,526
+10) Checks/optional_robustness.csv,54,Check 13,13.3 model: ar_ff5m,praised,290,0.00804225,0.000953369,0.00190114,1,0.00380228,526
+10) Checks/optional_robustness.csv,55,Check 13,13.3 model: ar_ff5m,roasted,209,-3.62482e-05,0.00120659,0.693916,0.307985,0.61597,526

@@ -1,0 +1,18 @@
+A4. Dependent worlds (shifted worlds in order of shift, 30..528 days; real world excluded from the series)
+
+statistic                        rho1   rho5  rho10 lag<=0 n_eff AR1 n_eff IAT  side  p_one  p_two tail worlds blocks
+Part 1 Praised hits (main)      0.928  0.685  0.378     70      18.7      15.3 lower  0.048  0.096          23     10
+Part 1 any-post hits            0.899  0.648  0.432     51      26.5      18.2 lower  0.174  0.348          86     17
+Part 1 Roasted hits             0.929  0.662  0.321     76      18.5      13.1 upper  0.028  0.056          13      4
+Part 1 gap Praised - Roasted    0.947  0.725  0.420     94      13.7      10.3 lower  0.004  0.008           1      1
+Part 2 Posted r (main)          0.873  0.485  0.191     14      33.7      45.0 upper  0.170  0.340          84     17
+Part 2 Praised r                0.826  0.364  0.090     13      47.5      57.8 upper  0.040  0.080          19      8
+
+tail worlds / blocks: shifted worlds at least as extreme as the real value in the reported direction,
+and the number of contiguous runs of shifts they form.
+
+p-value floor (share of all worlds, real one counted):
+  Parts 1, 1b, 2 and checks 1-9, 11-12     N = 500: one-sided 0.0020, two-sided 0.0040
+  Check 3 (short shifts)                   N = 123: one-sided 0.0081, two-sided 0.0163
+  Check 10 (every shift)                   N = 558: one-sided 0.0018, two-sided 0.0036
+  Check 13 and 13.10 (post shifts)         N = 526: one-sided 0.0019, two-sided 0.0038

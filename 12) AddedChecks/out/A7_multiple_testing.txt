@@ -1,0 +1,88 @@
+A7. Multiple testing
+
+(a) Families as run (statistics with a p-value in each stored output):
+  part                               main test                                             stats  source / note
+  Part 1 (H1)                        Praised purchase hits, p_upper                           33  8) Part1_Timing/2) Inference/inference.csv; rows = 16 outcomes x 2 counts + tone share; each with p_upper and p_lower; gap test computed in Step 11
+  Part 1b                            direct mentions, 10 days, p_upper (p_search over 6 windows)     32  7) Part1b_Talk/3) Inference/inference.csv; plus 50 regression specifications in 2) Estimate/results.csv (conventional p)
+  Part 2 (H2)                        Posted r, p_two                                           8  9) Part2_Returns/2) Inference/inference.csv + gaps.csv; 5 groups + 3 direct tests
+  Checks 1-7 (Part 2 reruns)         Posted r per check                                       84  10) Checks/robustness.csv; 21 specifications x 4 groups; Check 1 search p over 10 horizons
+  Check 8 (spec curve)               joint test per outcome                                 1512  10) Checks/SpecCurve/spec_curve.csv; 1,512 specifications, 3 joint tests
+  Checks 9-11                                                                                 11  10) Checks/extra_checks.csv; 
+  Check 12 (sales)                                                                             9  10) Checks/optional_sales.csv; 
+  Check 13 (post windows)            Praised held mean, days 0-1                              10  10) Checks/optional_postwindows.csv; 
+  Check 13 robustness (13.1-13.9)                                                             18  10) Checks/optional_robustness.csv (Praised rows); 17 variants + the 'same events' duplicate of main; Roasted rows beside them
+  Check 13.10                        days 0-1 (as in Check 13)                                 9  10) Checks/optional_robustness.csv (Praised rows); 7 equal-weighted windows + 2 amount-weighted windows
+
+(b) Floors of the share-based p (real world counted):
+  N = 500: one-sided 1/N = 0.0020, two-sided 2/N = 0.0040; Bonferroni can push a floor-level two-sided p below 0.05 only for m <= 12 (m = 7: 0.028; m = 9: 0.036; m = 25: 0.100)
+  N = 526: one-sided 1/N = 0.0019, two-sided 2/N = 0.0038; Bonferroni can push a floor-level two-sided p below 0.05 only for m <= 13 (m = 7: 0.027; m = 9: 0.034; m = 25: 0.095)
+
+(c) Check 13 / 13.10, Praised, two-sided p over 526 worlds; reproduction of optional_robustness.csv:
+  main: days 0-1: real 0.534711% vs 0.534711%, p_two 0.0266 vs 0.0266: OK
+  13.1 window: day 0: real 0.546321% vs 0.546321%, p_two 0.0038 vs 0.0038: OK
+  13.1 window: days 0-2: real 0.328772% vs 0.328772%, p_two 0.3612 vs 0.3612: OK
+  13.1 window: days 0-5: real -0.211111% vs -0.211111%, p_two 0.1711 vs 0.1711: OK
+  13.1 window: days 2-10: real -0.251970% vs -0.251970%, p_two 0.1483 vs 0.1483: OK
+  13.2 before: day -1: real 0.140595% vs 0.140595%, p_two 0.5817 vs 0.5817: OK
+  13.2 before: days -5 to -1: real 0.841862% vs 0.841862%, p_two 0.0304 vs 0.0304: OK
+  13.4 without the five largest events: real 0.236394% vs 0.236394%, p_two 0.0608 vs 0.0608: OK
+  13.5 relevance >= 0.3: real 0.577796% vs 0.577796%, p_two 0.0190 vs 0.0190: OK
+  13.6 without the media companies: real 0.705781% vs 0.705781%, p_two 0.0266 vs 0.0266: OK
+  13.7 @realDonaldTrump only: real 0.478641% vs 0.478641%, p_two 0.2738 vs 0.2738: OK
+  13.8 cut-off 0.3: real 0.533635% vs 0.533635%, p_two 0.0304 vs 0.0304: OK
+  13.8 cut-off 0.7: real 1.163682% vs 1.163682%, p_two 0.0076 vs 0.0076: OK
+  13.10 after a recent purchase: day 0: real 0.926377% vs 0.926377%, p_two 0.0038 vs 0.0038: OK
+  13.10 after a recent purchase: days 0-1: real 0.845746% vs 0.845746%, p_two 0.0114 vs 0.0114: OK
+  13.10 after a recent purchase: days 0-2: real 0.636349% vs 0.636349%, p_two 0.1673 vs 0.1673: OK
+  13.10 after a recent purchase: days 0-5: real 0.172705% vs 0.172705%, p_two 0.3612 vs 0.3612: OK
+  13.10 after a recent purchase: days 2-10: real 0.648882% vs 0.648882%, p_two 0.7110 vs 0.7110: OK
+  13.10 after a recent purchase: days 1-10: real 0.568251% vs 0.568251%, p_two 0.4297 vs 0.4297: OK
+  13.10 after a recent purchase: days 1-20: real 1.298410% vs 1.298410%, p_two 0.5779 vs 0.5779: OK
+  13.10 after a recent purchase: days 0-1, amount-weighted: real 0.235023% vs 0.235023%, p_two 0.8783 vs 0.8783: OK
+  13.10 after a recent purchase: days 1-10, amount-weighted: real -0.576361% vs -0.576361%, p_two 0.2966 vs 0.2966: OK
+  13.3 model: ar_raw: real 0.869849% vs 0.869849%, p_two 0.0038 vs 0.0038: OK
+  13.3 model: ar_capm: real 0.559441% vs 0.559441%, p_two 0.0228 vs 0.0228: OK
+  13.3 model: ar_ff5m: real 0.804225% vs 0.804225%, p_two 0.0038 vs 0.0038: OK
+
+  family                                           variant                                                     p_two  Bonf.   minP
+  F1 13.10, 9 windows as run                       13.10 after a recent purchase: day 0                       0.0038  0.034  0.032
+  F1 13.10, 9 windows as run                       13.10 after a recent purchase: days 0-1                    0.0114  0.103  0.074
+  F1 13.10, 9 windows as run                       13.10 after a recent purchase: days 0-2                    0.1673  1.000  0.648
+  F1 13.10, 9 windows as run                       13.10 after a recent purchase: days 0-5                    0.3612  1.000  0.932
+  F1 13.10, 9 windows as run                       13.10 after a recent purchase: days 2-10                   0.7110  1.000  1.000
+  F1 13.10, 9 windows as run                       13.10 after a recent purchase: days 1-10                   0.4297  1.000  0.968
+  F1 13.10, 9 windows as run                       13.10 after a recent purchase: days 1-20                   0.5779  1.000  1.000
+  F1 13.10, 9 windows as run                       13.10 after a recent purchase: days 0-1, amount-weighted   0.8783  1.000  1.000
+  F1 13.10, 9 windows as run                       13.10 after a recent purchase: days 1-10, amount-weighted  0.2966  1.000  0.886
+  F2 13.10, 7 equal-weighted windows               13.10 after a recent purchase: day 0                       0.0038  0.027  0.025
+  F2 13.10, 7 equal-weighted windows               13.10 after a recent purchase: days 0-1                    0.0114  0.080  0.053
+  F2 13.10, 7 equal-weighted windows               13.10 after a recent purchase: days 0-2                    0.1673  1.000  0.532
+  F2 13.10, 7 equal-weighted windows               13.10 after a recent purchase: days 0-5                    0.3612  1.000  0.833
+  F2 13.10, 7 equal-weighted windows               13.10 after a recent purchase: days 2-10                   0.7110  1.000  0.994
+  F2 13.10, 7 equal-weighted windows               13.10 after a recent purchase: days 1-10                   0.4297  1.000  0.903
+  F2 13.10, 7 equal-weighted windows               13.10 after a recent purchase: days 1-20                   0.5779  1.000  0.968
+  F3 Check 13, 25 Praised variants (526 worlds)    main: days 0-1                                             0.0266  0.665  0.289
+  F3 Check 13, 25 Praised variants (526 worlds)    13.1 window: day 0                                         0.0038  0.095  0.057
+  F3 Check 13, 25 Praised variants (526 worlds)    13.1 window: days 0-2                                      0.3612  1.000  0.996
+  F3 Check 13, 25 Praised variants (526 worlds)    13.1 window: days 0-5                                      0.1711  1.000  0.878
+  F3 Check 13, 25 Praised variants (526 worlds)    13.1 window: days 2-10                                     0.1483  1.000  0.838
+  F3 Check 13, 25 Praised variants (526 worlds)    13.2 before: day -1                                        0.5817  1.000  1.000
+  F3 Check 13, 25 Praised variants (526 worlds)    13.2 before: days -5 to -1                                 0.0304  0.760  0.319
+  F3 Check 13, 25 Praised variants (526 worlds)    13.4 without the five largest events                       0.0608  1.000  0.521
+  F3 Check 13, 25 Praised variants (526 worlds)    13.5 relevance >= 0.3                                      0.0190  0.475  0.230
+  F3 Check 13, 25 Praised variants (526 worlds)    13.6 without the media companies                           0.0266  0.665  0.289
+  F3 Check 13, 25 Praised variants (526 worlds)    13.7 @realDonaldTrump only                                 0.2738  1.000  0.970
+  F3 Check 13, 25 Praised variants (526 worlds)    13.8 cut-off 0.3                                           0.0304  0.760  0.319
+  F3 Check 13, 25 Praised variants (526 worlds)    13.8 cut-off 0.7                                           0.0076  0.190  0.103
+  F3 Check 13, 25 Praised variants (526 worlds)    13.10 after a recent purchase: day 0                       0.0038  0.095  0.057
+  F3 Check 13, 25 Praised variants (526 worlds)    13.10 after a recent purchase: days 0-1                    0.0114  0.285  0.143
+  F3 Check 13, 25 Praised variants (526 worlds)    13.10 after a recent purchase: days 0-2                    0.1673  1.000  0.873
+  F3 Check 13, 25 Praised variants (526 worlds)    13.10 after a recent purchase: days 0-5                    0.3612  1.000  0.996
+  F3 Check 13, 25 Praised variants (526 worlds)    13.10 after a recent purchase: days 2-10                   0.7110  1.000  1.000
+  F3 Check 13, 25 Praised variants (526 worlds)    13.10 after a recent purchase: days 1-10                   0.4297  1.000  1.000
+  F3 Check 13, 25 Praised variants (526 worlds)    13.10 after a recent purchase: days 1-20                   0.5779  1.000  1.000
+  F3 Check 13, 25 Praised variants (526 worlds)    13.10 after a recent purchase: days 0-1, amount-weighted   0.8783  1.000  1.000
+  F3 Check 13, 25 Praised variants (526 worlds)    13.10 after a recent purchase: days 1-10, amount-weighted  0.2966  1.000  0.985
+  F3 Check 13, 25 Praised variants (526 worlds)    13.3 model: ar_raw                                         0.0038  0.095  0.057
+  F3 Check 13, 25 Praised variants (526 worlds)    13.3 model: ar_capm                                        0.0228  0.570  0.259
+  F3 Check 13, 25 Praised variants (526 worlds)    13.3 model: ar_ff5m                                        0.0038  0.095  0.057

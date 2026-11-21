@@ -1,0 +1,16 @@
+owned     on owned_share              corr +0.340; real 7.622e-05 pred 3.034e-04; resid p_lower 0.008
+exposure  on exposure_mean            corr +0.161; real 1.512e-06 pred 2.675e-05; resid p_lower 0.004
+owned     on first_purchase_day_mean  corr -0.340; real 7.622e-05 pred 3.034e-04; resid p_lower 0.008
+exposure  on first_purchase_day_mean  corr -0.176; real 1.512e-06 pred 2.681e-05; resid p_lower 0.004
+shift 30-60 n=31 exposure  real 1.512e-06 mean 2.095e-05 p_lower 0.031
+shift 30-60 n=31 owned     real 7.622e-05 mean 2.552e-04 p_lower 0.031
+shift 30-60 n=31 recent_10 real -1.357e-04 mean 9.855e-05 p_lower 0.031
+shift 30-90 n=61 exposure  real 1.512e-06 mean 1.864e-05 p_lower 0.016
+shift 30-90 n=61 owned     real 7.622e-05 mean 2.105e-04 p_lower 0.048
+shift 30-90 n=61 recent_10 real -1.357e-04 mean 6.289e-05 p_lower 0.145
+shift 468-528 n=61 exposure  real 1.512e-06 mean 2.224e-05 p_lower 0.048
+shift 468-528 n=61 owned     real 7.622e-05 mean 2.594e-04 p_lower 0.081
+shift 468-528 n=61 recent_10 real -1.357e-04 mean 9.590e-05 p_lower 0.016
+shift 30-528 n=499 exposure  real 1.512e-06 mean 2.294e-05 p_lower 0.020
+shift 30-528 n=499 owned     real 7.622e-05 mean 2.290e-04 p_lower 0.042
+shift 30-528 n=499 recent_10 real -1.357e-04 mean 1.110e-05 p_lower 0.178

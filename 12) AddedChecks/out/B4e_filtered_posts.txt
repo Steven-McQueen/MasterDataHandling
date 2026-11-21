@@ -1,0 +1,32 @@
+B4(e) Blocked posts | 12) AddedChecks/B4e_filtered_posts.py
+
+Rows: 333; status {'content_filter': 332, 'error: Connection error.': 1}
+By account and platform:
+  POTUS            Twitter         1
+  WhiteHouse       TruthSocial    16
+  WhiteHouse       Twitter       229
+  realDonaldTrump  TruthSocial    86
+  realDonaldTrump  Twitter         1
+  POTUS            blocked    1 of    106 posts after the merge = 0.94%
+  WhiteHouse       blocked  245 of 16,304 posts after the merge = 1.50%
+  realDonaldTrump  blocked   87 of  5,863 posts after the merge = 1.48%
+
+Span matches excluded as ordinary words: 95 (American: adjective (American people, American elections), never American Airlines; United: United States, never United Airlines; Southwest: the Southwest border, never Southwest Airlines)
+Blocked posts that name a universe company by a direct-reference span: 5 posts, 5 post-ticker pairs:
+  2025-07-20 WhiteHouse      DIS   span 'ABC': RT @RapidResponse47: ABC: "There is little question that Trump is fulfilling a campaign promise. In a matter of months, migrant crossings have hit record lows."
+  2025-11-17 WhiteHouse      FOXA  span '@FoxNews': RT @SecDuffy: This is exactly why we can't have illegal immigrants operating big rigs on our roads!  God bless @ICEgov  QT @FoxNews: 🚨 BREAKING: ICE arrests illegal-immigrant trucker from Uzbekistan over alleged terror ties
+  2026-03-08 realDonaldTrump FOXA  span 'Fox': Great Job by hard working Scott Pressler on Fox & Friends talking about using the Filibuster, or Talking Filibuster, in order to pass THE SAVE AMERICA ACT, an 88% issue with ALL VOTERS. It must be done immediately. It supersedes e
+  2026-05-21 WhiteHouse      FOXA  span '@FoxNews': RT @DHSgov: 🚨TWO PEOPLE KILLED BY AN ILLEGAL ALIEN SEMI-TRUCK DRIVER.  Manvir Singh, a criminal illegal alien from India, veered off the road, hit a guardrail and triggered a crash that killed two people near Lodi, California. He 
+  2026-07-07 WhiteHouse      NWSA  span '@nypost': RT @JDVance: From day one, President Trump and I have said this very thing. Stopping the flood of illegal migrants into this country will bring down home prices and make housing affordable again for young Americans who are trying 
+
+Part 1 purchase hits with the blocked pairs added (all 18,398 purchases, 500 worlds):
+version                          outcome        real  expected  p_upper  p_lower
+as run                           direct_any      388     403.1    0.838    0.174
+as run                           direct_pos50    176     204.1    0.958    0.048
+as run                           direct_neg50    129     107.2    0.028    0.980
+blocked pairs as Praised (+1)    direct_any      388     403.4    0.840    0.170
+blocked pairs as Praised (+1)    direct_pos50    176     205.9    0.976    0.040
+blocked pairs as Praised (+1)    direct_neg50    129     107.2    0.028    0.980
+blocked pairs as Roasted (-1)    direct_any      388     403.4    0.840    0.170
+blocked pairs as Roasted (-1)    direct_pos50    176     204.1    0.958    0.048
+blocked pairs as Roasted (-1)    direct_neg50    129     107.9    0.032    0.976

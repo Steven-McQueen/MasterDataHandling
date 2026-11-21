@@ -1,0 +1,18 @@
+B5b addendum (added after B5 was seen): complete 20-day prior windows only | 12) AddedChecks/B5b_addendum_full_prior.py
+
+Purchases with 20 prior days: real 15,341 of 17,883; shifted 16,044 to 17,614. Roasted hits with 20 prior days: real 124, shifted mean 103.1
+
+Brute-force recount of the B5 prior return (5 random real purchases with 20 prior days):
+  BA     2025-11-05: by hand -11.7008%, B5 -11.7008% -> OK
+  BKNG   2025-09-23: by hand -8.4293%, B5 -8.4293% -> OK
+  BLK    2025-05-23: by hand -0.7843%, B5 -0.7843% -> OK
+  CME    2025-06-02: by hand -1.3822%, B5 -1.3822% -> OK
+  GD     2026-03-23: by hand +4.6057%, B5 +4.6057% -> OK
+
+statistic                                              real  shifted  p_upper  p_lower  p_two
+S_roasted                                            +0.05%   -0.91%    0.066    0.936  0.132
+S_all                                                -1.31%   -0.10%    1.000    0.002  0.004
+S_all_bydate                                         -1.57%   -0.26%    0.984    0.018  0.036
+S_praised                                            +1.74%   +1.40%    0.346    0.656  0.692
+S_roasted_nomedia                                    +0.64%   -0.90%    0.144    0.858  0.288
+S_roasted_abs                                        +6.97%   +6.32%    0.154    0.848  0.308

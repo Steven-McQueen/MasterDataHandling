@@ -1,0 +1,24 @@
+B4(c) v5 against v6 | 12) AddedChecks/B4c_v5_row.py
+
+Part A: stored rows, 5) MapTweetCompany/3) LabelAccuracy/ResultsV5V6.txt (run 2026-11-11, before April 2026):
+  L7: part       row                                           real v5    real v6   shift v5   shift v6  p_up v5  p_up v6  p_lo v5  p_lo v6   p2 v5   p2 v6
+  L11: Part 2     direct_pos50 (purchase_hits)                  177.000    164.000    208.613    195.521    0.954    0.982    0.056    0.024                
+  L12: Part 2     direct_any (purchase_hits)                    373.000    368.000    390.118    385.040    0.838    0.846    0.170    0.164                
+  L13: Part 2     direct_neg50 (purchase_hits)                  125.000    124.000    102.569    101.788    0.034    0.030    0.968    0.976                
+  L19: Part 3     posted: r real (%)                              0.585      0.516      0.608      0.576    0.508    0.504    0.494    0.498   0.988   0.996
+  L23: Part 3     praised: r real (%)                             1.527     -0.232      0.690      0.464    0.266    0.690    0.736    0.312   0.532   0.624
+  L25: Part 3     roasted: r real (%)                             0.298      0.222     -0.398     -0.839    0.274    0.230    0.728    0.772   0.548   0.460
+
+Part B: final data (April 2026 trades, L = 558, 500 worlds). v6 column reproduces the stored Part 1 and Part 2 results: OK
+v5 labels: 7ab940f:5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx
+
+statistic        v6 real  v6 shift  v6 p_up  v6 p_lo  v6 p2 |   v5 real  v5 shift  v5 p_up  v5 p_lo  v5 p2
+direct_pos50       176.0     204.1    0.958    0.048  0.096 |     190.0     218.0    0.956    0.062  0.124
+direct_any         388.0     403.1    0.838    0.174  0.348 |     393.0     406.7    0.808    0.200  0.400
+direct_neg50       129.0     107.2    0.028    0.980  0.056 |     128.0     106.1    0.032    0.974  0.064
+gap                 47.0      96.9    0.998    0.004  0.008 |      62.0     111.8    1.000    0.002  0.004
+posted_r           1.658     0.472    0.170    0.832  0.340 |     1.705     0.527    0.172    0.830  0.344
+praised_r          2.883     0.336    0.040    0.962  0.080 |     3.420     0.555    0.034    0.968  0.068
+roasted_r         -0.093    -0.729    0.308    0.694  0.616 |     0.009    -0.320    0.358    0.644  0.716
+
+Group sizes, Part 2: v6 Posted 384, Praised 128, Roasted 98; v5 Posted 389, Praised 143, Roasted 93. Returns in percent.

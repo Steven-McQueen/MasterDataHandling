@@ -1,0 +1,11 @@
+part,main test,n_main,n_statistics,source,note
+Part 1 (H1),"Praised purchase hits, p_upper",1.0,33,8) Part1_Timing/2) Inference/inference.csv,rows = 16 outcomes x 2 counts + tone share; each with p_upper and p_lower; gap test computed in Step 11
+Part 1b,"direct mentions, 10 days, p_upper (p_search over 6 windows)",1.0,32,7) Part1b_Talk/3) Inference/inference.csv,plus 50 regression specifications in 2) Estimate/results.csv (conventional p)
+Part 2 (H2),"Posted r, p_two",1.0,8,9) Part2_Returns/2) Inference/inference.csv + gaps.csv,5 groups + 3 direct tests
+Checks 1-7 (Part 2 reruns),Posted r per check,,84,10) Checks/robustness.csv,21 specifications x 4 groups; Check 1 search p over 10 horizons
+Check 8 (spec curve),joint test per outcome,3.0,1512,10) Checks/SpecCurve/spec_curve.csv,"1,512 specifications, 3 joint tests"
+Checks 9-11,,,11,10) Checks/extra_checks.csv,
+Check 12 (sales),,,9,10) Checks/optional_sales.csv,
+Check 13 (post windows),"Praised held mean, days 0-1",1.0,10,10) Checks/optional_postwindows.csv,
+Check 13 robustness (13.1-13.9),,,18,10) Checks/optional_robustness.csv (Praised rows),17 variants + the 'same events' duplicate of main; Roasted rows beside them
+Check 13.10,days 0-1 (as in Check 13),1.0,9,10) Checks/optional_robustness.csv (Praised rows),7 equal-weighted windows + 2 amount-weighted windows

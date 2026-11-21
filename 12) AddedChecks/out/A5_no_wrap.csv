@@ -1,0 +1,21 @@
+version,statistic,real,mean_shifted,ratio,p_upper,p_lower,p_two,n_worlds
+1 no wrap (paired),Praised hits,90.9679,121.587,0.74817,1,0.002,0.004,500
+1 no wrap (paired),any-post hits,219,221.862,0.987101,0.512,0.504,1,500
+1 no wrap (paired),Roasted hits,73.5912,55.0381,1.3371,0.024,0.994,0.048,500
+1 no wrap (paired),posted r,0.00661044,0.00812263,0.81383,0.49,0.512,0.98,500
+1 no wrap (paired),praised r,0.0147728,0.00306476,4.82021,0.32,0.682,0.64,500
+"2 year 2025 (L=346, 14363 Part 1 / 13921 Part 2 purchases)",Praised hits,122,140.017,0.87132,0.930556,0.104167,0.208333,288
+"2 year 2025 (L=346, 14363 Part 1 / 13921 Part 2 purchases)",any-post hits,291,302.418,0.962244,0.756944,0.253472,0.506944,288
+"2 year 2025 (L=346, 14363 Part 1 / 13921 Part 2 purchases)",Roasted hits,101,90.7143,1.11339,0.0798611,0.9375,0.159722,288
+"2 year 2025 (L=346, 14363 Part 1 / 13921 Part 2 purchases)",posted r,0.00534429,0.00615889,0.867735,0.541667,0.461806,0.923611,288
+"2 year 2025 (L=346, 14363 Part 1 / 13921 Part 2 purchases)",praised r,0.00366403,0.00819901,0.446887,0.625,0.378472,0.756944,288
+"2 year 2026 (L=212, 4035 Part 1 / 3962 Part 2 purchases)",Praised hits,54,58.5294,0.922613,0.694805,0.331169,0.662338,154
+"2 year 2026 (L=212, 4035 Part 1 / 3962 Part 2 purchases)",any-post hits,97,101.438,0.95625,0.714286,0.337662,0.675325,154
+"2 year 2026 (L=212, 4035 Part 1 / 3962 Part 2 purchases)",Roasted hits,28,21.0261,1.33168,0.136364,0.876623,0.272727,154
+"2 year 2026 (L=212, 4035 Part 1 / 3962 Part 2 purchases)",posted r,0.0350105,0.00153701,22.7783,0.025974,0.980519,0.0519481,154
+"2 year 2026 (L=212, 4035 Part 1 / 3962 Part 2 purchases)",praised r,0.042009,0.00138702,30.2872,0.0519481,0.954545,0.103896,154
+"2 year 2026 without AMZN 2026-04-17 (L=212, 4035 Part 1 / 3961 Part 2 purchases)",Praised hits,54,58.5294,0.922613,0.694805,0.331169,0.662338,154
+"2 year 2026 without AMZN 2026-04-17 (L=212, 4035 Part 1 / 3961 Part 2 purchases)",any-post hits,97,101.438,0.95625,0.714286,0.337662,0.675325,154
+"2 year 2026 without AMZN 2026-04-17 (L=212, 4035 Part 1 / 3961 Part 2 purchases)",Roasted hits,28,21.0261,1.33168,0.136364,0.876623,0.272727,154
+"2 year 2026 without AMZN 2026-04-17 (L=212, 4035 Part 1 / 3961 Part 2 purchases)",posted r,0.00428873,0.00140707,3.04798,0.493506,0.512987,0.987013,154
+"2 year 2026 without AMZN 2026-04-17 (L=212, 4035 Part 1 / 3961 Part 2 purchases)",praised r,-0.00856839,-0.00189678,4.51734,0.662338,0.344156,0.688312,154

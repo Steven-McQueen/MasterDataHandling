@@ -1,0 +1,9 @@
+test,exact_threshold,repo_critical,mean_shifted,delta50,delta80,se
+Part 1 Praised hits,231,230,204.12,26.03,41.04,
+Part 1 Roasted hits,125,125,107.17,18.012,27.018,
+Part 2 Posted r (%),2.9722,2.7069,0.47182,2.2797,3.1816,
+Part 2 Praised r (%),3.7026,3.6467,0.33585,3.3446,4.5565,
+SE of Praised hits p_lower at n_eff 15.3,,,,,,0.05465
+SE of Roasted hits p_upper at n_eff 13.1,,,,,,0.04558
+SE of gap p_lower at n_eff 10.3,,,,,,0.019667
+SE of Part 2 Praised p_upper at n_eff 57.8,,,,,,0.025775

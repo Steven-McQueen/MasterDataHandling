@@ -1,0 +1,26 @@
+design,statistic,real,shifted,ratio,p_upper,p_lower,worlds
+F_s: forward-moved part (= A5 v1),Praised hits,90.9679,121.587,0.74817,1,0.002,500
+F_s: forward-moved part (= A5 v1),Roasted hits,73.5912,55.0381,1.3371,0.024,0.994,500
+F_s: forward-moved part (= A5 v1),any-post hits,219,221.862,0.987101,0.512,0.504,500
+F_s: forward-moved part (= A5 v1),posted r,0.00661044,0.00812263,0.81383,0.49,0.512,500
+F_s: forward-moved part (= A5 v1),praised r,0.0147728,0.00306476,4.82021,0.32,0.682,500
+"B_s: wrapped part, moved back (dropped by A5 v1)",Praised hits,85.0321,82.5291,1.03033,0.396,0.63,500
+"B_s: wrapped part, moved back (dropped by A5 v1)",Roasted hits,55.4088,52.1363,1.06277,0.456,0.584,500
+"B_s: wrapped part, moved back (dropped by A5 v1)",any-post hits,169,181.222,0.932556,0.722,0.296,500
+"B_s: wrapped part, moved back (dropped by A5 v1)",posted r,0.022487,0.00405488,5.54565,0.178,0.824,500
+"B_s: wrapped part, moved back (dropped by A5 v1)",praised r,0.030388,0.00829936,3.6615,0.176,0.826,500
+"two-direction no-wrap, +/-30..528 (998 worlds)",Praised hits,88,102.058,0.862254,0.697698,0.315315,999
+"two-direction no-wrap, +/-30..528 (998 worlds)",Roasted hits,64.5,53.5872,1.20365,0.239239,0.788789,999
+"two-direction no-wrap, +/-30..528 (998 worlds)",any-post hits,194,201.542,0.962578,0.616617,0.399399,999
+"two-direction no-wrap, +/-30..528 (998 worlds)",posted r,0.0145487,0.00608876,2.38944,0.333333,0.667668,999
+"two-direction no-wrap, +/-30..528 (998 worlds)",praised r,0.0225804,0.00568206,3.97399,0.247247,0.753754,999
+  forward only,Praised hits,90.9679,121.587,0.74817,1,0.002,500
+  forward only,Roasted hits,73.5912,55.0381,1.3371,0.024,0.994,500
+  forward only,any-post hits,219,221.862,0.987101,0.512,0.504,500
+  forward only,posted r,0.00661044,0.00812263,0.81383,0.49,0.512,500
+  forward only,praised r,0.0147728,0.00306476,4.82021,0.32,0.682,500
+  backward only,Praised hits,85.0321,82.5291,1.03033,0.396,0.63,500
+  backward only,Roasted hits,55.4088,52.1363,1.06277,0.456,0.584,500
+  backward only,any-post hits,169,181.222,0.932556,0.722,0.296,500
+  backward only,posted r,0.022487,0.00405488,5.54565,0.178,0.824,500
+  backward only,praised r,0.030388,0.00829936,3.6615,0.176,0.826,500

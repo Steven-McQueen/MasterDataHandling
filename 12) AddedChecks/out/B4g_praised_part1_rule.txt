@@ -1,0 +1,14 @@
+B4(g) Praised / Roasted under the Part 1 rule (any post in the window), Part 2 sample, midpoints, 500 worlds
+12) AddedChecks/B4g_praised_part1_rule.py
+
+Checks
+  praised (first post) reproduces Part 2: r 0.028828 vs 0.028828, p_two 0.080 vs 0.080 -> OK
+
+group                      n  n shift   USD m  r real % r shift %  delta pp   p_up   p_lo  p_two
+praised_first            128    154.0    30.3     2.883     0.336    +2.547  0.040  0.962  0.080
+praised_any              174    203.3    36.5     2.963     0.821    +2.143  0.072  0.930  0.144
+roasted_first             98     82.1    16.4    -0.093    -0.729    +0.636  0.308  0.694  0.616
+roasted_any              127    107.0    19.5     0.689     0.007    +0.682  0.286  0.716  0.572
+gap_any                                           2.275     0.814    +1.461  0.246  0.756  0.492
+praised_first_noAMZN     127    154.0    14.9    -0.003     0.291    -0.294  0.584  0.418  0.836
+praised_any_noAMZN       173    203.2    21.1     0.987     0.775    +0.212  0.470  0.532  0.940

@@ -1,0 +1,4 @@
+Roasted after (all)              real     127 expected    107.0 p_upper 0.030 p_lower 0.974
+after & Roasted before           real      52 expected     43.8 p_upper 0.088 p_lower 0.944
+after & none before              real      75 expected     63.2 p_upper 0.118 p_lower 0.904
+purchases with Roasted before    real     128 expected    109.6 p_upper 0.054 p_lower 0.962

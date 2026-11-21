@@ -1,0 +1,3 @@
+sales 8740
+sales prior                  real -5.50% shifted -0.34% p_upper 1.000 p_lower 0.002
+sales prior, date-demeaned   real -5.21% shifted -0.35% p_upper 1.000 p_lower 0.002

@@ -1,0 +1,11 @@
+A3. Part 1, purchase side and post side (8) Part1_Timing/2) Inference/inference.csv)
+
+outcome        count            real  shifted  ratio  p_upper  p_lower  recomputed csv row
+direct_pos50   purchase_hits     176    204.1  0.862    0.958    0.048          OK       4
+direct_pos50   post_hits         177    190.4  0.929    0.888    0.130          OK       5
+direct_neg50   purchase_hits     129    107.2  1.204    0.028    0.980          OK       6
+direct_neg50   post_hits         131    121.1  1.082    0.210    0.808          OK       7
+direct_any     purchase_hits     388    403.1  0.963    0.838    0.174          OK       2
+direct_any     post_hits         553    558.5  0.990    0.602    0.412          OK       3
+
+csv row = line number in inference.csv (header = line 1).

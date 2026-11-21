@@ -1,0 +1,58 @@
+B4 (b), (f), (h), (i) | 12) AddedChecks/B4_extract.py
+
+(b) Part 2, both one-sided p-values and the two-sided p (inference.csv, gaps.csv):
+  group/test                     real    shifted  p_upper  p_lower  p_two  line
+  all                          0.006%    -0.114%    0.372    0.630  0.744  inference.csv:2
+  posted                       1.658%     0.472%    0.170    0.832  0.340  inference.csv:3
+  no_post                     -0.094%    -0.154%    0.464    0.538  0.928  inference.csv:4
+  praised                      2.883%     0.336%    0.040    0.962  0.080  inference.csv:5
+  roasted                     -0.093%    -0.729%    0.308    0.694  0.616  inference.csv:6
+  r praised - r roasted        2.976%     1.065%    0.210    0.792  0.420  gaps.csv:2
+  r posted - r no_post         1.752%     0.626%    0.190    0.812  0.380  gaps.csv:3
+  T posted (USD)            1,150,643    359,715    0.216    0.786  0.432  gaps.csv:4
+
+(f) Survivorship, 9) Part2_Returns/1) Returns/ReturnsChecks.txt:
+  L14: tickers kept 1,502 of 1,595; left out 93
+  L15: purchases kept 17,883; left out 494 (2.7%)
+  L16: amount left out, amount_mid: USD 13,640,250 of 1,236,848,252 (1.10%)
+  L17: left-out purchases with at least one return day in the window: 494 (full 10 days: 482); their return per dollar (amount_mid, available days): 0.1760%
+  L18: left-out purchases with no return day in the window: 0
+  L19: 
+  L20: Labels (real world, all purchases / in the sample):
+  L21: posted      388 /    384
+  L22: praised     130 /    128
+  L23: roasted     100 /     98
+  L24: neutral     158 /    158
+  L25: no_post  17,989 / 17,499
+  left-out purchases by label (purchase_returns.csv): {'no_post': 490, 'roasted': 2, 'praised': 2}
+  VSNT  2026-01-26 roasted  USD    175,000  ar_mkt days available 10 of 10, sum -14.17%  (first post 2026-02-06, sentiment -0.8)
+  VSNT  2026-03-04 roasted  USD     32,500  ar_mkt days available 10 of 10, sum +3.73%  (first post 2026-03-06, sentiment -1.0)
+  SPCX  2026-06-23 praised  USD     32,500  ar_mkt days available 10 of 10, sum -5.87%  (first post 2026-07-08, sentiment 1.0)
+  SPCX  2026-07-10 praised  USD     32,500  ar_mkt days available 10 of 10, sum -20.28%  (first post 2026-07-15, sentiment 0.5)
+
+(h) Check 9, posts on day 0 counted (10) Checks/extra_checks.csv):
+  main  direct_pos50|purchase_hits   176 vs 204.1         p_upper 0.958 p_lower 0.048  line 2
+  main  direct_any|purchase_hits     388 vs 403.1         p_upper 0.838 p_lower 0.174  line 3
+  main  direct_neg50|purchase_hits   129 vs 107.2         p_upper 0.028 p_lower 0.980  line 4
+  main  posted|r                     1.66% vs 0.47%       p_upper 0.170 p_lower 0.832  line 5
+  day0  direct_pos50|purchase_hits   187 vs 218.5         p_upper 0.976 p_lower 0.034  line 6
+  day0  direct_any|purchase_hits     403 vs 425.3         p_upper 0.908 p_lower 0.096  line 7
+  day0  direct_neg50|purchase_hits   134 vs 112.5         p_upper 0.028 p_lower 0.976  line 8
+  day0  posted|r                     1.67% vs 0.47%       p_upper 0.158 p_lower 0.844  line 9
+
+(i) Return models (tab_models.csv for Posted; robustness.csv model_* rows for Praised and Roasted):
+  Posted   Raw return                 2.87% vs   1.24%  delta +1.64 pp  p_two 0.348
+  Posted   Market-adjusted (main)     1.66% vs   0.47%  delta +1.19 pp  p_two 0.340
+  Posted   CAPM                       1.34% vs   0.20%  delta +1.14 pp  p_two 0.316
+  Posted   FF3 + momentum             1.25% vs   0.23%  delta +1.02 pp  p_two 0.380
+  Posted   FF5 + momentum             1.12% vs   0.39%  delta +0.74 pp  p_two 0.512
+  praised  model_ar_raw               4.24% vs   1.25%  delta +2.98 pp  p_two 0.108  robustness.csv:52
+  praised  model_ar_mkt               2.88% vs   0.34%  delta +2.55 pp  p_two 0.080  robustness.csv:56
+  praised  model_ar_capm              2.58% vs  -0.12%  delta +2.70 pp  p_two 0.072  robustness.csv:60
+  praised  model_ar_ff3m              2.78% vs   0.42%  delta +2.36 pp  p_two 0.132  robustness.csv:64
+  praised  model_ar_ff5m              2.64% vs   0.77%  delta +1.87 pp  p_two 0.228  robustness.csv:68
+  roasted  model_ar_raw               0.59% vs  -0.01%  delta +0.60 pp  p_two 0.624  robustness.csv:53
+  roasted  model_ar_mkt              -0.09% vs  -0.73%  delta +0.64 pp  p_two 0.616  robustness.csv:57
+  roasted  model_ar_capm              0.04% vs  -0.57%  delta +0.61 pp  p_two 0.616  robustness.csv:61
+  roasted  model_ar_ff3m             -0.15% vs  -1.16%  delta +1.01 pp  p_two 0.464  robustness.csv:65
+  roasted  model_ar_ff5m             -0.56% vs  -1.26%  delta +0.70 pp  p_two 0.540  robustness.csv:69

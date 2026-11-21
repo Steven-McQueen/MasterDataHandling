@@ -1,0 +1,11 @@
+R6. Exact thresholds and power (location shift, thesis p rule)
+
+                                      test  exact_threshold  repo_critical  mean_shifted   delta50   delta80       se
+                       Part 1 Praised hits       231.000000     230.000000    204.116232 26.030000 41.040000      NaN
+                       Part 1 Roasted hits       125.000000     125.000000    107.174349 18.012000 27.018000      NaN
+                       Part 2 Posted r (%)         2.972174       2.706932      0.471823  2.279667  3.181604      NaN
+                      Part 2 Praised r (%)         3.702638       3.646657      0.335848  3.344625  4.556532      NaN
+  SE of Praised hits p_lower at n_eff 15.3              NaN            NaN           NaN       NaN       NaN 0.054650
+  SE of Roasted hits p_upper at n_eff 13.1              NaN            NaN           NaN       NaN       NaN 0.045580
+           SE of gap p_lower at n_eff 10.3              NaN            NaN           NaN       NaN       NaN 0.019667
+SE of Part 2 Praised p_upper at n_eff 57.8              NaN            NaN           NaN       NaN       NaN 0.025775

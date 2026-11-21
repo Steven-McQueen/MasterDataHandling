@@ -1,0 +1,6 @@
+file,source_rows,outside_window,dropped_no_text,kept,kept_recount,in_window,share_dropped
+realDonaldTrump_TruthSocial,36170,24883,5178,6109,6109,11287,0.458758
+WhiteHouse_TruthSocial,3433,367,35,3031,3031,3066,0.0114155
+realDonaldTrump_Twitter,184,10,93,81,81,174,0.534483
+POTUS_Twitter,3121,0,48,3073,3073,3121,0.0153797
+WhiteHouse_Twitter,15824,0,307,15517,15517,15824,0.0194009
