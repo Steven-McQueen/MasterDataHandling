@@ -114,7 +114,7 @@ def style():
     return plt
 
 
-def hist_panel(ax, values, real, title, xlabel, scale=1.0, integer=False):
+def hist_panel(ax, values, real, title, xlabel, scale=1.0, integer=False, nbins=4):
     v = values * scale
     r = real * scale
     lo, hi = min(v.min(), r), max(v.max(), r)
@@ -124,6 +124,10 @@ def hist_panel(ax, values, real, title, xlabel, scale=1.0, integer=False):
     ax.text(r, ax.get_ylim()[1] * 0.97, " real", color=ORANGE, va="top", fontsize=8)
     ax.set_title(title)
     ax.set_xlabel(xlabel)
+    # Few, well-spaced ticks that include the real value's side of the axis: in narrow panels the
+    # default ticks can run into each other, and in wide ones leave the real value without a tick nearby.
+    from matplotlib.ticker import MaxNLocator
+    ax.xaxis.set_major_locator(MaxNLocator(nbins=nbins, integer=integer))
 
 
 # --------------------------------------------------------------------------
@@ -235,7 +239,7 @@ def returns_figure_and_tables(plt):
     groups = ["all", "posted", "no_post", "praised", "roasted"]
     fig, axes = plt.subplots(1, 5, figsize=(WIDTH, 2.1), sharey=False)
     for ax, g in zip(axes, groups):
-        hist_panel(ax, sh[f"{g}|{AMOUNT}|r"], real[f"{g}|{AMOUNT}|r"], GROUP_NAMES[g], "Percent", scale=100)
+        hist_panel(ax, sh[f"{g}|{AMOUNT}|r"], real[f"{g}|{AMOUNT}|r"], GROUP_NAMES[g], "Percent", scale=100, nbins=3)
     axes[0].set_ylabel("Shifted worlds")
     fig.tight_layout()
     fig.savefig(FIG / "fig_part2_groups.pdf")

@@ -1,0 +1,29 @@
+Step 11, MonthlyFigure | run 2026-11-24 23:45
+
+Purchases with prices: 18,377 (purchase_returns.csv: 18,377)
+Direct references to universe companies: 1,312; Praised 413, Roasted 271
+
+         purchases  praised  roasted
+month                               
+2025-01       1041        4        5
+2025-02       2117       20       11
+2025-03       1107       25       11
+2025-04       1573       23       13
+2025-05       1711       25       11
+2025-06        555       10       19
+2025-07        863       23       29
+2025-08       1208       27       20
+2025-09       1150       25       14
+2025-10       1233       15       12
+2025-11        944       24       13
+2025-12        840        8       12
+2026-01        376       13       21
+2026-02        355        7        6
+2026-03       1428       11       16
+2026-04        653       16       25
+2026-05        381       24       14
+2026-06        465       28        6
+2026-07        377       48        7
+2026-08          0       37        6
+
+Written: figures/fig_monthly.pdf, tables/monthly_counts.csv

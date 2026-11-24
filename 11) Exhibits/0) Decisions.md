@@ -25,3 +25,7 @@ Fixed on 2026-11-09. The exhibit list is the kokebok's (step 12, Exhibits), with
 ## Amended 2026-11-24
 - The main Part 2 group is Praised (see `9) Part2_Returns/0) Decisions.md`, amendment of 2026-11-24). `tab_contributors`, `tab_robustness` and `tab_models` report the Praised group in the thesis; Posted is Check 15.
 - `fig_horizons` is replaced by `fig_returns_worlds_praised` (`PraisedMain.py`): grey for 100 of the shifted worlds, a dashed line for their mean, a band for 95 percent of them, red for the real calendar.
+
+## Amended 2026-11-24 (Deep Review, Minor items)
+- Histogram panels (`hist_panel`) use at most four x ticks, three in the five narrow Part 2 panels, so that the real value has a tick nearby and no labels collide. Only `fig_part1_worlds` and `fig_part2_groups` were redrawn; their tables are unchanged.
+- New `fig_monthly` (`MonthlyFigure.py`): purchases per month against Praised and Roasted direct mentions of universe companies per month, from stored outputs (`tables/monthly_counts.csv`). Shown in Appendix B beside Table B.1.
