@@ -21,3 +21,7 @@ Fixed on 2026-11-09. The exhibit list is the kokebok's (step 12, Exhibits), with
 - Figures: vector PDF, one style for all (grey for the shifted worlds, orange for the real value), 6.3 inches wide to fit the text width.
 - Numbers: British style with "we"; p-values to three decimals; dollar amounts with thousands separators. Returns per dollar and excess returns are given to two decimals, because the differences are a few hundredths of a percentage point.
 - Labels: `tab:` and `fig:` followed by the file name without its prefix (for example `tab:part3`).
+
+## Amended 2026-11-24
+- The main Part 2 group is Praised (see `9) Part2_Returns/0) Decisions.md`, amendment of 2026-11-24). `tab_contributors`, `tab_robustness` and `tab_models` report the Praised group in the thesis; Posted is Check 15.
+- `fig_horizons` is replaced by `fig_returns_worlds_praised` (`PraisedMain.py`): grey for 100 of the shifted worlds, a dashed line for their mean, a band for 95 percent of them, red for the real calendar.

@@ -46,5 +46,14 @@ These were open when the decisions above were fixed and were settled after the f
 - **Neutral posts** stay inside Posted: a purchase whose first post in the window is neither Praised nor Roasted is Posted and in neither sub-group.
 - **Smallest shift:** 30 days (Step 6).
 
+## Amended 2026-11-24: Praised is the main group
+Decided by the authors on 2026-11-24, after the Deep Review of the draft. H2 names the purchases that precede praise, so the test of H2 is the Praised group and not Posted.
+- **Main comparison:** r of the real Praised group against r of the Praised group in every shifted world, read with the one-sided p_upper, because H2 predicts a gain. The two-sided p is reported beside it.
+- **Posted** becomes Check 15: the same statistics for the Posted group, two-sided, against the No post group. It does not depend on the tone labels.
+- **Group gaps:** r(Praised) − r(Roasted), r(Praised) − r(No post) and r(Praised) − r(All), each against the same gap in every world; r(Posted) − r(No post) moves with Check 15.
+- **Contributors:** computed for the Praised group, as amount × (MAR minus the mean r of the shifted Praised groups); the contributions add up to the Praised dollar excess. Script: `11) Exhibits/PraisedMain.py`, output `11) Exhibits/tables/praised_contributors.csv`.
+- **Figure:** `fig_returns_worlds_praised.pdf` (Praised, cumulative return per dollar by trading day, real against the shifted worlds) replaces `fig_horizons` in the thesis. The Posted version is kept as `fig_returns_worlds_posted.pdf`.
+- No number of the run changes; only which group is reported as the main test.
+
 ## Limitations to state
 Holding period assumed at ten trading days (which sale closes which purchase is unknown); amounts known only as ranges; the 21 unpriceable purchases and the tickers without a full series are left out; daily data cannot separate a post from the news that prompted it; the accounts are discretionary, so the tests compare the account's trading calendar with the posts.
