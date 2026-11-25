@@ -1,0 +1,21 @@
+Step 5.3.2, ScoreBlind agreement | run 2026-11-25 19:56
+
+Shared posts: 100. Unit: a company of the trade universe in a post.
+Companies written down that are outside the universe (ignored): coder A 24 (all 300 posts), coder B 4
+
+Which companies
+  posts where both wrote the same set of companies: 95 of 100 = 95.0% (Wilson 95 %: 88.8% to 97.8%)
+  pairs written by either coder: 82; by both: 75; by A only: 6; by B only: 1
+
+Stance, on the pairs both wrote
+  same stance: 62 of 75 = 82.7% (Wilson 95 %: 72.6% to 89.6%)
+  Cohen's kappa (positive, neutral, negative): 0.70
+  rows coder A, columns coder B:
+    B         positive  neutral  negative
+    A                                    
+    positive        15        2         0
+    neutral          6       36         0
+    negative         0        5        11
+
+Pairs the coders differ on: 20, written to coded/BlindDisagreements.xlsx.
+Fill in 'joint answer' together, save the file as coded/BlindResolved.xlsx, commit it, then run: python ScoreBlind.py final

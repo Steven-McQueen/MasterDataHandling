@@ -1,0 +1,82 @@
+Step 5.3.2, ScoreBlind final | run 2026-11-25 19:56
+
+Sample: 300 posts (200 where the LLM found a company the analysis uses, 100 where it found none), coded without the LLM's labels.
+Human answer: coder A; the joint answer on 20 pair(s) where the coders differed (shared posts: 100).
+Unit: a company of the trade universe in a post.
+
+1. Does the LLM find the right companies?
+  pairs the LLM found: 242; pairs the coders wrote: 239; both: 236
+  precision (LLM pairs the coders also wrote): 236 of 242 = 97.5% (Wilson 95 %: 94.7% to 98.9%)
+  recall inside the 200 posts where the LLM found something: 236 of 239 = 98.7% (Wilson 95 %: 96.4% to 99.6%)
+  posts where the LLM found nothing but the coders wrote a universe company: 0 of 100 = 0.0% (Wilson 95 %: 0.0% to 3.7%)
+  recall for the population, with each group weighted by its size (1,202 and 19,959 posts): 98.7%  (one missed post in the second group weighs as much as 33 pairs in the first, so this figure is imprecise)
+
+2. Stance, on the pairs both found (rows the coders, columns the LLM)
+    llm       positive  neutral  negative
+    human                                
+    positive        60        7         0
+    neutral         19      109         7
+    negative         0        0        34
+  same stance: 203 of 236 = 86.0% (Wilson 95 %: 81.0% to 89.9%)
+  Cohen's kappa: 0.77
+
+3. The outcome categories of the analysis
+  Praised precision (LLM Praised pairs where the coders wrote the company and positive): 60 of 80 = 75.0% (Wilson 95 %: 64.5% to 83.2%)
+    of the others: company not written 1, neutral 19, opposite 0
+  Praised recall inside the posts where the LLM found something: 60 of 67 = 89.6% (Wilson 95 %: 80.0% to 94.8%)
+  Praised recall for the population (weighted): 89.6%
+  Roasted precision (LLM Roasted pairs where the coders wrote the company and negative): 34 of 42 = 81.0% (Wilson 95 %: 66.7% to 90.0%)
+    of the others: company not written 1, neutral 7, opposite 0
+  Roasted recall inside the posts where the LLM found something: 34 of 35 = 97.1% (Wilson 95 %: 85.5% to 99.5%)
+  Roasted recall for the population (weighted): 97.1%
+
+4. By reference type (precision of the company; same stance on the pairs both found)
+  direct     company 179 of 180 = 99.4% (Wilson 95 %: 96.9% to 99.9%); stance 151 of 179 = 84.4% (Wilson 95 %: 78.3% to 89.0%)
+  brand      company 37 of 39 = 94.9% (Wilson 95 %: 83.1% to 98.6%); stance 33 of 37 = 89.2% (Wilson 95 %: 75.3% to 95.7%)
+  executive  company 20 of 23 = 87.0% (Wilson 95 %: 67.9% to 95.5%); stance 19 of 20 = 95.0% (Wilson 95 %: 76.4% to 99.1%)
+
+Pairs where the LLM and the coders differ: 42
+  row   6 | WBD    | coders neutral     | LLM positive
+  row  14 | MCD    | coders neutral     | LLM positive
+  row  15 | ICE    | coders neutral     | LLM not found
+  row  15 | NDAQ   | coders neutral     | LLM not found
+  row  23 | TKO    | coders not written | LLM neutral
+  row  28 | FOXA   | coders neutral     | LLM positive
+  row  32 | AAPL   | coders not written | LLM neutral
+  row  38 | BMY    | coders positive    | LLM neutral
+  row  38 | GILD   | coders positive    | LLM neutral
+  row  38 | MRK    | coders positive    | LLM neutral
+  row  39 | ABT    | coders positive    | LLM neutral
+  row  41 | DELL   | coders not written | LLM positive
+  row  48 | NKE    | coders not written | LLM neutral
+  row  53 | SNDR   | coders neutral     | LLM positive
+  row  54 | CMCSA  | coders negative    | LLM not found
+  row  54 | VSNT   | coders not written | LLM negative
+  row  55 | DIS    | coders neutral     | LLM negative
+  row  74 | DELL   | coders neutral     | LLM positive
+  row 104 | FOXA   | coders neutral     | LLM positive
+  row 110 | DIS    | coders neutral     | LLM negative
+  row 117 | FOXA   | coders neutral     | LLM positive
+  row 125 | IBM    | coders positive    | LLM neutral
+  row 125 | MRK    | coders positive    | LLM neutral
+  row 125 | WMT    | coders positive    | LLM neutral
+  row 143 | WBD    | coders neutral     | LLM positive
+  row 152 | ICE    | coders neutral     | LLM negative
+  row 152 | NDAQ   | coders neutral     | LLM negative
+  row 157 | AAL    | coders neutral     | LLM positive
+  row 158 | FOXA   | coders neutral     | LLM positive
+  row 167 | FOXA   | coders neutral     | LLM positive
+  row 171 | NOC    | coders neutral     | LLM positive
+  row 206 | TKO    | coders neutral     | LLM positive
+  row 207 | FOXA   | coders neutral     | LLM positive
+  row 208 | UBER   | coders neutral     | LLM positive
+  row 227 | FOXA   | coders neutral     | LLM negative
+  row 228 | SKYD   | coders neutral     | LLM negative
+  row 229 | NWSA   | coders neutral     | LLM negative
+  row 233 | TKO    | coders neutral     | LLM positive
+  row 243 | AMZN   | coders neutral     | LLM positive
+  row 244 | FOXA   | coders neutral     | LLM positive
+  row 265 | FOXA   | coders neutral     | LLM positive
+  row 298 | WBD    | coders not written | LLM neutral
+
+Written: BlindReport.txt, blind_results.csv, blind_summary.csv
