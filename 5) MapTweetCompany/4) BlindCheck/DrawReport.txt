@@ -1,0 +1,23 @@
+Step 5.3.2, DrawBlindSample | run 2026-11-24 12:44
+
+Inputs
+  5) MapTweetCompany/1) LabelTweets/SocialMedia.db: 22,273 posts, 21,940 labeled under prompt version 6
+  5) MapTweetCompany/2) MapToTickers/Twitter_tickers_2025_2026.xlsx: 6,093 rows, 1,697 of them used by the analysis (in the universe; direct, brand, executive), on 1,438 posts
+  5) MapTweetCompany/3) LabelAccuracy/precision_key.csv: 193 posts in the first precision check
+
+Population
+  labeled posts without the development samples: 21,354
+  without the posts of the first precision check: 21,161
+  of which the LLM found a company the analysis uses: 1,202; found none: 19,959
+
+Sample: 200 + 100 posts, seed 20261124, shuffled; 100 of them (67 + 33) also in workbook B
+  by account: WhiteHouse 205, realDonaldTrump 92, POTUS 3
+
+Checks
+  posts 300, unique posts 300
+  from the development samples: 0 (must be 0)
+  from the first precision check: 0 (must be 0)
+  in workbook B: 100
+  LLM labels shown in the coding files: none
+
+Written: BlindSample_A.xlsx, BlindSample_B.xlsx, blind_sample_ids.csv, blind_population.csv
